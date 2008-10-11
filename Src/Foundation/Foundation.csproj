@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{76D503C1-FB69-4688-B7F9-49A7D6525263}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Foundation</RootNamespace>
+    <AssemblyName>Foundation</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.ActiveRecord, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Castle.ActiveRecord.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Components.Validator, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Castle.Components.Validator.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2, Version=2.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.MicroKernel, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Castle.MicroKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.MonoRail.Framework, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Castle.MonoRail.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="GeoIp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2ae18b7267db1a07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\GeoIp.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Shell32, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Interop.Shell32.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=2.3.1.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=2.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=2.0.0.2002, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Snowball.Net, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Snowball.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.48.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\System.Data.SQLite.DLL</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\ActiveRecord\DummyActiveRecordModel.cs" />
+    <Compile Include="Data\Hibernate\SingletonConnectionProvider.cs" />
+    <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
+    <Compile Include="HttpVerb.cs" />
+    <Compile Include="Services\IIocRegistry.cs" />
+    <Compile Include="ThrowException.cs" />
+    <Compile Include="CommonUtils.cs" />
+    <Compile Include="Data\ActiveRecord\DatabaseFixtureBase.cs" />
+    <Compile Include="Data\ActiveRecord\PropertyUniqueName.cs" />
+    <Compile Include="Data\Hibernate\UserTypes\PropertyInfoUserType.cs" />
+    <Compile Include="Data\Hibernate\UserTypes\TypeUserType.cs" />
+    <Compile Include="FoundationException.cs" />
+    <Compile Include="Services\Repository\ISqlRepository.cs" />
+    <Compile Include="Services\Security\DeleteEntityOperation.cs" />
+    <Compile Include="Services\Security\EntityOperation.cs" />
+    <Compile Include="Services\Security\EntityType.cs" />
+    <Compile Include="Services\Security\IEntity.cs" />
+    <Compile Include="Services\Security\IEntityWithUniqueName.cs" />
+    <Compile Include="Services\Security\IGroup.cs" />
+    <Compile Include="Services\Security\IEntityOperation.cs" />
+    <Compile Include="Services\Security\IWebUser.cs" />
+    <Compile Include="Services\Security\IUser.cs" />
+    <Compile Include="Services\Security\PasswordGenerator.cs" />
+    <Compile Include="Services\Security\Permission.cs" />
+    <Compile Include="Services\Security\SaltedValue.cs" />
+    <Compile Include="Services\Security\Salter.cs" />
+    <Compile Include="Services\Security\SaltPosition.cs" />
+    <Compile Include="Services\Security\User.cs" />
+    <Compile Include="Services\Security\UserGroup.cs" />
+    <Compile Include="WindowsShell\ImageListDrawItemConstants.cs" />
+    <Compile Include="WindowsShell\ImageListDrawStateConstants.cs" />
+    <Compile Include="WindowsShell\IShellProvider.cs" />
+    <Compile Include="WindowsShell\ShellFolder.cs" />
+    <Compile Include="WindowsShell\ShellItemList.cs" />
+    <Compile Include="WindowsShell\ShellIconStateConstants.cs" />
+    <Compile Include="WindowsShell\ShellItemProperties.cs" />
+    <Compile Include="WindowsShell\ShellNamespaceIdentifier.cs" />
+    <Compile Include="WindowsShell\ShellItem.cs" />
+    <Compile Include="WindowsShell\ShellImageList.cs" />
+    <Compile Include="WindowsShell\ShellImageListHelper.cs" />
+    <Compile Include="WindowsShell\ShellImageListSize.cs" />
+    <Compile Include="WindowsShell\ShellProvider.cs" />
+    <Compile Include="TempDirectory.cs" />
+    <Compile Include="Lucene\SnowballAnalyzer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectUtils.cs" />
+    <Compile Include="Services\IJsonSerializer.cs" />
+    <Compile Include="Services\Ioc.cs" />
+    <Compile Include="Services\IocContainer.cs" />
+    <Compile Include="Services\IUriUtility.cs" />
+    <Compile Include="Services\JsonSerializer.cs" />
+    <Compile Include="Services\Repository\IRepository.cs" />
+    <Compile Include="Services\Repository\ActiveRecordRepository.cs" />
+    <Compile Include="Services\UriUtility.cs" />
+    <Compile Include="Services\Validation\ActiveRecordModelValidator.cs" />
+    <Compile Include="Services\Validation\ActiveRecordValidationErrorsAdapter.cs" />
+    <Compile Include="Services\Validation\IModelValidator.cs" />
+    <Compile Include="Services\Validation\IValidationErrors.cs" />
+    <Compile Include="Services\Validation\IValidationPropertyError.cs" />
+    <Compile Include="Services\Validation\IValidationPropertyErrors.cs" />
+    <Compile Include="Services\Validation\ModelValidationException.cs" />
+    <Compile Include="Services\Validation\ValidationErrors.cs" />
+    <Compile Include="Services\Validation\ValidationPropertyError.cs" />
+    <Compile Include="SubnetMaskedIp.cs" />
+    <Compile Include="TempFile.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

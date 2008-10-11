@@ -1,0 +1,172 @@
+using System;
+using System.Collections.Generic;
+using Castle.ActiveRecord;
+using Castle.ActiveRecord.Framework;
+using Foundation.Services.Validation;
+using NHibernate;
+using NHibernate.Criterion;
+
+namespace Foundation.Services.Repository
+{
+    /// <summary>
+    /// A base implementation of IRepository
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class ActiveRecordRepository<T> : ISqlRepository, IRepository<T> where T : class, new()
+    {
+        private readonly IModelValidator validator;
+        private Type type;
+
+        /// <summary>
+        /// Parameterless constructor
+        /// </summary>
+        public ActiveRecordRepository() {}
+
+        /// <summary>
+        /// Initializes the ActiveRecordRepository with the specified validator
+        /// </summary>
+        /// <param name="validator">Validator to use when saving model objects</param>
+        public ActiveRecordRepository(IModelValidator validator)
+        {
+            this.validator = validator;
+        }
+
+        /// <summary>
+        /// The concrete type of this repository
+        /// </summary>
+        public virtual Type Type
+        {
+            get
+            {
+                if( type == null ) type = typeof(T);
+                return type;
+            }
+        }
+
+        #region IRepository<T> Members
+
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
+        /// <returns></returns>
+        public virtual T Create()
+        {
+            return new T();
+        }
+
+        public virtual T[] Save(params T[] instances)
+        {
+            foreach( T instance in instances )
+            {
+                if( validator != null ) validator.Validate(instance);
+                Save(instance);
+            }
+
+            return instances;
+        }
+
+        /// <summary>
+        /// Returns a list of all the instances of this type
+        /// </summary>
+        /// <returns></returns>
+        public virtual IList<T> List()
+        {
+            return ActiveRecordMediator<T>.FindAll();
+        }
+
+        #endregion
+
+        #region ISqlRepository Members
+
+        public void ExecuteSql(string sql)
+        {
+            ThrowException.IfArgumentIsNull("sql", sql);
+
+            ISessionFactoryHolder sessionHolder = ActiveRecordMediator.GetSessionFactoryHolder();
+            ISession session = sessionHolder.CreateSession(Type);
+
+            try
+            {
+                IQuery sqlQuery = session.CreateSQLQuery(sql);
+                sqlQuery.ExecuteUpdate();
+            }
+            finally
+            {
+                sessionHolder.ReleaseSession(session);
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Saves or Updates the instance
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public virtual T Save(T model)
+        {
+            if( validator != null ) validator.Validate(model);
+            ActiveRecordMediator.Save(model);
+            return model;
+        }
+
+        /// <summary>
+        /// Saves or Updates the instance, and flushes the session
+        /// </summary>
+        /// <param name="instance"></param>
+        /// <returns></returns>
+        public virtual T SaveAndFlush(T instance)
+        {
+            if( validator != null ) validator.Validate(instance);
+            ActiveRecordMediator.SaveAndFlush(instance);
+            return instance;
+        }
+
+        /// <summary>
+        /// Deletes an instance from the database
+        /// </summary>
+        /// <param name="instance"></param>
+        public virtual void Delete(T instance)
+        {
+            ActiveRecordMediator.Delete(instance);
+        }
+
+        /// <summary>
+        /// Deletes all instances of this type from the database
+        /// </summary>
+        public virtual void DeleteAll()
+        {
+            ActiveRecordMediator<T>.DeleteAll();
+        }
+
+        /// <summary>
+        /// Finds an instance of this type using its primary key
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public virtual T Find(int id)
+        {
+            return ActiveRecordMediator<T>.FindByPrimaryKey(id);
+        }
+
+        public T Find(params ICriterion[] criterias)
+        {
+            return ActiveRecordMediator<T>.FindOne(criterias);
+        }
+
+        public IList<T> List(params ICriterion[] criterias)
+        {
+            return ActiveRecordMediator<T>.FindAll(criterias);
+        }
+
+        public void Refresh(T instance)
+        {
+            ActiveRecordMediator<T>.Refresh(instance);
+        }
+
+        public IList<T> List(Order order)
+        {
+            return ActiveRecordMediator<T>.FindAll(new[] {order});
+        }
+    }
+}

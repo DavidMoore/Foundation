@@ -19,7 +19,12 @@ namespace Foundation.Services.Repository
         T[] Save(params T[] instances);
         //T SaveAndFlush(T instance);
         //void Delete(T instance);
-        //void DeleteAll();
+
+        /// <summary>
+        /// Deletes all instances from the database
+        /// </summary>
+        void DeleteAll();
+
         //T Find(int id);
         //T Find(params ICriterion[] criterias);
         //IList<T> List(params ICriterion[] criterias);

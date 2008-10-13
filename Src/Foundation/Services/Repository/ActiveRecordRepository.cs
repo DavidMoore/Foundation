@@ -5,6 +5,7 @@ using Castle.ActiveRecord.Framework;
 using Foundation.Services.Validation;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Driver;
 
 namespace Foundation.Services.Repository
 {
@@ -137,6 +138,11 @@ namespace Foundation.Services.Repository
         public virtual void DeleteAll()
         {
             ActiveRecordMediator<T>.DeleteAll();
+
+            // Do a truncate if using MySQL
+            var config = ActiveRecordMediator.GetSessionFactoryHolder().GetConfiguration(typeof(ActiveRecordBase));
+            string driver = config.GetProperty("connection.driver_class");
+            if (driver.Equals(typeof(MySqlDataDriver).AssemblyQualifiedName)) ExecuteSql(string.Format("TRUNCATE {0}", Type.Name));
         }
 
         /// <summary>

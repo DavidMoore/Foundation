@@ -1,4 +1,6 @@
-﻿using Foundation.Services.Repository;
+﻿using Castle.ActiveRecord;
+using Foundation.Data.ActiveRecord;
+using Foundation.Services.Repository;
 using Foundation.Services.Security;
 using NUnit.Framework;
 

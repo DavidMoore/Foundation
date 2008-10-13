@@ -42,5 +42,17 @@ namespace Foundation.Tests
         {
             ThrowException.IfArgumentIsNullOrEmpty("param1", "\t  ");
         }
+
+        [Test, ExpectedException(typeof(Exception), "The passed value is null")]
+        public void Throws_Exception_if_passed_value_is_null()
+        {
+            ThrowException.IfNull(null, "The passed value is null");
+        }
+
+        [Test, ExpectedException(typeof(Exception), "The passed value called \"test\" is null")]
+        public void ThrowException_IfNull_allows_string_format_parameters()
+        {
+            ThrowException.IfNull(null, "The passed value called \"{0}\" is null", "test");
+        }
     }
 }

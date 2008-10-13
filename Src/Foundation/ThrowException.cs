@@ -51,5 +51,19 @@ namespace Foundation
             if( value.ToString().Trim().Length == 0)
                 throw new ArgumentException(string.Format("The argument \"{0}\" is required but is empty.", name));
         }
+
+        /// <summary>
+        /// Throws an Exception containing the passed message if the
+        /// passed value is null
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="message"></param>
+        /// <param name="stringFormatArguments"></param>
+        public static void IfNull(object value, string message, params object[] stringFormatArguments)
+        {
+            if( value != null ) return;
+            if( stringFormatArguments.Length == 0 ) throw new Exception(message);
+            throw new Exception(string.Format(message, stringFormatArguments));
+        }
     }
 }

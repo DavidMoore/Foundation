@@ -51,5 +51,19 @@ namespace Foundation.Tests.Services.Repository
             Assert.AreEqual(user2.Id, user.Id);
             Assert.IsTrue(activeRecordRepository.List().Count == 1);
         }
+
+        [Test]
+        public void Find_by_id()
+        {
+            var user = new User {Email = "test@test.com", Name = "TestUser1"};
+
+            activeRecordRepository.Save(user);
+
+            Assert.AreEqual(1, user.Id);
+
+            var user2 = activeRecordRepository.Find(1);
+
+            Assert.AreEqual( user2, user );
+        }
     }
 }

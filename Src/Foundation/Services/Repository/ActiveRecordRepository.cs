@@ -155,6 +155,16 @@ namespace Foundation.Services.Repository
             return ActiveRecordMediator<T>.FindByPrimaryKey(id);
         }
 
+        /// <summary>
+        /// Finds an instance by its name. Requires a "Name" property on the model.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public T FindByName(string name)
+        {
+            return Find(Restrictions.Eq("Name", name));
+        }
+
         public T Find(params ICriterion[] criterias)
         {
             return ActiveRecordMediator<T>.FindOne(criterias);

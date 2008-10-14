@@ -25,7 +25,13 @@ namespace Foundation.Services.Repository
         /// </summary>
         void DeleteAll();
 
-        //T Find(int id);
+        /// <summary>
+        /// Finds an instance with the specified primary key
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        T Find(int id);
+
         //T Find(params ICriterion[] criterias);
         //IList<T> List(params ICriterion[] criterias);
         //void Refresh(T instance);

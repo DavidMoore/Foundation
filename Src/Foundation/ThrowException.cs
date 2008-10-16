@@ -35,6 +35,7 @@ namespace Foundation
 
         public static void IfTrue<T>(bool test, string message) where T : Exception, new()
         {
+            if( !test ) return;
             IfArgumentIsNullOrEmpty("message", message);
             if( string.IsNullOrEmpty(message )) throw new T();
             var exception = Activator.CreateInstance(typeof(T), message) as Exception;

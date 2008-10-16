@@ -66,5 +66,11 @@ namespace Foundation.Tests
         {
             ThrowException.IfTrue<InvalidOperationException>(true, "Test exception message");
         }
+
+        [Test]
+        public void Generic_IfTrue_should_not_throw_exception_if_passed_value_is_false()
+        {
+            ThrowException.IfTrue<InvalidOperationException>(false);
+        }
     }
 }

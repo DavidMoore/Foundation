@@ -54,5 +54,17 @@ namespace Foundation.Tests
         {
             ThrowException.IfNull(null, "The passed value called \"{0}\" is null", "test");
         }
+
+        [Test, ExpectedException(typeof(InvalidOperationException))]
+        public void ThrowException_throws_specified_exception_type_when_generic_IfTrue_is_used()
+        {
+            ThrowException.IfTrue<InvalidOperationException>(true);
+        }
+
+        [Test, ExpectedException(typeof(InvalidOperationException), "Test exception message")]
+        public void Generic_IfTrue_can_throw_specified_exception_with_specified_message()
+        {
+            ThrowException.IfTrue<InvalidOperationException>(true, "Test exception message");
+        }
     }
 }

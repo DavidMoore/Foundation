@@ -93,6 +93,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Release\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.5.0.1, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Release\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="Snowball.Net, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Release\Snowball.Net.dll</HintPath>
@@ -105,6 +109,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Release\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft ASP.NET\ASP.NET MVC CodePlex Preview 5\Assemblies\System.Web.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -133,6 +145,7 @@
     <Compile Include="ReflectUtilsFixture.cs" />
     <Compile Include="Lucene\SnowballAnalyzerFixture.cs" />
     <Compile Include="ThrowExceptionFixture.cs" />
+    <Compile Include="Web\MockHttpContextBaseTests.cs" />
     <Compile Include="WindowsShell\ShellObjectCollectionFixture.cs" />
     <Compile Include="WindowsShell\ShellObjectFixture.cs" />
     <Compile Include="WindowsShell\ShellProviderFixture.cs" />

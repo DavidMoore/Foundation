@@ -1,4 +1,5 @@
 using System;
+using System.Web.Caching;
 
 namespace Foundation
 {
@@ -25,6 +26,20 @@ namespace Foundation
         public static void IfTrue(bool assertion, string exceptionMessage)
         {
             if( assertion ) throw new FoundationException(exceptionMessage);
+        }
+
+        public static void IfTrue<T>(bool test) where T : Exception, new()
+        {
+            if (test) throw new T();
+        }
+
+        public static void IfTrue<T>(bool test, string message) where T : Exception, new()
+        {
+            IfArgumentIsNullOrEmpty("message", message);
+            if( string.IsNullOrEmpty(message )) throw new T();
+            var exception = Activator.CreateInstance(typeof(T), message) as Exception;
+            IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(T).Name, message);
+            throw exception;
         }
 
         /// <summary>

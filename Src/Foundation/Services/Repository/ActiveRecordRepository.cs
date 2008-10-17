@@ -4,6 +4,7 @@ using Castle.ActiveRecord;
 using Castle.ActiveRecord.Framework;
 using Foundation.Services.Validation;
 using NHibernate;
+using NHibernate.Cfg;
 using NHibernate.Criterion;
 using NHibernate.Driver;
 
@@ -15,8 +16,8 @@ namespace Foundation.Services.Repository
     /// <typeparam name="T"></typeparam>
     public class ActiveRecordRepository<T> : ISqlRepository, IRepository<T> where T : class, new()
     {
-        private readonly IModelValidator validator;
-        private Type type;
+        readonly IModelValidator validator;
+        Type type;
 
         /// <summary>
         /// Parameterless constructor
@@ -75,6 +76,29 @@ namespace Foundation.Services.Repository
             return ActiveRecordMediator<T>.FindAll();
         }
 
+        /// <summary>
+        /// Deletes all instances of this type from the database
+        /// </summary>
+        public virtual void DeleteAll()
+        {
+            ActiveRecordMediator<T>.DeleteAll();
+
+            // Do a truncate if using MySQL
+            Configuration config = ActiveRecordMediator.GetSessionFactoryHolder().GetConfiguration(typeof(ActiveRecordBase));
+            string driver = config.GetProperty("connection.driver_class");
+            if( driver.Equals(typeof(MySqlDataDriver).AssemblyQualifiedName) ) ExecuteSql(string.Format("TRUNCATE {0}", Type.Name));
+        }
+
+        /// <summary>
+        /// Finds an instance of this type using its primary key
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public virtual T Find(int id)
+        {
+            return ActiveRecordMediator<T>.FindByPrimaryKey(id);
+        }
+
         #endregion
 
         #region ISqlRepository Members
@@ -130,29 +154,6 @@ namespace Foundation.Services.Repository
         public virtual void Delete(T instance)
         {
             ActiveRecordMediator.Delete(instance);
-        }
-
-        /// <summary>
-        /// Deletes all instances of this type from the database
-        /// </summary>
-        public virtual void DeleteAll()
-        {
-            ActiveRecordMediator<T>.DeleteAll();
-
-            // Do a truncate if using MySQL
-            var config = ActiveRecordMediator.GetSessionFactoryHolder().GetConfiguration(typeof(ActiveRecordBase));
-            string driver = config.GetProperty("connection.driver_class");
-            if (driver.Equals(typeof(MySqlDataDriver).AssemblyQualifiedName)) ExecuteSql(string.Format("TRUNCATE {0}", Type.Name));
-        }
-
-        /// <summary>
-        /// Finds an instance of this type using its primary key
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public virtual T Find(int id)
-        {
-            return ActiveRecordMediator<T>.FindByPrimaryKey(id);
         }
 
         /// <summary>

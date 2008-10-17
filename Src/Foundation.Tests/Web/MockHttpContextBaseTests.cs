@@ -1,4 +1,4 @@
-﻿using Foundation.TestHelpers;
+using Foundation.TestHelpers;
 using NUnit.Framework;
 using Rhino.Mocks;
 

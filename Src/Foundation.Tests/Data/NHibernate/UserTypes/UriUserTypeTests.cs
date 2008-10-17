@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using NUnit.Framework;

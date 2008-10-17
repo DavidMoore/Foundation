@@ -1,4 +1,4 @@
-﻿using Foundation.WindowsShell;
+using Foundation.WindowsShell;
 using NUnit.Framework;
 using Shell32;
 

@@ -1,4 +1,4 @@
-﻿using Castle.ActiveRecord;
+using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using Foundation.Services.Repository;
 using Foundation.Services.Security;

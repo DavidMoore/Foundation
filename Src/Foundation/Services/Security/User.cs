@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Castle.ActiveRecord;
 using Castle.Components.Validator;
 
@@ -12,6 +12,12 @@ namespace Foundation.Services.Security
             Guid = Guid.NewGuid();
         }
 
+        /// <summary>
+        /// The unique guid
+        /// </summary>
+        [Property(Unique = true)]
+        public Guid Guid { get; set; }
+
         #region IWebUser Members
 
         /// <summary>
@@ -19,12 +25,6 @@ namespace Foundation.Services.Security
         /// </summary>
         [PrimaryKey]
         public int Id { get; set; }
-
-        /// <summary>
-        /// The unique guid
-        /// </summary>
-        [Property(Unique=true)]
-        public Guid Guid { get; set; }
 
         /// <summary>
         /// Unique username

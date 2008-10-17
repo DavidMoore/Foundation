@@ -1,4 +1,4 @@
-﻿using Castle.ActiveRecord;
+using Castle.ActiveRecord;
 
 namespace Foundation.Data.ActiveRecord
 {

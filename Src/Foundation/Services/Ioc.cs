@@ -1,4 +1,3 @@
-using System;
 using Castle.Windsor;
 
 namespace Foundation.Services
@@ -8,7 +7,7 @@ namespace Foundation.Services
     /// </summary>
     public class Ioc
     {
-        private static IWindsorContainer container;
+        static IWindsorContainer container;
 
         /// <summary>
         /// The Windsor Container

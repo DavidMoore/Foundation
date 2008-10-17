@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Castle.ActiveRecord;
 
 namespace Foundation.Services.Security

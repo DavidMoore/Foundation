@@ -1,5 +1,4 @@
 using System;
-using System.Web.Caching;
 
 namespace Foundation
 {
@@ -16,7 +15,7 @@ namespace Foundation
         /// <param name="stringFormatParameters"></param>
         public static void IfFalse(bool assertion, string exceptionMessage, params object[] stringFormatParameters)
         {
-            IfTrue( !assertion, exceptionMessage, stringFormatParameters );
+            IfTrue(!assertion, exceptionMessage, stringFormatParameters);
         }
 
         /// <summary>
@@ -27,21 +26,21 @@ namespace Foundation
         /// <param name="stringFormatParameters"></param>
         public static void IfTrue(bool assertion, string message, params object[] stringFormatParameters)
         {
-            if (!assertion) return;
-            if (stringFormatParameters.Length > 0) message = string.Format(message, stringFormatParameters);
+            if( !assertion ) return;
+            if( stringFormatParameters.Length > 0 ) message = string.Format(message, stringFormatParameters);
             throw new FoundationException(message);
         }
 
         public static void IfTrue<T>(bool test) where T : Exception, new()
         {
-            if (test) throw new T();
+            if( test ) throw new T();
         }
 
         public static void IfTrue<T>(bool test, string message) where T : Exception, new()
         {
             if( !test ) return;
             IfArgumentIsNullOrEmpty("message", message);
-            if( string.IsNullOrEmpty(message )) throw new T();
+            if( string.IsNullOrEmpty(message) ) throw new T();
             var exception = Activator.CreateInstance(typeof(T), message) as Exception;
             IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(T).Name, message);
             throw exception;
@@ -67,14 +66,14 @@ namespace Foundation
         /// <param name="value">The value of the argument</param>
         public static void IfArgumentIsNullOrEmpty(string name, object value)
         {
-            if (value == null) throw new ArgumentNullException(name);
-            if( value.ToString().Trim().Length == 0)
+            if( value == null ) throw new ArgumentNullException(name);
+            if( value.ToString().Trim().Length == 0 )
                 throw new ArgumentException(string.Format("The argument \"{0}\" is required but is empty.", name));
         }
 
         public static void IfNull(object value)
         {
-            IfNull( value, "Unexpected null object");
+            IfNull(value, "Unexpected null object");
         }
 
         public static void IfNull(object value, string message, params object[] stringFormatArguments)
@@ -98,8 +97,8 @@ namespace Foundation
         {
             if( value != null ) return;
             IfArgumentIsNullOrEmpty("message", message);
-            if (string.IsNullOrEmpty(message)) throw new TException();
-            if (stringFormatArguments.Length > 0) message = string.Format(message, stringFormatArguments);
+            if( string.IsNullOrEmpty(message) ) throw new TException();
+            if( stringFormatArguments.Length > 0 ) message = string.Format(message, stringFormatArguments);
             var exception = Activator.CreateInstance(typeof(TException), message) as Exception;
             IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(TException).Name, message);
             throw exception;

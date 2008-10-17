@@ -1,4 +1,4 @@
-﻿using Shell32;
+using Shell32;
 
 namespace Foundation.WindowsShell
 {

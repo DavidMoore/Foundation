@@ -13,19 +13,23 @@ namespace Foundation
         /// </summary>
         /// <param name="assertion"></param>
         /// <param name="exceptionMessage"></param>
-        public static void IfFalse(bool assertion, string exceptionMessage)
+        /// <param name="stringFormatParameters"></param>
+        public static void IfFalse(bool assertion, string exceptionMessage, params object[] stringFormatParameters)
         {
-            IfTrue( !assertion, exceptionMessage );
+            IfTrue( !assertion, exceptionMessage, stringFormatParameters );
         }
 
         /// <summary>
         /// Throws a FoundationException containing the specified exception message if the assertion fails
         /// </summary>
         /// <param name="assertion"></param>
-        /// <param name="exceptionMessage"></param>
-        public static void IfTrue(bool assertion, string exceptionMessage)
+        /// <param name="message"></param>
+        /// <param name="stringFormatParameters"></param>
+        public static void IfTrue(bool assertion, string message, params object[] stringFormatParameters)
         {
-            if( assertion ) throw new FoundationException(exceptionMessage);
+            if (!assertion) return;
+            if (stringFormatParameters.Length > 0) message = string.Format(message, stringFormatParameters);
+            throw new FoundationException(message);
         }
 
         public static void IfTrue<T>(bool test) where T : Exception, new()
@@ -68,6 +72,21 @@ namespace Foundation
                 throw new ArgumentException(string.Format("The argument \"{0}\" is required but is empty.", name));
         }
 
+        public static void IfNull(object value)
+        {
+            IfNull( value, "Unexpected null object");
+        }
+
+        public static void IfNull(object value, string message, params object[] stringFormatArguments)
+        {
+            IfNull<NullReferenceException>(value, message, stringFormatArguments);
+        }
+
+        public static void IfNull<TException>(object value) where TException : Exception, new()
+        {
+            IfNull<TException>(value, "Unexpected null object");
+        }
+
         /// <summary>
         /// Throws an Exception containing the passed message if the
         /// passed value is null
@@ -75,11 +94,15 @@ namespace Foundation
         /// <param name="value"></param>
         /// <param name="message"></param>
         /// <param name="stringFormatArguments"></param>
-        public static void IfNull(object value, string message, params object[] stringFormatArguments)
+        public static void IfNull<TException>(object value, string message, params object[] stringFormatArguments) where TException : Exception, new()
         {
             if( value != null ) return;
-            if( stringFormatArguments.Length == 0 ) throw new Exception(message);
-            throw new Exception(string.Format(message, stringFormatArguments));
+            IfArgumentIsNullOrEmpty("message", message);
+            if (string.IsNullOrEmpty(message)) throw new TException();
+            if (stringFormatArguments.Length > 0) message = string.Format(message, stringFormatArguments);
+            var exception = Activator.CreateInstance(typeof(TException), message) as Exception;
+            IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(TException).Name, message);
+            throw exception;
         }
     }
 }

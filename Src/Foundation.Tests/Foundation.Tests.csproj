@@ -130,6 +130,7 @@
     <Compile Include="Data\NHibernate\UserTypes\TypeUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\UriUserTypeTests.cs" />
     <Compile Include="Services\Repository\ActiveRecordRepositoryFixture.cs" />
+    <Compile Include="Services\Security\ActiveRecordIntegrationTests.cs" />
     <Compile Include="Services\Security\EntityTypeFixture.cs" />
     <Compile Include="Services\JsonSerializerFixture.cs" />
     <Compile Include="Services\Security\PasswordGeneratorFixture.cs" />

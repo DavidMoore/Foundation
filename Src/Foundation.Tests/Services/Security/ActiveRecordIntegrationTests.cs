@@ -1,7 +1,7 @@
-﻿using Foundation.Data.ActiveRecord;
+﻿using Castle.ActiveRecord;
+using Foundation.Data.ActiveRecord;
 using Foundation.Services.Security;
 using NUnit.Framework;
-using Overclockers.Services.Data;
 
 namespace Foundation.Tests.Services.Security
 {
@@ -24,9 +24,7 @@ namespace Foundation.Tests.Services.Security
         [Test]
         public void Registers_types_with_ActiveRecord()
         {
-            var userRepository = new UserRepository();
-
-            userRepository.Save(new User {Name = "Test", Email = "Test@test.com"});
+            ActiveRecordMediator<User>.Save(new User {Name = "Test", Email = "Test@test.com"});
         }
     }
 }

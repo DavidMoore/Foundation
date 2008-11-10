@@ -81,6 +81,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Release\Lucene.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Moq, Version=2.6.1014.1, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Orange.NET\Dependencies\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=2.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Release\Newtonsoft.Json.dll</HintPath>
@@ -130,6 +134,7 @@
     <Compile Include="Data\NHibernate\UserTypes\TypeUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\UriUserTypeTests.cs" />
     <Compile Include="Services\Repository\ActiveRecordRepositoryFixture.cs" />
+    <Compile Include="Services\Repository\GenericListRepositoryTests.cs" />
     <Compile Include="Services\Security\ActiveRecordIntegrationTests.cs" />
     <Compile Include="Services\Security\EntityTypeFixture.cs" />
     <Compile Include="Services\JsonSerializerFixture.cs" />
@@ -142,6 +147,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectUtilsFixture.cs" />
     <Compile Include="Lucene\SnowballAnalyzerFixture.cs" />
+    <Compile Include="TestHelpers\MvcTestHelpersTests.cs" />
     <Compile Include="ThrowExceptionFixture.cs" />
     <Compile Include="Web\MockHttpContextBaseTests.cs" />
     <Compile Include="WindowsShell\ShellObjectCollectionFixture.cs" />

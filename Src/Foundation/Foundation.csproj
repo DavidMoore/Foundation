@@ -81,6 +81,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Release\Lucene.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Moq, Version=2.6.1014.1, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Orange.NET\Dependencies\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=2.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Release\Newtonsoft.Json.dll</HintPath>
@@ -132,8 +136,10 @@
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="HttpVerb.cs" />
     <Compile Include="Services\IIocRegistry.cs" />
+    <Compile Include="Services\Repository\GenericListRepository.cs" />
     <Compile Include="Services\Security\ActiveRecordIntegration.cs" />
     <Compile Include="TestHelpers\HttpContextBaseMockExtensionMethods.cs" />
+    <Compile Include="TestHelpers\MvcTestHelpers.cs" />
     <Compile Include="ThrowException.cs" />
     <Compile Include="CommonUtils.cs" />
     <Compile Include="Data\ActiveRecord\DatabaseFixtureBase.cs" />
@@ -180,7 +186,7 @@
     <Compile Include="Services\IocContainer.cs" />
     <Compile Include="Services\IUriUtility.cs" />
     <Compile Include="Services\JsonSerializer.cs" />
-    <Compile Include="Services\Repository\IRepository.cs" />
+    <Compile Include="Services\Repository\IRepository`1.cs" />
     <Compile Include="Services\Repository\ActiveRecordRepository.cs" />
     <Compile Include="Services\UriUtility.cs" />
     <Compile Include="Services\Validation\ActiveRecordModelValidator.cs" />

@@ -1,7 +1,6 @@
-using Castle.ActiveRecord;
-using Foundation.Data.ActiveRecord;
 using Foundation.Services.Repository;
 using Foundation.Services.Security;
+using Foundation.Services.Validation;
 using NUnit.Framework;
 
 namespace Foundation.Tests.Services.Repository
@@ -9,7 +8,13 @@ namespace Foundation.Tests.Services.Repository
     [TestFixture]
     public class ActiveRecordRepositoryFixture : SecurityFixtureBase
     {
-        private readonly ActiveRecordRepository<User> activeRecordRepository = new ActiveRecordRepository<User>();
+        ActiveRecordRepository<User> activeRecordRepository;
+
+        public override void Setup()
+        {
+            base.Setup();
+            activeRecordRepository = new ActiveRecordRepository<User>();
+        }
 
         [Test]
         public void Can_execute_SQL()
@@ -41,8 +46,6 @@ namespace Foundation.Tests.Services.Repository
         [Test]
         public void Save()
         {
-            activeRecordRepository.DeleteAll();
-            Assert.IsTrue(activeRecordRepository.List().Count == 0);
             User user = activeRecordRepository.Create();
             user.Name = "Joe";
             user.Email = "joe@bloggs.com";
@@ -64,6 +67,13 @@ namespace Foundation.Tests.Services.Repository
             var user2 = activeRecordRepository.Find(1);
 
             Assert.AreEqual( user2, user );
+        }
+
+        [Test, ExpectedException(typeof(ModelValidationException))]
+        public void Uses_ActiveRecordModelValidator_by_default()
+        {
+            var user = new User{Name = null};
+            activeRecordRepository.Save(user);
         }
     }
 }

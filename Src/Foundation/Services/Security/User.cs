@@ -30,7 +30,7 @@ namespace Foundation.Services.Security
         /// Unique username
         /// </summary>
         [Property(Unique = true, NotNull = true)]
-        [ValidateIsUnique, ValidateNonEmpty, ValidateLength(5, 100)]
+        [ValidateIsUnique, ValidateNonEmpty, ValidateLength(2, 100)]
         public string Name { get; set; }
 
         /// <summary>

@@ -2,11 +2,20 @@ using Castle.ActiveRecord;
 
 namespace Foundation.Services.Security
 {
-    public class ActiveRecordIntegration
+    /// <summary>
+    /// Methods for integrating the Security model and features with ActiveRecord
+    /// </summary>
+    public static class ActiveRecordIntegration
     {
-        public void RegisterTypes()
+        public static void RegisterTypes()
         {
-            ActiveRecordStarter.RegisterTypes( typeof(User) );
+            ActiveRecordStarter.RegisterTypes(
+                typeof(EntityOperation),
+                typeof(EntityType),
+                typeof(User),
+                typeof(UserGroup),
+                typeof(Permission)
+                );
         }
     }
 }

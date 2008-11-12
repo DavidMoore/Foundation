@@ -66,7 +66,7 @@ namespace Foundation.Data.Hibernate.UserTypes
         /// <exception cref="T:NHibernate.HibernateException">HibernateException</exception>
         public void NullSafeSet(IDbCommand cmd, object value, int index)
         {
-            string typeName = ((Type) value).FullName;
+            string typeName = value == null ? null : ((Type) value).FullName;
             NHibernateUtil.String.NullSafeSet(cmd, typeName, index);
         }
 

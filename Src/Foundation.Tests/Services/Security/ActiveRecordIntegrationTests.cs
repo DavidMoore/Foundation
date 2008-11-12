@@ -8,17 +8,10 @@ namespace Foundation.Tests.Services.Security
     [TestFixture]
     public class ActiveRecordIntegrationTests : DatabaseFixtureBase
     {
-        readonly ActiveRecordIntegration arIntegration;
-
-        public ActiveRecordIntegrationTests()
-        {
-            arIntegration = new ActiveRecordIntegration();
-        }
-
         public override void RegisterTypes()
         {
             base.RegisterTypes();
-            arIntegration.RegisterTypes();
+            ActiveRecordIntegration.RegisterTypes();
         }
 
         [Test]

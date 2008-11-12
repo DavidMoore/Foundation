@@ -58,5 +58,14 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             repository.Save(dummy);
             Assert.AreEqual(typeof(DateTime).AssemblyQualifiedName, dummy.DummyType.AssemblyQualifiedName);
         }
+
+        [Test]
+        public void Null_Type_is_saved_and_fetched_as_null()
+        {
+            var dummy = new DummyClassWithTypeProperty();
+            repository.Save(dummy);
+            Assert.IsNull(dummy.DummyType);
+            Assert.IsNull(repository.Find(1).DummyType);
+        }
     }
 }

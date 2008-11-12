@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Foundation.Services.Validation
 {
@@ -28,6 +29,31 @@ namespace Foundation.Services.Validation
             }
 
             return errors;
+        }
+
+        public override string ToString()
+        {
+            string typeName = GetType().Name;
+
+            if (Count == 0) return string.Format("{{{0}: No errors}}", typeName);
+
+            var sb = new StringBuilder();
+
+            sb.AppendFormat("{{{0}: ", typeName);
+            sb.Append(Count == 1 ? "1 property" : string.Format("{0} properties", Count));
+            sb.Append(" failed validation. [");
+
+            bool first = true;
+
+            foreach(var error in this)
+            {
+                if (!first) sb.Append(", "); else first = false;
+                sb.AppendFormat("{0}: {1}", error.PropertyName, error.ErrorMessage);
+            }
+
+            sb.Append("]}}");
+
+            return sb.ToString();
         }
 
         #endregion

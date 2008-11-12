@@ -8,9 +8,7 @@ namespace Foundation.Tests
         public override void RegisterTypes()
         {
             base.RegisterTypes();
-
-            RegisterTypes(typeof(User), typeof(UserGroup), typeof(Permission), typeof(EntityOperation),
-                typeof(EntityType));
+            ActiveRecordIntegration.RegisterTypes();
         }
     }
 }

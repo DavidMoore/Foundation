@@ -20,9 +20,12 @@ namespace Foundation.Services.Repository
         Type type;
 
         /// <summary>
-        /// Parameterless constructor
+        /// Creates the repository using the default ActiveRecord model validator
         /// </summary>
-        public ActiveRecordRepository() {}
+        public ActiveRecordRepository()
+        {
+            validator = new ActiveRecordModelValidator();
+        }
 
         /// <summary>
         /// Initializes the ActiveRecordRepository with the specified validator
@@ -58,9 +61,8 @@ namespace Foundation.Services.Repository
 
         public virtual T[] Save(params T[] instances)
         {
-            foreach( T instance in instances )
+            foreach( var instance in instances )
             {
-                if( validator != null ) validator.Validate(instance);
                 Save(instance);
             }
 

@@ -25,11 +25,10 @@ namespace Foundation.Services.Validation
         {
             IValidationProvider validator = new ActiveRecordValidator(model);
 
-            if( !validator.IsValid() )
-            {
-                IValidationErrors errors = new ActiveRecordValidationErrorsAdapter(validator);
-                throw new ModelValidationException(errors);
-            }
+            if( validator.IsValid() ) return;
+
+            IValidationErrors errors = new ActiveRecordValidationErrorsAdapter(validator);
+            throw new ModelValidationException(errors);
         }
 
         /// <summary>
@@ -41,12 +40,7 @@ namespace Foundation.Services.Validation
         {
             IValidationProvider validator = new ActiveRecordValidator(model);
 
-            if( !validator.IsValid() )
-            {
-                return new ActiveRecordValidationErrorsAdapter(validator);
-            }
-
-            return new ValidationErrors();
+            return validator.IsValid() ? new ValidationErrors() : new ActiveRecordValidationErrorsAdapter(validator);
         }
 
         #endregion

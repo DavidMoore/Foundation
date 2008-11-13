@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using Castle.ActiveRecord;
+using Foundation.Data.ActiveRecord;
 
 namespace Foundation.Services.Security
 {
@@ -30,7 +31,7 @@ namespace Foundation.Services.Security
         /// <summary>
         /// The type of entity this permission applies to (null to apply to all entities)
         /// </summary>
-        [Property(ColumnType = typeUserTypeAssemblyQualifiedName)]
+        [TypeProperty]
         public Type EntityType { get; set; }
 
         /// <summary>

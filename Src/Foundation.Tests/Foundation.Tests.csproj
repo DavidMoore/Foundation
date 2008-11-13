@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonUtilsFixture.cs" />
+    <Compile Include="Data\ActiveRecord\TypePropertyAttributeTests.cs" />
     <Compile Include="Data\NHibernate\UserTypes\PropertyInfoUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\TypeUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\UriUserTypeTests.cs" />

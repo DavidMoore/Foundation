@@ -9,6 +9,16 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
     [TestFixture]
     public class TypeUserTypeFixture : DatabaseFixtureBase
     {
+        [ActiveRecord]
+        internal class DummyClassWithTypeProperty
+        {
+            [PrimaryKey]
+            public int Id { get; set; }
+
+            [Property(ColumnType = "Foundation.Data.Hibernate.UserTypes.TypeUserType,Foundation")]
+            public Type DummyType { get; set; }
+        }
+
         private IRepository<DummyClassWithTypeProperty> repository;
 
         public override void FixtureSetup()
@@ -21,16 +31,6 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
         {
             base.RegisterTypes();
             RegisterTypes(typeof(DummyClassWithTypeProperty));
-        }
-
-        [ActiveRecord]
-        internal class DummyClassWithTypeProperty
-        {
-            [PrimaryKey]
-            public int Id { get; set; }
-
-            [Property(ColumnType = "Foundation.Data.Hibernate.UserTypes.TypeUserType,Foundation")]
-            public Type DummyType { get; set; }
         }
 
         [Test]

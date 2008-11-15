@@ -8,8 +8,6 @@ namespace Foundation.Services.Security
     [ActiveRecord]
     public class Permission
     {
-        private const string typeUserTypeAssemblyQualifiedName = "Foundation.Data.Hibernate.UserTypes.TypeUserType, Foundation";
-
         /// <summary>
         /// Id for the permission
         /// </summary>

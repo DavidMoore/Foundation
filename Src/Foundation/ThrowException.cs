@@ -19,6 +19,17 @@ namespace Foundation
         }
 
         /// <summary>
+        /// Throws the specified exception with the specified exception message if the assertion fails
+        /// </summary>
+        /// <param name="assertion"></param>
+        /// <param name="exceptionMessage"></param>
+        /// <param name="stringFormatParameters"></param>
+        public static void IfFalse<TException>(bool assertion, string exceptionMessage, params object[] stringFormatParameters) where TException : Exception, new()
+        {
+            IfTrue<TException>(!assertion, exceptionMessage, stringFormatParameters);
+        }
+
+        /// <summary>
         /// Throws a FoundationException containing the specified exception message if the assertion fails
         /// </summary>
         /// <param name="assertion"></param>
@@ -31,18 +42,19 @@ namespace Foundation
             throw new FoundationException(message);
         }
 
-        public static void IfTrue<T>(bool test) where T : Exception, new()
+        public static void IfTrue<TException>(bool test) where TException : Exception, new()
         {
-            if( test ) throw new T();
+            if (test) throw new TException();
         }
 
-        public static void IfTrue<T>(bool test, string message) where T : Exception, new()
+        public static void IfTrue<TException>(bool test, string message, params object[] stringFormatParameters) where TException : Exception, new()
         {
             if( !test ) return;
             IfArgumentIsNullOrEmpty("message", message);
-            if( string.IsNullOrEmpty(message) ) throw new T();
-            var exception = Activator.CreateInstance(typeof(T), message) as Exception;
-            IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(T).Name, message);
+            if (string.IsNullOrEmpty(message)) throw new TException();
+            if (stringFormatParameters.Length > 0) message = string.Format(message, stringFormatParameters);
+            var exception = Activator.CreateInstance(typeof(TException), message) as Exception;
+            IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(TException).Name, message);
             throw exception;
         }
 

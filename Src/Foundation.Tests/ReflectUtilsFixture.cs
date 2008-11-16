@@ -10,6 +10,7 @@ namespace Foundation.Tests
     {
         internal class DummyReflectionAttributeAttribute : Attribute {}
 
+        [DummyReflectionAttribute]
         internal class DummyReflectionObject
         {
             [DummyReflectionAttribute]
@@ -33,6 +34,15 @@ namespace Foundation.Tests
 
             List<PropertyInfo> properties = ReflectUtils.GetPropertiesWithAttribute(type, attribute);
             Assert.AreEqual(2, properties.Count);
+        }
+
+        [Test]
+        public void Returns_true_for_type_with_specified_attribute_when_calling_HasAttribute()
+        {
+            var type = typeof(DummyReflectionObject);
+            var attribute = typeof(DummyReflectionAttributeAttribute);
+
+            Assert.IsTrue( ReflectUtils.HasAttribute(type, attribute) );
         }
     }
 }

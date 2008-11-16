@@ -7,22 +7,27 @@ namespace Foundation.Tests
     public class AssertionFixture
     {
         [Test, ExpectedException(typeof(FoundationException), "Expected exception message")]
-        public void Is_false_assertion_throws_invalid_operation_exception_when_false()
+        public void Is_false_assertion_throws_FoundationException_when_false()
         {
-            ThrowException.IfTrue(true, "Expected exception message");
+            ThrowException.IfFalse(false, "Expected exception message");
+        }
+
+        [Test, ExpectedException(typeof(InvalidOperationException), "Expected exception message")]
+        public void Is_false_assertion_throws_specified_exception_when_false()
+        {
+            ThrowException.IfFalse<InvalidOperationException>(false, "Expected exception message");
         }
 
         [Test, ExpectedException(typeof(FoundationException), "Expected exception message")]
-        public void Is_true_assertion_throws_invalid_operation_exception_when_false()
+        public void Is_true_assertion_throws_FoundationException_when_false()
         {
-            ThrowException.IfFalse(false, "Expected exception message");
+            ThrowException.IfTrue(true, "Expected exception message");
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void Throws_ArgumentNullException_on_null_argument_check()
         {
-            string test = null;
-            ThrowException.IfArgumentIsNull("test", test);
+            ThrowException.IfArgumentIsNull("test", null);
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]

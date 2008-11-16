@@ -25,5 +25,16 @@ namespace Foundation
             }
             return properties;
         }
+
+        /// <summary>
+        /// Returns true if the specified type is annotated with the specified attribute
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="attribute"></param>
+        /// <returns></returns>
+        public static bool HasAttribute(Type type, Type attribute)
+        {
+            return type.GetCustomAttributes(attribute, true).Length > 0;
+        }
     }
 }

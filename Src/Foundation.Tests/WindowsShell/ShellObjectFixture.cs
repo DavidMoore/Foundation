@@ -7,7 +7,7 @@ namespace Foundation.Tests.WindowsShell
     [TestFixture]
     public class ShellObjectFixture
     {
-        private readonly Shell shell = new Shell();
+        readonly Shell shell = new Shell();
 
         public void Detects_if_it_is_a_folder()
         {

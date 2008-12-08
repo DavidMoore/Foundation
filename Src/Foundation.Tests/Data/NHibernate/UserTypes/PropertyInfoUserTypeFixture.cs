@@ -10,8 +10,8 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
     [TestFixture]
     public class PropertyInfoUserTypeFixture : DatabaseFixtureBase
     {
-        private IRepository<DummyClassWithPropertyInfoProperty> repository;
-        private PropertyInfo propertyInfo;
+        IRepository<DummyClassWithPropertyInfoProperty> repository;
+        PropertyInfo propertyInfo;
 
         public override void FixtureSetup()
         {

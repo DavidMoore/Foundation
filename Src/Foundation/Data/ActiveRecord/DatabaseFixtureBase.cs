@@ -49,7 +49,8 @@ namespace Foundation.Data.ActiveRecord
         [TearDown]
         public virtual void Teardown()
         {
-            ThrowException.IfNull<FoundationException>(scope, "SessionScope is null. Did you override Setup in the fixture and forget to call base.Setup()?");
+            ThrowException.IfNull<FoundationException>(scope,
+                "SessionScope is null. Did you override Setup in the fixture and forget to call base.Setup()?");
             scope.Dispose();
             ActiveRecordStarter.DropSchema();
         }
@@ -69,12 +70,12 @@ namespace Foundation.Data.ActiveRecord
             props["connection.driver_class"] = typeof(SQLite20Driver).AssemblyQualifiedName;
             props["connection.release_mode"] = "on_close";
             props["connection.provider"] = typeof(SingletonConnectionProvider).AssemblyQualifiedName;
-            var source = InPlaceConfigurationSource.Build(DatabaseType.MSSQLServer2005, connectionString);
+            InPlaceConfigurationSource source = InPlaceConfigurationSource.Build(DatabaseType.MSSQLServer2005, connectionString);
             source.Add(typeof(ActiveRecordBase), props);
             return source;
         }
 
-        public static void InitializeActiveRecord( IConfigurationSource source, params Type[] types )
+        public static void InitializeActiveRecord(IConfigurationSource source, params Type[] types)
         {
             ActiveRecordStarter.ResetInitializationFlag();
             ActiveRecordStarter.Initialize(source);

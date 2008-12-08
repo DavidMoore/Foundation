@@ -9,21 +9,21 @@ namespace Foundation.WindowsShell
     /// </summary>
     public class ShellImageListHelper
     {
-        private const int LVM_FIRST = 0x1000;
-        private const int LVM_SETIMAGELIST = (LVM_FIRST + 3);
+        const int LVM_FIRST = 0x1000;
+        const int LVM_SETIMAGELIST = (LVM_FIRST + 3);
 
-        private const int LVSIL_NORMAL = 0;
-        private const int LVSIL_SMALL = 1;
-        private const int LVSIL_STATE = 2;
+        const int LVSIL_NORMAL = 0;
+        const int LVSIL_SMALL = 1;
+        const int LVSIL_STATE = 2;
 
-        private const int TV_FIRST = 0x1100;
-        private const int TVM_SETIMAGELIST = (TV_FIRST + 9);
+        const int TV_FIRST = 0x1100;
+        const int TVM_SETIMAGELIST = (TV_FIRST + 9);
 
-        private const int TVSIL_NORMAL = 0;
-        private const int TVSIL_STATE = 2;
+        const int TVSIL_NORMAL = 0;
+        const int TVSIL_STATE = 2;
 
         [DllImport("user32", CharSet = CharSet.Auto)]
-        private static extern IntPtr SendMessage(
+        static extern IntPtr SendMessage(
             IntPtr hWnd,
             int wMsg,
             IntPtr wParam,

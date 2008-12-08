@@ -21,9 +21,9 @@ namespace Foundation
     /// </example>
     public class TempFile : IDisposable
     {
-        private readonly FileInfo fileInfo;
-        private ILog logger;
-        private Type type;
+        readonly FileInfo fileInfo;
+        ILog logger;
+        Type type;
 
         /// <summary>
         /// Creates a new temporary file, which ensures the temporary

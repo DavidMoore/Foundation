@@ -20,10 +20,10 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             const string url = "http://username:password@subdomain.domain.com/pathinfo1/pathinfo2?queryString1=value1&queryString2=value2";
 
             var dummy = new DummyTypeWithUriProperty {Url = new Uri(url)};
-            
+
             ActiveRecordMediator<DummyTypeWithUriProperty>.Save(dummy);
 
-            var result = ActiveRecordMediator<DummyTypeWithUriProperty>.FindByPrimaryKey(dummy.Id);
+            DummyTypeWithUriProperty result = ActiveRecordMediator<DummyTypeWithUriProperty>.FindByPrimaryKey(dummy.Id);
 
             Assert.AreEqual(dummy, result);
             Assert.AreEqual(dummy.Url, result.Url);

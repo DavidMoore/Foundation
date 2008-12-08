@@ -61,7 +61,7 @@ namespace Foundation.Services.Repository
 
         public virtual T[] Save(params T[] instances)
         {
-            foreach( var instance in instances )
+            foreach( T instance in instances )
             {
                 Save(instance);
             }

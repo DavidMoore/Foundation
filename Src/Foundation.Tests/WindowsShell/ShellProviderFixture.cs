@@ -8,7 +8,7 @@ namespace Foundation.Tests.WindowsShell
     [TestFixture]
     public class ShellProviderFixture
     {
-        private readonly ShellProvider provider = new ShellProvider();
+        readonly ShellProvider provider = new ShellProvider();
 
         [Test]
         public void Can_get_mycomputer_node_by_namespace()

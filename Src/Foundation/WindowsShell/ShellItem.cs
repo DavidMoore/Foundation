@@ -9,8 +9,8 @@ namespace Foundation.WindowsShell
     /// </summary>
     public class ShellItem
     {
-        private readonly ShellFolderItem item;
-        private List<string> verbs;
+        readonly ShellFolderItem item;
+        List<string> verbs;
 
         /// <summary>
         /// Creates a shell item from the Windows Shell32 library

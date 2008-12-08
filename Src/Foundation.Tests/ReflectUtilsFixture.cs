@@ -23,7 +23,13 @@ namespace Foundation.Tests
             protected string ProtectedProperty { get; set; }
 
             [DummyReflectionAttribute]
-            private string PrivateProperty { get; set; }
+            string PrivateProperty { get; set; }
+        }
+
+        [Test]
+        public void Implements_returns_true_when_passed_type_implements_the_specified_interface()
+        {
+            Assert.IsTrue(ReflectUtils.Implements(typeof(ActivationContext), typeof(IDisposable)));
         }
 
         [Test]
@@ -39,16 +45,10 @@ namespace Foundation.Tests
         [Test]
         public void Returns_true_for_type_with_specified_attribute_when_calling_HasAttribute()
         {
-            var type = typeof(DummyReflectionObject);
-            var attribute = typeof(DummyReflectionAttributeAttribute);
+            Type type = typeof(DummyReflectionObject);
+            Type attribute = typeof(DummyReflectionAttributeAttribute);
 
-            Assert.IsTrue( ReflectUtils.HasAttribute(type, attribute) );
-        }
-
-        [Test]
-        public void Implements_returns_true_when_passed_type_implements_the_specified_interface()
-        {
-            Assert.IsTrue( ReflectUtils.Implements(typeof(ActivationContext), typeof(IDisposable)) );
+            Assert.IsTrue(ReflectUtils.HasAttribute(type, attribute));
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Foundation.WindowsShell
     /// </summary>
     public class ShellProvider : IShellProvider, IDisposable
     {
-        private static ShellClass shell;
+        static ShellClass shell;
 
         #region IDisposable Members
 

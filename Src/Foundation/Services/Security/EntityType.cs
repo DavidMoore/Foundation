@@ -6,7 +6,7 @@ namespace Foundation.Services.Security
     [ActiveRecord]
     public class EntityType
     {
-        private Type type;
+        Type type;
 
         public EntityType() {}
 

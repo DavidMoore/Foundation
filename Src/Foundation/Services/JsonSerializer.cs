@@ -57,7 +57,7 @@ namespace Foundation.Services
         /// Gets the default JSON Serializer
         /// </summary>
         /// <returns></returns>
-        private static IJSONSerializer GetJsonSerializer()
+        static IJSONSerializer GetJsonSerializer()
         {
             return GetJsonSerializer(null);
         }
@@ -69,7 +69,7 @@ namespace Foundation.Services
         /// </summary>
         /// <param name="context">The MonoRail Engine Context containing registered services.</param>
         /// <returns></returns>
-        private static IJSONSerializer GetJsonSerializer(IEngineContext context)
+        static IJSONSerializer GetJsonSerializer(IEngineContext context)
         {
             IJSONSerializer serializer = null;
 

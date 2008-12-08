@@ -5,8 +5,8 @@ namespace Foundation.Services.Security
 {
     public class PasswordGenerator
     {
-        private const int defaultMaximumPasswordLength = 12;
-        private const int defaultMinimumPasswordLength = 8;
+        const int defaultMaximumPasswordLength = 12;
+        const int defaultMinimumPasswordLength = 8;
 
         public PasswordGenerator()
         {

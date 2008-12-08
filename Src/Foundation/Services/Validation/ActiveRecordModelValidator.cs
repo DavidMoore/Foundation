@@ -25,7 +25,7 @@ namespace Foundation.Services.Validation
         {
             IValidationProvider validator = new ActiveRecordValidator(model);
             if( validator.IsValid() ) return;
-            throw new ModelValidationException( new ActiveRecordValidationErrorsAdapter(validator) );
+            throw new ModelValidationException(new ActiveRecordValidationErrorsAdapter(validator));
         }
 
         /// <summary>

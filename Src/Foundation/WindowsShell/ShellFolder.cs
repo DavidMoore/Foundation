@@ -4,8 +4,8 @@ namespace Foundation.WindowsShell
 {
     public class ShellFolder : ShellItem
     {
-        private readonly Folder3 folder;
-        private ShellItemList children;
+        readonly Folder3 folder;
+        ShellItemList children;
 
         /// <summary>
         /// Creates a shell item from the Windows Shell32 library

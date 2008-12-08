@@ -9,10 +9,10 @@ namespace Foundation
     /// </summary>
     public class SubnetMaskedIp
     {
-        private int? addressBitLength;
-        private IPAddress networkAddress;
+        int? addressBitLength;
+        IPAddress networkAddress;
 
-        private byte[] networkAddressBytes;
+        byte[] networkAddressBytes;
 
         /// <summary>
         /// IP address

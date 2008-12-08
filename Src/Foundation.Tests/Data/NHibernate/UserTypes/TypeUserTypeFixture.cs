@@ -19,7 +19,7 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             public Type DummyType { get; set; }
         }
 
-        private IRepository<DummyClassWithTypeProperty> repository;
+        IRepository<DummyClassWithTypeProperty> repository;
 
         public override void FixtureSetup()
         {
@@ -51,21 +51,21 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
         }
 
         [Test]
-        public void Type_name_is_assembly_qualified()
-        {
-            // TODO: Find a way to inspect the string data
-            var dummy = new DummyClassWithTypeProperty {DummyType = typeof(DateTime)};
-            repository.Save(dummy);
-            Assert.AreEqual(typeof(DateTime).AssemblyQualifiedName, dummy.DummyType.AssemblyQualifiedName);
-        }
-
-        [Test]
         public void Null_Type_is_saved_and_fetched_as_null()
         {
             var dummy = new DummyClassWithTypeProperty();
             repository.Save(dummy);
             Assert.IsNull(dummy.DummyType);
             Assert.IsNull(repository.Find(1).DummyType);
+        }
+
+        [Test]
+        public void Type_name_is_assembly_qualified()
+        {
+            // TODO: Find a way to inspect the string data
+            var dummy = new DummyClassWithTypeProperty {DummyType = typeof(DateTime)};
+            repository.Save(dummy);
+            Assert.AreEqual(typeof(DateTime).AssemblyQualifiedName, dummy.DummyType.AssemblyQualifiedName);
         }
     }
 }

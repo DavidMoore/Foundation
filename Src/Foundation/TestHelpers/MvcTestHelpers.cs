@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Web;
 using Moq;
 
@@ -6,13 +6,6 @@ namespace Foundation.TestHelpers
 {
     public static class MvcTestHelpers
     {
-        public class MockHttpContextArguments
-        {
-            public string ApplicationPath { get; set; }
-            public string RequestPath { get; set; }
-            public string HttpMethod { get; set; }
-        }
-
         public static HttpContextBase GetHttpContextBase(string url)
         {
             return GetHttpContextBase(new Uri(url));
@@ -39,14 +32,14 @@ namespace Foundation.TestHelpers
             var mockContext = new Mock<HttpContextBase>();
 
             // Mock the HttpRequest
-            var mockRequest = GetHttpRequestBase(args);
+            HttpRequestBase mockRequest = GetHttpRequestBase(args);
             mockContext.Expect(o => o.Request).Returns(mockRequest);
 
             // Mock the Session
-            mockContext.Expect(o => o.Session).Returns((HttpSessionStateBase)null);
+            mockContext.Expect(o => o.Session).Returns((HttpSessionStateBase) null);
 
             // Mock the HttpResponse
-            var mockResponse = GetHttpResponseBase(args);
+            HttpResponseBase mockResponse = GetHttpResponseBase(args);
             mockContext.Expect(o => o.Response).Returns(mockResponse);
 
             return mockContext.Object;
@@ -64,14 +57,25 @@ namespace Foundation.TestHelpers
 
             var uri = new Uri("http://localhost");
 
-            if (!string.IsNullOrEmpty(args.ApplicationPath)) request.Expect(o => o.ApplicationPath).Returns(args.ApplicationPath);
-            if (!string.IsNullOrEmpty(args.RequestPath)) request.Expect(o => o.AppRelativeCurrentExecutionFilePath).Returns(args.RequestPath);
-            if (!string.IsNullOrEmpty(args.HttpMethod)) request.Expect(o => o.HttpMethod).Returns(args.HttpMethod);
+            if( !string.IsNullOrEmpty(args.ApplicationPath) ) request.Expect(o => o.ApplicationPath).Returns(args.ApplicationPath);
+            if( !string.IsNullOrEmpty(args.RequestPath) ) request.Expect(o => o.AppRelativeCurrentExecutionFilePath).Returns(args.RequestPath);
+            if( !string.IsNullOrEmpty(args.HttpMethod) ) request.Expect(o => o.HttpMethod).Returns(args.HttpMethod);
 
             request.Expect(o => o.Url).Returns(uri);
             request.Expect(o => o.PathInfo).Returns(String.Empty);
 
             return request.Object;
         }
+
+        #region Nested type: MockHttpContextArguments
+
+        public class MockHttpContextArguments
+        {
+            public string ApplicationPath { get; set; }
+            public string RequestPath { get; set; }
+            public string HttpMethod { get; set; }
+        }
+
+        #endregion
     }
 }

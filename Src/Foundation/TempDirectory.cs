@@ -21,9 +21,9 @@ namespace Foundation
     /// </example>
     public class TempDirectory : IDisposable
     {
-        private readonly DirectoryInfo directoryInfo;
-        private ILog logger;
-        private Type type;
+        readonly DirectoryInfo directoryInfo;
+        ILog logger;
+        Type type;
 
         /// <summary>
         /// Creates a new temporary directory, which will automatically
@@ -71,7 +71,7 @@ namespace Foundation
 
         #endregion
 
-        private static string GetTempDirectory()
+        static string GetTempDirectory()
         {
             string path = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(path);

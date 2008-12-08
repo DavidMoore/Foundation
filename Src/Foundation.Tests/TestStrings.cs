@@ -7,6 +7,6 @@ namespace Foundation.Tests
         /// </summary>
         public const string Internationalisation = "Iñtërnâtiônàlizætiøn";
 
-        private TestStrings() {}
+        TestStrings() {}
     }
 }

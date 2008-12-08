@@ -10,21 +10,21 @@ namespace Foundation.WindowsShell
     /// </summary>
     public class ShellImageList : IDisposable
     {
-        private const int FILE_ATTRIBUTE_DIRECTORY = 0x10;
-        private const int FILE_ATTRIBUTE_NORMAL = 0x80;
+        const int FILE_ATTRIBUTE_DIRECTORY = 0x10;
+        const int FILE_ATTRIBUTE_NORMAL = 0x80;
 
-        private const int FORMAT_MESSAGE_ALLOCATE_BUFFER = 0x100;
-        private const int FORMAT_MESSAGE_ARGUMENT_ARRAY = 0x2000;
-        private const int FORMAT_MESSAGE_FROM_HMODULE = 0x800;
-        private const int FORMAT_MESSAGE_FROM_STRING = 0x400;
-        private const int FORMAT_MESSAGE_FROM_SYSTEM = 0x1000;
-        private const int FORMAT_MESSAGE_IGNORE_INSERTS = 0x200;
-        private const int FORMAT_MESSAGE_MAX_WIDTH_MASK = 0xFF;
-        private const int MAX_PATH = 260;
-        private bool disposed;
-        private IntPtr hIml = IntPtr.Zero;
-        private IImageList iImageList;
-        private ShellImageListSize size = ShellImageListSize.SmallIcons;
+        const int FORMAT_MESSAGE_ALLOCATE_BUFFER = 0x100;
+        const int FORMAT_MESSAGE_ARGUMENT_ARRAY = 0x2000;
+        const int FORMAT_MESSAGE_FROM_HMODULE = 0x800;
+        const int FORMAT_MESSAGE_FROM_STRING = 0x400;
+        const int FORMAT_MESSAGE_FROM_SYSTEM = 0x1000;
+        const int FORMAT_MESSAGE_IGNORE_INSERTS = 0x200;
+        const int FORMAT_MESSAGE_MAX_WIDTH_MASK = 0xFF;
+        const int MAX_PATH = 260;
+        bool disposed;
+        IntPtr hIml = IntPtr.Zero;
+        IImageList iImageList;
+        ShellImageListSize size = ShellImageListSize.SmallIcons;
 
         /// <summary>
         /// Creates a Small Icons SystemImageList 
@@ -102,7 +102,7 @@ namespace Foundation.WindowsShell
         #endregion
 
         [DllImport("shell32")]
-        private static extern IntPtr SHGetFileInfo(
+        static extern IntPtr SHGetFileInfo(
             string pszPath,
             int dwFileAttributes,
             ref SHFILEINFO psfi,
@@ -110,10 +110,10 @@ namespace Foundation.WindowsShell
             uint uFlags);
 
         [DllImport("user32.dll")]
-        private static extern int DestroyIcon(IntPtr hIcon);
+        static extern int DestroyIcon(IntPtr hIcon);
 
         [DllImport("kernel32")]
-        private static extern int FormatMessage(
+        static extern int FormatMessage(
             int dwFlags,
             IntPtr lpSource,
             int dwMessageId,
@@ -123,10 +123,10 @@ namespace Foundation.WindowsShell
             int argumentsLong);
 
         [DllImport("kernel32")]
-        private static extern int GetLastError();
+        static extern int GetLastError();
 
         [DllImport("comctl32")]
-        private static extern int ImageList_Draw(
+        static extern int ImageList_Draw(
             IntPtr hIml,
             int i,
             IntPtr hdcDst,
@@ -135,17 +135,17 @@ namespace Foundation.WindowsShell
             int fStyle);
 
         [DllImport("comctl32")]
-        private static extern int ImageList_DrawIndirect(
+        static extern int ImageList_DrawIndirect(
             ref IMAGELISTDRAWPARAMS pimldp);
 
         [DllImport("comctl32")]
-        private static extern int ImageList_GetIconSize(
+        static extern int ImageList_GetIconSize(
             IntPtr himl,
             ref int cx,
             ref int cy);
 
         [DllImport("comctl32")]
-        private static extern IntPtr ImageList_GetIcon(
+        static extern IntPtr ImageList_GetIcon(
             IntPtr himl,
             int i,
             int flags);
@@ -156,14 +156,14 @@ namespace Foundation.WindowsShell
         /// Apparently (and hopefully) ordinal 727 isn't going to change.
         /// </summary>
         [DllImport("shell32.dll", EntryPoint = "#727")]
-        private static extern int SHGetImageList(
+        static extern int SHGetImageList(
             int iImageList,
             ref Guid riid,
             ref IImageList ppv
             );
 
         [DllImport("shell32.dll", EntryPoint = "#727")]
-        private static extern int SHGetImageListHandle(
+        static extern int SHGetImageListHandle(
             int iImageList,
             ref Guid riid,
             ref IntPtr handle
@@ -469,7 +469,7 @@ namespace Foundation.WindowsShell
         /// or above
         /// </summary>
         /// <returns>True if system is running XP or above, False otherwise</returns>
-        private bool isXpOrAbove()
+        bool isXpOrAbove()
         {
             bool ret = false;
             if( Environment.OSVersion.Version.Major > 5 )
@@ -488,7 +488,7 @@ namespace Foundation.WindowsShell
         /// <summary>
         /// Creates the SystemImageList
         /// </summary>
-        private void create()
+        void create()
         {
             // forget last image list if any:
             hIml = IntPtr.Zero;
@@ -568,7 +568,7 @@ namespace Foundation.WindowsShell
         [Guid("46EB5926-582E-4017-9FDF-E8998DAA0950")]
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         //helpstring("Image List"),
-        private interface IImageList
+            interface IImageList
         {
             [PreserveSig]
             int Add(
@@ -730,7 +730,7 @@ namespace Foundation.WindowsShell
         #region Nested type: IMAGEINFO
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct IMAGEINFO
+        struct IMAGEINFO
         {
             public IntPtr hbmImage;
             public IntPtr hbmMask;
@@ -744,7 +744,7 @@ namespace Foundation.WindowsShell
         #region Nested type: IMAGELISTDRAWPARAMS
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct IMAGELISTDRAWPARAMS
+        struct IMAGELISTDRAWPARAMS
         {
             public int cbSize;
             public IntPtr himl;
@@ -770,10 +770,10 @@ namespace Foundation.WindowsShell
         #region Nested type: POINT
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct POINT
+        struct POINT
         {
-            private int x;
-            private int y;
+            int x;
+            int y;
         }
 
         #endregion
@@ -781,12 +781,12 @@ namespace Foundation.WindowsShell
         #region Nested type: RECT
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct RECT
+        struct RECT
         {
-            private int left;
-            private int top;
-            private int right;
-            private int bottom;
+            int left;
+            int top;
+            int right;
+            int bottom;
         }
 
         #endregion
@@ -794,7 +794,7 @@ namespace Foundation.WindowsShell
         #region Nested type: SHFILEINFO
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct SHFILEINFO
+        struct SHFILEINFO
         {
             public IntPtr hIcon;
             public int iIcon;
@@ -808,7 +808,7 @@ namespace Foundation.WindowsShell
         #region Nested type: SHGetFileInfoConstants
 
         [Flags]
-        private enum SHGetFileInfoConstants
+        enum SHGetFileInfoConstants
         {
             SHGFI_ICON = 0x100, // get icon 
             SHGFI_DISPLAYNAME = 0x200, // get display name 

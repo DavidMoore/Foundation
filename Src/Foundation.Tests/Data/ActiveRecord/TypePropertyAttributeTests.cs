@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using Foundation.Services.Repository;
@@ -15,7 +15,7 @@ namespace Foundation.Tests.Data.ActiveRecord
             RegisterTypes(typeof(DummyClassWithTypePropertyAttribute));
         }
 
-        private IRepository<DummyClassWithTypePropertyAttribute> repository;
+        IRepository<DummyClassWithTypePropertyAttribute> repository;
 
         public override void FixtureSetup()
         {

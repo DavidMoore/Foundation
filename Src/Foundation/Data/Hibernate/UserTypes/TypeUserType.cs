@@ -8,8 +8,8 @@ namespace Foundation.Data.Hibernate.UserTypes
 {
     public class TypeUserType : IUserType
     {
-        private static readonly Type returnedType = typeof(Type);
-        private static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.GetString(255)};
+        static readonly Type returnedType = typeof(Type);
+        static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.GetString(255)};
 
         #region IUserType Members
 

@@ -24,7 +24,8 @@ namespace Foundation
         /// <param name="assertion"></param>
         /// <param name="exceptionMessage"></param>
         /// <param name="stringFormatParameters"></param>
-        public static void IfFalse<TException>(bool assertion, string exceptionMessage, params object[] stringFormatParameters) where TException : Exception, new()
+        public static void IfFalse<TException>(bool assertion, string exceptionMessage, params object[] stringFormatParameters)
+            where TException : Exception, new()
         {
             IfTrue<TException>(!assertion, exceptionMessage, stringFormatParameters);
         }
@@ -44,15 +45,15 @@ namespace Foundation
 
         public static void IfTrue<TException>(bool test) where TException : Exception, new()
         {
-            if (test) throw new TException();
+            if( test ) throw new TException();
         }
 
         public static void IfTrue<TException>(bool test, string message, params object[] stringFormatParameters) where TException : Exception, new()
         {
             if( !test ) return;
             IfArgumentIsNullOrEmpty("message", message);
-            if (string.IsNullOrEmpty(message)) throw new TException();
-            if (stringFormatParameters.Length > 0) message = string.Format(message, stringFormatParameters);
+            if( string.IsNullOrEmpty(message) ) throw new TException();
+            if( stringFormatParameters.Length > 0 ) message = string.Format(message, stringFormatParameters);
             var exception = Activator.CreateInstance(typeof(TException), message) as Exception;
             IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(TException).Name, message);
             throw exception;

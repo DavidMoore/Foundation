@@ -8,13 +8,17 @@ namespace Foundation.Tests.Services.Repository
     [TestFixture]
     public class ActiveRecordRepositoryFixture : SecurityFixtureBase
     {
-        ActiveRecordRepository<User> activeRecordRepository;
+        #region Setup/Teardown
 
         public override void Setup()
         {
             base.Setup();
             activeRecordRepository = new ActiveRecordRepository<User>();
         }
+
+        #endregion
+
+        ActiveRecordRepository<User> activeRecordRepository;
 
         [Test]
         public void Can_execute_SQL()
@@ -44,6 +48,20 @@ namespace Foundation.Tests.Services.Repository
         }
 
         [Test]
+        public void Find_by_id()
+        {
+            var user = new User {Email = "test@test.com", Name = "TestUser1"};
+
+            activeRecordRepository.Save(user);
+
+            Assert.AreEqual(1, user.Id);
+
+            User user2 = activeRecordRepository.Find(1);
+
+            Assert.AreEqual(user2, user);
+        }
+
+        [Test]
         public void Save()
         {
             User user = activeRecordRepository.Create();
@@ -55,24 +73,10 @@ namespace Foundation.Tests.Services.Repository
             Assert.IsTrue(activeRecordRepository.List().Count == 1);
         }
 
-        [Test]
-        public void Find_by_id()
-        {
-            var user = new User {Email = "test@test.com", Name = "TestUser1"};
-
-            activeRecordRepository.Save(user);
-
-            Assert.AreEqual(1, user.Id);
-
-            var user2 = activeRecordRepository.Find(1);
-
-            Assert.AreEqual( user2, user );
-        }
-
         [Test, ExpectedException(typeof(ModelValidationException))]
         public void Uses_ActiveRecordModelValidator_by_default()
         {
-            var user = new User{Name = null};
+            var user = new User {Name = null};
             activeRecordRepository.Save(user);
         }
     }

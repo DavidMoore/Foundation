@@ -9,9 +9,9 @@ namespace Foundation.Data.Hibernate.UserTypes
 {
     public class PropertyInfoUserType : IUserType
     {
-        private const string delimiter = "|";
-        private static readonly Type returnedType = typeof(PropertyInfo);
-        private static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.GetString(255)};
+        const string delimiter = "|";
+        static readonly Type returnedType = typeof(PropertyInfo);
+        static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.GetString(255)};
 
         #region IUserType Members
 

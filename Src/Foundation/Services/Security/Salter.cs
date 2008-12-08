@@ -4,8 +4,8 @@ namespace Foundation.Services.Security
 {
     public class Salter
     {
-        private const int defaultSaltLength = 4;
-        private Encoding utf8 = Encoding.UTF8;
+        const int defaultSaltLength = 4;
+        Encoding utf8 = Encoding.UTF8;
 
         public Salter()
         {
@@ -31,7 +31,7 @@ namespace Foundation.Services.Security
             return new SaltedValue {Salt = salt, SaltPosition = Position, UnsaltedValue = stringToSalt, Value = value};
         }
 
-        private string AddSalt(string stringToSalt, string salt)
+        string AddSalt(string stringToSalt, string salt)
         {
             if( Position == SaltPosition.Prefix )
             {

@@ -31,11 +31,13 @@ namespace Foundation.Services.Validation
             return errors;
         }
 
+        #endregion
+
         public override string ToString()
         {
             string typeName = GetType().Name;
 
-            if (Count == 0) return string.Format("{{{0}: No errors}}", typeName);
+            if( Count == 0 ) return string.Format("{{{0}: No errors}}", typeName);
 
             var sb = new StringBuilder();
 
@@ -45,9 +47,10 @@ namespace Foundation.Services.Validation
 
             bool first = true;
 
-            foreach(var error in this)
+            foreach( IValidationPropertyError error in this )
             {
-                if (!first) sb.Append(", "); else first = false;
+                if( !first ) sb.Append(", ");
+                else first = false;
                 sb.AppendFormat("{0}: {1}", error.PropertyName, error.ErrorMessage);
             }
 
@@ -55,7 +58,5 @@ namespace Foundation.Services.Validation
 
             return sb.ToString();
         }
-
-        #endregion
     }
 }

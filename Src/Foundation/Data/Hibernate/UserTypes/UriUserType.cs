@@ -8,8 +8,8 @@ namespace Foundation.Data.Hibernate.UserTypes
 {
     public class UriUserType : IUserType
     {
-        private static readonly Type returnedType = typeof(Uri);
-        private static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.GetString(255)};
+        static readonly Type returnedType = typeof(Uri);
+        static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.GetString(255)};
 
         #region IUserType Members
 
@@ -33,7 +33,7 @@ namespace Foundation.Data.Hibernate.UserTypes
         /// <returns/>
         public object NullSafeGet(IDataReader rs, string[] names, object owner)
         {
-            return new Uri( (string) NHibernateUtil.String.NullSafeGet(rs, names[0]) );
+            return new Uri((string) NHibernateUtil.String.NullSafeGet(rs, names[0]));
         }
 
         /// <summary>Converts the Uri to a string for writing to the database</summary>

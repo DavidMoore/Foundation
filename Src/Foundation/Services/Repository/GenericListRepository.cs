@@ -17,6 +17,8 @@ namespace Foundation.Services.Repository
             list = new List<T>();
         }
 
+        #region IRepository<T> Members
+
         public T Create()
         {
             return new T();
@@ -26,11 +28,11 @@ namespace Foundation.Services.Repository
         {
             var results = new List<T>(instances.Length);
 
-            foreach (var instance in instances)
+            foreach( T instance in instances )
             {
-                var index = list.IndexOf(instance);
+                int index = list.IndexOf(instance);
 
-                if (index > -1)
+                if( index > -1 )
                 {
                     list[index] = instance;
                     results.Add(list[index]);
@@ -47,21 +49,6 @@ namespace Foundation.Services.Repository
             return results.ToArray();
         }
 
-        int GetNextPrimaryKey()
-        {
-            // If the list is empty we start at 1
-            if (list.Count == 0) return 1;
-
-            // Find the "newest" item and increment that for our primary key
-            int startId = list[list.Count - 1].Id + 1;
-            
-            // Make sure no other content has this id, incrementing it
-            // until it is unique
-            int id = startId;
-            while (list.SingleOrDefault(x => x.Id.Equals(id)) != null) id++;
-            return id;
-        }
-
         public void DeleteAll()
         {
             list.Clear();
@@ -75,6 +62,23 @@ namespace Foundation.Services.Repository
         public IList<T> List()
         {
             return list;
+        }
+
+        #endregion
+
+        int GetNextPrimaryKey()
+        {
+            // If the list is empty we start at 1
+            if( list.Count == 0 ) return 1;
+
+            // Find the "newest" item and increment that for our primary key
+            int startId = list[list.Count - 1].Id + 1;
+
+            // Make sure no other content has this id, incrementing it
+            // until it is unique
+            int id = startId;
+            while( list.SingleOrDefault(x => x.Id.Equals(id)) != null ) id++;
+            return id;
         }
     }
 }

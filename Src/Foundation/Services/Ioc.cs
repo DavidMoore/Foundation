@@ -60,7 +60,7 @@ namespace Foundation.Services
         /// </summary>
         /// <param name="registry"></param>
         /// <returns></returns>
-        public static IWindsorContainer AddRegistry(IIocRegistry registry)
+        public static IWindsorContainer AddRegistry(IServicesRegistry registry)
         {
             registry.Configure(Container);
             return Container;

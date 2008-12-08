@@ -141,7 +141,7 @@
     <Compile Include="Data\Hibernate\SingletonConnectionProvider.cs" />
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="HttpVerb.cs" />
-    <Compile Include="Services\IIocRegistry.cs" />
+    <Compile Include="Services\IServicesRegistry.cs" />
     <Compile Include="Services\Repository\GenericListRepository.cs" />
     <Compile Include="Services\Security\ActiveRecordIntegration.cs" />
     <Compile Include="TestHelpers\HttpContextBaseMockExtensionMethods.cs" />

@@ -36,5 +36,16 @@ namespace Foundation
         {
             return type.GetCustomAttributes(attribute, true).Length > 0;
         }
+
+        /// <summary>
+        /// Returns true if the passed type implements the specified interface
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="desiredInterface"></param>
+        /// <returns></returns>
+        public static bool Implements(Type type, Type desiredInterface)
+        {
+            return type.GetInterface(desiredInterface.Name) != null;
+        }
     }
 }

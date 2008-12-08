@@ -44,5 +44,11 @@ namespace Foundation.Tests
 
             Assert.IsTrue( ReflectUtils.HasAttribute(type, attribute) );
         }
+
+        [Test]
+        public void Implements_returns_true_when_passed_type_implements_the_specified_interface()
+        {
+            Assert.IsTrue( ReflectUtils.Implements(typeof(ActivationContext), typeof(IDisposable)) );
+        }
     }
 }

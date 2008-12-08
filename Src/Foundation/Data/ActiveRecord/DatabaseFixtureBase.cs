@@ -49,6 +49,7 @@ namespace Foundation.Data.ActiveRecord
         [TearDown]
         public virtual void Teardown()
         {
+            ThrowException.IfNull<FoundationException>(scope, "SessionScope is null. Did you override Setup in the fixture and forget to call base.Setup()?");
             scope.Dispose();
             ActiveRecordStarter.DropSchema();
         }

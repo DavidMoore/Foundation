@@ -14,6 +14,22 @@ namespace Foundation.Data.Hibernate.UserTypes
         #region IUserType Members
 
         /// <summary>
+        ///             The SQL types for the columns mapped by this type. 
+        /// </summary>
+        public SqlType[] SqlTypes { get { return sqlTypes; } }
+
+        /// <summary>
+        ///             The type returned by 
+        /// <c>NullSafeGet()</c>
+        /// </summary>
+        public Type ReturnedType { get { return returnedType; } }
+
+        /// <summary>
+        ///             Are objects of this type mutable?
+        /// </summary>
+        public bool IsMutable { get { return true; } }
+
+        /// <summary>
         ///             Compare two instances of the class mapped by this type for persistent "equality"
         ///             ie. equality of persistent state
         /// </summary>
@@ -66,7 +82,7 @@ namespace Foundation.Data.Hibernate.UserTypes
         /// <exception cref="T:NHibernate.HibernateException">HibernateException</exception>
         public void NullSafeSet(IDbCommand cmd, object value, int index)
         {
-            string typeName = value == null ? null : ((Type) value).FullName;
+            var typeName = value == null ? null : ((Type) value).FullName;
             NHibernateUtil.String.NullSafeSet(cmd, typeName, index);
         }
 
@@ -133,22 +149,6 @@ namespace Foundation.Data.Hibernate.UserTypes
             //return DeepCopy(value);
             return value;
         }
-
-        /// <summary>
-        ///             The SQL types for the columns mapped by this type. 
-        /// </summary>
-        public SqlType[] SqlTypes { get { return sqlTypes; } }
-
-        /// <summary>
-        ///             The type returned by 
-        /// <c>NullSafeGet()</c>
-        /// </summary>
-        public Type ReturnedType { get { return returnedType; } }
-
-        /// <summary>
-        ///             Are objects of this type mutable?
-        /// </summary>
-        public bool IsMutable { get { return true; } }
 
         #endregion
     }

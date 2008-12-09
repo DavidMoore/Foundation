@@ -73,7 +73,7 @@ namespace Foundation
 
         static string GetTempDirectory()
         {
-            string path = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var path = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(path);
             return path;
         }

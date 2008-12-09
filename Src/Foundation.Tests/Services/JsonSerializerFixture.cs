@@ -1,4 +1,4 @@
-﻿using Foundation.Services;
+using Foundation.Services;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using JsonSerializer=Foundation.Services.JsonSerializer;
@@ -30,27 +30,27 @@ namespace Foundation.Tests.Services
         }
 
         [Test]
+        public void SerializationOptions()
+        {
+            var serializer = new JsonSerializer();
+
+            Assert.AreEqual("{\"visible\":null}", serializer.Serialize(new DummyObject()));
+            Assert.AreEqual("{\"visible\":\"testText\"}", serializer.Serialize(new DummyObject {visible = "testText"}));
+
+            serializer.SerializationOptions.NullValueHandling = NullValueHandling.Ignore;
+            Assert.AreEqual("{}", serializer.Serialize(new DummyObject()));
+            Assert.AreEqual("{\"visible\":\"testText\"}", serializer.Serialize(new DummyObject {visible = "testText"}));
+
+            serializer.SerializationOptions.PropertyNameFormatting = JsonPropertyNameFormatting.PascalCase;
+            Assert.AreEqual("{\"Visible\":\"testText\"}", serializer.Serialize(new DummyObject {visible = "testText"}));
+        }
+
+        [Test]
         public void Serialize()
         {
             const string expected = "{\"visible\":null}";
             var result = new JsonSerializer().Serialize(new DummyObject());
             Assert.AreEqual(expected, result);
-        }
-
-        [Test]
-        public void SerializationOptions()
-        {
-            var serializer = new JsonSerializer();
-
-            Assert.AreEqual("{\"visible\":null}", serializer.Serialize( new DummyObject() ) );
-            Assert.AreEqual("{\"visible\":\"testText\"}", serializer.Serialize(new DummyObject{visible = "testText"}));
-
-            serializer.SerializationOptions.NullValueHandling = NullValueHandling.Ignore;
-            Assert.AreEqual("{}", serializer.Serialize(new DummyObject()));
-            Assert.AreEqual("{\"visible\":\"testText\"}", serializer.Serialize(new DummyObject{visible = "testText"}));
-
-            serializer.SerializationOptions.PropertyNameFormatting = JsonPropertyNameFormatting.PascalCase;
-            Assert.AreEqual("{\"Visible\":\"testText\"}", serializer.Serialize(new DummyObject { visible = "testText" }));
         }
     }
 }

@@ -9,9 +9,7 @@ namespace Foundation.Services
     /// </summary>
     public class JsonSerializer : IJsonSerializer
     {
-        public virtual JsonSerializationOptions SerializationOptions { get; set; }
-
-        public JsonSerializer() : this(new JsonSerializationOptions() ) {}
+        public JsonSerializer() : this(new JsonSerializationOptions()) {}
 
         public JsonSerializer(JsonSerializationOptions options)
         {
@@ -19,6 +17,8 @@ namespace Foundation.Services
         }
 
         #region IJsonSerializer Members
+
+        public virtual JsonSerializationOptions SerializationOptions { get; set; }
 
         /// <summary>Serializes the specified object to JSON.</summary>
         /// <param name="target">The object.</param>
@@ -54,14 +54,14 @@ namespace Foundation.Services
         ///<param name="jsonString">The json representation of an object string.</param>
         public virtual T Deserialize<T>(string jsonString)
         {
-            return (T)JavaScriptConvert.DeserializeObject(jsonString, typeof(T));
+            return (T) JavaScriptConvert.DeserializeObject(jsonString, typeof(T));
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>
         ///<param name="jsonString">The json representation of an object string.</param>
         public virtual T[] DeserializeArray<T>(string jsonString)
         {
-            return (T[])JavaScriptConvert.DeserializeObject(jsonString, typeof(T[]));
+            return (T[]) JavaScriptConvert.DeserializeObject(jsonString, typeof(T[]));
         }
 
         #endregion

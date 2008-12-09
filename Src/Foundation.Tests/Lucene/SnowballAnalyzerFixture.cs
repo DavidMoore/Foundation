@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Foundation.Lucene;
 using Lucene.Net.Analysis;
@@ -11,10 +11,10 @@ namespace Foundation.Tests.Lucene
     {
         protected virtual void AssertAnalyzesTo(Analyzer analyzer, String input, String[] output)
         {
-            TokenStream tokenStream = analyzer.TokenStream("dummyFieldName", new StringReader(input));
-            for( int i = 0; i < output.Length; i++ )
+            var tokenStream = analyzer.TokenStream("dummyFieldName", new StringReader(input));
+            for( var i = 0; i < output.Length; i++ )
             {
-                Token t = tokenStream.Next();
+                var t = tokenStream.Next();
                 Assert.IsNotNull(t);
                 Assert.AreEqual(output[i], t.TermText());
             }

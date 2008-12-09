@@ -89,14 +89,14 @@ namespace Foundation.Services.Security
             var charsLeftInGroup = new int[charGroups.Length];
 
             // Initially, all characters in each group are not used.
-            for( int i = 0; i < charsLeftInGroup.Length; i++ )
+            for( var i = 0; i < charsLeftInGroup.Length; i++ )
                 charsLeftInGroup[i] = charGroups[i].Length;
 
             // Use this array to track (iterate through) unused character groups.
             var leftGroupsOrder = new int[charGroups.Length];
 
             // Initially, all character groups are not used.
-            for( int i = 0; i < leftGroupsOrder.Length; i++ )
+            for( var i = 0; i < leftGroupsOrder.Length; i++ )
                 leftGroupsOrder[i] = i;
 
             // Because we cannot use the default randomizer, which is based on the
@@ -113,7 +113,7 @@ namespace Foundation.Services.Security
             rng.GetBytes(randomBytes);
 
             // Convert 4 bytes into a 32-bit integer value.
-            int seed = (randomBytes[0] & 0x7f) << 24 | randomBytes[1] << 16 | randomBytes[2] << 8 |
+            var seed = (randomBytes[0] & 0x7f) << 24 | randomBytes[1] << 16 | randomBytes[2] << 8 |
                 randomBytes[3];
 
             // Now, this is real randomization.
@@ -146,10 +146,10 @@ namespace Foundation.Services.Security
 
             // Index of the last non-processed group. Initially, we will skip
             // special characters.
-            int lastLeftGroupsOrderIdx = leftGroupsOrder.Length - 1;
+            var lastLeftGroupsOrderIdx = leftGroupsOrder.Length - 1;
 
             // Generate password characters one at a time.
-            for( int i = 0; i < password.Length; i++ )
+            for( var i = 0; i < password.Length; i++ )
             {
                 // If only one character group remained unprocessed, process it;
                 // otherwise, pick a random character group from the unprocessed
@@ -187,7 +187,7 @@ namespace Foundation.Services.Security
                     // this group.
                     if( lastCharIdx != nextCharIdx )
                     {
-                        char temp = charGroups[nextGroupIdx][lastCharIdx];
+                        var temp = charGroups[nextGroupIdx][lastCharIdx];
                         charGroups[nextGroupIdx][lastCharIdx] = charGroups[nextGroupIdx][nextCharIdx];
                         charGroups[nextGroupIdx][nextCharIdx] = temp;
                     }
@@ -206,7 +206,7 @@ namespace Foundation.Services.Security
                     // so that we don't pick it until we process all groups.
                     if( lastLeftGroupsOrderIdx != nextLeftGroupsOrderIdx )
                     {
-                        int temp = leftGroupsOrder[lastLeftGroupsOrderIdx];
+                        var temp = leftGroupsOrder[lastLeftGroupsOrderIdx];
                         leftGroupsOrder[lastLeftGroupsOrderIdx] = leftGroupsOrder[nextLeftGroupsOrderIdx];
                         leftGroupsOrder[nextLeftGroupsOrderIdx] = temp;
                     }

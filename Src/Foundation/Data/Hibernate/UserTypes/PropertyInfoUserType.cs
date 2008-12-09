@@ -16,6 +16,22 @@ namespace Foundation.Data.Hibernate.UserTypes
         #region IUserType Members
 
         /// <summary>
+        ///             The SQL types for the columns mapped by this type. 
+        /// </summary>
+        public SqlType[] SqlTypes { get { return sqlTypes; } }
+
+        /// <summary>
+        ///             The type returned by 
+        /// <c>NullSafeGet()</c>
+        /// </summary>
+        public Type ReturnedType { get { return returnedType; } }
+
+        /// <summary>
+        ///             Are objects of this type mutable?
+        /// </summary>
+        public bool IsMutable { get { return true; } }
+
+        /// <summary>
         ///             Compare two instances of the class mapped by this type for persistent "equality"
         ///             ie. equality of persistent state
         /// </summary>
@@ -49,14 +65,14 @@ namespace Foundation.Data.Hibernate.UserTypes
         public object NullSafeGet(IDataReader rs, string[] names, object owner)
         {
             // The string in the database contains the type name, then the property name, separated by the delimiter
-            string[] details = ((string) NHibernateUtil.String.NullSafeGet(rs, names[0])).Split(new[] {delimiter},
+            var details = ((string) NHibernateUtil.String.NullSafeGet(rs, names[0])).Split(new[] {delimiter},
                 StringSplitOptions.RemoveEmptyEntries);
 
-            string typeName = details[0];
-            string propertyName = details[1];
+            var typeName = details[0];
+            var propertyName = details[1];
 
-            Type type = Type.GetType(typeName);
-            PropertyInfo propertyInfo = type.GetProperty(propertyName);
+            var type = Type.GetType(typeName);
+            var propertyInfo = type.GetProperty(propertyName);
 
             return propertyInfo;
         }
@@ -73,8 +89,8 @@ namespace Foundation.Data.Hibernate.UserTypes
         public void NullSafeSet(IDbCommand cmd, object value, int index)
         {
             var propertyInfo = (PropertyInfo) value;
-            string typeName = propertyInfo.DeclaringType.AssemblyQualifiedName;
-            string info = string.Concat(typeName, delimiter, propertyInfo.Name);
+            var typeName = propertyInfo.DeclaringType.AssemblyQualifiedName;
+            var info = string.Concat(typeName, delimiter, propertyInfo.Name);
             NHibernateUtil.String.NullSafeSet(cmd, typeName, index);
         }
 
@@ -141,22 +157,6 @@ namespace Foundation.Data.Hibernate.UserTypes
             //return DeepCopy(value);
             return value;
         }
-
-        /// <summary>
-        ///             The SQL types for the columns mapped by this type. 
-        /// </summary>
-        public SqlType[] SqlTypes { get { return sqlTypes; } }
-
-        /// <summary>
-        ///             The type returned by 
-        /// <c>NullSafeGet()</c>
-        /// </summary>
-        public Type ReturnedType { get { return returnedType; } }
-
-        /// <summary>
-        ///             Are objects of this type mutable?
-        /// </summary>
-        public bool IsMutable { get { return true; } }
 
         #endregion
     }

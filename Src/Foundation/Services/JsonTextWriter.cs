@@ -5,9 +5,8 @@ namespace Foundation.Services
 {
     public class JsonTextWriter : Newtonsoft.Json.JsonTextWriter
     {
+        public JsonTextWriter(TextWriter textWriter) : base(textWriter) {}
         public JsonPropertyNameFormatting PropertyNameFormatting { get; set; }
-
-        public JsonTextWriter(TextWriter textWriter) : base(textWriter){}
 
         public override void WritePropertyName(string name)
         {
@@ -27,7 +26,7 @@ namespace Foundation.Services
                     throw new ArgumentOutOfRangeException();
             }
 
-            base.WritePropertyName( formattedName );
+            base.WritePropertyName(formattedName);
         }
     }
 }

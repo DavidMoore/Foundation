@@ -1,4 +1,4 @@
-﻿using Foundation.Services.Security;
+using Foundation.Services.Security;
 using NUnit.Framework;
 
 namespace Foundation.Tests.Services.Security
@@ -13,7 +13,7 @@ namespace Foundation.Tests.Services.Security
 
             var generator = new PasswordGenerator {MinimumPasswordLength = length, MaximumPasswordLength = length};
 
-            string password = generator.Generate();
+            var password = generator.Generate();
 
             Assert.AreEqual(length, password.Length);
         }
@@ -25,7 +25,7 @@ namespace Foundation.Tests.Services.Security
 
             var generator = new PasswordGenerator();
 
-            string password = generator.Generate(length);
+            var password = generator.Generate(length);
 
             Assert.AreEqual(length, password.Length);
         }

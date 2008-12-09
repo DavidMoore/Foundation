@@ -28,9 +28,9 @@ namespace Foundation.Services.Repository
         {
             var results = new List<T>(instances.Length);
 
-            foreach( T instance in instances )
+            foreach( var instance in instances )
             {
-                int index = list.IndexOf(instance);
+                var index = list.IndexOf(instance);
 
                 if( index > -1 )
                 {
@@ -72,11 +72,11 @@ namespace Foundation.Services.Repository
             if( list.Count == 0 ) return 1;
 
             // Find the "newest" item and increment that for our primary key
-            int startId = list[list.Count - 1].Id + 1;
+            var startId = list[list.Count - 1].Id + 1;
 
             // Make sure no other content has this id, incrementing it
             // until it is unique
-            int id = startId;
+            var id = startId;
             while( list.SingleOrDefault(x => x.Id.Equals(id)) != null ) id++;
             return id;
         }

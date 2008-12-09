@@ -23,7 +23,7 @@ namespace Foundation.Tests.Services.Repository
         [Test]
         public void Can_execute_SQL()
         {
-            User user = activeRecordRepository.Save(new User {Email = "user1@usertest.com", Name = "User1"});
+            var user = activeRecordRepository.Save(new User {Email = "user1@usertest.com", Name = "User1"});
             activeRecordRepository.ExecuteSql(string.Format("UPDATE User SET Email=\"user1updated@usertest.com\" WHERE Id={0}", user.Id));
             activeRecordRepository.Refresh(user);
             Assert.AreEqual("user1updated@usertest.com", user.Email);
@@ -56,7 +56,7 @@ namespace Foundation.Tests.Services.Repository
 
             Assert.AreEqual(1, user.Id);
 
-            User user2 = activeRecordRepository.Find(1);
+            var user2 = activeRecordRepository.Find(1);
 
             Assert.AreEqual(user2, user);
         }
@@ -64,10 +64,10 @@ namespace Foundation.Tests.Services.Repository
         [Test]
         public void Save()
         {
-            User user = activeRecordRepository.Create();
+            var user = activeRecordRepository.Create();
             user.Name = "Joe";
             user.Email = "joe@bloggs.com";
-            User user2 = activeRecordRepository.Save(user);
+            var user2 = activeRecordRepository.Save(user);
             Assert.IsFalse(user.Id == 0);
             Assert.AreEqual(user2.Id, user.Id);
             Assert.IsTrue(activeRecordRepository.List().Count == 1);

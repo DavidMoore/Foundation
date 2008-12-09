@@ -22,7 +22,7 @@ namespace Foundation.Tests.Services.Repository
         [Test]
         public void Can_get_by_id()
         {
-            DummyClass instance = repository.Create();
+            var instance = repository.Create();
             instance.Title = "Test";
             repository.Save(instance);
             Assert.AreEqual(instance, repository.Find(1));
@@ -31,14 +31,14 @@ namespace Foundation.Tests.Services.Repository
         [Test]
         public void Can_get_new_instance_with_Create()
         {
-            DummyClass instance = repository.Create();
+            var instance = repository.Create();
             Assert.IsNotNull(instance);
         }
 
         [Test]
         public void Can_save()
         {
-            DummyClass instance = repository.Create();
+            var instance = repository.Create();
             instance.Title = "My Test";
             repository.Save(instance);
             Assert.AreEqual(1, instance.Id);

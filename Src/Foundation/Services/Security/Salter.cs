@@ -23,10 +23,10 @@ namespace Foundation.Services.Security
         public SaltedValue Salt(string stringToSalt)
         {
             // Generate the salt
-            string salt = PasswordGenerator.Generate(Length);
+            var salt = PasswordGenerator.Generate(Length);
 
             // Add the salt
-            string value = AddSalt(stringToSalt, salt);
+            var value = AddSalt(stringToSalt, salt);
 
             return new SaltedValue {Salt = salt, SaltPosition = Position, UnsaltedValue = stringToSalt, Value = value};
         }

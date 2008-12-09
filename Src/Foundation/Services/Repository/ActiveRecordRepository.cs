@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Castle.ActiveRecord;
-using Castle.ActiveRecord.Framework;
 using Foundation.Services.Validation;
 using NHibernate;
-using NHibernate.Cfg;
 using NHibernate.Criterion;
 using NHibernate.Driver;
 
@@ -61,7 +59,7 @@ namespace Foundation.Services.Repository
 
         public virtual T[] Save(params T[] instances)
         {
-            foreach( T instance in instances )
+            foreach( var instance in instances )
             {
                 Save(instance);
             }
@@ -86,8 +84,8 @@ namespace Foundation.Services.Repository
             ActiveRecordMediator<T>.DeleteAll();
 
             // Do a truncate if using MySQL
-            Configuration config = ActiveRecordMediator.GetSessionFactoryHolder().GetConfiguration(typeof(ActiveRecordBase));
-            string driver = config.GetProperty("connection.driver_class");
+            var config = ActiveRecordMediator.GetSessionFactoryHolder().GetConfiguration(typeof(ActiveRecordBase));
+            var driver = config.GetProperty("connection.driver_class");
             if( driver.Equals(typeof(MySqlDataDriver).AssemblyQualifiedName) ) ExecuteSql(string.Format("TRUNCATE {0}", Type.Name));
         }
 
@@ -109,8 +107,8 @@ namespace Foundation.Services.Repository
         {
             ThrowException.IfArgumentIsNull("sql", sql);
 
-            ISessionFactoryHolder sessionHolder = ActiveRecordMediator.GetSessionFactoryHolder();
-            ISession session = sessionHolder.CreateSession(Type);
+            var sessionHolder = ActiveRecordMediator.GetSessionFactoryHolder();
+            var session = sessionHolder.CreateSession(Type);
 
             try
             {

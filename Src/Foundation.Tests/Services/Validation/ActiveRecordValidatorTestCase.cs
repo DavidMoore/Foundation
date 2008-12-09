@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Castle.ActiveRecord;
 using Castle.Components.Validator;
 using Foundation.Data.ActiveRecord;
@@ -42,9 +41,9 @@ namespace Foundation.Tests.Services.Validation
         {
             var value = new MockInvalidTestObject {Name = null, Email = "invalid"};
 
-            IValidationErrors errors = new ActiveRecordModelValidator().GetValidationErrors(value);
+            var errors = new ActiveRecordModelValidator().GetValidationErrors(value);
 
-            IList<IValidationPropertyError> propErrors = errors.ErrorsForProperty("Name");
+            var propErrors = errors.ErrorsForProperty("Name");
 
             Assert.IsNotNull(propErrors);
             Assert.AreEqual(1, propErrors.Count);
@@ -57,7 +56,7 @@ namespace Foundation.Tests.Services.Validation
             var value = new MockInvalidTestObject {Name = "Test", Email = "valid_emai@email.com"};
 
             var validator = new ActiveRecordModelValidator();
-            IValidationErrors errors = validator.GetValidationErrors(value);
+            var errors = validator.GetValidationErrors(value);
 
             Assert.IsNotNull(errors);
         }
@@ -68,7 +67,7 @@ namespace Foundation.Tests.Services.Validation
             var value = new MockInvalidTestObject {Name = null, Email = "invalid"};
 
             var validator = new ActiveRecordModelValidator();
-            IValidationErrors errors = validator.GetValidationErrors(value);
+            var errors = validator.GetValidationErrors(value);
 
             Assert.AreEqual(2, errors.Count);
         }

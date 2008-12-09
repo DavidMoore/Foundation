@@ -23,7 +23,7 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
 
             ActiveRecordMediator<DummyTypeWithUriProperty>.Save(dummy);
 
-            DummyTypeWithUriProperty result = ActiveRecordMediator<DummyTypeWithUriProperty>.FindByPrimaryKey(dummy.Id);
+            var result = ActiveRecordMediator<DummyTypeWithUriProperty>.FindByPrimaryKey(dummy.Id);
 
             Assert.AreEqual(dummy, result);
             Assert.AreEqual(dummy.Url, result.Url);

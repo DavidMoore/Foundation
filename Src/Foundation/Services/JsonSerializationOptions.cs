@@ -4,7 +4,8 @@ namespace Foundation.Services
 {
     public class JsonSerializationOptions
     {
-        public JsonSerializationOptions(NullValueHandling nullValueHandling, MissingMemberHandling missingMemberHandling, ReferenceLoopHandling referenceLoopHandling)
+        public JsonSerializationOptions(NullValueHandling nullValueHandling, MissingMemberHandling missingMemberHandling,
+            ReferenceLoopHandling referenceLoopHandling)
         {
             NullValueHandling = nullValueHandling;
             MissingMemberHandling = missingMemberHandling;
@@ -15,7 +16,7 @@ namespace Foundation.Services
             : this(nullValueHandling, MissingMemberHandling.Ignore, ReferenceLoopHandling.Ignore) {}
 
         public JsonSerializationOptions()
-            : this(NullValueHandling.Include, MissingMemberHandling.Ignore, ReferenceLoopHandling.Ignore) { }
+            : this(NullValueHandling.Include, MissingMemberHandling.Ignore, ReferenceLoopHandling.Ignore) {}
 
         public NullValueHandling NullValueHandling { get; set; }
         public MissingMemberHandling MissingMemberHandling { get; set; }

@@ -21,7 +21,7 @@ namespace Foundation.Tests.WindowsShell
         {
             var folder = (Folder3) shell.NameSpace(ShellNamespaceIdentifier.Desktop);
             var desktop = new ShellFolder(folder);
-            ShellItemList children = desktop.Children;
+            var children = desktop.Children;
             Assert.IsTrue(desktop.IsFolder);
             Assert.AreEqual("Desktop", desktop.Name);
         }

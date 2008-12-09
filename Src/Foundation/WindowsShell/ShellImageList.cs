@@ -69,8 +69,8 @@ namespace Foundation.WindowsShell
         {
             get
             {
-                int cx = 0;
-                int cy = 0;
+                var cx = 0;
+                var cy = 0;
                 if( iImageList == null )
                 {
                     ImageList_GetIconSize(
@@ -179,7 +179,7 @@ namespace Foundation.WindowsShell
         {
             Icon icon = null;
 
-            IntPtr hIcon = IntPtr.Zero;
+            var hIcon = IntPtr.Zero;
             if( iImageList == null )
             {
                 hIcon = ImageList_GetIcon(
@@ -245,8 +245,8 @@ namespace Foundation.WindowsShell
             ShellIconStateConstants iconState
             )
         {
-            SHGetFileInfoConstants dwFlags = SHGetFileInfoConstants.SHGFI_SYSICONINDEX;
-            int dwAttr = 0;
+            var dwFlags = SHGetFileInfoConstants.SHGFI_SYSICONINDEX;
+            var dwAttr = 0;
             if( size == ShellImageListSize.SmallIcons )
             {
                 dwFlags |= SHGetFileInfoConstants.SHGFI_SMALLICON;
@@ -270,7 +270,7 @@ namespace Foundation.WindowsShell
             // icon, for example sFileSpec = "C:\PANTS.DOC"
             var shfi = new SHFILEINFO();
             var shfiSize = (uint) Marshal.SizeOf(shfi.GetType());
-            IntPtr retVal = SHGetFileInfo(
+            var retVal = SHGetFileInfo(
                 fileName, dwAttr, ref shfi, shfiSize,
                 ((uint) (dwFlags) | (uint) iconState));
 
@@ -320,7 +320,7 @@ namespace Foundation.WindowsShell
         {
             if( iImageList == null )
             {
-                int ret = ImageList_Draw(
+                var ret = ImageList_Draw(
                     hIml,
                     index,
                     hdc,
@@ -376,7 +376,7 @@ namespace Foundation.WindowsShell
             if( iImageList == null )
             {
                 pimldp.himl = hIml;
-                int ret = ImageList_DrawIndirect(ref pimldp);
+                var ret = ImageList_DrawIndirect(ref pimldp);
             }
             else
             {
@@ -456,7 +456,7 @@ namespace Foundation.WindowsShell
             if( iImageList == null )
             {
                 pimldp.himl = hIml;
-                int ret = ImageList_DrawIndirect(ref pimldp);
+                var ret = ImageList_DrawIndirect(ref pimldp);
             }
             else
             {
@@ -471,7 +471,7 @@ namespace Foundation.WindowsShell
         /// <returns>True if system is running XP or above, False otherwise</returns>
         bool isXpOrAbove()
         {
-            bool ret = false;
+            var ret = false;
             if( Environment.OSVersion.Version.Major > 5 )
             {
                 ret = true;
@@ -497,7 +497,7 @@ namespace Foundation.WindowsShell
             {
                 // Get the System IImageList object from the Shell:
                 var iidImageList = new Guid("46EB5926-582E-4017-9FDF-E8998DAA0950");
-                int ret = SHGetImageList(
+                var ret = SHGetImageList(
                     (int) size,
                     ref iidImageList,
                     ref iImageList
@@ -511,7 +511,7 @@ namespace Foundation.WindowsShell
             else
             {
                 // Prepare flags:
-                SHGetFileInfoConstants dwFlags = SHGetFileInfoConstants.SHGFI_USEFILEATTRIBUTES |
+                var dwFlags = SHGetFileInfoConstants.SHGFI_USEFILEATTRIBUTES |
                     SHGetFileInfoConstants.SHGFI_SYSICONINDEX;
                 if( size == ShellImageListSize.SmallIcons )
                 {

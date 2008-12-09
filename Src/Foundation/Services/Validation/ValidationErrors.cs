@@ -20,7 +20,7 @@ namespace Foundation.Services.Validation
         {
             IList<IValidationPropertyError> errors = new List<IValidationPropertyError>(Count);
 
-            foreach( IValidationPropertyError error in this )
+            foreach( var error in this )
             {
                 if( error.PropertyName.Equals(property, StringComparison.InvariantCultureIgnoreCase) )
                 {
@@ -35,7 +35,7 @@ namespace Foundation.Services.Validation
 
         public override string ToString()
         {
-            string typeName = GetType().Name;
+            var typeName = GetType().Name;
 
             if( Count == 0 ) return string.Format("{{{0}: No errors}}", typeName);
 
@@ -45,9 +45,9 @@ namespace Foundation.Services.Validation
             sb.Append(Count == 1 ? "1 property" : string.Format("{0} properties", Count));
             sb.Append(" failed validation. [");
 
-            bool first = true;
+            var first = true;
 
-            foreach( IValidationPropertyError error in this )
+            foreach( var error in this )
             {
                 if( !first ) sb.Append(", ");
                 else first = false;

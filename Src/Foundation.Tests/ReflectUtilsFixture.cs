@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Reflection;
 using NUnit.Framework;
 
 namespace Foundation.Tests
@@ -35,18 +33,18 @@ namespace Foundation.Tests
         [Test]
         public void Returns_all_public_properties_with_specified_attribute()
         {
-            Type type = typeof(DummyReflectionObject);
-            Type attribute = typeof(DummyReflectionAttributeAttribute);
+            var type = typeof(DummyReflectionObject);
+            var attribute = typeof(DummyReflectionAttributeAttribute);
 
-            List<PropertyInfo> properties = ReflectUtils.GetPropertiesWithAttribute(type, attribute);
+            var properties = ReflectUtils.GetPropertiesWithAttribute(type, attribute);
             Assert.AreEqual(2, properties.Count);
         }
 
         [Test]
         public void Returns_true_for_type_with_specified_attribute_when_calling_HasAttribute()
         {
-            Type type = typeof(DummyReflectionObject);
-            Type attribute = typeof(DummyReflectionAttributeAttribute);
+            var type = typeof(DummyReflectionObject);
+            var attribute = typeof(DummyReflectionAttributeAttribute);
 
             Assert.IsTrue(ReflectUtils.HasAttribute(type, attribute));
         }

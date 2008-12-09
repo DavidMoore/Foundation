@@ -35,8 +35,8 @@ namespace Foundation.Tests.WindowsShell
         {
             var drives = new List<string>(Environment.GetLogicalDrives());
 
-            ShellFolder myComputer = provider.MyComputer;
-            ShellItemList list = myComputer.Children;
+            var myComputer = provider.MyComputer;
+            var list = myComputer.Children;
 
             drives.ForEach(drive => Assert.IsNotNull(list.Find(obj => obj.Path.Equals(drive))));
         }

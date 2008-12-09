@@ -1,4 +1,3 @@
-using System.Web;
 using Foundation.TestHelpers;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -23,7 +22,7 @@ namespace Foundation.Tests.Web
         [Test]
         public void Can_get_non_null_HttpContextBase()
         {
-            HttpContextBase context = mocks.DynamicHttpContextBase();
+            var context = mocks.DynamicHttpContextBase();
             Assert.IsNotNull(context);
             Assert.IsNotNull(context.Request);
             Assert.IsNotNull(context.Response);

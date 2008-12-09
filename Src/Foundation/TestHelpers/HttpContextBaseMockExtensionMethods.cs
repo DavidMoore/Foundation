@@ -62,9 +62,9 @@ namespace Foundation.TestHelpers
         {
             var parms = new NameValueCollection(48) {queryString, form};
 
-            for( int i = 0; i < cookies.Count; i++ )
+            for( var i = 0; i < cookies.Count; i++ )
             {
-                HttpCookie cookie = cookies.Get(i);
+                var cookie = cookies.Get(i);
                 parms.Add(cookie.Name, cookie.Value);
             }
             parms.Add(serverVariables);

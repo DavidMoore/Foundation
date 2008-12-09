@@ -77,7 +77,7 @@ namespace Foundation.WindowsShell
             {
                 if( verbs == null )
                 {
-                    FolderItemVerbs itemVerbs = item.Verbs();
+                    var itemVerbs = item.Verbs();
                     verbs = new List<string>(itemVerbs.Count);
                     foreach( FolderItemVerb verb in itemVerbs )
                     {

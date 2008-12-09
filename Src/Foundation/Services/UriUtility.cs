@@ -65,9 +65,9 @@ namespace Foundation.Services
         {
             // Convert the parameter list into strings (allowing any type to
             // be passed as a parameter)
-            List<string> dirs = new List<object>(directories).ConvertAll(o => o == null ? string.Empty : o.ToString());
+            var dirs = new List<object>(directories).ConvertAll(o => o == null ? string.Empty : o.ToString());
 
-            string result = string.Join(Path.DirectorySeparatorChar.ToString(), dirs.ToArray());
+            var result = string.Join(Path.DirectorySeparatorChar.ToString(), dirs.ToArray());
 
             return TidyPath(result);
         }
@@ -83,9 +83,9 @@ namespace Foundation.Services
         {
             // Convert the parameter list into strings (allowing any type to
             // be passed as a parameter)
-            List<string> dirs = new List<object>(parts).ConvertAll(o => o == null ? string.Empty : o.ToString());
+            var dirs = new List<object>(parts).ConvertAll(o => o == null ? string.Empty : o.ToString());
 
-            string result = string.Join("/", dirs.ToArray());
+            var result = string.Join("/", dirs.ToArray());
 
             return CommonUtils.TidyUrl(result);
         }
@@ -147,7 +147,7 @@ namespace Foundation.Services
 
         public string UrlFromTitle(string title)
         {
-            string result = Regex.Replace(title.Replace(" ", "-").ToLower(), @"[^0-9\-a-z]", "");
+            var result = Regex.Replace(title.Replace(" ", "-").ToLower(), @"[^0-9\-a-z]", "");
 
             while( result.IndexOf("--") > -1 )
             {

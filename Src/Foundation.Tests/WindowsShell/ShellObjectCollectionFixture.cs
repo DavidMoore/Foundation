@@ -1,4 +1,4 @@
-﻿using Foundation.WindowsShell;
+using Foundation.WindowsShell;
 using NUnit.Framework;
 
 namespace Foundation.Tests.WindowsShell
@@ -11,7 +11,7 @@ namespace Foundation.Tests.WindowsShell
         {
             var provider = new ShellProvider();
 
-            ShellItemList list = provider.MyComputer.Children;
+            var list = provider.MyComputer.Children;
 
             Assert.Greater(list.Count, 0);
         }

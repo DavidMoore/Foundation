@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using NUnit.Framework;
 
 namespace Foundation.Tests
@@ -11,7 +11,7 @@ namespace Foundation.Tests
         {
             using( var dir = new TempDirectory() )
             {
-                FileInfo file = dir.CreateTempFile();
+                var file = dir.CreateTempFile();
                 Assert.IsTrue(file.Exists);
             }
         }
@@ -21,7 +21,7 @@ namespace Foundation.Tests
         {
             using( var dir = new TempDirectory() )
             {
-                FileInfo file = dir.CreateTempFile("test.tmp");
+                var file = dir.CreateTempFile("test.tmp");
                 Assert.IsTrue(file.Exists);
                 Assert.AreEqual(file.Name, "test.tmp");
                 Assert.AreEqual(Path.Combine(dir.DirectoryInfo.FullName, "test.tmp"), file.FullName);
@@ -33,7 +33,7 @@ namespace Foundation.Tests
         {
             using( var dir = new TempDirectory() )
             {
-                FileInfo file = dir.CreateTempFile();
+                var file = dir.CreateTempFile();
                 Assert.IsTrue(file.Exists);
                 File.WriteAllText(file.FullName, "Test\r\nLine2");
                 Assert.AreEqual(File.ReadAllText(file.FullName), "Test\r\nLine2");
@@ -61,7 +61,7 @@ namespace Foundation.Tests
 
             using( var dir = new TempDirectory() )
             {
-                FileInfo file = dir.CreateTempFile();
+                var file = dir.CreateTempFile();
                 Assert.IsTrue(file.Exists);
                 filename = file.FullName;
             }

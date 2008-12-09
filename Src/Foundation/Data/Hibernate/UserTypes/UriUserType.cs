@@ -13,6 +13,22 @@ namespace Foundation.Data.Hibernate.UserTypes
 
         #region IUserType Members
 
+        /// <summary>
+        ///             The SQL types for the columns mapped by this type. 
+        /// </summary>
+        public SqlType[] SqlTypes { get { return sqlTypes; } }
+
+        /// <summary>
+        ///             The type returned by 
+        /// <c>NullSafeGet()</c>
+        /// </summary>
+        public Type ReturnedType { get { return returnedType; } }
+
+        /// <summary>
+        ///             Are objects of this type mutable?
+        /// </summary>
+        public bool IsMutable { get { return true; } }
+
         public new bool Equals(object x, object y)
         {
             return object.Equals(x, y);
@@ -43,7 +59,7 @@ namespace Foundation.Data.Hibernate.UserTypes
         /// <exception cref="T:NHibernate.HibernateException">HibernateException</exception>
         public void NullSafeSet(IDbCommand cmd, object value, int index)
         {
-            string uri = value.ToString();
+            var uri = value.ToString();
             NHibernateUtil.String.NullSafeSet(cmd, uri, index);
         }
 
@@ -66,22 +82,6 @@ namespace Foundation.Data.Hibernate.UserTypes
         {
             return value;
         }
-
-        /// <summary>
-        ///             The SQL types for the columns mapped by this type. 
-        /// </summary>
-        public SqlType[] SqlTypes { get { return sqlTypes; } }
-
-        /// <summary>
-        ///             The type returned by 
-        /// <c>NullSafeGet()</c>
-        /// </summary>
-        public Type ReturnedType { get { return returnedType; } }
-
-        /// <summary>
-        ///             Are objects of this type mutable?
-        /// </summary>
-        public bool IsMutable { get { return true; } }
 
         #endregion
     }

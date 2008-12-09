@@ -32,14 +32,14 @@ namespace Foundation.TestHelpers
             var mockContext = new Mock<HttpContextBase>();
 
             // Mock the HttpRequest
-            HttpRequestBase mockRequest = GetHttpRequestBase(args);
+            var mockRequest = GetHttpRequestBase(args);
             mockContext.Expect(o => o.Request).Returns(mockRequest);
 
             // Mock the Session
             mockContext.Expect(o => o.Session).Returns((HttpSessionStateBase) null);
 
             // Mock the HttpResponse
-            HttpResponseBase mockResponse = GetHttpResponseBase(args);
+            var mockResponse = GetHttpResponseBase(args);
             mockContext.Expect(o => o.Response).Returns(mockResponse);
 
             return mockContext.Object;

@@ -13,12 +13,12 @@ namespace Foundation.Tests
             {
                 const byte data = 0xFF;
 
-                using( FileStream stream = file.FileInfo.OpenWrite() )
+                using( var stream = file.FileInfo.OpenWrite() )
                 {
                     stream.WriteByte(data);
                 }
 
-                using( FileStream stream = file.FileInfo.OpenRead() )
+                using( var stream = file.FileInfo.OpenRead() )
                 {
                     Assert.AreEqual(data, stream.ReadByte());
                 }
@@ -30,7 +30,7 @@ namespace Foundation.Tests
         {
             using( var file = new TempFile() )
             {
-                string text = TestStrings.Internationalisation;
+                var text = TestStrings.Internationalisation;
                 file.WriteAllText(text);
                 Assert.AreEqual(text, file.ReadAllText());
             }

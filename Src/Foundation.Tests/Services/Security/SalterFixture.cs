@@ -1,4 +1,4 @@
-﻿using Foundation.Services.Security;
+using Foundation.Services.Security;
 using NUnit.Framework;
 
 namespace Foundation.Tests.Services.Security
@@ -11,7 +11,7 @@ namespace Foundation.Tests.Services.Security
         {
             const string stringToSalt = "string to salt";
             var salter = new Salter {Position = SaltPosition.Suffix};
-            SaltedValue salted = salter.Salt(stringToSalt);
+            var salted = salter.Salt(stringToSalt);
             Assert.AreEqual(stringToSalt + salted.Salt, salted.Value);
         }
     }

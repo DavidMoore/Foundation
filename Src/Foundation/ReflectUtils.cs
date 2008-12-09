@@ -16,7 +16,7 @@ namespace Foundation
         {
             var properties = new List<PropertyInfo>();
 
-            foreach( PropertyInfo property in type.GetProperties() )
+            foreach( var property in type.GetProperties() )
             {
                 if( property.GetCustomAttributes(attribute, true).Length > 0 )
                 {

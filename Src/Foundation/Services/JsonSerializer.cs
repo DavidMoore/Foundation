@@ -1,6 +1,6 @@
 using System;
-using Castle.MonoRail.Framework;
-using Castle.MonoRail.Framework.Services;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace Foundation.Services
 {
@@ -9,77 +9,61 @@ namespace Foundation.Services
     /// </summary>
     public class JsonSerializer : IJsonSerializer
     {
+        public virtual JsonSerializationOptions SerializationOptions { get; set; }
+
+        public JsonSerializer() : this(new JsonSerializationOptions() ) {}
+
+        public JsonSerializer(JsonSerializationOptions options)
+        {
+            SerializationOptions = options;
+        }
+
         #region IJsonSerializer Members
 
         /// <summary>Serializes the specified object to JSON.</summary>
         /// <param name="target">The object.</param>
         /// <returns>JSON text</returns>
-        public string Serialize(object target)
+        public virtual string Serialize(object target)
         {
-            // Try to auto-get the context
-            return Serialize(target, MonoRailHttpHandlerFactory.CurrentEngineContext);
-        }
+            var serializer = new Newtonsoft.Json.JsonSerializer
+                {
+                    ReferenceLoopHandling = SerializationOptions.ReferenceLoopHandling,
+                    NullValueHandling = SerializationOptions.NullValueHandling,
+                    MissingMemberHandling = SerializationOptions.MissingMemberHandling
+                };
+            var writer = new StringWriter();
 
-        /// <summary>Serializes the specified object to JSON.</summary>
-        /// <param name="target">The object.</param>
-        /// <param name="context">The MonoRail context. If null, the NewstonsoftJSONSerializer will be used by default.</param>
-        /// <returns>JSON text</returns>
-        public string Serialize(object target, IEngineContext context)
-        {
-            return GetJsonSerializer(context).Serialize(target);
+            var jsonWriter = new JsonTextWriter(writer)
+                {
+                    PropertyNameFormatting = SerializationOptions.PropertyNameFormatting
+                };
+
+            serializer.Serialize(jsonWriter, target);
+            return writer.GetStringBuilder().ToString();
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>
         ///<param name="jsonString">The json representation of an object string.</param>
         ///<param name="expectedType">The expected type.</param>
-        public object Deserialize(string jsonString, Type expectedType)
+        public virtual object Deserialize(string jsonString, Type expectedType)
         {
-            return GetJsonSerializer().Deserialize(jsonString, expectedType);
+            return JavaScriptConvert.DeserializeObject(jsonString, expectedType);
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>
         ///<param name="jsonString">The json representation of an object string.</param>
-        public T Deserialize<T>(string jsonString)
+        public virtual T Deserialize<T>(string jsonString)
         {
-            return GetJsonSerializer().Deserialize<T>(jsonString);
+            return (T)JavaScriptConvert.DeserializeObject(jsonString, typeof(T));
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>
         ///<param name="jsonString">The json representation of an object string.</param>
-        public T[] DeserializeArray<T>(string jsonString)
+        public virtual T[] DeserializeArray<T>(string jsonString)
         {
-            return GetJsonSerializer().DeserializeArray<T>(jsonString);
+            return (T[])JavaScriptConvert.DeserializeObject(jsonString, typeof(T[]));
         }
 
         #endregion
-
-        /// <summary>
-        /// Gets the default JSON Serializer
-        /// </summary>
-        /// <returns></returns>
-        static IJSONSerializer GetJsonSerializer()
-        {
-            return GetJsonSerializer(null);
-        }
-
-        /// <summary>
-        /// Gets the JSON Serializer using the context to find the registered service. If
-        /// no JSON service can be found, it will fall back to the NewtonsoftJSONSerializer
-        /// by default.
-        /// </summary>
-        /// <param name="context">The MonoRail Engine Context containing registered services.</param>
-        /// <returns></returns>
-        static IJSONSerializer GetJsonSerializer(IEngineContext context)
-        {
-            IJSONSerializer serializer = null;
-
-            // Try to get the JSON Serializer Service
-            if( context != null ) serializer = context.Services.JSONSerializer;
-
-            // Use the Newtonsoft serializer by default
-            if( serializer == null ) serializer = new NewtonsoftJSONSerializer();
-
-            return serializer;
-        }
     }
 }

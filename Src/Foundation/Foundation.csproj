@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{76D503C1-FB69-4688-B7F9-49A7D6525263}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -142,8 +142,12 @@
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="HttpVerb.cs" />
     <Compile Include="Services\IServicesRegistry.cs" />
+    <Compile Include="Services\JsonPropertyNameFormatting.cs" />
+    <Compile Include="Services\JsonSerializationOptions.cs" />
+    <Compile Include="Services\JsonTextWriter.cs" />
     <Compile Include="Services\Repository\GenericListRepository.cs" />
     <Compile Include="Services\Security\ActiveRecordIntegration.cs" />
+    <Compile Include="StringExtensionMethods.cs" />
     <Compile Include="TestHelpers\HttpContextBaseMockExtensionMethods.cs" />
     <Compile Include="TestHelpers\MvcTestHelpers.cs" />
     <Compile Include="ThrowException.cs" />

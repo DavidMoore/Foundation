@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Foundation.Services;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using JsonSerializer=Foundation.Services.JsonSerializer;
 
@@ -18,10 +19,10 @@ namespace Foundation.Tests.Services
         [Test]
         public void Deserialize()
         {
-            string expectedSerialized = "{\"visible\":\"visible\"}";
+            const string expectedSerialized = "{\"visible\":\"visible\"}";
             var dummy = new DummyObject {invisible = "invisible", visible = "visible"};
             var serializer = new JsonSerializer();
-            string serialized = serializer.Serialize(dummy);
+            var serialized = serializer.Serialize(dummy);
             Assert.AreEqual(expectedSerialized, serialized);
 
             var result = serializer.Deserialize<DummyObject>(serialized);
@@ -32,8 +33,24 @@ namespace Foundation.Tests.Services
         public void Serialize()
         {
             const string expected = "{\"visible\":null}";
-            string result = new JsonSerializer().Serialize(new DummyObject());
+            var result = new JsonSerializer().Serialize(new DummyObject());
             Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void SerializationOptions()
+        {
+            var serializer = new JsonSerializer();
+
+            Assert.AreEqual("{\"visible\":null}", serializer.Serialize( new DummyObject() ) );
+            Assert.AreEqual("{\"visible\":\"testText\"}", serializer.Serialize(new DummyObject{visible = "testText"}));
+
+            serializer.SerializationOptions.NullValueHandling = NullValueHandling.Ignore;
+            Assert.AreEqual("{}", serializer.Serialize(new DummyObject()));
+            Assert.AreEqual("{\"visible\":\"testText\"}", serializer.Serialize(new DummyObject{visible = "testText"}));
+
+            serializer.SerializationOptions.PropertyNameFormatting = JsonPropertyNameFormatting.PascalCase;
+            Assert.AreEqual("{\"Visible\":\"testText\"}", serializer.Serialize(new DummyObject { visible = "testText" }));
         }
     }
 }

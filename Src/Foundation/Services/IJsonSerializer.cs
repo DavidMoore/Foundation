@@ -1,20 +1,18 @@
 using System;
-using Castle.MonoRail.Framework;
 
 namespace Foundation.Services
 {
     public interface IJsonSerializer
     {
+        /// <summary>
+        /// Options for serialization
+        /// </summary>
+        JsonSerializationOptions SerializationOptions { get; set; }
+
         /// <summary>Serializes the specified object to JSON.</summary>
         /// <param name="target">The object.</param>
         /// <returns>JSON text</returns>
         string Serialize(object target);
-
-        /// <summary>Serializes the specified object to JSON.</summary>
-        /// <param name="target">The object.</param>
-        /// <param name="context">The MonoRail context. If null, the NewstonsoftJSONSerializer will be used by default.</param>
-        /// <returns>JSON text</returns>
-        string Serialize(object target, IEngineContext context);
 
         ///<summary>Serializes the specified object to JSON.</summary>
         ///<param name="jsonString">The json representation of an object string.</param>

@@ -139,6 +139,9 @@
     <Compile Include="Data\ActiveRecord\DummyActiveRecordModel.cs" />
     <Compile Include="Data\ActiveRecord\TypePropertyAttribute.cs" />
     <Compile Include="Data\Hibernate\SingletonConnectionProvider.cs" />
+    <Compile Include="Data\ActiveRecord\ColorPropertyAttribute.cs" />
+    <Compile Include="Data\Hibernate\UserTypes\ColorUserType.cs" />
+    <Compile Include="Data\Hibernate\UserTypes\SimpleUserTypeBase.cs" />
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="HttpVerb.cs" />
     <Compile Include="Services\IServicesRegistry.cs" />

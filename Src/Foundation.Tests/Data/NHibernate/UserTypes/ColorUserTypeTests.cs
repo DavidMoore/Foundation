@@ -38,14 +38,14 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
         [Test]
         public void Can_save()
         {
-            var dummy = new DummyClassWithColorProperty { Colour = colour };
+            var dummy = new DummyClassWithColorProperty {Colour = colour};
             repository.Save(dummy);
         }
 
         [Test]
         public void Can_update()
         {
-            var dummy = new DummyClassWithColorProperty { Colour = colour };
+            var dummy = new DummyClassWithColorProperty {Colour = colour};
             repository.Save(dummy);
             dummy.Colour = colour;
             repository.Save(dummy);

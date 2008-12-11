@@ -12,7 +12,7 @@ namespace Foundation.Data.Hibernate.UserTypes
     public class ColorUserType : SimpleUserTypeBase
     {
         static readonly Type returnedType = typeof(Color);
-        static readonly SqlType[] sqlTypes = new[] { SqlTypeFactory.Int32 };
+        static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.Int32};
 
         public override SqlType[] SqlTypes { get { return sqlTypes; } }
 
@@ -27,7 +27,7 @@ namespace Foundation.Data.Hibernate.UserTypes
 
         public override void NullSafeSet(IDbCommand cmd, object value, int index)
         {
-            var colour = (Color)value;
+            var colour = (Color) value;
             var argbValue = colour.ToArgb();
             NHibernateUtil.Int32.NullSafeSet(cmd, argbValue, index);
         }

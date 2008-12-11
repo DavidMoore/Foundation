@@ -36,7 +36,7 @@ namespace Foundation.Tests.Data.ActiveRecord
         [Test]
         public void Can_save_and_load()
         {
-            var dummy = new DummyClassWithColorProperty { Colour = Color.Red };
+            var dummy = new DummyClassWithColorProperty {Colour = Color.Red};
             repository.Save(dummy);
             Assert.AreEqual(1, dummy.Id);
             Assert.AreEqual(Color.Red, dummy.Colour);

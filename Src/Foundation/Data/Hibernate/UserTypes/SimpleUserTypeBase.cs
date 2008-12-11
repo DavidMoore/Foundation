@@ -16,7 +16,7 @@ namespace Foundation.Data.Hibernate.UserTypes
 
         public virtual bool IsMutable { get { return true; } }
 
-        public virtual new bool Equals(object x, object y)
+        public new virtual bool Equals(object x, object y)
         {
             return object.Equals(x, y);
         }

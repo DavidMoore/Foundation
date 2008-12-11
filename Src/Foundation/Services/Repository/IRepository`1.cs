@@ -15,8 +15,9 @@ namespace Foundation.Services.Repository
         /// <returns></returns>
         T Create();
 
-        //T Save(T instance);
+        T Save(T instance);
         T[] Save(params T[] instances);
+
         //T SaveAndFlush(T instance);
         //void Delete(T instance);
 

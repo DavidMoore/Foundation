@@ -24,26 +24,31 @@ namespace Foundation.Services.Repository
             return new T();
         }
 
+        public T Save(T instance)
+        {
+            var index = list.IndexOf(instance);
+
+            if (index > -1)
+            {
+                list[index] = instance;
+            }
+            else
+            {
+                // Set the primary key
+                instance.Id = GetNextPrimaryKey();
+                list.Add(instance);
+            }
+
+            return instance;
+        }
+
         public T[] Save(params T[] instances)
         {
             var results = new List<T>(instances.Length);
 
             foreach( var instance in instances )
             {
-                var index = list.IndexOf(instance);
-
-                if( index > -1 )
-                {
-                    list[index] = instance;
-                    results.Add(list[index]);
-                }
-                else
-                {
-                    // Set the primary key
-                    instance.Id = GetNextPrimaryKey();
-                    list.Add(instance);
-                    results.Add(instance);
-                }
+                Save(instance);
             }
 
             return results.ToArray();

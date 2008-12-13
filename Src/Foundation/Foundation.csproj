@@ -138,6 +138,13 @@
   <ItemGroup>
     <Compile Include="Data\ActiveRecord\DummyActiveRecordModel.cs" />
     <Compile Include="Data\ActiveRecord\TypePropertyAttribute.cs" />
+    <Compile Include="Data\Hierarchy\ITreeEntity.cs" />
+    <Compile Include="Data\Hierarchy\ITreeRepository.cs" />
+    <Compile Include="Data\Hierarchy\SiblingList.cs" />
+    <Compile Include="Data\Hierarchy\TreeActiveRecordRepository.cs" />
+    <Compile Include="Data\Hierarchy\TreeCriteria.cs" />
+    <Compile Include="Data\Hierarchy\TreeEntityChildren.cs" />
+    <Compile Include="Data\Hierarchy\TreeInfo.cs" />
     <Compile Include="Data\Hibernate\SingletonConnectionProvider.cs" />
     <Compile Include="Data\ActiveRecord\ColorPropertyAttribute.cs" />
     <Compile Include="Data\Hibernate\UserTypes\ColorUserType.cs" />

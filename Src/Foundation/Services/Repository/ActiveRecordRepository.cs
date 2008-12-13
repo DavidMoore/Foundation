@@ -77,6 +77,15 @@ namespace Foundation.Services.Repository
         }
 
         /// <summary>
+        /// Returns a list of all the instances of this type matching the criteria
+        /// </summary>
+        /// <returns></returns>
+        public virtual IList<T> List(DetachedCriteria detachedCriteria)
+        {
+            return ActiveRecordMediator<T>.FindAll(detachedCriteria);
+        }
+
+        /// <summary>
         /// Deletes all instances of this type from the database
         /// </summary>
         public virtual void DeleteAll()

@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using NUnit.Framework;
 
 namespace Foundation.Tests
@@ -7,6 +8,8 @@ namespace Foundation.Tests
     public class ReflectUtilsFixture
     {
         internal class DummyReflectionAttributeAttribute : Attribute {}
+        internal class FooReflectionAttributeAttribute : Attribute { }
+        internal class BarReflectionAttributeAttribute : Attribute { }
 
         [DummyReflectionAttribute]
         internal class DummyReflectionObject
@@ -47,6 +50,24 @@ namespace Foundation.Tests
             var attribute = typeof(DummyReflectionAttributeAttribute);
 
             Assert.IsTrue(ReflectUtils.HasAttribute(type, attribute));
+        }
+
+        [Test]
+        public void GetAttribute()
+        {
+            var attribute = ReflectUtils.GetAttribute<DummyReflectionAttributeAttribute>(new DummyReflectionObject());
+            Assert.IsNotNull(attribute);
+        }
+
+        [Test]
+        public void HasAttribute_for_PropertyInfo()
+        {
+            var propertyInfo = typeof(DummyReflectionObject).GetProperty("StringProperty");
+
+            Assert.IsTrue(ReflectUtils.HasAttribute(propertyInfo, typeof(DummyReflectionAttributeAttribute)));
+            Assert.IsFalse(ReflectUtils.HasAttribute(propertyInfo, typeof(FooReflectionAttributeAttribute)));
+            Assert.IsTrue(ReflectUtils.HasAttribute(propertyInfo, typeof(DummyReflectionAttributeAttribute), typeof(FooReflectionAttributeAttribute)));
+            Assert.IsFalse(ReflectUtils.HasAttribute(propertyInfo, typeof(BarReflectionAttributeAttribute), typeof(FooReflectionAttributeAttribute)));
         }
     }
 }

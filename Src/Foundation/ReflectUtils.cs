@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 namespace Foundation
 {
@@ -46,6 +47,36 @@ namespace Foundation
         public static bool Implements(Type type, Type desiredInterface)
         {
             return type.GetInterface(desiredInterface.Name) != null;
+        }
+
+        /// <summary>
+        /// Returns true if the specified property is annotated with any of the specified attributes
+        /// </summary>
+        /// <param name="propertyInfo"></param>
+        /// <param name="attributes"></param>
+        /// <returns></returns>
+        public static bool HasAttribute(PropertyInfo propertyInfo, params Type[] attributes)
+        {
+            List<object> actualAttributes = propertyInfo.GetCustomAttributes(true).ToList();
+
+            var actualTypes = actualAttributes.ConvertAll(attribute => attribute.GetType());
+
+            var lookingFor = attributes.ToList();
+
+            foreach(var type in lookingFor)
+            {
+                if( actualTypes.Contains(type)) return true;
+            }
+
+            return false;
+        }
+
+        public static T GetAttribute<T>(object objectValue) where T : Attribute
+        {
+            var attributes = objectValue.GetType().GetCustomAttributes(typeof(T), true);
+            if (attributes.Length == 0) return null;
+            
+            return attributes[0] as T;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Foundation.Services
         /// <returns>JSON text</returns>
         public virtual string Serialize(object target)
         {
-            var serializer = new Newtonsoft.Json.JsonSerializer
+            var serializer = new JavaScriptSerializer
                 {
                     ReferenceLoopHandling = SerializationOptions.ReferenceLoopHandling,
                     NullValueHandling = SerializationOptions.NullValueHandling,
@@ -37,7 +37,7 @@ namespace Foundation.Services
                 {
                     PropertyNameFormatting = SerializationOptions.PropertyNameFormatting
                 };
-
+            
             serializer.Serialize(jsonWriter, target);
             return writer.GetStringBuilder().ToString();
         }
@@ -47,21 +47,21 @@ namespace Foundation.Services
         ///<param name="expectedType">The expected type.</param>
         public virtual object Deserialize(string jsonString, Type expectedType)
         {
-            return JavaScriptConvert.DeserializeObject(jsonString, expectedType);
+            return JsonConvert.DeserializeObject(jsonString, expectedType);
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>
         ///<param name="jsonString">The json representation of an object string.</param>
         public virtual T Deserialize<T>(string jsonString)
         {
-            return (T) JavaScriptConvert.DeserializeObject(jsonString, typeof(T));
+            return (T)JsonConvert.DeserializeObject(jsonString, typeof(T));
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>
         ///<param name="jsonString">The json representation of an object string.</param>
         public virtual T[] DeserializeArray<T>(string jsonString)
         {
-            return (T[]) JavaScriptConvert.DeserializeObject(jsonString, typeof(T[]));
+            return (T[])JsonConvert.DeserializeObject(jsonString, typeof(T[]));
         }
 
         #endregion

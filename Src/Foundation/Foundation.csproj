@@ -151,7 +151,10 @@
     <Compile Include="Data\Hibernate\UserTypes\SimpleUserTypeBase.cs" />
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="HttpVerb.cs" />
+    <Compile Include="Services\ISerializableToJavaScript.cs" />
     <Compile Include="Services\IServicesRegistry.cs" />
+    <Compile Include="Services\JavaScriptObjectAttribute.cs" />
+    <Compile Include="Services\JavaScriptSerializer.cs" />
     <Compile Include="Services\JsonPropertyNameFormatting.cs" />
     <Compile Include="Services\JsonSerializationOptions.cs" />
     <Compile Include="Services\JsonTextWriter.cs" />

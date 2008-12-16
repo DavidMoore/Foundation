@@ -151,6 +151,7 @@
     <Compile Include="Data\NHibernate\UserTypes\PropertyInfoUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\TypeUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\UriUserTypeTests.cs" />
+    <Compile Include="Services\GetTypesTests.cs" />
     <Compile Include="Services\JavaScriptSerializerTests.cs" />
     <Compile Include="Services\Repository\ActiveRecordRepositoryFixture.cs" />
     <Compile Include="Services\Repository\GenericListRepositoryTests.cs" />

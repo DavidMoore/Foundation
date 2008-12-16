@@ -151,6 +151,7 @@
     <Compile Include="Data\Hibernate\UserTypes\SimpleUserTypeBase.cs" />
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="HttpVerb.cs" />
+    <Compile Include="Services\GetTypes.cs" />
     <Compile Include="Services\ISerializableToJavaScript.cs" />
     <Compile Include="Services\IServicesRegistry.cs" />
     <Compile Include="Services\JavaScriptObjectAttribute.cs" />

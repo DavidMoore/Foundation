@@ -66,6 +66,7 @@ namespace Foundation
         /// <param name="value"></param>
         public static void IfArgumentIsNull(string name, object value)
         {
+            if( name == null) throw new ArgumentNullException("name");
             if( value == null ) throw new ArgumentNullException(name);
         }
 

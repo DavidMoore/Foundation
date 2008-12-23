@@ -13,38 +13,38 @@ namespace Foundation.Tests.Services.Repository
         public override void Setup()
         {
             base.Setup();
-            activeRecordRepository = new ActiveRecordRepository<User>();
+            repository = new ActiveRecordRepository<User>();
         }
 
         #endregion
 
-        ActiveRecordRepository<User> activeRecordRepository;
+        ActiveRecordRepository<User> repository;
 
         [Test]
         public void Can_execute_SQL()
         {
-            var user = activeRecordRepository.Save(new User {Email = "user1@usertest.com", Name = "User1"});
-            activeRecordRepository.ExecuteSql(string.Format("UPDATE User SET Email=\"user1updated@usertest.com\" WHERE Id={0}", user.Id));
-            activeRecordRepository.Refresh(user);
+            var user = repository.Save(new User {Email = "user1@usertest.com", Name = "User1"});
+            repository.ExecuteSql(string.Format("UPDATE User SET Email=\"user1updated@usertest.com\" WHERE Id={0}", user.Id));
+            repository.Refresh(user);
             Assert.AreEqual("user1updated@usertest.com", user.Email);
         }
 
         [Test]
         public void Create()
         {
-            Assert.IsNotNull(activeRecordRepository.Create());
+            Assert.IsNotNull(repository.Create());
         }
 
         [Test]
         public void DeleteAll()
         {
-            activeRecordRepository.Save(
+            repository.Save(
                 new User {Email = "user1@test.com", Name = "TestUser1"},
                 new User {Email = "user2@test.com", Name = "TestUser2"}
                 );
-            Assert.IsTrue(activeRecordRepository.List().Count > 1);
-            activeRecordRepository.DeleteAll();
-            Assert.IsTrue(activeRecordRepository.List().Count == 0);
+            Assert.IsTrue(repository.List().Count > 1);
+            repository.DeleteAll();
+            Assert.IsTrue(repository.List().Count == 0);
         }
 
         [Test]
@@ -52,11 +52,11 @@ namespace Foundation.Tests.Services.Repository
         {
             var user = new User {Email = "test@test.com", Name = "TestUser1"};
 
-            activeRecordRepository.Save(user);
+            repository.Save(user);
 
             Assert.AreEqual(1, user.Id);
 
-            var user2 = activeRecordRepository.Find(1);
+            var user2 = repository.Find(1);
 
             Assert.AreEqual(user2, user);
         }
@@ -64,20 +64,45 @@ namespace Foundation.Tests.Services.Repository
         [Test]
         public void Save()
         {
-            var user = activeRecordRepository.Create();
+            var user = repository.Create();
             user.Name = "Joe";
             user.Email = "joe@bloggs.com";
-            var user2 = activeRecordRepository.Save(user);
+            var user2 = repository.Save(user);
             Assert.IsFalse(user.Id == 0);
             Assert.AreEqual(user2.Id, user.Id);
-            Assert.IsTrue(activeRecordRepository.List().Count == 1);
+            Assert.IsTrue(repository.List().Count == 1);
         }
 
         [Test, ExpectedException(typeof(ModelValidationException))]
         public void Uses_ActiveRecordModelValidator_by_default()
         {
             var user = new User {Name = null};
-            activeRecordRepository.Save(user);
+            repository.Save(user);
+        }
+
+        [Test]
+        public void PagedList()
+        {
+            var user1 = new User {Email = "user1@usertest.com", Name = "User1"};
+            var user2 = new User { Email = "user2@usertest.com", Name = "User2" };
+            var user3 = new User { Email = "user3@usertest.com", Name = "User3" };
+            var user4 = new User { Email = "user4@usertest.com", Name = "User4" };
+            var user5 = new User { Email = "user5@usertest.com", Name = "User5" };
+
+            repository.Save(user1, user2, user3, user4, user5);
+
+            var page = repository.PagedList(1, 3);
+
+            Assert.AreEqual(3, page.Count);
+            Assert.IsTrue(page.Contains(user1));
+            Assert.IsTrue(page.Contains(user2));
+            Assert.IsTrue(page.Contains(user3));
+
+            page = repository.PagedList(2, 3);
+
+            Assert.AreEqual(2, page.Count);
+            Assert.IsTrue(page.Contains(user4));
+            Assert.IsTrue(page.Contains(user5));
         }
     }
 }

@@ -165,16 +165,6 @@ namespace Foundation.Services.Repository
             ActiveRecordMediator.Delete(instance);
         }
 
-        /// <summary>
-        /// Finds an instance by its name. Requires a "Name" property on the model.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public T FindByName(string name)
-        {
-            return Find(Restrictions.Eq("Name", name));
-        }
-
         public T Find(params ICriterion[] criterias)
         {
             return ActiveRecordMediator<T>.FindOne(criterias);
@@ -193,6 +183,16 @@ namespace Foundation.Services.Repository
         public IList<T> List(Order order)
         {
             return ActiveRecordMediator<T>.FindAll(new[] {order});
+        }
+
+        public IList<T> PagedList(int pageNumber, int pageSize)
+        {
+            return ActiveRecordMediator<T>.SlicedFindAll(pageSize * (pageNumber - 1), pageSize);
+        }
+
+        public IList<T> PagedList(int pageNumber, int pageSize, params Order[] orders)
+        {
+            return ActiveRecordMediator<T>.SlicedFindAll(pageSize * (pageNumber - 1), pageSize, orders);
         }
     }
 }

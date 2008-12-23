@@ -138,6 +138,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />
     <Compile Include="Data\ActiveRecord\ColorPropertyAttributeTests.cs" />
     <Compile Include="Data\ActiveRecord\TypePropertyAttributeTests.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="ReflectUtilsFixture.cs" />
     <Compile Include="Lucene\SnowballAnalyzerFixture.cs" />
     <Compile Include="StringExtensionMethodsTests.cs" />
+    <Compile Include="TestHelpers\LipsumTests.cs" />
     <Compile Include="TestHelpers\MvcTestHelpersTests.cs" />
     <Compile Include="ThrowExceptionFixture.cs" />
     <Compile Include="Web\MockHttpContextBaseTests.cs" />

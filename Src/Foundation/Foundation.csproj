@@ -136,6 +136,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorExtensionMethods.cs" />
     <Compile Include="Data\ActiveRecord\DummyActiveRecordModel.cs" />
     <Compile Include="Data\ActiveRecord\TypePropertyAttribute.cs" />
     <Compile Include="Data\Hierarchy\ITreeEntity.cs" />
@@ -160,9 +161,12 @@
     <Compile Include="Services\JsonSerializationOptions.cs" />
     <Compile Include="Services\JsonTextWriter.cs" />
     <Compile Include="Services\Repository\GenericListRepository.cs" />
+    <Compile Include="Services\Repository\IEntityWithUniqueNameRepository`1.cs" />
+    <Compile Include="Services\Repository\NamedEntityActiveRecordRepository.cs" />
     <Compile Include="Services\Security\ActiveRecordIntegration.cs" />
     <Compile Include="StringExtensionMethods.cs" />
     <Compile Include="TestHelpers\HttpContextBaseMockExtensionMethods.cs" />
+    <Compile Include="TestHelpers\Lipsum.cs" />
     <Compile Include="TestHelpers\MvcTestHelpers.cs" />
     <Compile Include="ThrowException.cs" />
     <Compile Include="CommonUtils.cs" />

@@ -35,7 +35,7 @@ namespace Foundation.Data.Hierarchy
         [PrimaryKey]
         public int Id { get; set; }
 
-        [Property]
+        [Property(NotNull = true)]
         public int LeftValue
         {
             get { return leftValue; }
@@ -46,7 +46,7 @@ namespace Foundation.Data.Hierarchy
             }
         }
 
-        [Property]
+        [Property(NotNull = true)]
         public int RightValue
         {
             get { return rightValue; }

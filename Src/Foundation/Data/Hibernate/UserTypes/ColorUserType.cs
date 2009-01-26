@@ -21,15 +21,27 @@ namespace Foundation.Data.Hibernate.UserTypes
         public override object NullSafeGet(IDataReader rs, string[] names, object owner)
         {
             // It is stored in the database as a numerical aRGB integer value
-            var argbValue = ((int) NHibernateUtil.Int32.NullSafeGet(rs, names[0]));
-            return Color.FromArgb(argbValue);
+            var value = NHibernateUtil.Int32.NullSafeGet(rs, names[0]);
+
+            // Colour.Empty is stored as NULL, so check for that
+            return value == null ? Color.Empty : Color.FromArgb((int)value);
         }
 
         public override void NullSafeSet(IDbCommand cmd, object value, int index)
         {
             var colour = (Color) value;
-            var argbValue = colour.ToArgb();
-            NHibernateUtil.Int32.NullSafeSet(cmd, argbValue, index);
+
+            // Convert an empty colour to be written to the database as NULL
+            if( colour.Equals(Color.Empty) )
+            {
+                value = null;
+            }
+            else
+            {
+                value = colour.ToArgb();
+            }
+
+            NHibernateUtil.Int32.NullSafeSet(cmd, value, index);
         }
     }
 }

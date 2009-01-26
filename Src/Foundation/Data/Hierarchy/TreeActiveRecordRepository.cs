@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Castle.ActiveRecord;
 using Foundation.Services.Repository;
@@ -60,6 +61,8 @@ namespace Foundation.Data.Hierarchy
 
         public IList<T> ListAncestors(T child)
         {
+            ThrowException.IfNull<InvalidOperationException>(child.TreeInfo, "Instance {0} has TreeInfo set to null. Try rebuilding the tree.", child);
+
             return List(
                 Restrictions.Lt("TreeInfo.LeftValue", child.TreeInfo.LeftValue) &&
                     Restrictions.Gt( "TreeInfo.RightValue", child.TreeInfo.RightValue) );

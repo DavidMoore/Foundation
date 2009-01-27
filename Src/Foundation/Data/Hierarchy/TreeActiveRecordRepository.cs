@@ -61,6 +61,7 @@ namespace Foundation.Data.Hierarchy
 
         public IList<T> ListAncestors(T child)
         {
+            ThrowException.IfArgumentIsNull("child", child);
             ThrowException.IfNull<InvalidOperationException>(child.TreeInfo, "Instance {0} has TreeInfo set to null. Try rebuilding the tree.", child);
 
             return List(

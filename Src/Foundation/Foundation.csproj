@@ -161,6 +161,7 @@
     <Compile Include="Services\JsonSerializationOptions.cs" />
     <Compile Include="Services\JsonTextWriter.cs" />
     <Compile Include="Services\Repository\GenericListRepository.cs" />
+    <Compile Include="Services\Repository\GenericListRepositoryForNamedEntity.cs" />
     <Compile Include="Services\Repository\IEntityWithUniqueNameRepository`1.cs" />
     <Compile Include="Services\Repository\NamedEntityActiveRecordRepository.cs" />
     <Compile Include="Services\Security\ActiveRecordIntegration.cs" />

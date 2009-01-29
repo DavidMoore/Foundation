@@ -19,6 +19,13 @@ namespace Foundation.Tests.Services
             var types = GetTypes.ThatImplement(typeof(IBogusInterface), GetType().Assembly);
             Assert.AreEqual(1, types.Count);
         }
+
+        [Test]
+        public void ThatImplement_AllAssemblies()
+        {
+            var types = GetTypes.ThatImplement(typeof(IBogusInterface), GetType().Assembly, true);
+            Assert.AreEqual(1, types.Count);
+        }
     }
 
     public class BogusClass : IBogusInterface {}

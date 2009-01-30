@@ -9,9 +9,9 @@ namespace Foundation.Services
         public static IList<Type> OfType(Type expectedType, Assembly assembly)
         {
             var results = new List<Type>();
-            foreach(var type in assembly.GetTypes() )
+            foreach( var type in assembly.GetTypes() )
             {
-                if (type.IsAssignableFrom(expectedType)) results.Add(type);
+                if( type.IsAssignableFrom(expectedType) ) results.Add(type);
             }
             return results;
         }
@@ -25,9 +25,9 @@ namespace Foundation.Services
         public static IList<Type> ThatImplement(Type expectedInterface, Assembly assembly)
         {
             var results = new List<Type>();
-            foreach (var type in assembly.GetTypes())
+            foreach( var type in assembly.GetTypes() )
             {
-                if (ReflectUtils.Implements(type, expectedInterface)) results.Add(type);
+                if( ReflectUtils.Implements(type, expectedInterface) ) results.Add(type);
             }
             return results;
         }
@@ -43,15 +43,15 @@ namespace Foundation.Services
         {
             var results = new List<Type>();
 
-            var assemblies = new List<AssemblyName> { assembly.GetName() };
-            
+            var assemblies = new List<AssemblyName> {assembly.GetName()};
+
             if( checkReferencedAssemblies ) assemblies.AddRange(assembly.GetReferencedAssemblies());
 
-            foreach(var referencedAssembly in assemblies)
+            foreach( var referencedAssembly in assemblies )
             {
                 results.AddRange(ThatImplement(expectedInterface, Assembly.Load(referencedAssembly)));
             }
-            
+
             return results;
         }
     }

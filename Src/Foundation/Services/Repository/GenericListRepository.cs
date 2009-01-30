@@ -28,7 +28,7 @@ namespace Foundation.Services.Repository
         {
             var index = list.IndexOf(instance);
 
-            if (index > -1)
+            if( index > -1 )
             {
                 list[index] = instance;
             }

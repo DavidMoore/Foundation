@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Castle.ActiveRecord;
 using Foundation.Services.Repository;
 using Foundation.Services.Security;
 using NHibernate.Criterion;
-using System.Linq;
 
 namespace Foundation.Data.Hierarchy
 {
-    public class TreeActiveRecordRepository<T> : ActiveRecordRepository<T>, ITreeRepository<T> where  T : class, ITreeEntity<T>, IEntity, new()
+    public class TreeActiveRecordRepository<T> : ActiveRecordRepository<T>, ITreeRepository<T> where T : class, ITreeEntity<T>, IEntity, new()
     {
         bool isTreeBeingRebuilt;
 
@@ -16,7 +16,7 @@ namespace Foundation.Data.Hierarchy
         {
             var result = base.Save(model);
 
-            using (new TransactionScope())
+            using( new TransactionScope() )
             {
                 if( !isTreeBeingRebuilt && (model.TreeInfo.LeftValue == 0 || model.TreeInfo.RightValue == 0 || model.TreeInfo.IsDirty) )
                 {
@@ -36,7 +36,7 @@ namespace Foundation.Data.Hierarchy
 
         public IList<T> ListDescendants(T parent)
         {
-            return List( Restrictions.Between("TreeInfo.LeftValue", parent.TreeInfo.LeftValue + 1, parent.TreeInfo.RightValue - 1) );
+            return List(Restrictions.Between("TreeInfo.LeftValue", parent.TreeInfo.LeftValue + 1, parent.TreeInfo.RightValue - 1));
         }
 
         public void RebuildTree()
@@ -66,7 +66,7 @@ namespace Foundation.Data.Hierarchy
 
             return List(
                 Restrictions.Lt("TreeInfo.LeftValue", child.TreeInfo.LeftValue) &&
-                    Restrictions.Gt( "TreeInfo.RightValue", child.TreeInfo.RightValue) );
+                    Restrictions.Gt("TreeInfo.RightValue", child.TreeInfo.RightValue));
         }
 
         public IList<T> ListSiblings(T item)
@@ -76,9 +76,11 @@ namespace Foundation.Data.Hierarchy
 
         public IList<T> ListSiblings(T item, SiblingList siblingList)
         {
-            var criteria = item.TreeInfo.Parent == null ? Restrictions.IsNull("TreeInfo.Parent") : Restrictions.Eq("TreeInfo.Parent", item.TreeInfo.Parent);
+            var criteria = item.TreeInfo.Parent == null
+                ? Restrictions.IsNull("TreeInfo.Parent")
+                : Restrictions.Eq("TreeInfo.Parent", item.TreeInfo.Parent);
 
-            return List( siblingList == SiblingList.ExcludeSelf ? criteria && !Restrictions.Eq("Id", item.Id) : criteria );
+            return List(siblingList == SiblingList.ExcludeSelf ? criteria && !Restrictions.Eq("Id", item.Id) : criteria);
         }
 
         int UpdateNode(T node, int leftValue, IList<T> nodes)
@@ -90,9 +92,9 @@ namespace Foundation.Data.Hierarchy
 
             // If we have any children, process recursively, updating
             // the rightValue as we go.
-            var children = nodes.Where(x => x.TreeInfo.Parent != null && x.TreeInfo.Parent.Id.Equals(node.Id) );
+            var children = nodes.Where(x => x.TreeInfo.Parent != null && x.TreeInfo.Parent.Id.Equals(node.Id));
 
-            foreach(var child in children)
+            foreach( var child in children )
             {
                 rightValue = UpdateNode(child, rightValue, nodes);
             }

@@ -37,7 +37,7 @@ namespace Foundation.Services
                 {
                     PropertyNameFormatting = SerializationOptions.PropertyNameFormatting
                 };
-            
+
             serializer.Serialize(jsonWriter, target);
             return writer.GetStringBuilder().ToString();
         }
@@ -54,14 +54,14 @@ namespace Foundation.Services
         ///<param name="jsonString">The json representation of an object string.</param>
         public virtual T Deserialize<T>(string jsonString)
         {
-            return (T)JsonConvert.DeserializeObject(jsonString, typeof(T));
+            return (T) JsonConvert.DeserializeObject(jsonString, typeof(T));
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>
         ///<param name="jsonString">The json representation of an object string.</param>
         public virtual T[] DeserializeArray<T>(string jsonString)
         {
-            return (T[])JsonConvert.DeserializeObject(jsonString, typeof(T[]));
+            return (T[]) JsonConvert.DeserializeObject(jsonString, typeof(T[]));
         }
 
         #endregion

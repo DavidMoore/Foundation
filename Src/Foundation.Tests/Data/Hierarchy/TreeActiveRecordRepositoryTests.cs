@@ -17,15 +17,6 @@ namespace Foundation.Tests.Data.Hierarchy
         }
 
         [Test]
-        public void Saving_single_node_gives_LeftValue_1_RightValue_2()
-        {
-            var category = new Category("Category1");
-            repository.Save(category);
-            Assert.AreEqual(1, category.TreeInfo.LeftValue);
-            Assert.AreEqual(2, category.TreeInfo.RightValue);
-        }
-
-        [Test]
         public void IsDirty_gets_toggled_off_once_saved()
         {
             var category = new Category("Category1");
@@ -37,6 +28,15 @@ namespace Foundation.Tests.Data.Hierarchy
             repository.Save(category);
 
             Assert.IsFalse(category.TreeInfo.IsDirty);
+        }
+
+        [Test]
+        public void Saving_single_node_gives_LeftValue_1_RightValue_2()
+        {
+            var category = new Category("Category1");
+            repository.Save(category);
+            Assert.AreEqual(1, category.TreeInfo.LeftValue);
+            Assert.AreEqual(2, category.TreeInfo.RightValue);
         }
     }
 }

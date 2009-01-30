@@ -6,12 +6,6 @@ namespace Foundation.Tests
     [TestFixture]
     public class AssertionFixture
     {
-        [Test, ExpectedException(typeof(ArgumentNullException))]
-        public void IfNull_throws_ArgumentNullException_if_argument_name_is_null()
-        {
-            ThrowException.IfArgumentIsNull(null, new object());
-        }
-
         [Test]
         public void Generic_IfNull_should_not_throw_exception_if_passed_value_is_not_null()
         {
@@ -28,6 +22,12 @@ namespace Foundation.Tests
         public void Generic_IfTrue_should_not_throw_exception_if_passed_value_is_false()
         {
             ThrowException.IfTrue<InvalidOperationException>(false);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void IfNull_throws_ArgumentNullException_if_argument_name_is_null()
+        {
+            ThrowException.IfArgumentIsNull(null, new object());
         }
 
         [Test, ExpectedException(typeof(FoundationException), "Expected exception message")]

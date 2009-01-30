@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Linq;
 using Foundation.Services.Security;
 
 namespace Foundation.Services.Repository
 {
-    public class GenericListRepositoryForNamedEntity<T> : GenericListRepository<T>, IEntityWithUniqueNameRepository<T> where T : class, IEntityWithUniqueName, new()
+    public class GenericListRepositoryForNamedEntity<T> : GenericListRepository<T>, IEntityWithUniqueNameRepository<T>
+        where T : class, IEntityWithUniqueName, new()
     {
         public T Find(string name)
         {

@@ -1,15 +1,25 @@
 using System.Collections.Generic;
+using System.Linq;
 using Foundation.Data.ActiveRecord;
 using Foundation.Data.Hierarchy;
-using Foundation.Tests.Data.Hierarchy;
 using NUnit.Framework;
-using System.Linq;
 
 namespace Foundation.Tests.Data.Hierarchy
 {
     [TestFixture]
     public class HierarchyTests : DatabaseFixtureBase
     {
+        #region Setup/Teardown
+
+        public override void Setup()
+        {
+            base.Setup();
+            repository = new TreeActiveRecordRepository<Category>();
+            tree = CreateTree();
+        }
+
+        #endregion
+
         IList<Category> tree;
         ITreeRepository<Category> repository;
         List<Category> flatList;
@@ -18,13 +28,6 @@ namespace Foundation.Tests.Data.Hierarchy
         {
             base.RegisterTypes();
             RegisterTypes(typeof(Category), typeof(TreeInfo<Category>));
-        }
-
-        public override void Setup()
-        {
-            base.Setup();
-            repository = new TreeActiveRecordRepository<Category>();
-            tree = CreateTree();
         }
 
         /// <summary>
@@ -80,31 +83,10 @@ namespace Foundation.Tests.Data.Hierarchy
         }
 
         [Test]
-        public void RebuildTree()
-        {
-            Assert.AreEqual( "Node1", flatList.Single(x => x.TreeInfo.LeftValue == 1 && x.TreeInfo.RightValue == 12).Name );
-            Assert.AreEqual("Node1_1", flatList.Single(x => x.TreeInfo.LeftValue == 2 && x.TreeInfo.RightValue == 9).Name);
-            Assert.AreEqual("Node1_1_1", flatList.Single(x => x.TreeInfo.LeftValue == 3 && x.TreeInfo.RightValue == 4).Name);
-            Assert.AreEqual("Node1_1_2", flatList.Single(x => x.TreeInfo.LeftValue == 5 && x.TreeInfo.RightValue == 8).Name);
-            Assert.AreEqual("Node1_1_2_1", flatList.Single(x => x.TreeInfo.LeftValue == 6 && x.TreeInfo.RightValue == 7).Name);
-            Assert.AreEqual("Node1_2", flatList.Single(x => x.TreeInfo.LeftValue == 10 && x.TreeInfo.RightValue == 11).Name);
-            Assert.AreEqual("Node2", flatList.Single(x => x.TreeInfo.LeftValue == 13 && x.TreeInfo.RightValue == 14).Name);
-            Assert.AreEqual("Node3", flatList.Single(x => x.TreeInfo.LeftValue == 15 && x.TreeInfo.RightValue == 18).Name);
-            Assert.AreEqual("Node3_1", flatList.Single(x => x.TreeInfo.LeftValue == 16 && x.TreeInfo.RightValue == 17).Name);
-        }
-
-        [Test]
         public void Adding_a_child_to_a_node_updates_the_child_parent()
         {
             var node1 = tree[0];
             Assert.AreEqual(node1, node1.TreeInfo.Children[0].TreeInfo.Parent);
-        }
-
-        [Test]
-        public void TreeInfo_is_not_null()
-        {
-            var root = new Category("root");
-            Assert.IsNotNull(root.TreeInfo);
         }
 
         [Test]
@@ -119,32 +101,21 @@ namespace Foundation.Tests.Data.Hierarchy
         }
 
         [Test]
-        public void Has_expected_properties()
-        {
-            var root = new Category("root");
-            Assert.IsNotNull(root.TreeInfo);
-            Assert.IsNull(root.TreeInfo.Parent);
-            Assert.AreEqual(0, root.TreeInfo.LeftValue);
-            Assert.AreEqual(0, root.TreeInfo.RightValue);
-            Assert.AreEqual(0, root.TreeInfo.Siblings.Count);
-            Assert.AreEqual(0, root.TreeInfo.Children.Count);
-            Assert.AreEqual(0, root.TreeInfo.Ancestors.Count);
-            Assert.AreEqual(0, root.TreeInfo.Descendants.Count);
-        }
-
-        [Test]
-        public void Get_root_nodes()
+        public void Get_ancestors()
         {
             Assert.AreEqual(9, repository.List().Count);
-            var results = repository.ListByParent(null);
+            var results = repository.ListAncestors(flatList.Single(i => i.Name.Equals("Node1_1_2_1")));
             Assert.AreEqual(3, results.Count);
+            Assert.AreEqual("Node1", results[0].Name);
+            Assert.AreEqual("Node1_1", results[1].Name);
+            Assert.AreEqual("Node1_1_2", results[2].Name);
         }
 
         [Test]
         public void Get_children()
         {
             Assert.AreEqual(9, repository.List().Count);
-            var results = repository.ListByParent( tree.Single( i => i.Name.Equals("Node1")) );
+            var results = repository.ListByParent(tree.Single(i => i.Name.Equals("Node1")));
             Assert.AreEqual(2, results.Count);
             Assert.AreEqual("Node1_1", results[0].Name);
             Assert.AreEqual("Node1_2", results[1].Name);
@@ -164,17 +135,6 @@ namespace Foundation.Tests.Data.Hierarchy
         }
 
         [Test]
-        public void Get_ancestors()
-        {
-            Assert.AreEqual(9, repository.List().Count);
-            var results = repository.ListAncestors(flatList.Single(i => i.Name.Equals("Node1_1_2_1")));
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual("Node1", results[0].Name);
-            Assert.AreEqual("Node1_1", results[1].Name);
-            Assert.AreEqual("Node1_1_2", results[2].Name);
-        }
-
-        [Test]
         public void Get_parent()
         {
             Assert.AreEqual(9, repository.List().Count);
@@ -186,11 +146,19 @@ namespace Foundation.Tests.Data.Hierarchy
         }
 
         [Test]
+        public void Get_root_nodes()
+        {
+            Assert.AreEqual(9, repository.List().Count);
+            var results = repository.ListByParent(null);
+            Assert.AreEqual(3, results.Count);
+        }
+
+        [Test]
         public void Get_siblings()
         {
             Assert.AreEqual(9, repository.List().Count);
 
-            var results = repository.ListSiblings( flatList.Single(i => i.Name.Equals("Node1_1")) );
+            var results = repository.ListSiblings(flatList.Single(i => i.Name.Equals("Node1_1")));
             Assert.AreEqual(1, results.Count);
             Assert.AreEqual("Node1_2", results[0].Name);
 
@@ -209,6 +177,41 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual("Node1", results[0].Name);
             Assert.AreEqual("Node2", results[1].Name);
             Assert.AreEqual("Node3", results[2].Name);
+        }
+
+        [Test]
+        public void Has_expected_properties()
+        {
+            var root = new Category("root");
+            Assert.IsNotNull(root.TreeInfo);
+            Assert.IsNull(root.TreeInfo.Parent);
+            Assert.AreEqual(0, root.TreeInfo.LeftValue);
+            Assert.AreEqual(0, root.TreeInfo.RightValue);
+            Assert.AreEqual(0, root.TreeInfo.Siblings.Count);
+            Assert.AreEqual(0, root.TreeInfo.Children.Count);
+            Assert.AreEqual(0, root.TreeInfo.Ancestors.Count);
+            Assert.AreEqual(0, root.TreeInfo.Descendants.Count);
+        }
+
+        [Test]
+        public void RebuildTree()
+        {
+            Assert.AreEqual("Node1", flatList.Single(x => x.TreeInfo.LeftValue == 1 && x.TreeInfo.RightValue == 12).Name);
+            Assert.AreEqual("Node1_1", flatList.Single(x => x.TreeInfo.LeftValue == 2 && x.TreeInfo.RightValue == 9).Name);
+            Assert.AreEqual("Node1_1_1", flatList.Single(x => x.TreeInfo.LeftValue == 3 && x.TreeInfo.RightValue == 4).Name);
+            Assert.AreEqual("Node1_1_2", flatList.Single(x => x.TreeInfo.LeftValue == 5 && x.TreeInfo.RightValue == 8).Name);
+            Assert.AreEqual("Node1_1_2_1", flatList.Single(x => x.TreeInfo.LeftValue == 6 && x.TreeInfo.RightValue == 7).Name);
+            Assert.AreEqual("Node1_2", flatList.Single(x => x.TreeInfo.LeftValue == 10 && x.TreeInfo.RightValue == 11).Name);
+            Assert.AreEqual("Node2", flatList.Single(x => x.TreeInfo.LeftValue == 13 && x.TreeInfo.RightValue == 14).Name);
+            Assert.AreEqual("Node3", flatList.Single(x => x.TreeInfo.LeftValue == 15 && x.TreeInfo.RightValue == 18).Name);
+            Assert.AreEqual("Node3_1", flatList.Single(x => x.TreeInfo.LeftValue == 16 && x.TreeInfo.RightValue == 17).Name);
+        }
+
+        [Test]
+        public void TreeInfo_is_not_null()
+        {
+            var root = new Category("root");
+            Assert.IsNotNull(root.TreeInfo);
         }
     }
 }

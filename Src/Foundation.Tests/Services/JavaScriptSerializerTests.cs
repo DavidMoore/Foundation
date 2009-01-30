@@ -2,7 +2,7 @@ using System.IO;
 using Foundation.Services;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using JsonSerializer=Foundation.Services.JsonSerializer;
+using JsonSerializer=Newtonsoft.Json.JsonSerializer;
 using JsonTextWriter=Foundation.Services.JsonTextWriter;
 
 namespace Foundation.Tests.Services
@@ -20,7 +20,7 @@ namespace Foundation.Tests.Services
         {
             public string StringValue { get; set; }
 
-            public void SerializeToJavaScript(Newtonsoft.Json.JsonSerializer serializer, JsonWriter writer)
+            public void SerializeToJavaScript(JsonSerializer serializer, JsonWriter writer)
             {
                 writer.WriteRaw("thePrefix");
                 serializer.Serialize(writer, this);
@@ -33,20 +33,20 @@ namespace Foundation.Tests.Services
         {
             var serializer = new JavaScriptSerializer();
 
-            using (var stringWriter = new StringWriter())
+            using( var stringWriter = new StringWriter() )
             {
                 var jsonWriter = new JsonTextWriter(stringWriter);
 
                 var test = new TestClass {StringValue = "StringValue"};
                 serializer.SerializeObject(jsonWriter, test);
-                Assert.AreEqual("thePrefix{\"StringValue\":\"StringValue\"}theSuffix", stringWriter.GetStringBuilder().ToString() );
+                Assert.AreEqual("thePrefix{\"StringValue\":\"StringValue\"}theSuffix", stringWriter.GetStringBuilder().ToString());
             }
         }
 
         [Test]
         public void SerializeToJavaScript()
         {
-            var result = new JsonSerializer().Serialize(new TestClass2 {StringValue = "StringValue"});
+            var result = new Foundation.Services.JsonSerializer().Serialize(new TestClass2 {StringValue = "StringValue"});
             Assert.AreEqual("thePrefix{\"StringValue\":\"StringValue\"}theSuffix", result);
         }
     }

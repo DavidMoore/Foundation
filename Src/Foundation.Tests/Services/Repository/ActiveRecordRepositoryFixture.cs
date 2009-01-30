@@ -62,6 +62,31 @@ namespace Foundation.Tests.Services.Repository
         }
 
         [Test]
+        public void PagedList()
+        {
+            var user1 = new User {Email = "user1@usertest.com", Name = "User1"};
+            var user2 = new User {Email = "user2@usertest.com", Name = "User2"};
+            var user3 = new User {Email = "user3@usertest.com", Name = "User3"};
+            var user4 = new User {Email = "user4@usertest.com", Name = "User4"};
+            var user5 = new User {Email = "user5@usertest.com", Name = "User5"};
+
+            repository.Save(user1, user2, user3, user4, user5);
+
+            var page = repository.PagedList(1, 3);
+
+            Assert.AreEqual(3, page.Count);
+            Assert.IsTrue(page.Contains(user1));
+            Assert.IsTrue(page.Contains(user2));
+            Assert.IsTrue(page.Contains(user3));
+
+            page = repository.PagedList(2, 3);
+
+            Assert.AreEqual(2, page.Count);
+            Assert.IsTrue(page.Contains(user4));
+            Assert.IsTrue(page.Contains(user5));
+        }
+
+        [Test]
         public void Save()
         {
             var user = repository.Create();
@@ -78,31 +103,6 @@ namespace Foundation.Tests.Services.Repository
         {
             var user = new User {Name = null};
             repository.Save(user);
-        }
-
-        [Test]
-        public void PagedList()
-        {
-            var user1 = new User {Email = "user1@usertest.com", Name = "User1"};
-            var user2 = new User { Email = "user2@usertest.com", Name = "User2" };
-            var user3 = new User { Email = "user3@usertest.com", Name = "User3" };
-            var user4 = new User { Email = "user4@usertest.com", Name = "User4" };
-            var user5 = new User { Email = "user5@usertest.com", Name = "User5" };
-
-            repository.Save(user1, user2, user3, user4, user5);
-
-            var page = repository.PagedList(1, 3);
-
-            Assert.AreEqual(3, page.Count);
-            Assert.IsTrue(page.Contains(user1));
-            Assert.IsTrue(page.Contains(user2));
-            Assert.IsTrue(page.Contains(user3));
-
-            page = repository.PagedList(2, 3);
-
-            Assert.AreEqual(2, page.Count);
-            Assert.IsTrue(page.Contains(user4));
-            Assert.IsTrue(page.Contains(user5));
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
 
 namespace Foundation
 {
@@ -57,15 +57,15 @@ namespace Foundation
         /// <returns></returns>
         public static bool HasAttribute(PropertyInfo propertyInfo, params Type[] attributes)
         {
-            List<object> actualAttributes = propertyInfo.GetCustomAttributes(true).ToList();
+            var actualAttributes = propertyInfo.GetCustomAttributes(true).ToList();
 
             var actualTypes = actualAttributes.ConvertAll(attribute => attribute.GetType());
 
             var lookingFor = attributes.ToList();
 
-            foreach(var type in lookingFor)
+            foreach( var type in lookingFor )
             {
-                if( actualTypes.Contains(type)) return true;
+                if( actualTypes.Contains(type) ) return true;
             }
 
             return false;
@@ -74,8 +74,8 @@ namespace Foundation
         public static T GetAttribute<T>(object objectValue) where T : Attribute
         {
             var attributes = objectValue.GetType().GetCustomAttributes(typeof(T), true);
-            if (attributes.Length == 0) return null;
-            
+            if( attributes.Length == 0 ) return null;
+
             return attributes[0] as T;
         }
     }

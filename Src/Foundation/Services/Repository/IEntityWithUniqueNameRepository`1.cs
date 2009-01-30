@@ -1,4 +1,4 @@
-﻿using Foundation.Services.Security;
+using Foundation.Services.Security;
 
 namespace Foundation.Services.Repository
 {

@@ -15,21 +15,21 @@ namespace Foundation.Services
 
         public override void SerializeObject(JsonWriter writer, object value)
         {
-            if (ReflectUtils.Implements(value.GetType(), typeof(ISerializableToJavaScript)) && !customSerializationObjects.Contains(value))
+            if( ReflectUtils.Implements(value.GetType(), typeof(ISerializableToJavaScript)) && !customSerializationObjects.Contains(value) )
             {
                 customSerializationObjects.Add(value);
-                ((ISerializableToJavaScript)value).SerializeToJavaScript(this, writer);
+                ((ISerializableToJavaScript) value).SerializeToJavaScript(this, writer);
                 customSerializationObjects.Remove(value);
                 return;
             }
 
             var attribute = ReflectUtils.GetAttribute<JavaScriptObjectAttribute>(value);
 
-            if (attribute != null && !string.IsNullOrEmpty(attribute.Prefix)) writer.WriteRaw(attribute.Prefix);
+            if( attribute != null && !string.IsNullOrEmpty(attribute.Prefix) ) writer.WriteRaw(attribute.Prefix);
 
             base.SerializeObject(writer, value);
 
-            if (attribute != null && !string.IsNullOrEmpty(attribute.Suffix)) writer.WriteRaw(attribute.Suffix);
+            if( attribute != null && !string.IsNullOrEmpty(attribute.Suffix) ) writer.WriteRaw(attribute.Suffix);
         }
     }
 }

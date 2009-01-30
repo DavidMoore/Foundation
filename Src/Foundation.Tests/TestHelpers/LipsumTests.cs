@@ -23,7 +23,7 @@ namespace Foundation.Tests.TestHelpers
             Assert.IsNotNull(sentence);
             Assert.IsFalse(sentence.EndsWith(" "));
             Assert.IsTrue(sentence.EndsWith("."));
-            Assert.IsFalse(sentence.Substring(0).Equals( sentence.Substring(0).ToLowerInvariant() ));
+            Assert.IsFalse(sentence.Substring(0).Equals(sentence.Substring(0).ToLowerInvariant()));
             Console.WriteLine(sentence);
         }
     }

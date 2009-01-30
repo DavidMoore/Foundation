@@ -1,4 +1,3 @@
-using Foundation.Data.Hierarchy;
 using Foundation.Services.Security;
 using NHibernate.Criterion;
 
@@ -64,7 +63,9 @@ namespace Foundation.Data.Hierarchy
         public static AbstractCriterion SiblingOf<T>(T item, SiblingList self) where T : class, ITreeEntity<T>, IEntity, new()
         {
             ThrowException.IfArgumentIsNull("item", item);
-            var criteria = item.TreeInfo.Parent != null ? Restrictions.Eq("TreeInfo.Parent", item.TreeInfo.Parent) : Restrictions.IsNull("TreeInfo.Parent");
+            var criteria = item.TreeInfo.Parent != null
+                ? Restrictions.Eq("TreeInfo.Parent", item.TreeInfo.Parent)
+                : Restrictions.IsNull("TreeInfo.Parent");
             return self == SiblingList.ExcludeSelf ? criteria && !Restrictions.Eq("Id", item.Id) : criteria;
         }
 

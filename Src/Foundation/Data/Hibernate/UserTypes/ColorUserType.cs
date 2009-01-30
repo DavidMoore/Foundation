@@ -24,7 +24,7 @@ namespace Foundation.Data.Hibernate.UserTypes
             var value = NHibernateUtil.Int32.NullSafeGet(rs, names[0]);
 
             // Colour.Empty is stored as NULL, so check for that
-            return value == null ? Color.Empty : Color.FromArgb((int)value);
+            return value == null ? Color.Empty : Color.FromArgb((int) value);
         }
 
         public override void NullSafeSet(IDbCommand cmd, object value, int index)

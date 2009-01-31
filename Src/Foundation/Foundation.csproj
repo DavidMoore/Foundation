@@ -136,6 +136,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayExtensionMethods.cs" />
     <Compile Include="ColorExtensionMethods.cs" />
     <Compile Include="Data\ActiveRecord\DummyActiveRecordModel.cs" />
     <Compile Include="Data\ActiveRecord\TypePropertyAttribute.cs" />

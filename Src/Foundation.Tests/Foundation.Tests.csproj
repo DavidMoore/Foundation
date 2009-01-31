@@ -138,6 +138,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayExtensionMethodsTests.cs" />
     <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />
     <Compile Include="Data\ActiveRecord\ColorPropertyAttributeTests.cs" />

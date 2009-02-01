@@ -6,12 +6,6 @@ namespace Foundation.Services
     public interface IUriUtility
     {
         /// <summary>
-        /// Redirects to the specified URL
-        /// </summary>
-        /// <param name="url"></param>
-        void Redirect(string url);
-
-        /// <summary>
         /// Maps a relative and/or tilde ("~/") path to the local directory
         /// </summary>
         /// <param name="path"></param>

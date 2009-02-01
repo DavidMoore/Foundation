@@ -3,18 +3,12 @@ using System.Configuration;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
-using Castle.MonoRail.Framework;
 
 namespace Foundation.Services
 {
     public class UriUtility : IUriUtility
     {
         #region IUriUtility Members
-
-        public void Redirect(string url)
-        {
-            MonoRailHttpHandlerFactory.CurrentEngineContext.Response.RedirectToUrl(url);
-        }
 
         /// <summary>
         /// Maps a relative and/or tilde ("~/") path to the local directory
@@ -42,12 +36,7 @@ namespace Foundation.Services
 
         public string MapUrl(string url)
         {
-            if( url.StartsWith("~") )
-            {
-                url = MonoRailHttpHandlerFactory.CurrentEngineContext.ApplicationPath + url.Substring(1);
-            }
-
-            return url;
+            return VirtualPathUtility.ToAbsolute(url);
         }
 
         /// <summary>

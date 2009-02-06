@@ -97,5 +97,25 @@ namespace Foundation.Tests.Media
             Assert.AreEqual(1000, sourceRect.Width);
             Assert.AreEqual(1000, sourceRect.Height);
         }
+
+        [Test]
+        public void Square_aspect_to_wide_aspect()
+        {
+            var sourceRect = generator.CalculateSourceRectangle(5000, 5000, 200, 100);
+            Assert.AreEqual(0, sourceRect.X);
+            Assert.AreEqual(1250, sourceRect.Y);
+            Assert.AreEqual(5000, sourceRect.Width);
+            Assert.AreEqual(2500, sourceRect.Height);
+        }
+
+        [Test]
+        public void Square_aspect_to_tall_aspect()
+        {
+            var sourceRect = generator.CalculateSourceRectangle(5000, 5000, 100, 200);
+            Assert.AreEqual(1250, sourceRect.X);
+            Assert.AreEqual(0, sourceRect.Y);
+            Assert.AreEqual(2500, sourceRect.Width);
+            Assert.AreEqual(5000, sourceRect.Height);
+        }
     }
 }

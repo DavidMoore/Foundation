@@ -32,7 +32,7 @@ namespace Foundation.Media
             using( var graphics = Graphics.FromImage(destination))
             {
                 graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                
+
                 var srcRect = CalculateSourceRectangle( source.Width, source.Height, Options.Width, Options.Height  );
                 var destRect = new Rectangle(0, 0, Options.Width, Options.Height);
 
@@ -52,11 +52,10 @@ namespace Foundation.Media
 
             // If both aspect ratios are the same, we don't need to do cropping
             if( sourceAspectRatio == thumbAspectRatio ) return new Rectangle(0, 0, originalWidth, originalHeight);
-            
+
             if( sourceAspectRatio > 1)
             {
                 // Image is wider than it is tall
-
                 if (thumbAspectRatio > sourceAspectRatio)
                 {
                     var sourceHeight = (int)(originalWidth / thumbAspectRatio);
@@ -76,7 +75,7 @@ namespace Foundation.Media
                     return new Rectangle(x, y, sourceWidth, sourceHeight);
                 }
             }
-            
+
             if( sourceAspectRatio < 1)
             {
                 // Image is taller than it is wide
@@ -87,9 +86,26 @@ namespace Foundation.Media
 
                 return new Rectangle(x, y, sourceWidth, sourceHeight);
             }
+
+            // Image is square
+            if (thumbAspectRatio > sourceAspectRatio)
+            {
+                // Thumbnail aspect ratio is wider than original
+                var sourceHeight = (int)(originalWidth / thumbAspectRatio);
+                var x = 0;
+                var y = (originalHeight - sourceHeight) / 2;
+                var sourceWidth = originalWidth;
+
+                return new Rectangle(x, y, sourceWidth, sourceHeight);
+            }
             else
             {
-                throw new NotImplementedException();
+                var sourceWidth = (int) (thumbAspectRatio * originalHeight);
+                var y = 0;
+                var x = (originalWidth - sourceWidth) / 2;
+                var sourceHeight = originalHeight;
+
+                return new Rectangle(x, y, sourceWidth, sourceHeight);
             }
         }
     }

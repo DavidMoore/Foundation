@@ -1,16 +1,14 @@
-using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
-using Foundation.Media;
 
 namespace Foundation.Media
 {
     public class ThumbnailGenerator : IThumbnailGenerator
     {
-        const int DefaultWidth = 200;
         const int DefaultHeight = 200;
+        const int DefaultWidth = 200;
 
         public ThumbnailGenerator()
         {
@@ -25,88 +23,63 @@ namespace Foundation.Media
 
             var file = new FileInfo(filename);
 
-            ThrowException.IfFalse<FileNotFoundException>( file.Exists, "The image filename {0} couldn't be found.", filename );
+            ThrowException.IfFalse<FileNotFoundException>(file.Exists, "The image filename {0} couldn't be found.", filename);
 
-            using( var source = new Bitmap(file.FullName))
-            using( var destination = new Bitmap(Options.Width, Options.Height))
-            using( var graphics = Graphics.FromImage(destination))
+            using( var source = new Bitmap(file.FullName) )
+            using( var destination = new Bitmap(Options.Width, Options.Height, PixelFormat.Format24bppRgb) )
+            using( var graphics = Graphics.FromImage(destination) )
             {
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                destination.SetResolution(72, 72); // 72dpi is standard screen resolution
 
-                var srcRect = CalculateSourceRectangle( source.Width, source.Height, Options.Width, Options.Height  );
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                var srcRect = CalculateSourceRectangle(source.Width, source.Height, Options.Width, Options.Height);
                 var destRect = new Rectangle(0, 0, Options.Width, Options.Height);
 
-                graphics.DrawImage(source, destRect, srcRect, GraphicsUnit.Pixel );
+                graphics.DrawImage(source, destRect, srcRect, GraphicsUnit.Pixel);
                 graphics.Flush();
-                graphics.Flush(FlushIntention.Sync);
-                graphics.Flush(FlushIntention.Flush);
 
-                destination.Save( destinationFilename, ImageFormat.Png);
+                destination.Save(destinationFilename, ImageFormat.Png);
             }
+        }
+
+        public Size CalculateSourceDimensions(int originalWidth, int originalHeight, int thumbWidth, int thumbHeight)
+        {
+            var sourceAspectRatio = originalWidth / (double)originalHeight;
+            var thumbAspectRatio = thumbWidth / (double)thumbHeight;
+
+            // If both aspect ratios are the same, we don't need to do any cropping
+            if (sourceAspectRatio == thumbAspectRatio) return new Size(originalWidth, originalHeight);
+
+            var sourceWidth = originalWidth;
+            var sourceHeight = originalHeight;
+
+            if (thumbAspectRatio > sourceAspectRatio)
+            {
+                // Crop vertically
+                sourceHeight = (int)(originalWidth * (thumbHeight / (double)thumbWidth));
+            }
+            else if (thumbAspectRatio < sourceAspectRatio)
+            {
+                // Crop horizontally
+                sourceWidth = (int)(originalHeight * thumbAspectRatio);
+            }
+
+            return new Size(sourceWidth, sourceHeight);
         }
 
         public Rectangle CalculateSourceRectangle(int originalWidth, int originalHeight, int thumbWidth, int thumbHeight)
         {
-            var sourceAspectRatio = originalWidth / (double)originalHeight;
-            var thumbAspectRatio = thumbWidth / (double) thumbHeight;
+            var size = CalculateSourceDimensions(originalWidth, originalHeight, thumbWidth, thumbHeight);
 
-            // If both aspect ratios are the same, we don't need to do cropping
-            if( sourceAspectRatio == thumbAspectRatio ) return new Rectangle(0, 0, originalWidth, originalHeight);
+            // Center the cropped image, so equal parts are trimmed from the top and bottom,
+            // or left and right sides (if needed)
+            var x = (size.Width == originalWidth) ? 0 : (originalWidth - size.Width) / 2;
+            var y = (size.Height == originalHeight) ? 0 : (originalHeight - size.Height) / 2;
 
-            if( sourceAspectRatio > 1)
-            {
-                // Image is wider than it is tall
-                if (thumbAspectRatio > sourceAspectRatio)
-                {
-                    var sourceHeight = (int)(originalWidth / thumbAspectRatio);
-                    var x = 0;
-                    var y = (originalHeight - sourceHeight) / 2;
-                    var sourceWidth = originalWidth;
-
-                    return new Rectangle(x, y, sourceWidth, sourceHeight);
-                }
-                else
-                {
-                    var sourceWidth = (int) (thumbAspectRatio * originalHeight);
-                    var y = 0;
-                    var x = (originalWidth - sourceWidth) / 2;
-                    var sourceHeight = originalHeight;
-
-                    return new Rectangle(x, y, sourceWidth, sourceHeight);
-                }
-            }
-
-            if( sourceAspectRatio < 1)
-            {
-                // Image is taller than it is wide
-                var sourceHeight = (int)((thumbHeight / (double)thumbWidth) * originalWidth);
-                var x = 0;
-                var y = (originalHeight - sourceHeight) / 2;
-                var sourceWidth = originalWidth;
-
-                return new Rectangle(x, y, sourceWidth, sourceHeight);
-            }
-
-            // Image is square
-            if (thumbAspectRatio > sourceAspectRatio)
-            {
-                // Thumbnail aspect ratio is wider than original
-                var sourceHeight = (int)(originalWidth / thumbAspectRatio);
-                var x = 0;
-                var y = (originalHeight - sourceHeight) / 2;
-                var sourceWidth = originalWidth;
-
-                return new Rectangle(x, y, sourceWidth, sourceHeight);
-            }
-            else
-            {
-                var sourceWidth = (int) (thumbAspectRatio * originalHeight);
-                var y = 0;
-                var x = (originalWidth - sourceWidth) / 2;
-                var sourceHeight = originalHeight;
-
-                return new Rectangle(x, y, sourceWidth, sourceHeight);
-            }
+            return new Rectangle(x, y, size.Width, size.Height);
         }
     }
 }

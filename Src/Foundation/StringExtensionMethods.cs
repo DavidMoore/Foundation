@@ -41,5 +41,26 @@ namespace Foundation
         {
             return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(value);
         }
+
+        /// <summary>
+        /// Returns true if the string is null or empty
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this string value)
+        {
+            return string.IsNullOrEmpty(value);
+        }
+
+        /// <summary>
+        /// Returns true if at least one instance of the specified needle string can be found in the haystack string
+        /// </summary>
+        /// <param name="haystack"></param>
+        /// <param name="needle"></param>
+        /// <returns></returns>
+        public static bool Contains(this string haystack, string needle)
+        {
+            return haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase) > -1;
+        }
     }
 }

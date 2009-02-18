@@ -1,5 +1,7 @@
 using NUnit.Framework;
 
+using Foundation;
+
 namespace Foundation.Tests
 {
     [TestFixture]
@@ -15,6 +17,14 @@ namespace Foundation.Tests
         public void ToPascalCase()
         {
             Assert.AreEqual("TheExpectedResult", "theExpectedResult".ToPascalCase());
+        }
+
+        [Test]
+        public void IsNullOrEmpty()
+        {
+            Assert.IsTrue( ((string)null).IsNullOrEmpty() );
+            Assert.IsFalse( "blah".IsNullOrEmpty());
+            Assert.IsTrue("".IsNullOrEmpty());
         }
     }
 }

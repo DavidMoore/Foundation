@@ -62,5 +62,18 @@ namespace Foundation
         {
             return haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase) > -1;
         }
+
+        /// <summary>
+        /// Strips a string from the start of a string, if found
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="strip"></param>
+        /// <returns></returns>
+        public static string StripLeft(this string value, string strip)
+        {
+            if( !value.StartsWith(strip, StringComparison.OrdinalIgnoreCase) ) return value;
+
+            return value.Substring(strip.Length);
+        }
     }
 }

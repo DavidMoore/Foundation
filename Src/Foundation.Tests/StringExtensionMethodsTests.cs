@@ -26,5 +26,11 @@ namespace Foundation.Tests
             Assert.IsFalse( "blah".IsNullOrEmpty());
             Assert.IsTrue("".IsNullOrEmpty());
         }
+
+        [Test]
+        public void StripLeft()
+        {
+            Assert.AreEqual( "After the strip.", "Before the strip.After the strip.".StripLeft("Before the strip."));
+        }
     }
 }

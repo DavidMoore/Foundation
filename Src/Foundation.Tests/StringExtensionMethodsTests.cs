@@ -32,5 +32,11 @@ namespace Foundation.Tests
         {
             Assert.AreEqual( "After the strip.", "Before the strip.After the strip.".StripLeft("Before the strip."));
         }
+
+        [Test]
+        public void StringFormat()
+        {
+            Assert.AreEqual( "After the format", "After {0} format".StringFormat("the"));
+        }
     }
 }

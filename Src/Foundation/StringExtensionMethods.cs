@@ -75,5 +75,16 @@ namespace Foundation
 
             return value.Substring(strip.Length);
         }
+
+        /// <summary>
+        /// Shortcut for string.Format(value, args)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public static string StringFormat(this string value, params object[] args)
+        {
+            return string.Format(value, args);
+        }
     }
 }

@@ -148,6 +148,8 @@
     <Compile Include="Data\Hibernate\UserTypes\ColorUserType.cs" />
     <Compile Include="Data\Hibernate\UserTypes\SimpleUserTypeBase.cs" />
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
+    <Compile Include="Services\Security\Hasher.cs" />
+    <Compile Include="Services\Security\HashProvider.cs" />
     <Compile Include="HttpVerb.cs" />
     <Compile Include="Media\IThumbnailGenerator.cs" />
     <Compile Include="Media\ThumbnailGenerator.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="Services\Repository\IEntityWithUniqueNameRepository`1.cs" />
     <Compile Include="Services\Repository\NamedEntityActiveRecordRepository.cs" />
     <Compile Include="Services\Security\ActiveRecordIntegration.cs" />
+    <Compile Include="Services\Security\SaltedHasher.cs" />
     <Compile Include="StringExtensionMethods.cs" />
     <Compile Include="TestHelpers\HttpContextBaseMockExtensionMethods.cs" />
     <Compile Include="TestHelpers\Lipsum.cs" />

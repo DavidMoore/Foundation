@@ -157,9 +157,11 @@
     <Compile Include="Services\Security\ActiveRecordIntegrationTests.cs" />
     <Compile Include="Services\Security\EntityTypeFixture.cs" />
     <Compile Include="Services\JsonSerializerFixture.cs" />
+    <Compile Include="Services\Security\HasherTestCase.cs" />
     <Compile Include="Services\Security\PasswordGeneratorFixture.cs" />
     <Compile Include="SecurityFixtureBase.cs" />
     <Compile Include="Services\Security\PermissionFixture.cs" />
+    <Compile Include="Services\Security\SaltedHasherTestCase.cs" />
     <Compile Include="Services\Security\SalterFixture.cs" />
     <Compile Include="Services\Validation\ActiveRecordValidatorTestCase.cs" />
     <Compile Include="Services\IocFixture.cs" />

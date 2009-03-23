@@ -149,6 +149,7 @@
     <Compile Include="Data\NHibernate\UserTypes\PropertyInfoUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\TypeUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\UriUserTypeTests.cs" />
+    <Compile Include="Extensions\DirectoryInfoExtensionsTests.cs" />
     <Compile Include="Media\ThumbnailGeneratorTests.cs" />
     <Compile Include="Services\GetTypesTests.cs" />
     <Compile Include="Services\JavaScriptSerializerTests.cs" />

@@ -149,6 +149,7 @@
     <Compile Include="Data\Hibernate\UserTypes\SimpleUserTypeBase.cs" />
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
+    <Compile Include="FoundationEventLog.cs" />
     <Compile Include="Media\IThumbnailCache.cs" />
     <Compile Include="Media\ThumbnailCache.cs" />
     <Compile Include="Services\Security\Hasher.cs" />

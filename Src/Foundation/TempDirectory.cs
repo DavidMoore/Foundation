@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using log4net;
 
@@ -92,6 +93,7 @@ namespace Foundation
             }
             catch(IOException ioe)
             {
+                FoundationEventLog.Error(ioe, "Couldn't delete the TempDirectory: {0}", directoryInfo.FullName);
                 if( Logger.IsWarnEnabled ) Logger.Warn(ioe.Message, ioe);
             }
         }

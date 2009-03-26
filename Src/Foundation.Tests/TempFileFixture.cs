@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using NUnit.Framework;
 
@@ -57,6 +58,17 @@ namespace Foundation.Tests
             }
 
             Assert.IsFalse(File.Exists(filename));
+        }
+
+        [Test]
+        public void Allows_constructor_argument_to_choose_filename()
+        {
+            using( var file = new TempFile("{0}.gif"))
+            {
+                file.FileInfo.Refresh();
+                Assert.IsTrue(file.FileInfo.Name.EndsWith(".gif", StringComparison.OrdinalIgnoreCase));
+                Assert.IsTrue(file.FileInfo.Exists);
+            }
         }
 
         [Test]

@@ -13,9 +13,12 @@ namespace Foundation.Media
         public ThumbnailGenerator()
         {
             Options = new ThumbnailOptions {Width = DefaultWidth, Height = DefaultHeight};
+            Cache = new ThumbnailCache();
         }
 
         public ThumbnailOptions Options { get; set; }
+
+        public IThumbnailCache Cache { get; set; }
 
         public void Generate(string filename, string destinationFilename)
         {
@@ -24,6 +27,16 @@ namespace Foundation.Media
             var file = new FileInfo(filename);
 
             ThrowException.IfFalse<FileNotFoundException>(file.Exists, "The image filename {0} couldn't be found.", filename);
+
+//            // See if the file exists in the cache
+//            var cacheVersion = Cache.GetCacheFile(filename);
+//
+//            // If we have a cached version, copy it to the destination
+//            if( cacheVersion != null)
+//            {
+//                cacheVersion.CopyTo(destinationFilename, true);
+//                return;
+//            }
 
             using( var source = new Bitmap(file.FullName) )
             using( var destination = new Bitmap(Options.Width, Options.Height, PixelFormat.Format24bppRgb) )
@@ -42,6 +55,9 @@ namespace Foundation.Media
                 graphics.Flush();
 
                 destination.Save(destinationFilename, ImageFormat.Png);
+
+                // Add to the cache
+                Cache.Add(filename, Options.Width, Options.Height);
             }
         }
 

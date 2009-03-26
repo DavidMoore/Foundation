@@ -1,4 +1,5 @@
 using System.IO;
+using System.Reflection;
 using Foundation.Media;
 using NUnit.Framework;
 
@@ -116,6 +117,44 @@ namespace Foundation.Tests.Media
             Assert.AreEqual(5000, sourceRect.Height); 
             Assert.AreEqual(1250, sourceRect.X);
             Assert.AreEqual(0, sourceRect.Y);
+        }
+
+        [Test]
+        public void Has_cache_property_which_defaults_to_ThumbnailCache()
+        {
+            Assert.IsNotNull(generator.Cache);
+            Assert.IsInstanceOfType(typeof(IThumbnailCache), generator.Cache );
+            Assert.IsInstanceOfType(typeof(ThumbnailCache), generator.Cache);
+        }
+
+        [Test]
+        public void Creating_thumbnail_creates_new_entry_in_cache()
+        {
+            var cache = generator.Cache as ThumbnailCache;
+            Assert.IsNotNull(cache);
+            Assert.AreEqual(0, cache.CacheDirectory.GetFiles().Length);
+
+            using( var thumb = new TempFile()) // This will be the location of the thumbnail
+            using (var image = new TempFile("{0}.jpg")) // This is the test image we will make a thumb out of
+            using (var destStream = image.FileInfo.OpenWrite()) // Writes the test image data to the test image file
+            using (var imageStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Foundation.Tests.Resources.TestImage.jpg"))
+            {
+                var buffer = new byte[9012];
+                var bytesRead = imageStream.Read(buffer, 0, buffer.Length);
+                while (bytesRead > 0)
+                {
+                    destStream.Write(buffer, 0, bytesRead);
+                    bytesRead = imageStream.Read(buffer, 0, buffer.Length);
+                }
+
+                destStream.Close();
+                imageStream.Close();
+
+                // Create thumbnail
+                generator.Generate(image.FileInfo.FullName, thumb.FileInfo.FullName);
+            }
+
+            Assert.AreEqual(1, (generator.Cache as ThumbnailCache).CacheDirectory.GetFiles().Length);
         }
     }
 }

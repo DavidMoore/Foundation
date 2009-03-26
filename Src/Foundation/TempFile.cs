@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using log4net;
 
@@ -32,6 +33,24 @@ namespace Foundation
         public TempFile()
         {
             fileInfo = new FileInfo(Path.GetTempFileName());
+        }
+
+        /// <summary>
+        /// Creates a temporary file, using the passed format string to
+        /// create the name. Parameter 0 is the generated temporary filename.
+        /// e.g. to create a temp file with a .jpg extension, the passed
+        /// name should be "{0}.jpg"
+        /// </summary>
+        /// <param name="name">The string format for the name, taking {0} as the generated temp file name</param>
+        public TempFile(string name) : this()
+        {
+            // Strip the extension
+            var nameWithoutExtension = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length);
+
+            // Get the new name
+            var newName = string.Format(CultureInfo.CurrentCulture, name, nameWithoutExtension);
+
+            fileInfo.MoveTo( Path.Combine(fileInfo.DirectoryName, newName ) );
         }
 
         protected virtual Type MyType

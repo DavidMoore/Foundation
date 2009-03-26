@@ -119,6 +119,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -150,6 +153,7 @@
     <Compile Include="Data\NHibernate\UserTypes\TypeUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\UriUserTypeTests.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensionsTests.cs" />
+    <Compile Include="Media\ThumbnailCacheTests.cs" />
     <Compile Include="Media\ThumbnailGeneratorTests.cs" />
     <Compile Include="Services\GetTypesTests.cs" />
     <Compile Include="Services\JavaScriptSerializerTests.cs" />
@@ -192,6 +196,9 @@
     <None Include="App.config" />
     <None Include="facilities.config" />
     <None Include="properties.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\TestImage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

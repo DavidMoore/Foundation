@@ -12,6 +12,6 @@ namespace Foundation.Services
         /// <summary>
         /// Creates a container, using the configuration found in the application config file
         /// </summary>
-        public IocContainer() : base(new XmlInterpreter(new ConfigResource())) {}
+        public IocContainer() : base(){}// new XmlInterpreter(new ConfigResource())) {}
     }
 }

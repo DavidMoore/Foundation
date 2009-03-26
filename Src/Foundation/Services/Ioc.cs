@@ -1,3 +1,5 @@
+using System;
+using Castle.MicroKernel;
 using Castle.Windsor;
 
 namespace Foundation.Services
@@ -39,9 +41,17 @@ namespace Foundation.Services
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T Resolve<T>()
+        public static T Resolve<T>() where T: class
         {
-            return Container.Resolve<T>();
+            try
+            {
+                return Container.Resolve<T>();
+            }
+            catch (ComponentNotFoundException)
+            {
+                return null;
+            }
+            
         }
 
         /// <summary>

@@ -36,6 +36,20 @@ namespace Foundation.Tests
         }
 
         [Test]
+        public void GetAttribute_does_not_call_GetType_when_passed_instance_is_already_a_Type()
+        {
+            var attribute = ReflectUtils.GetAttribute<DummyReflectionAttributeAttribute>( typeof(DummyReflectionObject) );
+            Assert.IsNotNull(attribute);
+        }
+
+        [Test]
+        public void GetAttribute_does_not_call_GetType_when_passed_instance_is_a_PropertyInfo()
+        {
+            var attribute = ReflectUtils.GetAttribute<DummyReflectionAttributeAttribute>(typeof(DummyReflectionObject).GetProperty("StringProperty"));
+            Assert.IsNotNull(attribute);
+        }
+
+        [Test]
         public void HasAttribute_for_PropertyInfo()
         {
             var propertyInfo = typeof(DummyReflectionObject).GetProperty("StringProperty");

@@ -73,7 +73,10 @@ namespace Foundation
 
         public static T GetAttribute<T>(object objectValue) where T : Attribute
         {
-            var attributes = objectValue.GetType().GetCustomAttributes(typeof(T), true);
+            // Get the object Type. If the passed value is already a type, we don't have to do anything.
+            var customAttributeProvider = objectValue is ICustomAttributeProvider ? objectValue as ICustomAttributeProvider : objectValue.GetType();
+
+            var attributes = customAttributeProvider.GetCustomAttributes(typeof(T), true);
             if( attributes.Length == 0 ) return null;
 
             return attributes[0] as T;

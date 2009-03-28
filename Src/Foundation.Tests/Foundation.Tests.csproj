@@ -138,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensionMethodsTests.cs" />
+    <Compile Include="BarReflectionAttributeAttribute.cs" />
     <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />
     <Compile Include="Data\ActiveRecord\ColorPropertyAttributeTests.cs" />
@@ -152,8 +153,11 @@
     <Compile Include="Data\NHibernate\UserTypes\PropertyInfoUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\TypeUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\UriUserTypeTests.cs" />
+    <Compile Include="DummyReflectionAttributeAttribute.cs" />
+    <Compile Include="DummyReflectionObject.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensionsTests.cs" />
     <Compile Include="Extensions\PropertyInfoExtensionsTests.cs" />
+    <Compile Include="FooReflectionAttributeAttribute.cs" />
     <Compile Include="Media\ThumbnailCacheTests.cs" />
     <Compile Include="Media\ThumbnailGeneratorTests.cs" />
     <Compile Include="Services\GetTypesTests.cs" />

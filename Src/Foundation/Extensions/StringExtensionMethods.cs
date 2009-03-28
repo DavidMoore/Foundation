@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace Foundation
+namespace Foundation.Extensions
 {
     /// <summary>
     /// Utility extension methods for strings

@@ -173,7 +173,7 @@
     <Compile Include="Services\Repository\NamedEntityActiveRecordRepository.cs" />
     <Compile Include="Services\Security\ActiveRecordIntegration.cs" />
     <Compile Include="Services\Security\SaltedHasher.cs" />
-    <Compile Include="StringExtensionMethods.cs" />
+    <Compile Include="Extensions\StringExtensionMethods.cs" />
     <Compile Include="TestHelpers\HttpContextBaseMockExtensionMethods.cs" />
     <Compile Include="TestHelpers\Lipsum.cs" />
     <Compile Include="TestHelpers\MvcTestHelpers.cs" />

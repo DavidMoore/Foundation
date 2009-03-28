@@ -1,11 +1,10 @@
+using Foundation.Extensions;
 using NUnit.Framework;
 
-using Foundation;
-
-namespace Foundation.Tests
+namespace Foundation.Tests.Extensions
 {
     [TestFixture]
-    public class StringExtensionMethodsTests
+    public class StringExtensionsTests
     {
         [Test]
         public void ToCamelCase()

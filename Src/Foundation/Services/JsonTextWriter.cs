@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using Foundation.Extensions;
 
 namespace Foundation.Services
 {

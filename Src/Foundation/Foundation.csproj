@@ -152,6 +152,7 @@
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
     <Compile Include="FoundationEventLog.cs" />
     <Compile Include="IPaginatedList.cs" />
+    <Compile Include="IPaginatedList`1.cs" />
     <Compile Include="Media\IThumbnailCache.cs" />
     <Compile Include="Media\ThumbnailCache.cs" />
     <Compile Include="PaginatedList.cs" />

@@ -1,8 +1,7 @@
-using System.Collections.Generic;
-
 namespace Foundation
 {
-    public interface IPaginatedList<T> : IList<T> {
+    public interface IPaginatedList
+    {
         int Page { get; set; }
         int PageSize { get; set; }
         int RecordCount { get; set; }

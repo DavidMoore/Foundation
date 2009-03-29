@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Foundation.Tests
+namespace Foundation
 {
-    public class PaginatedList<T> : List<T>
+    public class PaginatedList<T> : List<T>, IPaginatedList<T>
     {
         const int defaultPageSize = 25;
         public int Page { get; set; }

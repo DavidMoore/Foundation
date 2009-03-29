@@ -12,7 +12,7 @@ namespace Foundation.Services.Repository
     /// A base implementation of IRepository
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ActiveRecordRepository<T> : ISqlRepository, IRepository<T> where T : class, new()
+    public class ActiveRecordRepository<T> : IPaginatingRepository<T>, ISqlRepository, IRepository<T> where T : class, new()
     {
         readonly IModelValidator validator;
         Type type;
@@ -185,14 +185,15 @@ namespace Foundation.Services.Repository
             return ActiveRecordMediator<T>.FindAll(new[] {order});
         }
 
-        public IList<T> PagedList(int pageNumber, int pageSize)
+        public IPaginatedList<T> PagedList(int pageNumber, int pageSize)
         {
-            return ActiveRecordMediator<T>.SlicedFindAll(pageSize * (pageNumber - 1), pageSize);
+            return PagedList(pageNumber, pageSize, null);
         }
 
-        public IList<T> PagedList(int pageNumber, int pageSize, params Order[] orders)
+        public IPaginatedList<T> PagedList(int pageNumber, int pageSize, params Order[] orders)
         {
-            return ActiveRecordMediator<T>.SlicedFindAll(pageSize * (pageNumber - 1), pageSize, orders);
+            return new PaginatedList<T>(
+                ActiveRecordMediator<T>.SlicedFindAll(pageSize * (pageNumber - 1), pageSize, orders), pageNumber, pageSize, ActiveRecordMediator<T>.Count());
         }
     }
 }

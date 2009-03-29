@@ -153,6 +153,7 @@
     <Compile Include="FoundationEventLog.cs" />
     <Compile Include="Media\IThumbnailCache.cs" />
     <Compile Include="Media\ThumbnailCache.cs" />
+    <Compile Include="PaginatedList.cs" />
     <Compile Include="Services\Security\Hasher.cs" />
     <Compile Include="Services\Security\HashProvider.cs" />
     <Compile Include="HttpVerb.cs" />

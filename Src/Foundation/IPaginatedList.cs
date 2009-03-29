@@ -1,6 +1,8 @@
+using System.Collections;
+
 namespace Foundation
 {
-    public interface IPaginatedList
+    public interface IPaginatedList : IEnumerable
     {
         int Page { get; set; }
         int PageSize { get; set; }

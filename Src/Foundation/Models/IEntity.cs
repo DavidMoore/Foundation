@@ -1,4 +1,4 @@
-namespace Foundation.Services.Security
+namespace Foundation.Models
 {
     public interface IEntity
     {

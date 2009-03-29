@@ -192,8 +192,8 @@
     <Compile Include="Services\Security\DeleteEntityOperation.cs" />
     <Compile Include="Services\Security\EntityOperation.cs" />
     <Compile Include="Services\Security\EntityType.cs" />
-    <Compile Include="Services\Security\IEntity.cs" />
-    <Compile Include="Services\Security\IEntityWithUniqueName.cs" />
+    <Compile Include="Models\IEntity.cs" />
+    <Compile Include="Models\IEntityWithUniqueName.cs" />
     <Compile Include="Services\Security\IGroup.cs" />
     <Compile Include="Services\Security\IEntityOperation.cs" />
     <Compile Include="Services\Security\IWebUser.cs" />

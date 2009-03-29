@@ -1,4 +1,6 @@
-namespace Foundation.Services.Security
+using Foundation.Models;
+
+namespace Foundation.Models
 {
     public interface IEntityWithUniqueName : IEntity
     {

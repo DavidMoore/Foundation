@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Castle.ActiveRecord;
+using Foundation.Models;
 using Foundation.Services.Repository;
-using Foundation.Services.Security;
 using NHibernate.Criterion;
 
 namespace Foundation.Data.Hierarchy

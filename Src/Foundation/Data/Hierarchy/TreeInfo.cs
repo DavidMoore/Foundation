@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Castle.ActiveRecord;
-using Foundation.Services.Security;
+using Foundation.Models;
 
 namespace Foundation.Data.Hierarchy
 {

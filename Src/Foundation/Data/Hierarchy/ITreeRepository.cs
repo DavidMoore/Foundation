@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using Foundation.Models;
 using Foundation.Services.Repository;
-using Foundation.Services.Security;
 
 namespace Foundation.Data.Hierarchy
 {

@@ -1,5 +1,5 @@
+using Foundation.Models;
 using Foundation.Services.Repository;
-using Foundation.Services.Security;
 using NUnit.Framework;
 
 namespace Foundation.Tests.Services.Repository

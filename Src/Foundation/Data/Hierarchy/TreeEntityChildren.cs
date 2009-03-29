@@ -1,6 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
-using Foundation.Services.Security;
+using Foundation.Models;
 
 namespace Foundation.Data.Hierarchy
 {

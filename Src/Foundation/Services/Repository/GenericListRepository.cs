@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Foundation.Services.Security;
+using Foundation.Models;
 
 namespace Foundation.Services.Repository
 {

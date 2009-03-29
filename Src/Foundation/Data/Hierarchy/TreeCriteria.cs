@@ -1,4 +1,4 @@
-using Foundation.Services.Security;
+using Foundation.Models;
 using NHibernate.Criterion;
 
 namespace Foundation.Data.Hierarchy

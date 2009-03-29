@@ -1,6 +1,6 @@
 using Castle.ActiveRecord;
 using Foundation.Data.Hierarchy;
-using Foundation.Services.Security;
+using Foundation.Models;
 
 namespace Foundation.Tests.Data.Hierarchy
 {

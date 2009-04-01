@@ -27,6 +27,7 @@ namespace Foundation.Tests
             Assert.AreEqual(10, list.RecordCount);
             Assert.AreEqual(2, list.PageCount);
             Assert.AreEqual(1, list.Page);
+            Assert.AreEqual(5, list.Count);
         }
     }
 }

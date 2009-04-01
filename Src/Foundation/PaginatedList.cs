@@ -29,7 +29,7 @@ namespace Foundation
             RecordCount = recordCount;
             PageCount = (int)Math.Ceiling(RecordCount / (double)PageSize);
 
-            AddRange(source);
+            AddRange(source.Take(pageSize));
         }
 
         public bool HasPreviousPage { get { return Page > 1; } }

@@ -161,6 +161,7 @@
     <Compile Include="FooReflectionAttributeAttribute.cs" />
     <Compile Include="Media\ThumbnailCacheTests.cs" />
     <Compile Include="Media\ThumbnailGeneratorTests.cs" />
+    <Compile Include="NamedPaginatedListTests.cs" />
     <Compile Include="PaginatedListTests.cs" />
     <Compile Include="Services\GetTypesTests.cs" />
     <Compile Include="Services\JavaScriptSerializerTests.cs" />

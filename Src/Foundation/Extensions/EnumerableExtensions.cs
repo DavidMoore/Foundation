@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Foundation.Extensions
 {
@@ -29,6 +31,11 @@ namespace Foundation.Extensions
         public static IPaginatedList<T> ToPaginatedList<T>(this IEnumerable<T> source, int page, int pageSize, int count)
         {
             return new PaginatedList<T>(source, page, pageSize, count);
+        }
+
+        public static IPaginatedList<T> ToNamedPaginatedList<T>(this IEnumerable<T> source, int page, int pageSize, Func<IEnumerable<T>, string> getPageNameFunction)
+        {
+            return new NamedPaginatedList<T>(source.ToList(), page, pageSize, getPageNameFunction);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Foundation
 {
@@ -10,5 +11,11 @@ namespace Foundation
         int PageCount { get; set; }
         bool HasPreviousPage { get; }
         bool HasNextPage { get; }
+
+        /// <summary>
+        /// A collection of names for the pages. Usually this defaults to the page numbers but can
+        /// be changed depending on the pagination strategy, i.e. alphabetical names for alphabetical pagination
+        /// </summary>
+        IList<string> PageNames { get; set; }
     }
 }

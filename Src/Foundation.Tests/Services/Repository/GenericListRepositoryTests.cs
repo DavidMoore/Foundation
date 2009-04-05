@@ -7,15 +7,11 @@ namespace Foundation.Tests.Services.Repository
     [TestFixture]
     public class GenericListRepositoryTests
     {
-        #region Setup/Teardown
-
         [SetUp]
         public void Setup()
         {
             repository = new GenericListRepository<DummyClass>();
         }
-
-        #endregion
 
         GenericListRepository<DummyClass> repository;
 
@@ -26,6 +22,23 @@ namespace Foundation.Tests.Services.Repository
             instance.Title = "Test";
             repository.Save(instance);
             Assert.AreEqual(instance, repository.Find(1));
+        }
+
+        [Test]
+        public void Delete()
+        {
+            var test1 = new DummyClass {Title = "test1"};
+            var test2 = new DummyClass { Title = "test2" };
+
+            repository.Save(test1, test2);
+
+            Assert.AreEqual(2, repository.List().Count);
+
+            repository.Delete(test1);
+
+            Assert.AreEqual(1, repository.List().Count);
+
+            Assert.AreEqual(test2, repository.List()[0]);
         }
 
         [Test]

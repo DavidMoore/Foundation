@@ -19,7 +19,12 @@ namespace Foundation.Services.Repository
         T[] Save(params T[] instances);
 
         //T SaveAndFlush(T instance);
-        //void Delete(T instance);
+
+        /// <summary>
+        /// Deletes the instance from the database
+        /// </summary>
+        /// <param name="instance">The object to remove from the database</param>
+        void Delete(T instance);
 
         /// <summary>
         /// Deletes all instances from the database

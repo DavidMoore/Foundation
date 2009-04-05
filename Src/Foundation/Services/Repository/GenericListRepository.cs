@@ -54,6 +54,11 @@ namespace Foundation.Services.Repository
             return results.ToArray();
         }
 
+        public void Delete(T instance)
+        {
+            list.Remove(instance);
+        }
+
         public void DeleteAll()
         {
             list.Clear();

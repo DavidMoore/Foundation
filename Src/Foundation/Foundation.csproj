@@ -12,6 +12,8 @@
     <AssemblyName>Foundation</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../Foundation.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -243,6 +245,9 @@
     <Compile Include="Services\Validation\ValidationPropertyError.cs" />
     <Compile Include="SubnetMaskedIp.cs" />
     <Compile Include="TempFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../Foundation.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

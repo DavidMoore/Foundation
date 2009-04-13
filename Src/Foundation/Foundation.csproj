@@ -123,6 +123,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\System.Web.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Orange.NET\Framework\Dependencies\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Orange.NET\Framework\Dependencies\System.Web.Routing.dll</HintPath>
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -152,6 +161,7 @@
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\HttpRequestBaseExtensions.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
     <Compile Include="FoundationEventLog.cs" />
     <Compile Include="IPaginatedList.cs" />
@@ -181,9 +191,10 @@
     <Compile Include="Services\Repository\NamedEntityActiveRecordRepository.cs" />
     <Compile Include="Services\Security\ActiveRecordIntegration.cs" />
     <Compile Include="Services\Security\SaltedHasher.cs" />
-    <Compile Include="Extensions\StringExtensionMethods.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="TestHelpers\HttpContextBaseMockExtensionMethods.cs" />
     <Compile Include="TestHelpers\Lipsum.cs" />
+    <Compile Include="TestHelpers\MockContext.cs" />
     <Compile Include="TestHelpers\MvcTestHelpers.cs" />
     <Compile Include="ThrowException.cs" />
     <Compile Include="CommonUtils.cs" />

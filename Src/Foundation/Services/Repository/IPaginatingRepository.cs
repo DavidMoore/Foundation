@@ -1,3 +1,5 @@
+using Foundation.Models;
+
 namespace Foundation.Services.Repository
 {
     public interface IPaginatingRepository<T>

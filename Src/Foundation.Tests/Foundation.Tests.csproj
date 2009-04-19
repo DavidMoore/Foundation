@@ -158,7 +158,9 @@
     <Compile Include="Extensions\DirectoryInfoExtensionsTests.cs" />
     <Compile Include="Extensions\EnumerableExtensionsTests.cs" />
     <Compile Include="Extensions\HttpRequestBaseExtensionsTests.cs" />
+    <Compile Include="Extensions\IPaginatedListExtensionsTests.cs" />
     <Compile Include="Extensions\PropertyInfoExtensionsTests.cs" />
+    <Compile Include="Extensions\TypeExtensionsTests.cs" />
     <Compile Include="FooReflectionAttributeAttribute.cs" />
     <Compile Include="Media\ThumbnailCacheTests.cs" />
     <Compile Include="Media\ThumbnailGeneratorTests.cs" />

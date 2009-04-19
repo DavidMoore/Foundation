@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Foundation.Models;
+using Foundation.Services.Security;
 using NUnit.Framework;
 
 namespace Foundation.Tests

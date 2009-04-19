@@ -3,8 +3,17 @@ using System.Reflection;
 
 namespace Foundation.Extensions
 {
+    /// <summary>
+    /// Extension methods for System.Reflection.PropertyInfo
+    /// </summary>
     public static class PropertyInfoExtensions
     {
+        /// <summary>
+        /// Returns true if the property has any of the specified attributes
+        /// </summary>
+        /// <param name="property"></param>
+        /// <param name="attributes"></param>
+        /// <returns></returns>
         public static bool HasAttribute(this PropertyInfo property, params Type[] attributes)
         {
             return ReflectUtils.HasAttribute(property, attributes);

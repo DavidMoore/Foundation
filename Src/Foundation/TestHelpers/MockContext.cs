@@ -50,6 +50,7 @@ namespace Foundation.TestHelpers
             MockViewDataContainer.Expect(vdc => vdc.ViewData).Returns(ViewDataDictionary);
 
             RequestHeaders = new NameValueCollection();
+            Form = new NameValueCollection();
         }
 
         public Mock<HttpContextBase> MockHttpContext { get; set; }
@@ -66,39 +67,50 @@ namespace Foundation.TestHelpers
         public Mock<IViewDataContainer> MockViewDataContainer { get; set; }
         public ViewDataDictionary ViewDataDictionary { get; set; }
 
+        /// <summary>
+        /// The posted form values for HttpContext.Request.Form
+        /// </summary>
+        public NameValueCollection Form { get; set; }
+
         public Mock<HttpContextBase> GetHttpContext(string appPath, string requestPath, string httpMethod, string protocol, int port)
         {
             var mockHttpContext = new Mock<HttpContextBase>();
+            var mockHttpRequest = new Mock<HttpRequestBase>();
 
             if( !String.IsNullOrEmpty(appPath) )
             {
-                mockHttpContext.Expect(o => o.Request.ApplicationPath).Returns(appPath);
+                mockHttpRequest.Expect(o => o.ApplicationPath).Returns(appPath);
             }
             if( !String.IsNullOrEmpty(requestPath) )
             {
-                mockHttpContext.Expect(o => o.Request.AppRelativeCurrentExecutionFilePath).Returns(requestPath);
+                mockHttpRequest.Expect(o => o.AppRelativeCurrentExecutionFilePath).Returns(requestPath);
                 if( !String.IsNullOrEmpty(appPath) )
                 {
                     var absolutePath = VirtualPathUtility.ToAbsolute(requestPath, appPath);
-                    mockHttpContext.Expect(o => o.Request.Path).Returns(absolutePath);
+                    mockHttpRequest.Expect(o => o.Path).Returns(absolutePath);
                 }
             }
 
             var uri = port >= 0 ? new Uri(protocol + "://localhost" + ":" + Convert.ToString(port)) : new Uri(protocol + "://localhost");
 
-            mockHttpContext.Expect(o => o.Request.Url).Returns(uri);
+            mockHttpRequest.Expect(o => o.Url).Returns(uri);
 
-            mockHttpContext.Expect(o => o.Request.Headers).Returns(RequestHeaders);
+            mockHttpRequest.Expect(o => o.Headers).Returns(RequestHeaders);
 
-            mockHttpContext.Expect(o => o.Request.PathInfo).Returns(String.Empty);
+            mockHttpRequest.Expect(o => o.Form).Returns(Form);
+
+            mockHttpRequest.Expect(o => o.PathInfo).Returns(String.Empty);
+
             if( !String.IsNullOrEmpty(httpMethod) )
             {
-                mockHttpContext.Expect(o => o.Request.HttpMethod).Returns(httpMethod);
+                mockHttpRequest.Expect(o => o.HttpMethod).Returns(httpMethod);
             }
 
             mockHttpContext.Expect(o => o.Session).Returns((HttpSessionStateBase) null);
             mockHttpContext.Expect(o => o.Response.ApplyAppPathModifier(It.IsAny<string>())).Returns<string>(r => AppPathModifier + r);
-            
+
+            mockHttpContext.Expect(o => o.Request).Returns(mockHttpRequest.Object);
+
             return mockHttpContext;
         }
 

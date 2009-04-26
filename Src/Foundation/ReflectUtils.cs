@@ -15,16 +15,7 @@ namespace Foundation
         /// </summary>
         public static List<PropertyInfo> GetPropertiesWithAttribute(Type type, Type attribute)
         {
-            var properties = new List<PropertyInfo>();
-
-            foreach( var property in type.GetProperties() )
-            {
-                if( property.GetCustomAttributes(attribute, true).Length > 0 )
-                {
-                    properties.Add(property);
-                }
-            }
-            return properties;
+            return type.GetProperties().Where(info => info.GetCustomAttributes(attribute, true).Length > 0).ToList();
         }
 
         /// <summary>

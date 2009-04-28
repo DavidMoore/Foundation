@@ -58,7 +58,7 @@ namespace Foundation.Extensions
         /// <param name="haystack"></param>
         /// <param name="needle"></param>
         /// <returns></returns>
-        public static bool Contains(this string haystack, string needle)
+        public static bool ContainsCaseInsensitive(this string haystack, string needle)
         {
             return haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase) > -1;
         }

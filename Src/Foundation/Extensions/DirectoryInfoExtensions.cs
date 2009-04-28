@@ -20,5 +20,27 @@ namespace Foundation.Extensions
 
             return files.Length == 0 ? null : files[0];
         }
+
+        /// <summary>
+        /// Converts the DirectoryInfo to a FileInfo
+        /// </summary>
+        /// <param name="directoryInfo"></param>
+        /// <returns></returns>
+        public static FileInfo ToFileInfo(this DirectoryInfo directoryInfo)
+        {
+            return new FileInfo(directoryInfo.FullName);
+        }
+
+        /// <summary>
+        /// Returns true if this directory is actually a file. It checks if it exists as a file, or has a file extension.
+        /// </summary>
+        /// <param name="directoryInfo"></param>
+        /// <returns></returns>
+        public static bool IsFile(this DirectoryInfo directoryInfo)
+        {
+            if( directoryInfo.ToFileInfo().Exists ) return true;
+
+            return Path.GetFileName(directoryInfo.FullName).Contains(".");
+        }
     }
 }

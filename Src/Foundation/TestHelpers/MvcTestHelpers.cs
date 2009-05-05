@@ -33,14 +33,14 @@ namespace Foundation.TestHelpers
 
             // Mock the HttpRequest
             var mockRequest = GetHttpRequestBase(args);
-            mockContext.Expect(o => o.Request).Returns(mockRequest);
+            mockContext.Setup(o => o.Request).Returns(mockRequest);
 
             // Mock the Session
-            mockContext.Expect(o => o.Session).Returns((HttpSessionStateBase) null);
+            mockContext.Setup(o => o.Session).Returns((HttpSessionStateBase)null);
 
             // Mock the HttpResponse
             var mockResponse = GetHttpResponseBase(args);
-            mockContext.Expect(o => o.Response).Returns(mockResponse);
+            mockContext.Setup(o => o.Response).Returns(mockResponse);
 
             return mockContext.Object;
         }
@@ -57,12 +57,12 @@ namespace Foundation.TestHelpers
 
             var uri = new Uri("http://localhost");
 
-            if( !string.IsNullOrEmpty(args.ApplicationPath) ) request.Expect(o => o.ApplicationPath).Returns(args.ApplicationPath);
-            if( !string.IsNullOrEmpty(args.RequestPath) ) request.Expect(o => o.AppRelativeCurrentExecutionFilePath).Returns(args.RequestPath);
-            if( !string.IsNullOrEmpty(args.HttpMethod) ) request.Expect(o => o.HttpMethod).Returns(args.HttpMethod);
+            if (!string.IsNullOrEmpty(args.ApplicationPath)) request.Setup(o => o.ApplicationPath).Returns(args.ApplicationPath);
+            if (!string.IsNullOrEmpty(args.RequestPath)) request.Setup(o => o.AppRelativeCurrentExecutionFilePath).Returns(args.RequestPath);
+            if (!string.IsNullOrEmpty(args.HttpMethod)) request.Setup(o => o.HttpMethod).Returns(args.HttpMethod);
 
-            request.Expect(o => o.Url).Returns(uri);
-            request.Expect(o => o.PathInfo).Returns(String.Empty);
+            request.Setup(o => o.Url).Returns(uri);
+            request.Setup(o => o.PathInfo).Returns(String.Empty);
 
             return request.Object;
         }

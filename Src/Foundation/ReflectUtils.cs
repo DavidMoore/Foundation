@@ -8,7 +8,7 @@ namespace Foundation
     /// <summary>
     /// Reflection-related utilties
     /// </summary>
-    public class ReflectUtils
+    public static class ReflectUtils
     {
         /// <summary>
         /// Gets all the properties from the object's type with the specified attribute
@@ -41,14 +41,14 @@ namespace Foundation
         }
 
         /// <summary>
-        /// Returns true if the specified property is annotated with any of the specified attributes
+        /// Returns true if the specified class member is annotated with any of the specified attributes
         /// </summary>
-        /// <param name="propertyInfo"></param>
-        /// <param name="attributes"></param>
+        /// <param name="memberInfo">The class member to look for an attribute on</param>
+        /// <param name="attributes">The attribute to look for</param>
         /// <returns></returns>
-        public static bool HasAttribute(PropertyInfo propertyInfo, params Type[] attributes)
+        public static bool HasAttribute(MemberInfo memberInfo, params Type[] attributes)
         {
-            var actualAttributes = propertyInfo.GetCustomAttributes(true).ToList();
+            var actualAttributes = memberInfo.GetCustomAttributes(true).ToList();
 
             var actualTypes = actualAttributes.ConvertAll(attribute => attribute.GetType());
 
@@ -62,10 +62,11 @@ namespace Foundation
             return false;
         }
 
-        public static T GetAttribute<T>(object objectValue) where T : Attribute
+        public static T GetAttribute<T>(object value) where T : Attribute
         {
             // Get the object Type. If the passed value is already a type, we don't have to do anything.
-            var customAttributeProvider = objectValue is ICustomAttributeProvider ? objectValue as ICustomAttributeProvider : objectValue.GetType();
+            var objectValueAsCustomAttributeProvider = value as ICustomAttributeProvider;
+            var customAttributeProvider = objectValueAsCustomAttributeProvider ?? value.GetType();
 
             var attributes = customAttributeProvider.GetCustomAttributes(typeof(T), true);
             if( attributes.Length == 0 ) return null;

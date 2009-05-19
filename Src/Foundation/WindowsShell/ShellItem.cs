@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Foundation.Extensions;
 using Shell32;
 
 namespace Foundation.WindowsShell
@@ -95,7 +96,7 @@ namespace Foundation.WindowsShell
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0} [{1}]", Name, Path);
+            return "{0} [{1}]".FormatUICulture(Name, Path);
         }
     }
 }

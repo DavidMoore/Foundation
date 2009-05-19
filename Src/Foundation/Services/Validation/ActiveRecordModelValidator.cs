@@ -37,7 +37,7 @@ namespace Foundation.Services.Validation
         {
             IValidationProvider validator = new ActiveRecordValidator(model);
 
-            return validator.IsValid() ? new ValidationErrors() : new ActiveRecordValidationErrorsAdapter(validator);
+            return validator.IsValid() ? new ValidationErrorsCollection() : new ActiveRecordValidationErrorsAdapter(validator);
         }
 
         #endregion

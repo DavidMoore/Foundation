@@ -538,18 +538,11 @@ namespace Foundation.WindowsShell
         /// when disposing is true.
         /// </summary>
         /// <param name="disposing">Whether the object is being disposed</param>
-        public virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
-            if( !disposed )
+            if( !disposed && disposing && iImageList != null )
             {
-                if( disposing )
-                {
-                    if( iImageList != null )
-                    {
-                        Marshal.ReleaseComObject(iImageList);
-                    }
-                    iImageList = null;
-                }
+                Marshal.ReleaseComObject(iImageList);
             }
             disposed = true;
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Castle.ActiveRecord;
+using Foundation.Extensions;
 using Foundation.Services.Validation;
 using NHibernate;
 using NHibernate.Criterion;
@@ -95,7 +96,7 @@ namespace Foundation.Services.Repository
             // Do a truncate if using MySQL
             var config = ActiveRecordMediator.GetSessionFactoryHolder().GetConfiguration(typeof(ActiveRecordBase));
             var driver = config.GetProperty("connection.driver_class");
-            if( driver.Equals(typeof(MySqlDataDriver).AssemblyQualifiedName) ) ExecuteSql(string.Format("TRUNCATE {0}", Type.Name));
+            if( driver.Equals(typeof(MySqlDataDriver).AssemblyQualifiedName) ) ExecuteSql("TRUNCATE {0}".FormatUICulture(Type.Name));
         }
 
         /// <summary>

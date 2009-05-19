@@ -10,9 +10,9 @@ namespace Foundation.Services.Security
 
         public PasswordGenerator()
         {
-            LowerCaseCharacters = "abcdefgijkmnopqrstwxyz";
+            LowercaseCharacters = "abcdefgijkmnopqrstwxyz";
             NumericCharacters = "23456789";
-            UpperCaseCharacters = "ABCDEFGHJKLMNPQRSTWXYZ";
+            UppercaseCharacters = "ABCDEFGHJKLMNPQRSTWXYZ";
             MinimumPasswordLength = defaultMinimumPasswordLength;
             MaximumPasswordLength = defaultMaximumPasswordLength;
         }
@@ -20,7 +20,7 @@ namespace Foundation.Services.Security
         /// <summary>
         /// Lower-case characters to use when generating passwords
         /// </summary>
-        public string LowerCaseCharacters { get; set; }
+        public string LowercaseCharacters { get; set; }
 
         /// <summary>
         /// Numeric characters to use when generating passwords
@@ -30,7 +30,7 @@ namespace Foundation.Services.Security
         /// <summary>
         /// Upper-case characters to use when generating passwords
         /// </summary>
-        public string UpperCaseCharacters { get; set; }
+        public string UppercaseCharacters { get; set; }
 
         /// <summary>
         /// The maximum length for generated passwords
@@ -80,7 +80,7 @@ namespace Foundation.Services.Security
             // grouped by types.
             var charGroups = new[]
                 {
-                    LowerCaseCharacters.ToCharArray(), UpperCaseCharacters.ToCharArray(),
+                    LowercaseCharacters.ToCharArray(), UppercaseCharacters.ToCharArray(),
                     NumericCharacters.ToCharArray()
                 };
 

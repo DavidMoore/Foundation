@@ -1,3 +1,4 @@
+using System;
 using System.Web;
 
 namespace Foundation
@@ -5,7 +6,7 @@ namespace Foundation
     /// <summary>
     /// Some common utility methods, taken from the corresponding internal Castle class
     /// </summary>
-    public class CommonUtils
+    public static class CommonUtilities
     {
         /// <summary>
         /// Escapes a content replacing line breaks with html break lines.
@@ -64,7 +65,7 @@ namespace Foundation
             url = url.Replace("\\", "/");
 
             // Remove duplicate forward slashes
-            while( url.IndexOf("//") > -1 ) url = url.Replace("//", "/");
+            while( url.IndexOf("//",StringComparison.Ordinal) > -1 ) url = url.Replace("//", "/");
 
             return url;
         }

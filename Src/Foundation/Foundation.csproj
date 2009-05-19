@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -219,7 +220,7 @@
     <Compile Include="TestHelpers\MockContext.cs" />
     <Compile Include="TestHelpers\MvcTestHelpers.cs" />
     <Compile Include="ThrowException.cs" />
-    <Compile Include="CommonUtils.cs" />
+    <Compile Include="CommonUtilities.cs" />
     <Compile Include="Data\ActiveRecord\DatabaseFixtureBase.cs" />
     <Compile Include="Data\ActiveRecord\PropertyUniqueName.cs" />
     <Compile Include="Data\Hibernate\UserTypes\PropertyInfoUserType.cs" />
@@ -274,7 +275,7 @@
     <Compile Include="Services\Validation\IValidationPropertyError.cs" />
     <Compile Include="Services\Validation\IValidationPropertyErrors.cs" />
     <Compile Include="Services\Validation\ModelValidationException.cs" />
-    <Compile Include="Services\Validation\ValidationErrors.cs" />
+    <Compile Include="Services\Validation\ValidationErrorsCollection.cs" />
     <Compile Include="Services\Validation\ValidationPropertyError.cs" />
     <Compile Include="SubnetMaskedIp.cs" />
     <Compile Include="TempFile.cs" />

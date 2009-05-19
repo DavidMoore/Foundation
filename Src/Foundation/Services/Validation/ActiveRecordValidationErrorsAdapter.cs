@@ -5,9 +5,9 @@ using Castle.ActiveRecord.Framework;
 namespace Foundation.Services.Validation
 {
     /// <summary>
-    /// Converts an ActiveRecord validation error summary into a ValidationErrors object
+    /// Converts an ActiveRecord validation error summary into a ValidationErrorsCollection object
     /// </summary>
-    internal class ActiveRecordValidationErrorsAdapter : ValidationErrors
+    internal class ActiveRecordValidationErrorsAdapter : ValidationErrorsCollection
     {
         public ActiveRecordValidationErrorsAdapter(IValidationProvider validator)
         {

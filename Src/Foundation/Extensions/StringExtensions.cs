@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Web;
 
 namespace Foundation.Extensions
 {
@@ -61,6 +62,28 @@ namespace Foundation.Extensions
         public static bool ContainsCaseInsensitive(this string haystack, string needle)
         {
             return haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase) > -1;
+        }
+
+        /// <summary>
+        /// Compares the string to another, using StringComparison.OrdinalIgnoreCase
+        /// </summary>
+        /// <param name="strA"></param>
+        /// <param name="strB"></param>
+        /// <returns></returns>
+        public static int CompareToOrdinalIgnoreCase(this string strA, string strB)
+        {
+            return string.Compare(strA, strB, StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// Formats the specified string using the current culture
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public static string FormatUICulture(this string format, params object[] args)
+        {
+            return string.Format(CultureInfo.CurrentUICulture, format, args);
         }
 
         /// <summary>

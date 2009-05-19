@@ -5,13 +5,15 @@ namespace Foundation
 {
     public static class ArrayExtensionMethods
     {
-        public static T[] Concat<T>(this Array array, T[] concat)
+        public static T[] Concat<T>(this Array array, T[] concatArray)
         {
-            if (concat == null || concat.Length == 0) return array as T[];
+            var castArray = (T[]) array;
 
-            var list = new List<T>( (T[])array );
+            if (concatArray == null || concatArray.Length == 0) return castArray;
 
-            list.AddRange( concat );
+            var list = new List<T>(castArray);
+
+            list.AddRange( concatArray );
 
             return list.ToArray();
         }

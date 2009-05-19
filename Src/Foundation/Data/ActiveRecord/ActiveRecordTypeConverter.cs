@@ -15,7 +15,7 @@ namespace Foundation.Data.ActiveRecord
         {
             var type = value.GetType();
 
-            return type == typeof(string) ? ActiveRecordMediator<T>.FindByPrimaryKey( int.Parse( (string)value) ) : base.ConvertFrom(context, culture, value);
+            return type == typeof(string) ? ActiveRecordMediator<T>.FindByPrimaryKey( int.Parse( (string)value,CultureInfo.CurrentCulture) ) : base.ConvertFrom(context, culture, value);
         }
 
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)

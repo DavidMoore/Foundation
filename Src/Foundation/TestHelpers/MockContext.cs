@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -91,7 +92,7 @@ namespace Foundation.TestHelpers
                 }
             }
 
-            var uri = port >= 0 ? new Uri(protocol + "://localhost" + ":" + Convert.ToString(port)) : new Uri(protocol + "://localhost");
+            var uri = port >= 0 ? new Uri(protocol + "://localhost" + ":" + Convert.ToString(port,CultureInfo.CurrentCulture)) : new Uri(protocol + "://localhost");
 
             mockHttpRequest.Setup(o => o.Url).Returns(uri);
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -76,7 +77,7 @@ namespace Foundation.Services
 
             var result = string.Join("/", dirs.ToArray());
 
-            return CommonUtils.TidyUrl(result);
+            return CommonUtilities.TidyUrl(result);
         }
 
         /// <summary>
@@ -136,7 +137,7 @@ namespace Foundation.Services
 
         public string UrlFromTitle(string title)
         {
-            var result = Regex.Replace(title.Replace(" ", "-").ToLower(), @"[^0-9\-a-z]", "");
+            var result = Regex.Replace(title.Replace(" ", "-").ToLower(CultureInfo.CurrentCulture), @"[^0-9\-a-z]", "");
 
             while( result.IndexOf("--") > -1 )
             {

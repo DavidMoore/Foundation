@@ -1,11 +1,13 @@
 using System;
+using System.Globalization;
+using Foundation.Extensions;
 
 namespace Foundation
 {
     /// <summary>
     /// Assertion methods for throwing exceptions in common scenarios
     /// </summary>
-    public class ThrowException
+    public static class ThrowException
     {
         /// <summary>
         /// Throws a FoundationException containing the specified exception message if the assertion fails
@@ -39,7 +41,7 @@ namespace Foundation
         public static void IfTrue(bool assertion, string message, params object[] stringFormatParameters)
         {
             if( !assertion ) return;
-            if( stringFormatParameters.Length > 0 ) message = string.Format(message, stringFormatParameters);
+            if( stringFormatParameters.Length > 0 ) message = message.FormatUICulture(stringFormatParameters);
             throw new FoundationException(message);
         }
 
@@ -53,7 +55,7 @@ namespace Foundation
             if( !test ) return;
             IfArgumentIsNullOrEmpty("message", message);
             if( string.IsNullOrEmpty(message) ) throw new TException();
-            if( stringFormatParameters.Length > 0 ) message = string.Format(message, stringFormatParameters);
+            if( stringFormatParameters.Length > 0 ) message = message.FormatUICulture(stringFormatParameters);
             var exception = Activator.CreateInstance(typeof(TException), message) as Exception;
             IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(TException).Name, message);
             throw exception;
@@ -82,7 +84,7 @@ namespace Foundation
         {
             if( value == null ) throw new ArgumentNullException(name);
             if( value.ToString().Trim().Length == 0 )
-                throw new ArgumentException(string.Format("The argument \"{0}\" is required but is empty.", name));
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "The argument \"{0}\" is required but is empty.", name));
         }
 
         public static void IfNull(object value)

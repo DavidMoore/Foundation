@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using Foundation.Extensions;
 
 namespace Foundation.Services.Security
 {
@@ -53,8 +54,7 @@ namespace Foundation.Services.Security
                     return SHA512.Create();
             }
 
-            throw new ArgumentException(
-                string.Format("Unsupported HashProvider: {0}! ", provider) +
+            throw new ArgumentException("Unsupported HashProvider: {0}! ".FormatUICulture(provider) +
                     "If you add a new algorithm to the HashProvider, make sure you add it to the " +
                         "switch statement in the Hasher.GetHashAlgorithm method!", "provider");
         }

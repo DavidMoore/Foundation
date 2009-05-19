@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Net;
 
 namespace Foundation
@@ -9,10 +10,10 @@ namespace Foundation
     /// </summary>
     public class SubnetMaskedIp
     {
-        int? addressBitLength;
-        IPAddress networkAddress;
+        private int? addressBitLength;
+        private IPAddress networkAddress;
 
-        byte[] networkAddressBytes;
+        private byte[] networkAddressBytes;
 
         /// <summary>
         /// IP address
@@ -35,7 +36,7 @@ namespace Foundation
         {
             get
             {
-                if( networkAddressBytes == null )
+                if (networkAddressBytes == null)
                 {
                     networkAddressBytes = NetworkAddress.GetAddressBytes();
                 }
@@ -55,9 +56,9 @@ namespace Foundation
         {
             get
             {
-                if( !addressBitLength.HasValue )
+                if (!addressBitLength.HasValue)
                 {
-                    addressBitLength = NetworkAddressBytes.Length * 8;
+                    addressBitLength = NetworkAddressBytes.Length*8;
                 }
                 return addressBitLength.Value;
             }
@@ -69,20 +70,20 @@ namespace Foundation
         /// <returns></returns>
         public byte[] GetSubnetMaskbytes()
         {
-            var length = NetworkAddressBytes.Length;
+            int length = NetworkAddressBytes.Length;
             var maskbytes = new byte[length];
 
-            for( var i = 0; i < length; i++ )
+            for (int i = 0; i < length; i++)
             {
-                if( SubnetMaskLength >= (i + 1) * 8 )
+                if (SubnetMaskLength >= (i + 1)*8)
                 {
                     maskbytes[i] = 255;
                 }
                 else
                 {
-                    for( var j = 0; j < 8; j++ )
+                    for (int j = 0; j < 8; j++)
                     {
-                        if( SubnetMaskLength <= i * 8 + j )
+                        if (SubnetMaskLength <= i*8 + j)
                         {
                             return maskbytes;
                         }
@@ -101,16 +102,16 @@ namespace Foundation
         /// <returns></returns>
         public static SubnetMaskedIp Parse(string src)
         {
-            var pair = src.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
+            string[] pair = src.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
             var maskedIP = new SubnetMaskedIp {NetworkAddress = IPAddress.Parse(pair[0])};
 
-            var bitLength = maskedIP.NetworkAddressBytes.Length * 8;
+            int bitLength = maskedIP.NetworkAddressBytes.Length*8;
             maskedIP.SubnetMaskLength = bitLength;
 
-            if( pair.Length > 1 )
+            if (pair.Length > 1)
             {
-                maskedIP.SubnetMaskLength = int.Parse(pair[1]);
-                if( maskedIP.SubnetMaskLength > bitLength )
+                maskedIP.SubnetMaskLength = int.Parse(pair[1],CultureInfo.CurrentCulture);
+                if (maskedIP.SubnetMaskLength > bitLength)
                 {
                     maskedIP.SubnetMaskLength = bitLength;
                 }
@@ -127,29 +128,29 @@ namespace Foundation
         /// <returns></returns>
         public bool IsInner(IPAddress address)
         {
-            var networkbytes = NetworkAddressBytes;
-            var addressbytes = address.GetAddressBytes();
+            byte[] networkbytes = NetworkAddressBytes;
+            byte[] addressbytes = address.GetAddressBytes();
 
-            if( addressbytes.Length != networkbytes.Length )
+            if (addressbytes.Length != networkbytes.Length)
             {
                 return false;
             }
 
-            var maskbytes = GetSubnetMaskbytes();
+            byte[] maskbytes = GetSubnetMaskbytes();
 
-            var maskedNetwork = And(networkbytes, maskbytes);
-            var maskedAddress = And(addressbytes, maskbytes);
+            byte[] maskedNetwork = And(networkbytes, maskbytes);
+            byte[] maskedAddress = And(addressbytes, maskbytes);
 
             return Equal(maskedNetwork, maskedAddress);
         }
 
         protected static bool Equal(byte[] byte1, byte[] byte2)
         {
-            if( byte1.Length != byte2.Length ) return false;
+            if (byte1.Length != byte2.Length) return false;
 
-            for( var i = 0; i < byte1.Length; i++ )
+            for (int i = 0; i < byte1.Length; i++)
             {
-                if( byte1[i] != byte2[i] ) return false;
+                if (byte1[i] != byte2[i]) return false;
             }
 
             return true;
@@ -159,7 +160,7 @@ namespace Foundation
         {
             var andbyte = new byte[byte1.Length];
 
-            for( var i = 0; i < byte1.Length && i < byte2.Length; i++ )
+            for (int i = 0; i < byte1.Length && i < byte2.Length; i++)
             {
                 andbyte[i] = (byte) (byte1[i] & byte2[i]);
             }

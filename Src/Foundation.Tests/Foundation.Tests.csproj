@@ -154,6 +154,7 @@
     <Compile Include="Extensions\DirectoryInfoExtensionsTests.cs" />
     <Compile Include="Extensions\EnumerableExtensionsTests.cs" />
     <Compile Include="Extensions\FileInfoExtensionsTests.cs" />
+    <Compile Include="Extensions\FileSystemInfoExtensionsTests.cs" />
     <Compile Include="Extensions\HttpRequestBaseExtensionsTests.cs" />
     <Compile Include="Extensions\IPaginatedListExtensionsTests.cs" />
     <Compile Include="Extensions\PropertyInfoExtensionsTests.cs" />

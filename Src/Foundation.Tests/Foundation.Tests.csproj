@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FBC8D241-EB09-441D-A960-25D54EC582F8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -153,6 +153,7 @@
     <Compile Include="DummyReflectionObject.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensionsTests.cs" />
     <Compile Include="Extensions\EnumerableExtensionsTests.cs" />
+    <Compile Include="Extensions\FileInfoExtensionsTests.cs" />
     <Compile Include="Extensions\HttpRequestBaseExtensionsTests.cs" />
     <Compile Include="Extensions\IPaginatedListExtensionsTests.cs" />
     <Compile Include="Extensions\PropertyInfoExtensionsTests.cs" />

@@ -183,6 +183,7 @@
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\FileInfoExtensions.cs" />
     <Compile Include="Extensions\HttpRequestBaseExtensions.cs" />
     <Compile Include="Extensions\PaginatedListExtensions.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Foundation.Extensions;
 using Moq;
 
 namespace Foundation.TestHelpers
@@ -52,6 +53,8 @@ namespace Foundation.TestHelpers
 
             RequestHeaders = new NameValueCollection();
             Form = new NameValueCollection();
+            ResponseCookies = new HttpCookieCollection();
+            RequestCookies = new HttpCookieCollection();
         }
 
         public Mock<HttpContextBase> MockHttpContext { get; set; }
@@ -75,45 +78,54 @@ namespace Foundation.TestHelpers
 
         public Mock<HttpContextBase> GetHttpContext(string appPath, string requestPath, string httpMethod, string protocol, int port)
         {
-            var mockHttpContext = new Mock<HttpContextBase>();
-            var mockHttpRequest = new Mock<HttpRequestBase>();
+            var context = new Mock<HttpContextBase>();
+            var request = new Mock<HttpRequestBase>();
+            var response = new Mock<HttpResponseBase>();
 
-            if( !String.IsNullOrEmpty(appPath) )
+            context.Setup(o => o.Request).Returns(request.Object); // Request
+            context.Setup(o => o.Response).Returns(response.Object); // Response
+
+            if( !appPath.IsNullOrEmpty() )
             {
-                mockHttpRequest.Setup(o => o.ApplicationPath).Returns(appPath);
+                request.Setup(o => o.ApplicationPath).Returns(appPath);
             }
-            if( !String.IsNullOrEmpty(requestPath) )
+            if( !requestPath.IsNullOrEmpty() )
             {
-                mockHttpRequest.Setup(o => o.AppRelativeCurrentExecutionFilePath).Returns(requestPath);
+                request.Setup(o => o.AppRelativeCurrentExecutionFilePath).Returns(requestPath);
                 if( !String.IsNullOrEmpty(appPath) )
                 {
                     var absolutePath = VirtualPathUtility.ToAbsolute(requestPath, appPath);
-                    mockHttpRequest.Setup(o => o.Path).Returns(absolutePath);
+                    request.Setup(o => o.Path).Returns(absolutePath);
                 }
             }
 
             var uri = port >= 0 ? new Uri(protocol + "://localhost" + ":" + Convert.ToString(port,CultureInfo.CurrentCulture)) : new Uri(protocol + "://localhost");
 
-            mockHttpRequest.Setup(o => o.Url).Returns(uri);
+            request.Setup(o => o.Url).Returns(uri);
 
-            mockHttpRequest.Setup(o => o.Headers).Returns(RequestHeaders);
+            request.Setup(o => o.Headers).Returns(RequestHeaders);
 
-            mockHttpRequest.Setup(o => o.Form).Returns(Form);
+            request.Setup(o => o.Form).Returns(Form);
 
-            mockHttpRequest.Setup(o => o.PathInfo).Returns(String.Empty);
+            request.Setup(o => o.Cookies).Returns(RequestCookies);
+            response.Setup(o => o.Cookies).Returns(ResponseCookies);
+
+            request.Setup(o => o.PathInfo).Returns(String.Empty);
 
             if( !String.IsNullOrEmpty(httpMethod) )
             {
-                mockHttpRequest.Setup(o => o.HttpMethod).Returns(httpMethod);
+                request.Setup(o => o.HttpMethod).Returns(httpMethod);
             }
 
-            mockHttpContext.Setup(o => o.Session).Returns((HttpSessionStateBase)null);
-            mockHttpContext.Setup(o => o.Response.ApplyAppPathModifier(It.IsAny<string>())).Returns<string>(r => AppPathModifier + r);
+            context.Setup(o => o.Session).Returns((HttpSessionStateBase)null);
+            context.Setup(o => o.Response.ApplyAppPathModifier(It.IsAny<string>())).Returns<string>(r => AppPathModifier + r);
 
-            mockHttpContext.Setup(o => o.Request).Returns(mockHttpRequest.Object);
-
-            return mockHttpContext;
+            return context;
         }
+
+        protected HttpCookieCollection RequestCookies { get; set; }
+
+        protected HttpCookieCollection ResponseCookies { get; set; }
 
         /// <summary>
         /// The request headers

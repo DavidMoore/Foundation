@@ -193,8 +193,13 @@ namespace Foundation.Services.Repository
 
         public IPaginatedList<T> PagedList(int pageNumber, int pageSize, params Order[] orders)
         {
-            return new PaginatedList<T>(
-                ActiveRecordMediator<T>.SlicedFindAll(pageSize * (pageNumber - 1), pageSize, orders), pageNumber, pageSize, ActiveRecordMediator<T>.Count());
+            var results = (orders == null || orders.Length == 0) ?
+                ActiveRecordMediator<T>.SlicedFindAll(pageSize * (pageNumber - 1), pageSize)
+                : ActiveRecordMediator<T>.SlicedFindAll(pageSize*(pageNumber - 1), pageSize, orders);
+
+            var count = ActiveRecordMediator<T>.Count();
+            
+            return new PaginatedList<T>(results, pageNumber, pageSize, count);
         }
     }
 }

@@ -49,5 +49,14 @@ namespace Foundation.Data.Hierarchy
         /// <param name="item"></param>
         /// <param name="siblingList">Specifies if the querying sibling should be returned in the results</param>
         IList<T> ListSiblings(T item, SiblingList siblingList);
+
+        /// <summary>
+        /// Returns all nodes directly under the specified parent, sorted by the specified field
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="sortBy">The name of the field to sort by</param>
+        /// <param name="descending"></param>
+        /// <returns></returns>
+        IList<T> ListByParent(T parent, string sortBy, bool descending);
     }
 }

@@ -176,6 +176,12 @@ namespace Foundation.Services.Repository
             return ActiveRecordMediator<T>.FindAll(criterias);
         }
 
+        public IList<T> List(string sortBy, bool descending, params ICriterion[] criterias)
+        {
+            var order = new Order(sortBy, !descending);
+            return ActiveRecordMediator<T>.FindAll(new [] {order}, criterias);
+        }
+
         public void Refresh(T instance)
         {
             ActiveRecordMediator<T>.Refresh(instance);

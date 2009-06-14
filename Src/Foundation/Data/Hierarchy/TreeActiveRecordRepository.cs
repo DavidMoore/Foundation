@@ -34,6 +34,12 @@ namespace Foundation.Data.Hierarchy
             return parent == null ? List(Restrictions.IsNull("TreeInfo.Parent")) : List(Restrictions.Eq("TreeInfo.Parent", parent));
         }
 
+        public IList<T> ListByParent(T parent, string sortBy, bool descending)
+        {
+            var criteria = parent == null ? Restrictions.IsNull("TreeInfo.Parent") : Restrictions.Eq("TreeInfo.Parent", parent);
+            return List(sortBy, descending, criteria );
+        }
+
         public IList<T> ListDescendants(T parent)
         {
             return List(Restrictions.Between("TreeInfo.LeftValue", parent.TreeInfo.LeftValue + 1, parent.TreeInfo.RightValue - 1));

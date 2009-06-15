@@ -18,6 +18,11 @@ namespace Foundation.TestHelpers
 
         public MockContext()
         {
+            RequestHeaders = new NameValueCollection();
+            Form = new NameValueCollection();
+            ResponseCookies = new HttpCookieCollection();
+            RequestCookies = new HttpCookieCollection();
+
             MockHttpContext = GetHttpContext("/app/", null, null);
 
             RouteCollection = new RouteCollection
@@ -50,11 +55,6 @@ namespace Foundation.TestHelpers
 
             MockViewDataContainer = new Mock<IViewDataContainer>();
             MockViewDataContainer.Setup(vdc => vdc.ViewData).Returns(ViewDataDictionary);
-
-            RequestHeaders = new NameValueCollection();
-            Form = new NameValueCollection();
-            ResponseCookies = new HttpCookieCollection();
-            RequestCookies = new HttpCookieCollection();
         }
 
         public Mock<HttpContextBase> MockHttpContext { get; set; }
@@ -82,9 +82,6 @@ namespace Foundation.TestHelpers
             var request = new Mock<HttpRequestBase>();
             var response = new Mock<HttpResponseBase>();
 
-            context.Setup(o => o.Request).Returns(request.Object); // Request
-            context.Setup(o => o.Response).Returns(response.Object); // Response
-
             if( !appPath.IsNullOrEmpty() )
             {
                 request.Setup(o => o.ApplicationPath).Returns(appPath);
@@ -102,9 +99,7 @@ namespace Foundation.TestHelpers
             var uri = port >= 0 ? new Uri(protocol + "://localhost" + ":" + Convert.ToString(port,CultureInfo.CurrentCulture)) : new Uri(protocol + "://localhost");
 
             request.Setup(o => o.Url).Returns(uri);
-
             request.Setup(o => o.Headers).Returns(RequestHeaders);
-
             request.Setup(o => o.Form).Returns(Form);
 
             request.Setup(o => o.Cookies).Returns(RequestCookies);
@@ -119,6 +114,9 @@ namespace Foundation.TestHelpers
 
             context.Setup(o => o.Session).Returns((HttpSessionStateBase)null);
             context.Setup(o => o.Response.ApplyAppPathModifier(It.IsAny<string>())).Returns<string>(r => AppPathModifier + r);
+
+            context.Setup(o => o.Request).Returns(request.Object); // Request
+            context.Setup(o => o.Response).Returns(response.Object); // Response
 
             return context;
         }

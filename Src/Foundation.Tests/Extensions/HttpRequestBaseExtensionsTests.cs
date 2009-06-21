@@ -7,7 +7,7 @@ namespace Foundation.Tests.Extensions
     [TestFixture]
     public class HttpRequestBaseExtensionsTests
     {
-        [Test, Ignore]
+        [Test]
         public void IsAjax()
         {
             var mock = new MockContext();

@@ -105,7 +105,7 @@ namespace Foundation.TestHelpers
             request.Setup(o => o.Cookies).Returns(RequestCookies);
             response.Setup(o => o.Cookies).Returns(ResponseCookies);
 
-            request.Setup(o => o.PathInfo).Returns(String.Empty);
+            request.Setup(o => o.PathInfo).Returns(string.Empty);
 
             if( !String.IsNullOrEmpty(httpMethod) )
             {

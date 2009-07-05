@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Castle.ActiveRecord;
 using Foundation.Extensions;
+using Foundation.Models;
 using Foundation.Services.Validation;
 using NHibernate;
 using NHibernate.Criterion;
@@ -197,14 +198,30 @@ namespace Foundation.Services.Repository
             return PagedList(pageNumber, pageSize, null);
         }
 
-        public IPaginatedList<T> PagedList(int pageNumber, int pageSize, params Order[] orders)
+        public IPaginatedList<T> PagedList(int pageNumber, int pageSize, string search, params SortInfo[] sortInfo)
         {
-            var results = (orders == null || orders.Length == 0) ?
-                ActiveRecordMediator<T>.SlicedFindAll(pageSize * (pageNumber - 1), pageSize)
-                : ActiveRecordMediator<T>.SlicedFindAll(pageSize*(pageNumber - 1), pageSize, orders);
+            var ordering = new List<Order>(sortInfo.Length);
+
+            foreach (var info in sortInfo)
+            {
+                if( info != null && !info.FieldName.IsNullOrEmpty())
+                {
+                    ordering.Add( new Order(Projections.Property(info.FieldName), !info.SortDescending));
+                }
+            }
+
+            var firstResult = pageSize*(pageNumber - 1);
+            var criteria = new List<ICriterion>();
+
+            if (!search.IsNullOrEmpty())
+            {
+
+            }
+
+            var results = ActiveRecordMediator<T>.SlicedFindAll(firstResult, pageSize, ordering.ToArray());
 
             var count = ActiveRecordMediator<T>.Count();
-            
+
             return new PaginatedList<T>(results, pageNumber, pageSize, count);
         }
     }

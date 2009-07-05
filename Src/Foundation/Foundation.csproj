@@ -195,6 +195,7 @@
     <Compile Include="IPaginatedList`1.cs" />
     <Compile Include="Media\IThumbnailCache.cs" />
     <Compile Include="Media\ThumbnailCache.cs" />
+    <Compile Include="Models\SortInfo.cs" />
     <Compile Include="NamedPaginatedList.cs" />
     <Compile Include="PaginatedList.cs" />
     <Compile Include="Services\Repository\IPaginatingRepository.cs" />

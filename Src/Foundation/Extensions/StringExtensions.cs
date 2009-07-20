@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Web;
 
@@ -48,6 +49,7 @@ namespace Foundation.Extensions
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [DebuggerStepThrough]
         public static bool IsNullOrEmpty(this string value)
         {
             return string.IsNullOrEmpty(value);

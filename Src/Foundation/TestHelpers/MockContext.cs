@@ -107,6 +107,8 @@ namespace Foundation.TestHelpers
 
             request.Setup(o => o.PathInfo).Returns(string.Empty);
 
+            request.Setup(o => o.Params).Returns(Form);
+
             if( !String.IsNullOrEmpty(httpMethod) )
             {
                 request.Setup(o => o.HttpMethod).Returns(httpMethod);

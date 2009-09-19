@@ -1,3 +1,4 @@
+using System.Text;
 using Foundation.Extensions;
 using NUnit.Framework;
 
@@ -15,6 +16,18 @@ namespace Foundation.Tests.Extensions
             Assert.AreEqual(3, list.Count);
             Assert.AreEqual(1, list.Page);
             Assert.AreEqual(1, list.PageCount);
+        }
+
+        [Test]
+        public void ForEach()
+        {
+            var list = new[] {"one", "two", "three"};
+
+            var sb = new StringBuilder();
+
+            list.ForEach(s => sb.Append(s));
+
+            Assert.AreEqual("onetwothree", sb.ToString());
         }
     }
 }

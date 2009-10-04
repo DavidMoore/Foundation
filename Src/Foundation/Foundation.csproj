@@ -198,6 +198,10 @@
     <Compile Include="Media\ThumbnailCache.cs" />
     <Compile Include="Models\SortInfo.cs" />
     <Compile Include="NamedPaginatedList.cs" />
+    <Compile Include="Net\MimeContentType.cs" />
+    <Compile Include="Net\MimeType.cs" />
+    <Compile Include="Net\MimeTypeDetector.cs" />
+    <Compile Include="Net\MimeTypes.cs" />
     <Compile Include="PaginatedList.cs" />
     <Compile Include="Services\Repository\IPaginatingRepository.cs" />
     <Compile Include="Services\Security\Hasher.cs" />

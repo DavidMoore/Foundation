@@ -183,7 +183,6 @@
     <Compile Include="Services\IocFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectUtilsFixture.cs" />
-    <Compile Include="Lucene\SnowballAnalyzerFixture.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="TestHelpers\LipsumTests.cs" />
     <Compile Include="TestHelpers\MvcTestHelpersTests.cs" />

@@ -12,8 +12,8 @@
     <AssemblyName>Foundation</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>../../Foundation.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../Foundation.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -266,7 +266,6 @@
     <Compile Include="WindowsShell\ShellImageListSize.cs" />
     <Compile Include="WindowsShell\ShellProvider.cs" />
     <Compile Include="TempDirectory.cs" />
-    <Compile Include="Lucene\SnowballAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectUtils.cs" />
     <Compile Include="Services\IJsonSerializer.cs" />

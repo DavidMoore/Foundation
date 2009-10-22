@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Foundation.Services
@@ -24,12 +25,7 @@ namespace Foundation.Services
         /// <returns></returns>
         public static IList<Type> ThatImplement(Type expectedInterface, Assembly assembly)
         {
-            var results = new List<Type>();
-            foreach( var type in assembly.GetTypes() )
-            {
-                if( ReflectUtils.Implements(type, expectedInterface) ) results.Add(type);
-            }
-            return results;
+            return assembly.GetTypes().Where(type => ReflectUtils.Implements(type, expectedInterface)).ToList();
         }
 
         /// <summary>

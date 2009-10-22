@@ -25,7 +25,7 @@ namespace Foundation.Tests.Extensions
             var attribute = propertyInfo.GetAttribute<DummyReflectionAttributeAttribute>();
 
             Assert.IsNotNull(attribute);
-            Assert.IsInstanceOfType(typeof(DummyReflectionAttributeAttribute), attribute);
+            Assert.IsInstanceOf(typeof(DummyReflectionAttributeAttribute), attribute);
         }
     }
 }

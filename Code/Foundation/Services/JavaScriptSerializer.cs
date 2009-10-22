@@ -13,7 +13,7 @@ namespace Foundation.Services
         /// </summary>
         readonly IList<object> customSerializationObjects = new List<object>();
 
-        public override void SerializeObject(JsonWriter writer, object value)
+        public new void Serialize(JsonWriter writer, object value)
         {
             if( ReflectUtils.Implements(value.GetType(), typeof(ISerializableToJavaScript)) && !customSerializationObjects.Contains(value) )
             {
@@ -27,7 +27,7 @@ namespace Foundation.Services
 
             if( attribute != null && !string.IsNullOrEmpty(attribute.Prefix) ) writer.WriteRaw(attribute.Prefix);
 
-            base.SerializeObject(writer, value);
+            base.Serialize(writer, value);
 
             if( attribute != null && !string.IsNullOrEmpty(attribute.Suffix) ) writer.WriteRaw(attribute.Suffix);
         }

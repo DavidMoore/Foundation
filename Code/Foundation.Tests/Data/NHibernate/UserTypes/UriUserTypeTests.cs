@@ -2,6 +2,7 @@ using System;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using NUnit.Framework;
+using Property = Castle.ActiveRecord.PropertyAttribute;
 
 namespace Foundation.Tests.Data.NHibernate.UserTypes
 {

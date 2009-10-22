@@ -5,6 +5,7 @@ using Foundation.Services;
 using Foundation.Services.Repository;
 using Foundation.Services.Validation;
 using NUnit.Framework;
+using Property = Castle.ActiveRecord.PropertyAttribute;
 
 namespace Foundation.Tests.Services.Validation
 {

@@ -16,7 +16,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual(node1, node2.TreeInfo.Parent);
         }
 
-        [Test, ExpectedException(typeof(InvalidOperationException), "Please set the Parent property of the collection before trying to use it.")]
+        [Test, ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Please set the Parent property of the collection before trying to use it.")]
         public void Throws_exception_if_Parent_is_not_set()
         {
             new TreeEntityChildren<Category>(null) {new Category("Node1")};

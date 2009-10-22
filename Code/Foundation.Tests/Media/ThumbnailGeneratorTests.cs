@@ -123,8 +123,8 @@ namespace Foundation.Tests.Media
         public void Has_cache_property_which_defaults_to_ThumbnailCache()
         {
             Assert.IsNotNull(generator.Cache);
-            Assert.IsInstanceOfType(typeof(IThumbnailCache), generator.Cache );
-            Assert.IsInstanceOfType(typeof(ThumbnailCache), generator.Cache);
+            Assert.IsInstanceOf(typeof(IThumbnailCache), generator.Cache );
+            Assert.IsInstanceOf(typeof(ThumbnailCache), generator.Cache);
         }
 
         [Test]

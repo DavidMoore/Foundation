@@ -12,7 +12,7 @@ namespace Foundation.Tests
             ThrowException.IfNull<InvalidOperationException>(new object());
         }
 
-        [Test, ExpectedException(typeof(InvalidOperationException), "Test exception message")]
+        [Test, ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Test exception message")]
         public void Generic_IfTrue_can_throw_specified_exception_with_specified_message()
         {
             ThrowException.IfTrue<InvalidOperationException>(true, "Test exception message");
@@ -30,25 +30,25 @@ namespace Foundation.Tests
             ThrowException.IfArgumentIsNull(null, new object());
         }
 
-        [Test, ExpectedException(typeof(FoundationException), "Expected exception message")]
+        [Test, ExpectedException(typeof(FoundationException), ExpectedMessage = "Expected exception message")]
         public void Is_false_assertion_throws_FoundationException_when_false()
         {
             ThrowException.IfFalse(false, "Expected exception message");
         }
 
-        [Test, ExpectedException(typeof(InvalidOperationException), "Expected exception message")]
+        [Test, ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Expected exception message")]
         public void Is_false_assertion_throws_specified_exception_when_false()
         {
             ThrowException.IfFalse<InvalidOperationException>(false, "Expected exception message");
         }
 
-        [Test, ExpectedException(typeof(FoundationException), "Expected exception message")]
+        [Test, ExpectedException(typeof(FoundationException), ExpectedMessage = "Expected exception message")]
         public void Is_true_assertion_throws_FoundationException_when_false()
         {
             ThrowException.IfTrue(true, "Expected exception message");
         }
 
-        [Test, ExpectedException(typeof(NullReferenceException), "The passed value called \"test\" is null")]
+        [Test, ExpectedException(typeof(NullReferenceException), ExpectedMessage = "The passed value called \"test\" is null")]
         public void ThrowException_IfNull_allows_string_format_parameters()
         {
             ThrowException.IfNull(null, "The passed value called \"{0}\" is null", "test");
@@ -84,7 +84,7 @@ namespace Foundation.Tests
             ThrowException.IfArgumentIsNull("test", null);
         }
 
-        [Test, ExpectedException(typeof(NullReferenceException), "The passed value is null")]
+        [Test, ExpectedException(typeof(NullReferenceException), ExpectedMessage = "The passed value is null")]
         public void Throws_Exception_if_passed_value_is_null()
         {
             ThrowException.IfNull(null, "The passed value is null");

@@ -38,7 +38,7 @@ namespace Foundation.Tests.Services
                 var jsonWriter = new JsonTextWriter(stringWriter);
 
                 var test = new TestClass {StringValue = "StringValue"};
-                serializer.SerializeObject(jsonWriter, test);
+                serializer.Serialize(jsonWriter, test);
                 Assert.AreEqual("thePrefix{\"StringValue\":\"StringValue\"}theSuffix", stringWriter.GetStringBuilder().ToString());
             }
         }

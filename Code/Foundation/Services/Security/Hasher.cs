@@ -149,14 +149,12 @@ namespace Foundation.Services.Security
 
         #endregion
 
-        #region MD5
-
         /// <summary>
         /// Computes the 32-character hex string MD5 Hash of the passed string
         /// </summary>
         /// <param name="toHash">The string to hash</param>
         /// <returns>32-character hex MD5 hash</returns>
-        public static string MD5Hash(string toHash)
+        public static string Md5Hash(string toHash)
         {
             var hasher = new Hasher(HashProvider.MD5);
             return hasher.HashString(toHash);
@@ -168,22 +166,18 @@ namespace Foundation.Services.Security
         /// <param name="compare">String to hash and compare</param>
         /// <param name="hash">Expected hash result</param>
         /// <returns>true if they match, otherwise false</returns>
-        public static bool MD5Compare(string compare, string hash)
+        public static bool Md5Compare(string compare, string hash)
         {
             var hasher = new Hasher(HashProvider.MD5);
             return hasher.Compare(compare, hash);
         }
-
-        #endregion
-
-        #region SHA256
 
         /// <summary>
         /// Computes the 32-character hex string SHA256 Hash of the passed string
         /// </summary>
         /// <param name="toHash">The string to hash</param>
         /// <returns>32-character hex MD5 hash</returns>
-        public static string SHA256Hash(string toHash)
+        public static string Sha256Hash(string toHash)
         {
             var hasher = new Hasher(HashProvider.SHA256);
             return hasher.HashString(toHash);
@@ -195,13 +189,11 @@ namespace Foundation.Services.Security
         /// <param name="compare">String to hash and compare</param>
         /// <param name="hash">Expected hash result</param>
         /// <returns>true if they match, otherwise false</returns>
-        public static bool SHA256Compare(string compare, string hash)
+        public static bool Sha256Compare(string compare, string hash)
         {
             var hasher = new Hasher(HashProvider.SHA256);
             return hasher.Compare(compare, hash);
         }
-
-        #endregion
 
         /// <summary>
         /// The Hash algorithm to use

@@ -77,7 +77,7 @@ namespace Foundation.Media
 
         public string GetCacheHash(string fileName, int width, int height)
         {
-            return Hasher.MD5Hash(string.Concat(fileName, width, height));
+            return Hasher.Md5Hash(string.Concat(fileName, width, height));
         }
 
         /// <summary>

@@ -257,14 +257,12 @@ namespace Foundation.Services.Security
 
         #endregion
 
-        #region MD5
-
         /// <summary>
         /// Computes the 32-character hex string MD5 Hash of the passed string
         /// </summary>
         /// <param name="toHash">The string to hash</param>
         /// <returns>32-character hex MD5 hash</returns>
-        public new static string MD5Hash(string toHash)
+        public new static string Md5Hash(string toHash)
         {
             var hasher = new SaltedHasher(HashProvider.MD5);
             return hasher.HashString(toHash);
@@ -276,24 +274,20 @@ namespace Foundation.Services.Security
         /// <param name="compare">String to hash and compare</param>
         /// <param name="hash">Expected hash result</param>
         /// <returns>true if they match, otherwise false</returns>
-        public new static bool MD5Compare(string compare, string hash)
+        public new static bool Md5Compare(string compare, string hash)
         {
             var hasher = new SaltedHasher(HashProvider.MD5);
             return hasher.Compare(compare, hash);
         }
-
-        #endregion
-
-        #region SHA256
 
         /// <summary>
         /// Computes the 32-character hex string SHA256 Hash of the passed string
         /// </summary>
         /// <param name="toHash">The string to hash</param>
         /// <returns>32-character hex SHA256 hash</returns>
-        public new static string SHA256Hash(string toHash)
+        public new static string Sha256Hash(string toHash)
         {
-            return SHA256Hash(toHash, null);
+            return Sha256Hash(toHash, null);
         }
 
         /// <summary>
@@ -302,7 +296,7 @@ namespace Foundation.Services.Security
         /// <param name="toHash">The string to hash</param>
         /// <param name="salt"></param>
         /// <returns>32-character hex SHA256 hash</returns>
-        public static string SHA256Hash(string toHash, string salt)
+        public static string Sha256Hash(string toHash, string salt)
         {
             var hasher = new SaltedHasher(HashProvider.SHA256);
 
@@ -316,13 +310,11 @@ namespace Foundation.Services.Security
         /// <param name="compare">String to hash and compare</param>
         /// <param name="hash">Expected hash result</param>
         /// <returns>true if they match, otherwise false</returns>
-        public new static bool SHA256Compare(string compare, string hash)
+        public new static bool Sha256Compare(string compare, string hash)
         {
             var hasher = new SaltedHasher(HashProvider.SHA256);
             return hasher.Compare(compare, hash);
         }
-
-        #endregion
 
         /// <summary>
         /// The password generator used for auto-generating salts

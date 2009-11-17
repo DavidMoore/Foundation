@@ -11,9 +11,9 @@ namespace Foundation.Tests.Services.Security
         public void MD5HashAndCompare()
         {
             var test = "The quick brown fox jumps over the lazy dog";
-            var result = SaltedHasher.MD5Hash(test);
+            var result = SaltedHasher.Md5Hash(test);
 
-            Assert.IsTrue(SaltedHasher.MD5Compare(test, result));
+            Assert.IsTrue(SaltedHasher.Md5Compare(test, result));
         }
 
         [Test]
@@ -22,10 +22,10 @@ namespace Foundation.Tests.Services.Security
             var test = "The quick brown fox jumps over the lazy dog";
             Console.WriteLine(test);
 
-            var result = SaltedHasher.SHA256Hash(test);
+            var result = SaltedHasher.Sha256Hash(test);
             Console.WriteLine(result);
 
-            Assert.IsTrue(SaltedHasher.SHA256Compare(test, result));
+            Assert.IsTrue(SaltedHasher.Sha256Compare(test, result));
         }
     }
 }

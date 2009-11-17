@@ -22,13 +22,13 @@ namespace Foundation.Extensions
         }
 
         /// <summary>
-        /// Converts the DirectoryInfo to a FileInfo
+        /// Converts a <see cref="FileSystemInfo"/> to a <see cref="FileSystemInfo"/>
         /// </summary>
-        /// <param name="directoryInfo"></param>
+        /// <param name="fileSystemInfo"></param>
         /// <returns></returns>
-        public static FileInfo ToFileInfo(this DirectoryInfo directoryInfo)
+        public static FileInfo ToFileInfo(this FileSystemInfo fileSystemInfo)
         {
-            return new FileInfo(directoryInfo.FullName);
+            return new FileInfo(fileSystemInfo.FullName);
         }
 
         /// <summary>
@@ -38,9 +38,7 @@ namespace Foundation.Extensions
         /// <returns></returns>
         public static bool IsFile(this DirectoryInfo directoryInfo)
         {
-            if( directoryInfo.ToFileInfo().Exists ) return true;
-
-            return Path.GetFileName(directoryInfo.FullName).Contains(".");
+            return directoryInfo.ToFileInfo().Exists || Path.GetFileName(directoryInfo.FullName).Contains(".");
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Castle.ActiveRecord;
 
 namespace Foundation.Data.ActiveRecord
@@ -6,6 +7,7 @@ namespace Foundation.Data.ActiveRecord
     /// Extends the AR Property attribute, with some default properties:
     /// NotNull=true,
     /// </summary>
+    [AttributeUsage(AttributeTargets.Property)]
     public class PropertyUniqueName : PropertyAttribute
     {
         public PropertyUniqueName()

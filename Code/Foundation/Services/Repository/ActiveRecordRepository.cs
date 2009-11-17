@@ -61,6 +61,10 @@ namespace Foundation.Services.Repository
 
         public virtual T[] Save(params T[] instances)
         {
+            ThrowException.IfArgumentIsNull( ()=> () => instances );
+
+            if( instances ==  null) throw new ArgumentNullException("instances");
+
             foreach( var instance in instances )
             {
                 Save(instance);
@@ -200,6 +204,8 @@ namespace Foundation.Services.Repository
 
         public IPaginatedList<T> PagedList(int pageNumber, int pageSize, string search, params SortInfo[] sortInfo)
         {
+            if( sortInfo == null) throw new ArgumentNullException("sortInfo");
+
             var ordering = new List<Order>(sortInfo.Length);
 
             foreach (var info in sortInfo)

@@ -9,7 +9,7 @@ namespace Foundation.Services.Repository
     {
         public T Find(string name)
         {
-            return list.FirstOrDefault(t => t.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return Items.FirstOrDefault(t => t.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

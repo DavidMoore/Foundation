@@ -185,13 +185,13 @@ namespace Foundation.WindowsShell
                 hIcon = ImageList_GetIcon(
                     hIml,
                     index,
-                    (int) ImageListDrawItemConstants.ILD_TRANSPARENT);
+                    (int) ImageListDrawItemConstants.Transparent);
             }
             else
             {
                 iImageList.GetIcon(
                     index,
-                    (int) ImageListDrawItemConstants.ILD_TRANSPARENT,
+                    (int) ImageListDrawItemConstants.Transparent,
                     ref hIcon);
             }
 
@@ -299,7 +299,7 @@ namespace Foundation.WindowsShell
             int y
             )
         {
-            DrawImage(hdc, index, x, y, ImageListDrawItemConstants.ILD_TRANSPARENT);
+            DrawImage(hdc, index, x, y, ImageListDrawItemConstants.Transparent);
         }
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace Foundation.WindowsShell
 
         /// <summary>
         /// Draws an image using the specified flags and specifies
-        /// the size to clip to (or to stretch to if ILD_SCALE
+        /// the size to clip to (or to stretch to if Scale
         /// is provided).
         /// </summary>
         /// <param name="hdc">Device context to draw to</param>
@@ -395,12 +395,12 @@ namespace Foundation.WindowsShell
         /// <param name="cx">Width to draw</param>
         /// <param name="cy">Height to draw</param>
         /// <param name="foreColor">Fore colour to blend with when using the 
-        /// ILD_SELECTED or ILD_BLEND25 flags</param>
+        /// Selected or Blend25 flags</param>
         /// <param name="stateFlags">State flags</param>
         /// <param name="glowOrShadowColor">If stateFlags include ILS_GLOW, then
         /// the colour to use for the glow effect.  Otherwise if stateFlags includes 
         /// ILS_SHADOW, then the colour to use for the shadow.</param>
-        /// <param name="saturateColorOrAlpha">If stateFlags includes ILS_ALPHA,
+        /// <param name="saturateColorOrAlpha">If stateFlags includes Alpha,
         /// then the alpha component is applied to the icon. Otherwise if 
         /// ILS_SATURATE is included, then the (R,G,B) components are used
         /// to saturate the image.</param>
@@ -431,14 +431,14 @@ namespace Foundation.WindowsShell
             Console.WriteLine("{0}", pimldp.rgbFg);
             pimldp.fStyle = (int) flags;
             pimldp.fState = (int) stateFlags;
-            if( (stateFlags & ImageListDrawStateConstants.ILS_ALPHA) ==
-                ImageListDrawStateConstants.ILS_ALPHA )
+            if( (stateFlags & ImageListDrawStateConstants.Alpha) ==
+                ImageListDrawStateConstants.Alpha )
             {
                 // Set the alpha:
                 pimldp.Frame = saturateColorOrAlpha.A;
             }
-            else if( (stateFlags & ImageListDrawStateConstants.ILS_SATURATE) ==
-                ImageListDrawStateConstants.ILS_SATURATE )
+            else if( (stateFlags & ImageListDrawStateConstants.Saturate) ==
+                ImageListDrawStateConstants.Saturate )
             {
                 // discard alpha channel:
                 saturateColorOrAlpha = Color.FromArgb(0,

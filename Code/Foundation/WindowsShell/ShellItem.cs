@@ -72,7 +72,7 @@ namespace Foundation.WindowsShell
         /// </summary>
         public ShellFolder AsFolder { get { return !IsFolder ? null : new ShellFolder((Folder3) item.GetFolder); } }
 
-        public List<string> Verbs
+        public IList<string> Verbs
         {
             get
             {

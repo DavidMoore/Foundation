@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Foundation.Tests
@@ -51,7 +52,7 @@ namespace Foundation.Tests
             var attribute = typeof(DummyReflectionAttributeAttribute);
 
             var properties = ReflectUtils.GetPropertiesWithAttribute(type, attribute);
-            Assert.AreEqual(2, properties.Count);
+            Assert.AreEqual(2, properties.Count());
         }
 
         [Test]

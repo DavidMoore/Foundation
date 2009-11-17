@@ -10,11 +10,11 @@ namespace Foundation.Services.Repository
     /// <typeparam name="T"></typeparam>
     public class GenericListRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
-        protected readonly IList<T> list;
+        protected IList<T> Items { get; set;}
 
         public GenericListRepository()
         {
-            list = new List<T>();
+            Items = new List<T>();
         }
 
         #region IRepository<T> Members
@@ -26,17 +26,17 @@ namespace Foundation.Services.Repository
 
         public T Save(T instance)
         {
-            var index = list.IndexOf(instance);
+            var index = Items.IndexOf(instance);
 
             if( index > -1 )
             {
-                list[index] = instance;
+                Items[index] = instance;
             }
             else
             {
                 // Set the primary key
                 instance.Id = GetNextPrimaryKey();
-                list.Add(instance);
+                Items.Add(instance);
             }
 
             return instance;
@@ -56,22 +56,22 @@ namespace Foundation.Services.Repository
 
         public void Delete(T instance)
         {
-            list.Remove(instance);
+            Items.Remove(instance);
         }
 
         public void DeleteAll()
         {
-            list.Clear();
+            Items.Clear();
         }
 
         public T Find(int id)
         {
-            return list.SingleOrDefault(x => x.Id == id);
+            return Items.SingleOrDefault(x => x.Id == id);
         }
 
         public IList<T> List()
         {
-            return list;
+            return Items;
         }
 
         #endregion
@@ -79,15 +79,15 @@ namespace Foundation.Services.Repository
         int GetNextPrimaryKey()
         {
             // If the list is empty we start at 1
-            if( list.Count == 0 ) return 1;
+            if( Items.Count == 0 ) return 1;
 
             // Find the "newest" item and increment that for our primary key
-            var startId = list[list.Count - 1].Id + 1;
+            var startId = Items[Items.Count - 1].Id + 1;
 
             // Make sure no other content has this id, incrementing it
             // until it is unique
             var id = startId;
-            while( list.SingleOrDefault(x => x.Id.Equals(id)) != null ) id++;
+            while( Items.SingleOrDefault(x => x.Id.Equals(id)) != null ) id++;
             return id;
         }
     }

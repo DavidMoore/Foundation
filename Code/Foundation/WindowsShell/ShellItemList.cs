@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Shell32;
 
 namespace Foundation.WindowsShell
@@ -6,7 +6,7 @@ namespace Foundation.WindowsShell
     /// <summary>
     /// A collection of ShellItems based on the generic List
     /// </summary>
-    public class ShellItemList : List<ShellItem>
+    public class ShellItemList : Collection<ShellItem>
     {
         /// <summary>
         /// Creates an empty list
@@ -26,7 +26,7 @@ namespace Foundation.WindowsShell
         /// Adds an existing list of Shell32 objects to this list
         /// </summary>
         /// <param name="items"></param>
-        public void Add(FolderItems items)
+        void Add(FolderItems items)
         {
             foreach( ShellFolderItem item in items )
             {

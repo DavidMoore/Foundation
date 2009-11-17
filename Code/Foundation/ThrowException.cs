@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq.Expressions;
 using Foundation.Extensions;
 
 namespace Foundation
@@ -118,6 +119,22 @@ namespace Foundation
             var exception = Activator.CreateInstance(typeof(TException), message) as Exception;
             IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(TException).Name, message);
             throw exception;
+        }
+
+        /// <summary>
+        /// Throws an <see cref="ArgumentNullException"/> if the passed argument <paramref name="arg"/> is null
+        /// </summary>
+        /// <param name="arg"></param>
+        public static void IfArgumentIsNull(Expression<Func<Func<object>>> arg)
+        {
+            var value = arg.Compile()()();
+
+            if (value != null) return;
+
+            var body1 = (Expression<Func<object>>)arg.Body;
+            var body2 = (MemberExpression)body1.Body;
+
+            throw new ArgumentNullException(body2.Member.Name);
         }
     }
 }

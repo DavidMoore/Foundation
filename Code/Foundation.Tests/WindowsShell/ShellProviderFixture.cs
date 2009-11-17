@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Foundation.WindowsShell;
 using NUnit.Framework;
 
@@ -38,7 +39,7 @@ namespace Foundation.Tests.WindowsShell
             var myComputer = provider.MyComputer;
             var list = myComputer.Children;
 
-            drives.ForEach(drive => Assert.IsNotNull(list.Find(obj => obj.Path.Equals(drive))));
+            drives.ForEach(drive => Assert.IsNotNull(list.SingleOrDefault(obj => obj.Path.Equals(drive))));
         }
     }
 }

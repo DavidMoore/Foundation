@@ -10,9 +10,9 @@ using NUnit.Framework;
 
 namespace Foundation.Data.ActiveRecord
 {
-    public class DatabaseFixtureBase
+    public class DatabaseFixtureBase : IDisposable
     {
-        protected SessionScope scope;
+        protected SessionScope Scope { get; set;}
 
         [TestFixtureTearDown]
         public virtual void FixtureTeardown()
@@ -43,15 +43,15 @@ namespace Foundation.Data.ActiveRecord
         public virtual void Setup()
         {
             ActiveRecordStarter.CreateSchema();
-            scope = new SessionScope();
+            Scope = new SessionScope();
         }
 
         [TearDown]
         public virtual void Teardown()
         {
-            ThrowException.IfNull<FoundationException>(scope,
+            ThrowException.IfNull<FoundationException>(Scope,
                 "SessionScope is null. Did you override Setup in the fixture and forget to call base.Setup()?");
-            scope.Dispose();
+            Scope.Dispose();
             ActiveRecordStarter.DropSchema();
         }
 
@@ -90,6 +90,19 @@ namespace Foundation.Data.ActiveRecord
             ActiveRecordStarter.Initialize(GetSqliteMemoryConfigSource());
             ActiveRecordStarter.RegisterTypes(types);
             ActiveRecordStarter.CreateSchema();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposing || Scope == null) return;
+            Scope.Dispose();
+            Scope = null;
         }
     }
 }

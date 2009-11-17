@@ -7,7 +7,7 @@ namespace Foundation.Services
     /// <summary>
     /// Simple class for easily accessing the IoC Container
     /// </summary>
-    public class Ioc
+    public static class Ioc
     {
         static IWindsorContainer container;
 

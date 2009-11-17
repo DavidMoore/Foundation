@@ -13,9 +13,9 @@ namespace Foundation
         /// <summary>
         /// Gets all the properties from the object's type with the specified attribute
         /// </summary>
-        public static List<PropertyInfo> GetPropertiesWithAttribute(Type type, Type attribute)
+        public static IEnumerable<PropertyInfo> GetPropertiesWithAttribute(Type type, Type attribute)
         {
-            return type.GetProperties().Where(info => info.GetCustomAttributes(attribute, true).Length > 0).ToList();
+            return type.GetProperties().Where(info => info.GetCustomAttributes(attribute, true).Length > 0);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Foundation
         /// <param name="type"></param>
         /// <param name="desiredInterface"></param>
         /// <returns></returns>
-        public static bool Implements(Type type, Type desiredInterface)
+        public static bool Implements(Type type, MemberInfo desiredInterface)
         {
             return type.GetInterface(desiredInterface.Name) != null;
         }

@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 namespace Foundation.Data.ActiveRecord
 {
-    public class DatabaseFixtureBase : IDisposable
+    public class DatabaseFixtureBase
     {
         protected SessionScope Scope { get; set;}
 
@@ -90,19 +90,6 @@ namespace Foundation.Data.ActiveRecord
             ActiveRecordStarter.Initialize(GetSqliteMemoryConfigSource());
             ActiveRecordStarter.RegisterTypes(types);
             ActiveRecordStarter.CreateSchema();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (!disposing || Scope == null) return;
-            Scope.Dispose();
-            Scope = null;
         }
     }
 }

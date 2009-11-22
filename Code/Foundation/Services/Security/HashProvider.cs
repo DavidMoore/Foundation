@@ -10,7 +10,7 @@ namespace Foundation.Services.Security
         /// <summary>
         /// 32-character MD5 hash
         /// </summary>
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "SHA")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "MD5")]
         MD5,
 
         /// <summary>

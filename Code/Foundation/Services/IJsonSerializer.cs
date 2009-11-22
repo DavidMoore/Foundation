@@ -15,16 +15,16 @@ namespace Foundation.Services
         string Serialize(object target);
 
         ///<summary>Serializes the specified object to JSON.</summary>
-        ///<param name="jsonString">The json representation of an object string.</param>
+        ///<param name="jsonValue">The json representation of an object string.</param>
         ///<param name="expectedType">The expected type.</param>
-        object Deserialize(string jsonString, Type expectedType);
+        object Deserialize(string jsonValue, Type expectedType);
 
         ///<summary>Serializes the specified object to JSON.</summary>
-        ///<param name="jsonString">The json representation of an object string.</param>
-        T Deserialize<T>(string jsonString);
+        ///<param name="jsonValue">The json representation of an object string.</param>
+        T Deserialize<T>(string jsonValue);
 
         ///<summary>Serializes the specified object to JSON.</summary>
-        ///<param name="jsonString">The json representation of an object string.</param>
-        T[] DeserializeArray<T>(string jsonString);
+        ///<param name="jsonValue">The json representation of an object string.</param>
+        T[] DeserializeArray<T>(string jsonValue);
     }
 }

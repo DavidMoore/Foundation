@@ -97,24 +97,24 @@ namespace Foundation.Services.Security
         /// <summary>
         /// Hashes a normal string and compares with another hash to see if they are equal
         /// </summary>
-        /// <param name="compare">Normal string to compare</param>
-        /// <param name="hash">Expected hash result</param>
+        /// <param name="unhashedValue">Normal string to compare</param>
+        /// <param name="expectedHashValue">Expected hash result</param>
         /// <returns>True if the string hashes to the expected hash result, otherwise false</returns>
-        public virtual bool Compare(string compare, string hash)
+        public virtual bool Compare(string unhashedValue, string expectedHashValue)
         {
-            return HashString(compare).Equals(hash);
+            return HashString(unhashedValue).Equals(expectedHashValue);
         }
 
         /// <summary>
         /// Hashes a normal byte array and compares with another hash to see if they are equal
         /// </summary>
-        /// <param name="compare">Normal byte array to compare</param>
-        /// <param name="hash">Expected hash result</param>
+        /// <param name="unhashedValue">Normal byte array to compare</param>
+        /// <param name="expectedHashValue">Expected hash result</param>
         /// <returns>True if the array hashes to the expected hash result, otherwise false</returns>
-        public virtual bool Compare(byte[] compare, byte[] hash)
+        public virtual bool Compare(byte[] unhashedValue, byte[] expectedHashValue)
         {
-            var compareHash = HashBytes(compare);
-            return Equals(compareHash, hash);
+            var compareHash = HashBytes(unhashedValue);
+            return Equals(compareHash, expectedHashValue);
         }
 
         #endregion

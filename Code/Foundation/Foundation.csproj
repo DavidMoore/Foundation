@@ -281,7 +281,7 @@
     <Compile Include="WindowsShell\ShellFolder.cs" />
     <Compile Include="WindowsShell\ShellItemList.cs" />
     <Compile Include="WindowsShell\ShellIconStateConstants.cs" />
-    <Compile Include="WindowsShell\ShellItemProperties.cs" />
+    <Compile Include="WindowsShell\ShellItemProperty.cs" />
     <Compile Include="WindowsShell\ShellNamespaceIdentifier.cs" />
     <Compile Include="WindowsShell\ShellItem.cs" />
     <Compile Include="WindowsShell\ShellImageList.cs" />

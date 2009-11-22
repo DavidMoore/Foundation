@@ -20,15 +20,15 @@ namespace Foundation.Services.Security
 
         public SaltPosition Position { get; set; }
 
-        public SaltedValue Salt(string stringToSalt)
+        public SaltedValue Salt(string value)
         {
             // Generate the salt
             var salt = PasswordGenerator.Generate(Length);
 
             // Add the salt
-            var value = AddSalt(stringToSalt, salt);
+            var result = AddSalt(value, salt);
 
-            return new SaltedValue {Salt = salt, SaltPosition = Position, UnsaltedValue = stringToSalt, Value = value};
+            return new SaltedValue {Salt = salt, SaltPosition = Position, UnsaltedValue = value, Value = result};
         }
 
         string AddSalt(string stringToSalt, string salt)

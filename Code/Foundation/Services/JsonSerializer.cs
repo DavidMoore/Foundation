@@ -45,25 +45,25 @@ namespace Foundation.Services
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>
-        ///<param name="jsonString">The json representation of an object string.</param>
+        ///<param name="jsonValue">The json representation of an object string.</param>
         ///<param name="expectedType">The expected type.</param>
-        public virtual object Deserialize(string jsonString, Type expectedType)
+        public virtual object Deserialize(string jsonValue, Type expectedType)
         {
-            return JsonConvert.DeserializeObject(jsonString, expectedType);
+            return JsonConvert.DeserializeObject(jsonValue, expectedType);
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>
-        ///<param name="jsonString">The json representation of an object string.</param>
-        public virtual T Deserialize<T>(string jsonString)
+        ///<param name="jsonValue">The json representation of an object string.</param>
+        public virtual T Deserialize<T>(string jsonValue)
         {
-            return (T) JsonConvert.DeserializeObject(jsonString, typeof(T));
+            return (T) JsonConvert.DeserializeObject(jsonValue, typeof(T));
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>
-        ///<param name="jsonString">The json representation of an object string.</param>
-        public virtual T[] DeserializeArray<T>(string jsonString)
+        ///<param name="jsonValue">The json representation of an object string.</param>
+        public virtual T[] DeserializeArray<T>(string jsonValue)
         {
-            return (T[]) JsonConvert.DeserializeObject(jsonString, typeof(T[]));
+            return (T[]) JsonConvert.DeserializeObject(jsonValue, typeof(T[]));
         }
 
         #endregion

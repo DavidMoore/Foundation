@@ -10,7 +10,7 @@ namespace Foundation.Services.Repository
     /// <typeparam name="T"></typeparam>
     public class GenericListRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
-        protected IList<T> Items { get; set;}
+        protected IList<T> Items { get; private set;}
 
         public GenericListRepository()
         {

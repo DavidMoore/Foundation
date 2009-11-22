@@ -80,22 +80,22 @@ namespace Foundation.Data.Hierarchy
         /// <summary>
         /// All siblings
         /// </summary>
-        public IList<T> Siblings { get; set; }
+        public IList<T> Siblings { get; private set; }
 
         /// <summary>
         /// All children immediately below this node
         /// </summary>
-        public TreeEntityChildren<T> Children { get; set; }
+        public TreeEntityChildren<T> Children { get; private set; }
 
         /// <summary>
         /// All children below this node, right down to the lowest level
         /// </summary>
-        public IList<T> Descendants { get; set; }
+        public IList<T> Descendants { get; private set; }
 
         /// <summary>
         /// The parents of this node, right up to the top of the tree
         /// </summary>
-        public IList<T> Ancestors { get; set; }
+        public IList<T> Ancestors { get; private set; }
 
         /// <summary>
         /// Marks if the position of this node in the tree has changed, and needs

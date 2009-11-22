@@ -191,7 +191,7 @@
     <Compile Include="ColorExtensionMethods.cs" />
     <Compile Include="Data\ActiveRecord\ActiveRecordTypeConverter.cs" />
     <Compile Include="Data\ActiveRecord\DummyActiveRecordModel.cs" />
-    <Compile Include="Data\ActiveRecord\PropertyUniqueName.cs" />
+    <Compile Include="Data\ActiveRecord\PropertyUniqueNameAttribute.cs" />
     <Compile Include="Data\ActiveRecord\TypePropertyAttribute.cs" />
     <Compile Include="Data\Hierarchy\ITreeEntity.cs" />
     <Compile Include="Data\Hierarchy\ITreeRepository.cs" />

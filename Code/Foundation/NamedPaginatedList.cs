@@ -13,8 +13,6 @@ namespace Foundation
 
         void Paginate(ICollection<T> source, Func<IEnumerable<T>, string> function)
         {
-            PageNames = new List<string>(PageCount);
-
             if (source.Count < RecordCount) throw new InvalidOperationException("You must load all results to do custom pagination names");
 
             for (var i = 0; i < PageCount; i++)

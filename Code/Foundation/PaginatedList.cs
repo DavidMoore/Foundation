@@ -47,6 +47,6 @@ namespace Foundation
         /// A collection of names for the pages. Usually this defaults to the page numbers but can
         /// be changed depending on the pagination strategy, i.e. alphabetical names for alphabetical pagination
         /// </summary>
-        public IList<string> PageNames { get; set; }
+        public IList<string> PageNames { get; private set; }
     }
 }

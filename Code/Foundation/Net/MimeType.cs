@@ -13,7 +13,7 @@ namespace Foundation.Net
 
         public string Name { get; set; }
 
-        public IList<string> Extensions { get; set; }
+        public IList<string> Extensions { get; private set; }
 
         /// <summary>
         /// The MIME Content-Type

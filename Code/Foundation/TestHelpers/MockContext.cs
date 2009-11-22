@@ -65,16 +65,16 @@ namespace Foundation.TestHelpers
         }
 
         public HttpContextBase HttpContext { get { return MockHttpContext.Object; } }
-        public RouteCollection RouteCollection { get; set; }
+        public RouteCollection RouteCollection { get; private set; }
         public RouteData RouteData { get; set; }
         public Mock<ViewContext> MockViewContext { get; set; }
         public Mock<IViewDataContainer> MockViewDataContainer { get; set; }
-        public ViewDataDictionary ViewDataDictionary { get; set; }
+        public ViewDataDictionary ViewDataDictionary { get; private set; }
 
         /// <summary>
         /// The posted form values for HttpContext.Request.Form
         /// </summary>
-        public NameValueCollection Form { get; set; }
+        public NameValueCollection Form { get; private set; }
 
         public Mock<HttpContextBase> GetHttpContext(string appPath, string requestPath, string httpMethod, string protocol, int port)
         {
@@ -123,14 +123,14 @@ namespace Foundation.TestHelpers
             return context;
         }
 
-        protected HttpCookieCollection RequestCookies { get; set; }
+        protected HttpCookieCollection RequestCookies { get; private set; }
 
-        protected HttpCookieCollection ResponseCookies { get; set; }
+        protected HttpCookieCollection ResponseCookies { get; private set; }
 
         /// <summary>
         /// The request headers
         /// </summary>
-        public NameValueCollection RequestHeaders { get; set; }
+        public NameValueCollection RequestHeaders { get; private set; }
 
         public Mock<HttpContextBase> GetHttpContext(string appPath, string requestPath, string httpMethod)
         {

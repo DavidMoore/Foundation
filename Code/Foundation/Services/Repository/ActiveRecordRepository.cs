@@ -204,6 +204,7 @@ namespace Foundation.Services.Repository
 
         public IPaginatedList<T> PagedList(int pageNumber, int pageSize, string search, params SortInfo[] sortInfo)
         {
+            if( pageNumber < 1) throw new ArgumentException("Page number must be 1 or more!", "pageNumber");
             if( sortInfo == null) throw new ArgumentNullException("sortInfo");
 
             var ordering = new List<Order>(sortInfo.Length);

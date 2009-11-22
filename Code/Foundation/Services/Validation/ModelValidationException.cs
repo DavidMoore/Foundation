@@ -6,6 +6,7 @@ namespace Foundation.Services.Validation
     /// <summary>
     /// Holds validation error information
     /// </summary>
+    [Serializable]
     public class ModelValidationException : Exception
     {
         public ModelValidationException(IValidationErrors errors) : base(errors.ToString())
@@ -24,6 +25,6 @@ namespace Foundation.Services.Validation
         /// <summary>
         /// Collection of validation errors
         /// </summary>
-        public IValidationErrors Errors { get; set; }
+        public IValidationErrors Errors { get; private set; }
     }
 }

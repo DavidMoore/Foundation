@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Foundation.TestHelpers
@@ -6,6 +7,7 @@ namespace Foundation.TestHelpers
     /// <summary>
     /// Lorem Ipsum text generator
     /// </summary>
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Lipsum")]
     public class Lipsum
     {
         readonly string[] dictionary = new[]

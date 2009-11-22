@@ -65,10 +65,11 @@ namespace Foundation.Data.Hierarchy
             isTreeBeingRebuilt = false;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "TreeInfo")]
         public IList<T> ListAncestors(T child)
         {
             ThrowException.IfArgumentIsNull("child", child);
-            ThrowException.IfNull<InvalidOperationException>(child.TreeInfo, "Instance {0} has TreeInfo set to null. Try rebuilding the tree.", child);
+            ThrowException.IfNull<InvalidOperationException>(child.TreeInfo, "Instance {0} has its TreeInfo set to null. Try rebuilding the tree.", child);
 
             return List(
                 Restrictions.Lt("TreeInfo.LeftValue", child.TreeInfo.LeftValue) &&

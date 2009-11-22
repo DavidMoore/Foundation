@@ -109,22 +109,6 @@ namespace Foundation.WindowsShell
             uint cbFileInfo,
             uint uFlags);
 
-        [DllImport("user32.dll")]
-        static extern int DestroyIcon(IntPtr hIcon);
-
-        [DllImport("kernel32")]
-        static extern int FormatMessage(
-            int dwFlags,
-            IntPtr lpSource,
-            int dwMessageId,
-            int dwLanguageId,
-            string lpBuffer,
-            uint nSize,
-            int argumentsLong);
-
-        [DllImport("kernel32")]
-        static extern int GetLastError();
-
         [DllImport("comctl32")]
         static extern int ImageList_Draw(
             IntPtr hIml,

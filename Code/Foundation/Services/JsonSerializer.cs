@@ -18,7 +18,7 @@ namespace Foundation.Services
 
         #region IJsonSerializer Members
 
-        public virtual JsonSerializationOptions SerializationOptions { get; set; }
+        public JsonSerializationOptions SerializationOptions { get; set; }
 
         /// <summary>Serializes the specified object to JSON.</summary>
         /// <param name="target">The object.</param>
@@ -31,15 +31,17 @@ namespace Foundation.Services
                     NullValueHandling = SerializationOptions.NullValueHandling,
                     MissingMemberHandling = SerializationOptions.MissingMemberHandling
                 };
-            var writer = new StringWriter();
 
-            var jsonWriter = new JsonTextWriter(writer)
-                {
-                    PropertyNameFormatting = SerializationOptions.PropertyNameFormatting
-                };
-
-            serializer.Serialize(jsonWriter, target);
-            return writer.GetStringBuilder().ToString();
+            using (var writer = new StringWriter())
+            {
+                var jsonWriter = new JsonTextWriter(writer)
+                                     {
+                                         PropertyNameFormatting = SerializationOptions.PropertyNameFormatting
+                                     };
+                
+                serializer.Serialize(jsonWriter, target);
+                return writer.GetStringBuilder().ToString();
+            }
         }
 
         ///<summary>Serializes the specified object to JSON.</summary>

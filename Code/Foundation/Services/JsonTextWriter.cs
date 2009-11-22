@@ -15,16 +15,12 @@ namespace Foundation.Services
 
             switch( PropertyNameFormatting )
             {
-                case JsonPropertyNameFormatting.Default:
-                    break;
                 case JsonPropertyNameFormatting.CamelCase:
                     formattedName = formattedName.ToCamelCase();
                     break;
                 case JsonPropertyNameFormatting.PascalCase:
                     formattedName = formattedName.ToPascalCase();
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
 
             base.WritePropertyName(formattedName);

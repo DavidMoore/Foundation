@@ -25,7 +25,7 @@ namespace Foundation.Models
         /// </summary>
         public bool SortDescending { get; set; }
 
-        public static SortInfo Desc(string fieldName)
+        public static SortInfo Descending(string fieldName)
         {
             return new SortInfo(fieldName, true);
         }

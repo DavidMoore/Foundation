@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Foundation.Services.Security
@@ -89,19 +90,18 @@ namespace Foundation.Services.Security
 
             switch( SaltPosition )
             {
-                    // Salt at the start of the hash
+                // Salt at the start of the hash
                 case SaltPosition.Prefix:
                     Array.Copy(hash, salt, SaltLength);
                     break;
 
-                    // Salt at the end of the hash
+                // Salt at the end of the hash
                 case SaltPosition.Suffix:
                     Array.Copy(hash, hash.Length - salt.Length, salt, 0, salt.Length);
                     break;
 
                 default:
-                    throw new Exception(
-                        "Couldn't find salt value from hash! Make sure the salt length, position and hash are correct.");
+                    throw new FoundationException("Unknown salt position '{0}'!", SaltPosition);
             }
 
             return salt;
@@ -285,6 +285,7 @@ namespace Foundation.Services.Security
         /// </summary>
         /// <param name="toHash">The string to hash</param>
         /// <returns>32-character hex SHA256 hash</returns>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha")]
         public new static string Sha256Hash(string toHash)
         {
             return Sha256Hash(toHash, null);
@@ -296,6 +297,7 @@ namespace Foundation.Services.Security
         /// <param name="toHash">The string to hash</param>
         /// <param name="salt"></param>
         /// <returns>32-character hex SHA256 hash</returns>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha")]
         public static string Sha256Hash(string toHash, string salt)
         {
             var hasher = new SaltedHasher(HashProvider.SHA256);
@@ -310,6 +312,7 @@ namespace Foundation.Services.Security
         /// <param name="compare">String to hash and compare</param>
         /// <param name="hash">Expected hash result</param>
         /// <returns>true if they match, otherwise false</returns>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha")]
         public new static bool Sha256Compare(string compare, string hash)
         {
             var hasher = new SaltedHasher(HashProvider.SHA256);

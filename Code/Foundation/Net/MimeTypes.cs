@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -24,14 +25,10 @@ namespace Foundation.Net
 
             public static IEnumerable<MimeType> All
             {
-                get
-                {
-                    if (all == null) all = GetMimeTypes(typeof(Image));
-                    return all;
-                }
+                get { return all ?? (all = GetMimeTypes(typeof (Image))); }
             }
 
-            public static MimeType Jpeg = new MimeType("JPEG", new[] {"jpg", "jpeg", "jpe","jif","jfif","jfi"}, "image/jpeg");
+            public static readonly MimeType Jpeg = new MimeType("JPEG", new[] {"jpg", "jpeg", "jpe","jif","jfif","jfi"}, "image/jpeg");
         }
 
         /// <summary>
@@ -41,17 +38,16 @@ namespace Foundation.Net
         {
             static IList<MimeType> all;
 
-            public static IEnumerable<MimeType> All { get
-            {
-                if (all == null) all = GetMimeTypes(typeof (Video));
-                return all;
+            public static IEnumerable<MimeType> All { get { return all ?? (all = GetMimeTypes(typeof (Video))); }
             }
-            }
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Avi")]
             public static MimeType Avi = new MimeType("AVI", new[] { "avi" }, "video/avi");
             public static MimeType Flash = new MimeType("Flash Video", new[] { "flv" }, "video/x-flv");
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Matroska")]
             public static MimeType Matroska = new MimeType("Matroska Video", new[] { "mkv" }, "video/x-mkv");
             public static MimeType Mpeg = new MimeType("MPEG", new[] { "mpg", "mpeg", "mpe", "m1v", "m2v", "mpv2", "mp2v", "ts", "tp", "tpr", "pva", "pss", "m2ts", "m2t", "mts", "evo" }, "video/mpeg");
             public static MimeType Mpeg4 = new MimeType("MPEG4", new[] { "mp4", "m4v", "hdmov", "3gp", "3gpp" }, "video/mp4");
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ogg")]
             public static MimeType Ogg = new MimeType("Ogg Media", new[] { "ogm", "ogv" }, "video/ogg");
             public static MimeType DivX = new MimeType("DivX", new[] { "divx" }, "video/x-divx");
             public static MimeType Quicktime = new MimeType("Quicktime", new[] { "mov","qt","amr","3g2","3gp2" }, "video/quicktime");
@@ -74,13 +70,7 @@ namespace Foundation.Net
         {
             get
             {
-                if( all == null)
-                {
-                    all = Video.All
-                        .Union( Image.All );
-                }
-
-                return all;
+                return all ?? (all = Video.All.Union(Image.All));
             }
         }
     }

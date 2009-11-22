@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 using Foundation.Extensions;
@@ -177,6 +178,7 @@ namespace Foundation.Services.Security
         /// </summary>
         /// <param name="toHash">The string to hash</param>
         /// <returns>32-character hex MD5 hash</returns>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha")]
         public static string Sha256Hash(string toHash)
         {
             var hasher = new Hasher(HashProvider.SHA256);
@@ -189,6 +191,7 @@ namespace Foundation.Services.Security
         /// <param name="compare">String to hash and compare</param>
         /// <param name="hash">Expected hash result</param>
         /// <returns>true if they match, otherwise false</returns>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha")]
         public static bool Sha256Compare(string compare, string hash)
         {
             var hasher = new Hasher(HashProvider.SHA256);

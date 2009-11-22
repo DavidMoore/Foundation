@@ -5,12 +5,12 @@ namespace Foundation.Data.ActiveRecord
 {
     /// <summary>
     /// Extends the AR Property attribute, with some default properties:
-    /// NotNull=true,
+    /// NotNull=true, Unique=true
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class PropertyUniqueName : PropertyAttribute
+    public class PropertyUniqueNameAttribute : PropertyAttribute
     {
-        public PropertyUniqueName()
+        public PropertyUniqueNameAttribute()
         {
             NotNull = true;
             Unique = true;

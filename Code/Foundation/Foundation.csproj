@@ -191,6 +191,7 @@
     <Compile Include="ColorExtensionMethods.cs" />
     <Compile Include="Data\ActiveRecord\ActiveRecordTypeConverter.cs" />
     <Compile Include="Data\ActiveRecord\DummyActiveRecordModel.cs" />
+    <Compile Include="Data\ActiveRecord\PropertyUniqueName.cs" />
     <Compile Include="Data\ActiveRecord\TypePropertyAttribute.cs" />
     <Compile Include="Data\Hierarchy\ITreeEntity.cs" />
     <Compile Include="Data\Hierarchy\ITreeRepository.cs" />
@@ -254,7 +255,6 @@
     <Compile Include="ThrowException.cs" />
     <Compile Include="CommonUtilities.cs" />
     <Compile Include="Data\ActiveRecord\DatabaseFixtureBase.cs" />
-    <Compile Include="Data\ActiveRecord\PropertyUniqueName.cs" />
     <Compile Include="Data\Hibernate\UserTypes\PropertyInfoUserType.cs" />
     <Compile Include="Data\Hibernate\UserTypes\TypeUserType.cs" />
     <Compile Include="FoundationException.cs" />

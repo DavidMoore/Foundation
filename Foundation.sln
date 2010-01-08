@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation", "Code\Foundation\Foundation.csproj", "{76D503C1-FB69-4688-B7F9-49A7D6525263}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Tests", "Code\Foundation.Tests\Foundation.Tests.csproj", "{FBC8D241-EB09-441D-A960-25D54EC582F8}"

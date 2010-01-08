@@ -1,22 +1,26 @@
 ﻿using System;
 using System.ComponentModel;
-using NUnit.Framework;
 
 namespace Foundation.Extensions
 {
-    [TestFixture]
+// ReSharper disable InconsistentNaming
     public static class ISynchronizeInvokeExtensions
+// ReSharper restore InconsistentNaming
     {
-        [Test]
-        public static void InvokeEx<T>(this T obj, Action<T> action) where T : ISynchronizeInvoke
+        /// <exception cref="ArgumentNullException">when <paramref name="invokeObject"/> is null</exception>
+        /// <exception cref="ArgumentNullException">when <paramref name="action"/> is null</exception>
+        public static void InvokeEx<T>(this T invokeObject, Action<T> action) where T : ISynchronizeInvoke
         {
-            if (obj.InvokeRequired)
+            if (invokeObject == null) throw new ArgumentNullException("invokeObject");
+            if (action == null) throw new ArgumentNullException("action");
+
+            if (invokeObject.InvokeRequired)
             {
-                obj.Invoke(action, new object[] { obj });
+                invokeObject.Invoke(action, new object[] { invokeObject });
             }
             else
             {
-                action(obj);
+                action(invokeObject);
             }
         }
     }

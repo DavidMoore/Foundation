@@ -11,8 +11,11 @@ namespace Foundation.Extensions
         /// <param name="directoryInfo"></param>
         /// <param name="fileName"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">when <paramref name="directoryInfo"/> is null</exception>
         public static FileInfo GetFile(this DirectoryInfo directoryInfo, string fileName)
         {
+            if( directoryInfo == null) throw new ArgumentNullException("directoryInfo");
+
             var files = directoryInfo.GetFiles(fileName);
 
             ThrowException.IfTrue<InvalidOperationException>(files.Length > 1,
@@ -26,8 +29,10 @@ namespace Foundation.Extensions
         /// </summary>
         /// <param name="fileSystemInfo"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">when <paramref name="fileSystemInfo"/> is null</exception>
         public static FileInfo ToFileInfo(this FileSystemInfo fileSystemInfo)
         {
+            if (fileSystemInfo == null) throw new ArgumentNullException("fileSystemInfo");
             return new FileInfo(fileSystemInfo.FullName);
         }
 
@@ -36,8 +41,11 @@ namespace Foundation.Extensions
         /// </summary>
         /// <param name="directoryInfo"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">when <paramref name="directoryInfo"/> is null</exception>
         public static bool IsFile(this DirectoryInfo directoryInfo)
         {
+            if (directoryInfo == null) throw new ArgumentNullException("directoryInfo");
+
             return directoryInfo.ToFileInfo().Exists || Path.GetFileName(directoryInfo.FullName).Contains(".");
         }
     }

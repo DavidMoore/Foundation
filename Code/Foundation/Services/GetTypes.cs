@@ -7,8 +7,11 @@ namespace Foundation.Services
 {
     public static class GetTypes
     {
+        /// <exception cref="ArgumentNullException">when <paramref name="assembly"/> is null</exception>
         public static IList<Type> OfType(Type expectedType, Assembly assembly)
         {
+            if (assembly == null) throw new ArgumentNullException("assembly");
+
             var results = new List<Type>();
             foreach( var type in assembly.GetTypes() )
             {
@@ -23,8 +26,10 @@ namespace Foundation.Services
         /// <param name="expectedInterface"></param>
         /// <param name="assembly"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">when <paramref name="assembly"/> is null</exception>
         public static IList<Type> ThatImplement(Type expectedInterface, Assembly assembly)
         {
+            if (assembly == null) throw new ArgumentNullException("assembly");
             return assembly.GetTypes().Where(type => ReflectUtils.Implements(type, expectedInterface)).ToList();
         }
 
@@ -35,8 +40,11 @@ namespace Foundation.Services
         /// <param name="assembly"></param>
         /// <param name="checkReferencedAssemblies">Check referenced assemblies also</param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">when <paramref name="assembly"/> is null</exception>
         public static IList<Type> ThatImplement(Type expectedInterface, Assembly assembly, bool checkReferencedAssemblies)
         {
+            if (assembly == null) throw new ArgumentNullException("assembly");
+
             var results = new List<Type>();
 
             var assemblies = new List<AssemblyName> {assembly.GetName()};

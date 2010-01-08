@@ -127,8 +127,11 @@ namespace Foundation.Services.Security
         /// <param name="data">Data to convert to string</param>
         /// <param name="expectedLength">Expected length of the string for optimization</param>
         /// <returns>Hex string</returns>
+        /// <exception cref="ArgumentNullException">when <paramref name="data"/> is null</exception>
         public string BytesToHexString(byte[] data, int expectedLength)
         {
+            if (data == null) throw new ArgumentNullException("data");
+
             var sb = new StringBuilder(expectedLength);
 
             // Convert each byte to a 2-character hex string

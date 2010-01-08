@@ -18,8 +18,11 @@ namespace Foundation.Data.Hibernate.UserTypes
 
         public override Type ReturnedType { get { return returnedType; } }
 
+        /// <exception cref="ArgumentNullException">when <paramref name="names"/> is null</exception>
         public override object NullSafeGet(IDataReader rs, string[] names, object owner)
         {
+            if( names == null) throw new ArgumentNullException("names");
+
             // It is stored in the database as a numerical aRGB integer value
             var value = NHibernateUtil.Int32.NullSafeGet(rs, names[0]);
 

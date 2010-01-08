@@ -15,8 +15,10 @@ namespace Foundation.Services.Security
             TypeName = typeName;
         }
 
+        /// <exception cref="ArgumentNullException">when <paramref name="type"/> is null</exception>
         public EntityType(Type type)
         {
+            if( type == null) throw new ArgumentNullException("type");
             TypeName = type.AssemblyQualifiedName;
             Type = type;
         }

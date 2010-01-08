@@ -10,8 +10,11 @@ namespace Foundation.Extensions
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">when <paramref name="file"/> is null</exception>
         public static string NameWithoutExtension(this FileInfo file)
         {
+            if (file == null) throw new ArgumentNullException("file");
+
             var extensionIndex = file.Name.LastIndexOf(".", StringComparison.OrdinalIgnoreCase);
 
             if( extensionIndex < 0) return file.Name;
@@ -24,8 +27,10 @@ namespace Foundation.Extensions
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">when <paramref name="file"/> is null</exception>
         public static string ExtensionWithoutDot(this FileInfo file)
         {
+            if( file == null) throw new ArgumentNullException("file");
             return file.Extension.IsNullOrEmpty() ? file.Extension : file.Extension.TrimStart(new[] {'.'});
         }
     }

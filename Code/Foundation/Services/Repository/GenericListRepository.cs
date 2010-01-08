@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Foundation.Models;
@@ -42,8 +43,10 @@ namespace Foundation.Services.Repository
             return instance;
         }
 
+        /// <exception cref="ArgumentNullException">when <paramref name="instances"/> is null</exception>
         public T[] Save(params T[] instances)
         {
+            if (instances == null) throw new ArgumentNullException("instances");
             var results = new List<T>(instances.Length);
 
             foreach( var instance in instances )

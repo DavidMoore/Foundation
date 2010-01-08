@@ -10,8 +10,11 @@ namespace Foundation.Extensions
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">when <paramref name="request"/> is null</exception>
         public static bool IsAjax(this HttpRequestBase request)
         {
+            if (request == null) throw new ArgumentNullException("request");
+
             return request.Headers["X-Requested-By"].Equals("XMLHttpRequest", StringComparison.OrdinalIgnoreCase)
                 || !request.Headers["Ajax"].IsNullOrEmpty();
         }

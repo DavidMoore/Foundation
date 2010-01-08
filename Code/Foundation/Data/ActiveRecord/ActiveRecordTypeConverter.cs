@@ -11,8 +11,11 @@ namespace Foundation.Data.ActiveRecord
     /// <typeparam name="T"></typeparam>
     public class ActiveRecordTypeConverter<T> : TypeConverter where T : class
     {
+        /// <exception cref="ArgumentNullException">when <paramref name="value"/> is null</exception>
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
+            if (value == null) throw new ArgumentNullException("value");
+
             var type = value.GetType();
 
             return type == typeof(string) ? ActiveRecordMediator<T>.FindByPrimaryKey( int.Parse( (string)value,CultureInfo.CurrentCulture) ) : base.ConvertFrom(context, culture, value);

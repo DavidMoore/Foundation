@@ -38,9 +38,11 @@ namespace Foundation.Extensions
             return new NamedPaginatedList<T>(source.ToList(), page, pageSize, getPageNameFunction);
         }
 
+        /// <exception cref="ArgumentNullException">when <paramref name="action"/> is null</exception>
         public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
         {
             if (items == null) return;
+            if( action == null) throw new ArgumentNullException("action");
             foreach (var item in items) action(item);
         }
     }

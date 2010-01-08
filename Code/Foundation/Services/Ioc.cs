@@ -70,8 +70,11 @@ namespace Foundation.Services
         /// </summary>
         /// <param name="registry"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">when <paramref name="registry"/> is null</exception>
         public static IWindsorContainer AddRegistry(IServicesRegistry registry)
         {
+            if (registry == null) throw new ArgumentNullException("registry");
+
             registry.Configure(Container);
             return Container;
         }

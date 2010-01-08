@@ -16,8 +16,11 @@ namespace Foundation
         /// <param name="exception"></param>
         /// <param name="message"></param>
         /// <param name="stringFormatArgs"></param>
+        /// <exception cref="ArgumentNullException">when <paramref name="exception"/> is null</exception>
         public static void Error(Exception exception, string message, params object[] stringFormatArgs)
         {
+            if( exception == null) throw new ArgumentNullException("exception");
+
             var sb = new StringBuilder();
 
             if( !EventLog.SourceExists(foundationSource) ) EventLog.CreateEventSource(foundationSource, applicationEventLog);

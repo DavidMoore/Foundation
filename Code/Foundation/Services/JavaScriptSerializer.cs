@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -13,8 +14,13 @@ namespace Foundation.Services
         /// </summary>
         readonly IList<object> customSerializationObjects = new List<object>();
 
+        /// <exception cref="ArgumentNullException">when <paramref name="writer"/> is null</exception>
+        /// <exception cref="ArgumentNullException">when <paramref name="value"/> is null</exception>
         public new void Serialize(JsonWriter writer, object value)
         {
+            if (writer == null) throw new ArgumentNullException("writer");
+            if (value == null) throw new ArgumentNullException("value");
+
             if( ReflectUtils.Implements(value.GetType(), typeof(ISerializableToJavaScript)) && !customSerializationObjects.Contains(value) )
             {
                 customSerializationObjects.Add(value);

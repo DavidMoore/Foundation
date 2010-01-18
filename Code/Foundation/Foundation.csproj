@@ -115,6 +115,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Lucene.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Composite.UnityExtensions, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Moq, Version=2.6.1014.1, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Moq.dll</HintPath>
@@ -205,6 +208,7 @@
     <Compile Include="Data\Hibernate\UserTypes\ColorUserType.cs" />
     <Compile Include="Data\Hibernate\UserTypes\SimpleUserTypeBase.cs" />
     <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
+    <Compile Include="Reflection\DirectoryAssemblyDiscovery.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\FileInfoExtensions.cs" />
@@ -227,6 +231,11 @@
     <Compile Include="Net\MimeTypeDetector.cs" />
     <Compile Include="Net\MimeTypes.cs" />
     <Compile Include="PaginatedList.cs" />
+    <Compile Include="Reflection\DiscoverTypes.cs" />
+    <Compile Include="Reflection\IAssemblyDiscovery.cs" />
+    <Compile Include="Reflection\ITypeDiscovery.cs" />
+    <Compile Include="Reflection\TypeDiscovery.cs" />
+    <Compile Include="Services\IServiceManager.cs" />
     <Compile Include="Services\Repository\IPaginatingRepository.cs" />
     <Compile Include="Services\Security\Hasher.cs" />
     <Compile Include="Services\Security\HashProvider.cs" />
@@ -249,6 +258,7 @@
     <Compile Include="Services\Security\ActiveRecordIntegration.cs" />
     <Compile Include="Services\Security\SaltedHasher.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Services\UnityServiceManager.cs" />
     <Compile Include="TestHelpers\Lipsum.cs" />
     <Compile Include="TestHelpers\MockContext.cs" />
     <Compile Include="TestHelpers\MvcTestHelpers.cs" />

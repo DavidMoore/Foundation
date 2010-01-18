@@ -41,6 +41,17 @@ namespace Foundation
         }
 
         /// <summary>
+        /// Returns true if the passed type implements the specified interface
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="desiredInterface"></param>
+        /// <returns></returns>
+        public static bool Implements<T>(Type type)
+        {
+            return Implements(type, typeof (T));
+        }
+
+        /// <summary>
         /// Returns true if the specified class member is annotated with any of the specified attributes
         /// </summary>
         /// <param name="memberInfo">The class member to look for an attribute on</param>

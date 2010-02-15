@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Foundation.Services
+namespace Foundation.Services.Registration
 {
     /// <summary>
     /// Marks a class to be registered in the <see cref="IServiceManager"/>
@@ -25,7 +25,7 @@ namespace Foundation.Services
         /// and for the contract specified by <paramref name="serviceContract"/>
         /// </summary>
         /// <param name="serviceContract">The contract type to register this service for</param>
-        public RegisterComponentAttribute(Type serviceContract) : this(serviceContract, LifestyleType.Transient) {}
+        public RegisterComponentAttribute(Type serviceContract) : this(serviceContract, LifestyleType.Singleton) {}
 
         /// <summary>
         /// Registers the service with the specified lifestyle and contract type

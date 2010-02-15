@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Foundation.Services.Discovery
+namespace Foundation.Services.Registration
 {
     /// <summary>
     /// Registers a service using a lifestyle of <see cref="LifestyleType.Singleton"/>

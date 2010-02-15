@@ -1,4 +1,5 @@
 ﻿using Foundation.Services;
+using Foundation.Services.Registration;
 
 namespace Foundation.Tests.Services.Discovery
 {

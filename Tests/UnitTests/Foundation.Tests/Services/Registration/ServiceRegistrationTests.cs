@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Foundation.Services;
+using Foundation.Services.Registration;
+using Foundation.Tests.Services.Discovery;
 using Moq;
 using NUnit.Framework;
 
-namespace Foundation.Tests.Services.Discovery
+namespace Foundation.Tests.Services.Registration
 {
     [TestFixture]
     public class ServiceRegistrationTests

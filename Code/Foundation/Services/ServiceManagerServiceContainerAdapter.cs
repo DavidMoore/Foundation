@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.Design;
+using Foundation.Services.Registration;
 
 namespace Foundation.Services
 {

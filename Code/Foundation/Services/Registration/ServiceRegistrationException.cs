@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Foundation.Services
+namespace Foundation.Services.Registration
 {
     public class ServiceRegistrationException : Exception
     {

@@ -190,7 +190,8 @@
     <Compile Include="PaginatedListTests.cs" />
     <Compile Include="Services\DiscoverTests.cs" />
     <Compile Include="Services\Discovery\DirectoryAssemblySourceTests.cs" />
-    <Compile Include="Services\Discovery\ServiceRegistrationTests.cs" />
+    <Compile Include="Services\Registration\RegisterComponentTests.cs" />
+    <Compile Include="Services\Registration\ServiceRegistrationTests.cs" />
     <Compile Include="Services\Discovery\TypeSourceTests.cs" />
     <Compile Include="Services\Discovery\UserControl.xaml.cs">
       <DependentUpon>UserControl.xaml</DependentUpon>

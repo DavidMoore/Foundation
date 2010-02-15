@@ -236,8 +236,8 @@
     <Compile Include="Services\Discovery\DirectoryAssemblySource.cs" />
     <Compile Include="Services\Discovery\IAssemblySource.cs" />
     <Compile Include="Services\Discovery\ITypeSource.cs" />
-    <Compile Include="Services\RegisterComponentAsSingletonAttribute.cs" />
-    <Compile Include="Services\RegisterComponentAttribute.cs" />
+    <Compile Include="Services\Registration\RegisterComponentAsSingletonAttribute.cs" />
+    <Compile Include="Services\Registration\RegisterComponentAttribute.cs" />
     <Compile Include="Services\Discovery\DiscoverTypes.cs" />
     <Compile Include="Services\Discovery\TypeSource.cs" />
     <Compile Include="Services\IServiceLocatorSimple.cs" />
@@ -269,8 +269,8 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Services\ServiceManagerServiceContainerAdapter.cs" />
     <Compile Include="Services\ServiceManagerExtensions.cs" />
-    <Compile Include="Services\ServiceRegistration.cs" />
-    <Compile Include="Services\ServiceRegistrationException.cs" />
+    <Compile Include="Services\Registration\ServiceRegistration.cs" />
+    <Compile Include="Services\Registration\ServiceRegistrationException.cs" />
     <Compile Include="Services\ServiceResolutionFailedException.cs" />
     <Compile Include="TestHelpers\Lipsum.cs" />
     <Compile Include="TestHelpers\MockContext.cs" />

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Foundation.Services
+namespace Foundation.Services.Registration
 {
     public class ServiceRegistration
     {

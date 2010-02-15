@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using Foundation.Services.Registration;
 
 namespace Foundation.Services
 {

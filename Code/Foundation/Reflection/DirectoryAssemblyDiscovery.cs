@@ -29,6 +29,8 @@ namespace Foundation.Reflection
             this.reflectionOnly = reflectionOnly;
         }
 
+        public DirectoryAssemblyDiscovery(DirectoryInfo directory) : this(directory, true) {}
+
         public IEnumerable<Assembly> Assemblies
         {
             get

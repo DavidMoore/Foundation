@@ -99,6 +99,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Lucene.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Microsoft.Web.Mvc.dll</HintPath>
@@ -123,6 +124,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="Snowball.Net, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Snowball.Net.dll</HintPath>
@@ -153,10 +156,10 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensionMethodsTests.cs" />
-    <Compile Include="BarReflectionAttributeAttribute.cs" />
     <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />
     <Compile Include="Data\ActiveRecord\ColorPropertyAttributeTests.cs" />
@@ -171,8 +174,6 @@
     <Compile Include="Data\NHibernate\UserTypes\PropertyInfoUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\TypeUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\UriUserTypeTests.cs" />
-    <Compile Include="DummyReflectionAttributeAttribute.cs" />
-    <Compile Include="DummyReflectionObject.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensionsTests.cs" />
     <Compile Include="Extensions\EnumerableExtensionsTests.cs" />
     <Compile Include="Extensions\FileInfoExtensionsTests.cs" />
@@ -181,13 +182,19 @@
     <Compile Include="Extensions\IPaginatedListExtensionsTests.cs" />
     <Compile Include="Extensions\PropertyInfoExtensionsTests.cs" />
     <Compile Include="Extensions\TypeExtensionsTests.cs" />
-    <Compile Include="FooReflectionAttributeAttribute.cs" />
     <Compile Include="Media\ThumbnailCacheTests.cs" />
     <Compile Include="Media\ThumbnailGeneratorTests.cs" />
     <Compile Include="NamedPaginatedListTests.cs" />
     <Compile Include="Net\MimeContentTypeTests.cs" />
     <Compile Include="Net\MimeTypeDetectTests.cs" />
     <Compile Include="PaginatedListTests.cs" />
+    <Compile Include="Services\DiscoverTests.cs" />
+    <Compile Include="Services\Discovery\DirectoryAssemblySourceTests.cs" />
+    <Compile Include="Services\Discovery\ServiceRegistrationTests.cs" />
+    <Compile Include="Services\Discovery\TypeSourceTests.cs" />
+    <Compile Include="Services\Discovery\UserControl.xaml.cs">
+      <DependentUpon>UserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\GetTypesTests.cs" />
     <Compile Include="Services\JavaScriptSerializerTests.cs" />
     <Compile Include="Services\Repository\ActiveRecordRepositoryFixture.cs" />
@@ -201,6 +208,8 @@
     <Compile Include="Services\Security\PermissionFixture.cs" />
     <Compile Include="Services\Security\SaltedHasherTestCase.cs" />
     <Compile Include="Services\Security\SalterFixture.cs" />
+    <Compile Include="Services\ServiceContainerWrapperForServiceManagerTests.cs" />
+    <Compile Include="Services\Unity\UnityServiceManagerAdapterTests.cs" />
     <Compile Include="Services\Validation\ActiveRecordValidatorTestCase.cs" />
     <Compile Include="Services\IocFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -218,6 +227,10 @@
     <Compile Include="TestStrings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foundation.Services.Unity\Foundation.Services.Unity.csproj">
+      <Project>{28B88F2B-5068-4A8F-B900-FF503618A996}</Project>
+      <Name>Foundation.Services.Unity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foundation\Foundation.csproj">
       <Project>{76D503C1-FB69-4688-B7F9-49A7D6525263}</Project>
       <Name>Foundation</Name>
@@ -252,6 +265,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Services\Discovery\UserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

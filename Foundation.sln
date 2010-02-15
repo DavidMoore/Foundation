@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation", "Code\Foundati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Tests", "Code\Foundation.Tests\Foundation.Tests.csproj", "{FBC8D241-EB09-441D-A960-25D54EC582F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Services.Unity", "Code\Foundation.Services.Unity\Foundation.Services.Unity.csproj", "{28B88F2B-5068-4A8F-B900-FF503618A996}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{FBC8D241-EB09-441D-A960-25D54EC582F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBC8D241-EB09-441D-A960-25D54EC582F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBC8D241-EB09-441D-A960-25D54EC582F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28B88F2B-5068-4A8F-B900-FF503618A996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28B88F2B-5068-4A8F-B900-FF503618A996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28B88F2B-5068-4A8F-B900-FF503618A996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28B88F2B-5068-4A8F-B900-FF503618A996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

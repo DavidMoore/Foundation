@@ -9,23 +9,23 @@ namespace Foundation.Tests.Extensions
         [Test]
         public void HasAttribute()
         {
-            var propertyInfo = typeof(DummyReflectionObject).GetProperty("StringProperty");
+            var propertyInfo = typeof(ReflectUtilsFixture.DummyReflectionObject).GetProperty("StringProperty");
 
-            Assert.IsTrue(propertyInfo.HasAttribute(typeof(DummyReflectionAttributeAttribute)));
-            Assert.IsFalse(propertyInfo.HasAttribute(typeof(FooReflectionAttributeAttribute)));
-            Assert.IsTrue(propertyInfo.HasAttribute(typeof(DummyReflectionAttributeAttribute), typeof(FooReflectionAttributeAttribute)));
-            Assert.IsFalse(propertyInfo.HasAttribute(typeof(BarReflectionAttributeAttribute), typeof(FooReflectionAttributeAttribute)));
+            Assert.IsTrue(propertyInfo.HasAttribute(typeof(ReflectUtilsFixture.DummyReflectionAttributeAttribute)));
+            Assert.IsFalse(propertyInfo.HasAttribute(typeof(ReflectUtilsFixture.FooReflectionAttributeAttribute)));
+            Assert.IsTrue(propertyInfo.HasAttribute(typeof(ReflectUtilsFixture.DummyReflectionAttributeAttribute), typeof(ReflectUtilsFixture.FooReflectionAttributeAttribute)));
+            Assert.IsFalse(propertyInfo.HasAttribute(typeof(ReflectUtilsFixture.BarReflectionAttributeAttribute), typeof(ReflectUtilsFixture.FooReflectionAttributeAttribute)));
         }
 
         [Test]
         public void GetAttribute()
         {
-            var propertyInfo = typeof(DummyReflectionObject).GetProperty("StringProperty");
+            var propertyInfo = typeof(ReflectUtilsFixture.DummyReflectionObject).GetProperty("StringProperty");
 
-            var attribute = propertyInfo.GetAttribute<DummyReflectionAttributeAttribute>();
+            var attribute = propertyInfo.GetAttribute<ReflectUtilsFixture.DummyReflectionAttributeAttribute>();
 
             Assert.IsNotNull(attribute);
-            Assert.IsInstanceOf(typeof(DummyReflectionAttributeAttribute), attribute);
+            Assert.IsInstanceOf(typeof(ReflectUtilsFixture.DummyReflectionAttributeAttribute), attribute);
         }
     }
 }

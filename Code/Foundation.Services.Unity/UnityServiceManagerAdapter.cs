@@ -50,8 +50,9 @@ namespace Foundation.Services.Unity
         /// </summary>
         /// <param name="fromType">The contract type</param>
         /// <param name="toType">The implementing service type</param>
+        /// <param name="name">The name of the service (<c>null</c> for none)</param>
         /// <param name="lifestyle">The lifestyle to use for the service</param>
-        public IServiceManager AddService(Type fromType, Type toType, LifestyleType lifestyle)
+        public IServiceManager AddService(Type fromType, Type toType, string name, LifestyleType lifestyle)
         {
             if (fromType == null) throw new ArgumentNullException("fromType");
             if (toType == null) throw new ArgumentNullException("toType");
@@ -71,11 +72,11 @@ namespace Foundation.Services.Unity
 
             if (lifetimeManager == null)
             {
-                unityContainer.RegisterType(fromType, toType);
+                unityContainer.RegisterType(fromType, toType, name);
             }
             else
             {
-                unityContainer.RegisterType(fromType, toType, lifetimeManager);
+                unityContainer.RegisterType(fromType, toType, name, lifetimeManager);
             }
 
             return this;

@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Bin\</OutputPath>
+    <OutputPath>..\..\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -47,7 +47,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>Bin\</OutputPath>
+    <OutputPath>..\..\Bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -227,11 +227,11 @@
     <Compile Include="TestStrings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Foundation.Services.Unity\Foundation.Services.Unity.csproj">
+    <ProjectReference Include="..\..\..\Code\Foundation.Services.Unity\Foundation.Services.Unity.csproj">
       <Project>{28B88F2B-5068-4A8F-B900-FF503618A996}</Project>
       <Name>Foundation.Services.Unity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Foundation\Foundation.csproj">
+    <ProjectReference Include="..\..\..\Code\Foundation\Foundation.csproj">
       <Project>{76D503C1-FB69-4688-B7F9-49A7D6525263}</Project>
       <Name>Foundation</Name>
     </ProjectReference>

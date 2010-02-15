@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation", "Code\Foundation\Foundation.csproj", "{76D503C1-FB69-4688-B7F9-49A7D6525263}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Tests", "Code\Foundation.Tests\Foundation.Tests.csproj", "{FBC8D241-EB09-441D-A960-25D54EC582F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Tests", "Tests\UnitTests\Foundation.Tests\Foundation.Tests.csproj", "{FBC8D241-EB09-441D-A960-25D54EC582F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Services.Unity", "Code\Foundation.Services.Unity\Foundation.Services.Unity.csproj", "{28B88F2B-5068-4A8F-B900-FF503618A996}"
 EndProject

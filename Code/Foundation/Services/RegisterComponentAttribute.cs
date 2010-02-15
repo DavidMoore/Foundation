@@ -48,5 +48,11 @@ namespace Foundation.Services
         /// The lifestyle to register the component with.
         /// </summary>
         public LifestyleType Lifestyle { get; set; }
+
+        /// <summary>
+        /// The name for the service / component
+        /// </summary>
+        /// <value>Name of the service, or <c>null</c> for none</value>
+        public string Name { get; set; }
     }
 }

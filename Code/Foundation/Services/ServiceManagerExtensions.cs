@@ -50,7 +50,7 @@ namespace Foundation.Services
         /// <param name="toType"></param>
         public static IServiceManager AddService(this IServiceManager serviceManager, Type fromType, Type toType)
         {
-            return serviceManager.AddService(fromType, toType, LifestyleType.Singleton);
+            return serviceManager.AddService(fromType, toType, null, LifestyleType.Singleton);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Foundation.Services
         /// <param name="lifestyle">The lifestyle to use for the service</param>
         public static IServiceManager AddService<TContract, TService>(this IServiceManager serviceManager, LifestyleType lifestyle)
         {
-            return serviceManager.AddService(typeof (TContract), typeof (TService), lifestyle);
+            return serviceManager.AddService(typeof (TContract), typeof (TService), null, lifestyle);
         }
 
         /// <summary>

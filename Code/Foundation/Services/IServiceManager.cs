@@ -21,8 +21,9 @@ namespace Foundation.Services
         /// </summary>
         /// <param name="fromType">The contract type</param>
         /// <param name="toType">The implementing service type</param>
+        /// <param name="name">The optional name for the service. Set as <c>null</c> to not specify a name.</param>
         /// <param name="lifestyle">The lifestyle to use for the service</param>
-        IServiceManager AddService(Type fromType, Type toType, LifestyleType lifestyle);
+        IServiceManager AddService(Type fromType, Type toType, string name, LifestyleType lifestyle);
         
         /// <summary>
         /// Adds a service instance using the passed name

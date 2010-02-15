@@ -16,8 +16,8 @@ namespace Foundation.Tests.Services.Discovery
 
             IList<Type> contractTypes = new List<Type>();
 
-            serviceManager.Setup(manager => manager.AddService(It.IsAny<Type>(), It.IsAny<Type>(), It.IsAny<LifestyleType>()))
-                .Callback<Type, Type, LifestyleType>((arg1, arg2, arg3) => contractTypes.Add(arg1));
+            serviceManager.Setup(manager => manager.AddService(It.IsAny<Type>(), It.IsAny<Type>(), It.IsAny<string>(), It.IsAny<LifestyleType>()))
+                .Callback<Type, Type, string, LifestyleType>((arg1, arg2, arg3, arg4) => contractTypes.Add(arg1));
 
             var registration = new ServiceRegistration(serviceManager.Object);
 
@@ -35,8 +35,8 @@ namespace Foundation.Tests.Services.Discovery
 
             IList<Type> contractTypes = new List<Type>();
 
-            serviceManager.Setup(manager => manager.AddService(It.IsAny<Type>(), It.IsAny<Type>(), It.IsAny<LifestyleType>()))
-                .Callback<Type, Type, LifestyleType>((arg1, arg2, arg3) => contractTypes.Add(arg1) );
+            serviceManager.Setup(manager => manager.AddService(It.IsAny<Type>(), It.IsAny<Type>(), It.IsAny<string>(), It.IsAny<LifestyleType>()))
+                .Callback<Type, Type, string, LifestyleType>((arg1, arg2, arg3, arg4) => contractTypes.Add(arg1) );
 
             var registration = new ServiceRegistration(serviceManager.Object);
 
@@ -46,6 +46,29 @@ namespace Foundation.Tests.Services.Discovery
             Assert.IsTrue(contractTypes.Contains(typeof(IUserControlInterface)));
             Assert.IsTrue(contractTypes.Contains(typeof(IUserControlInterface2)));
         }
+
+        [Test]
+        public void Registers_service_with_name()
+        {
+            var serviceManager = new Mock<IServiceManager>();
+
+            IDictionary<string,Type> contractTypes = new Dictionary<string, Type>();
+
+            serviceManager.Setup(manager => manager.AddService(It.IsAny<Type>(), It.IsAny<Type>(), It.IsAny<string>(), It.IsAny<LifestyleType>()))
+                .Callback<Type, Type, string, LifestyleType>((arg1, arg2, arg3, arg4) => contractTypes.Add(arg3, arg1));
+
+            var registration = new ServiceRegistration(serviceManager.Object);
+
+            registration.RegisterService(typeof(NamedService));
+
+            Assert.AreEqual(1, contractTypes.Count);
+            Assert.IsTrue(contractTypes.ContainsKey("Named Service"));
+        }
+
+        [RegisterComponent(Name= "Named Service")]
+        internal class NamedService : INamedService {}
+
+        internal interface INamedService {}
     }
 }
 

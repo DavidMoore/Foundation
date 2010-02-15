@@ -21,6 +21,7 @@ namespace Foundation.Services
             {
                 var contractType = registerServiceAttribute.ServiceContract;
                 var lifestyle = registerServiceAttribute.Lifestyle;
+                var name = registerServiceAttribute.Name;
 
                 if (contractType == null)
                 {
@@ -44,7 +45,7 @@ namespace Foundation.Services
                     }
                 }
 
-                ServiceManager.AddService(contractType, type, lifestyle);
+                ServiceManager.AddService(contractType, type, name, lifestyle);
             }
 
             return this;

@@ -1,0 +1,5 @@
+
+[Bb]in
+*.user
+*.suo
+obj/

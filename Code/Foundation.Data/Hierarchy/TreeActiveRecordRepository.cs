@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Castle.ActiveRecord;
+using Foundation.Data.ActiveRecord;
 using Foundation.Models;
 using Foundation.Services.Repository;
 using NHibernate.Criterion;

@@ -1,6 +1,7 @@
 using Castle.ActiveRecord;
 using Castle.Components.Validator;
 using Foundation.Data.ActiveRecord;
+using Foundation.Data.ActiveRecord.Validation;
 using Foundation.Services;
 using Foundation.Services.Repository;
 using Foundation.Services.Validation;

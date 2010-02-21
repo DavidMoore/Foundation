@@ -1,8 +1,8 @@
 using Castle.ActiveRecord;
 using Castle.Components.Validator;
-using Foundation.Data.ActiveRecord;
+using Foundation.Services.Security;
 
-namespace Foundation.Services.Security
+namespace Foundation.Data.ActiveRecord.Security
 {
     /// <summary>
     /// Group with 1 or more associated users

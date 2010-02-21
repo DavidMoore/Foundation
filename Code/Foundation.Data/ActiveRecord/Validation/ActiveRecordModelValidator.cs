@@ -1,7 +1,8 @@
 using Castle.ActiveRecord;
 using Castle.ActiveRecord.Framework;
+using Foundation.Services.Validation;
 
-namespace Foundation.Services.Validation
+namespace Foundation.Data.ActiveRecord.Validation
 {
     public class ActiveRecordModelValidator : IModelValidator
     {

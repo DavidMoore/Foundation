@@ -1,3 +1,4 @@
+using Foundation.Data.ActiveRecord.Security;
 using Foundation.Extensions;
 using Foundation.Models;
 using Foundation.Services.Security;

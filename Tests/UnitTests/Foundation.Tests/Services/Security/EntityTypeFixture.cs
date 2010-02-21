@@ -1,3 +1,4 @@
+using Foundation.Data.ActiveRecord.Security;
 using Foundation.Services.Security;
 using NUnit.Framework;
 

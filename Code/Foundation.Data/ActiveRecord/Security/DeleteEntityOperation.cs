@@ -1,4 +1,4 @@
-﻿namespace Foundation.Services.Security
+﻿namespace Foundation.Data.ActiveRecord.Security
 {
     /// <summary>
     /// Defines the "Delete" operation

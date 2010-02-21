@@ -1,5 +1,6 @@
-﻿using Castle.ActiveRecord;
+using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
+using Foundation.Data.ActiveRecord.Security;
 using Foundation.Services.Security;
 using NUnit.Framework;
 

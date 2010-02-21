@@ -1,8 +1,9 @@
 using System;
 using Castle.ActiveRecord;
 using Castle.Components.Validator;
+using Foundation.Services.Security;
 
-namespace Foundation.Services.Security
+namespace Foundation.Data.ActiveRecord.Security
 {
     [ActiveRecord]
     public class User : IWebUser

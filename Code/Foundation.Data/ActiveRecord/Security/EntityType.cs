@@ -1,7 +1,7 @@
 using System;
 using Castle.ActiveRecord;
 
-namespace Foundation.Services.Security
+namespace Foundation.Data.ActiveRecord.Security
 {
     [ActiveRecord]
     public class EntityType

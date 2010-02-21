@@ -1,9 +1,8 @@
 using System;
 using System.Reflection;
 using Castle.ActiveRecord;
-using Foundation.Data.ActiveRecord;
 
-namespace Foundation.Services.Security
+namespace Foundation.Data.ActiveRecord.Security
 {
     [ActiveRecord]
     public class Permission

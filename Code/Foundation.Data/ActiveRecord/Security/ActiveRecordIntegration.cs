@@ -1,6 +1,6 @@
 using Castle.ActiveRecord;
 
-namespace Foundation.Services.Security
+namespace Foundation.Data.ActiveRecord.Security
 {
     /// <summary>
     /// Methods for integrating the Security model and features with ActiveRecord

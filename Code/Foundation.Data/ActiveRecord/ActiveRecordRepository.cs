@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
 using Castle.ActiveRecord;
+using Foundation.Data.ActiveRecord.Validation;
 using Foundation.Extensions;
 using Foundation.Models;
+using Foundation.Services.Repository;
 using Foundation.Services.Validation;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Driver;
 
-namespace Foundation.Services.Repository
+namespace Foundation.Data.ActiveRecord
 {
     /// <summary>
     /// A base implementation of IRepository

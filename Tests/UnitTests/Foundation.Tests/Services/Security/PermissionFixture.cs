@@ -1,4 +1,5 @@
-﻿using Foundation.Services.Security;
+﻿using Foundation.Data.ActiveRecord.Security;
+using Foundation.Services.Security;
 using NUnit.Framework;
 
 namespace Foundation.Tests.Services.Security

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Reflection;
 using Castle.ActiveRecord.Framework;
+using Foundation.Services.Validation;
 
-namespace Foundation.Services.Validation
+namespace Foundation.Data.ActiveRecord.Validation
 {
     /// <summary>
     /// Converts an ActiveRecord validation error summary into a ValidationErrorsCollection object

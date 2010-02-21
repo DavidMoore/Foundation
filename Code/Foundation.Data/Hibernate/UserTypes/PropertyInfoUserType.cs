@@ -12,6 +12,8 @@ namespace Foundation.Data.Hibernate.UserTypes
         static readonly Type returnedType = typeof(PropertyInfo);
         static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.GetString(255)};
 
+        public const string TypeName = "Foundation.Data.Hibernate.UserTypes.PropertyInfoUserType, Foundation.Data";
+
         #region IUserType Members
 
         public override SqlType[] SqlTypes { get { return sqlTypes; } }

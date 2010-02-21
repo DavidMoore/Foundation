@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1289CF87-299D-4BDD-B1D5-0B1B552901DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Foundation.Data</RootNamespace>
+    <AssemblyName>Foundation.Data</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.ActiveRecord">
+      <HintPath>..\..\..\Commons\Libraries\Castle.ActiveRecord.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Components.Validator">
+      <HintPath>..\..\..\Commons\Libraries\Castle.Components.Validator.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\Commons\Libraries\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\..\Commons\Libraries\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\Commons\Libraries\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\..\..\Commons\Libraries\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Linq">
+      <HintPath>..\..\..\Commons\Libraries\NHibernate.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Search">
+      <HintPath>..\..\..\Commons\Libraries\NHibernate.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\Commons\Libraries\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActiveRecord\ActiveRecordRepository.cs" />
+    <Compile Include="ActiveRecord\ActiveRecordTypeConverter.cs" />
+    <Compile Include="ActiveRecord\ColorPropertyAttribute.cs" />
+    <Compile Include="ActiveRecord\DatabaseFixtureBase.cs" />
+    <Compile Include="ActiveRecord\DummyActiveRecordModel.cs" />
+    <Compile Include="ActiveRecord\NamedEntityActiveRecordRepository.cs" />
+    <Compile Include="ActiveRecord\PropertyUniqueNameAttribute.cs" />
+    <Compile Include="ActiveRecord\TypePropertyAttribute.cs" />
+    <Compile Include="ActiveRecord\Validation\ActiveRecordModelValidator.cs" />
+    <Compile Include="ActiveRecord\Validation\ActiveRecordValidationErrorsAdapter.cs" />
+    <Compile Include="Hibernate\SingletonConnectionProvider.cs" />
+    <Compile Include="Hibernate\UserTypes\ColorUserType.cs" />
+    <Compile Include="Hibernate\UserTypes\PropertyInfoUserType.cs" />
+    <Compile Include="Hibernate\UserTypes\SimpleUserTypeBase.cs" />
+    <Compile Include="Hibernate\UserTypes\TypeUserType.cs" />
+    <Compile Include="Hibernate\UserTypes\UriUserType.cs" />
+    <Compile Include="Hierarchy\ITreeEntity.cs" />
+    <Compile Include="Hierarchy\ITreeRepository.cs" />
+    <Compile Include="Hierarchy\SiblingList.cs" />
+    <Compile Include="Hierarchy\TreeActiveRecordRepository.cs" />
+    <Compile Include="Hierarchy\TreeCriteria.cs" />
+    <Compile Include="Hierarchy\TreeEntityChildren.cs" />
+    <Compile Include="Hierarchy\TreeInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ActiveRecord\Security\ActiveRecordIntegration.cs" />
+    <Compile Include="ActiveRecord\Security\DeleteEntityOperation.cs" />
+    <Compile Include="ActiveRecord\Security\EntityOperation.cs" />
+    <Compile Include="ActiveRecord\Security\EntityType.cs" />
+    <Compile Include="ActiveRecord\Security\Permission.cs" />
+    <Compile Include="ActiveRecord\Security\User.cs" />
+    <Compile Include="ActiveRecord\Security\UserGroup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation\Foundation.csproj">
+      <Project>{76D503C1-FB69-4688-B7F9-49A7D6525263}</Project>
+      <Name>Foundation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

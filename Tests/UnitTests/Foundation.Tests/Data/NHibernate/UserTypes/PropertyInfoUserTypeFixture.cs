@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
+using Foundation.Data.Hibernate.UserTypes;
 using Foundation.Services.Repository;
 using NUnit.Framework;
 using Property = Castle.ActiveRecord.PropertyAttribute;
@@ -33,7 +34,7 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             [PrimaryKey]
             public int Id { get; set; }
 
-            [Property(ColumnType = "Foundation.Data.Hibernate.UserTypes.PropertyInfoUserType,Foundation")]
+            [Property(ColumnType = PropertyInfoUserType.TypeName)]
             public PropertyInfo DummyPropertyInfo { get; set; }
         }
 

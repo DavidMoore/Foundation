@@ -1,6 +1,7 @@
 using System;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
+using Foundation.Data.Hibernate.UserTypes;
 using NUnit.Framework;
 using Property = Castle.ActiveRecord.PropertyAttribute;
 
@@ -38,7 +39,7 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
         [PrimaryKey]
         public int Id { get; set; }
 
-        [Property(ColumnType = "Foundation.Data.Hibernate.UserTypes.UriUserType,Foundation")]
+        [Property(ColumnType = UriUserType.TypeName)]
         public Uri Url { get; set; }
     }
 }

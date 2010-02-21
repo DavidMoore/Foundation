@@ -59,10 +59,6 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.ActiveRecord, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Dependencies\Castle.ActiveRecord.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Components.Binder, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Castle.Components.Binder.dll</HintPath>
@@ -192,22 +188,6 @@
   <ItemGroup>
     <Compile Include="ArrayExtensionMethods.cs" />
     <Compile Include="ColorExtensionMethods.cs" />
-    <Compile Include="Data\ActiveRecord\ActiveRecordTypeConverter.cs" />
-    <Compile Include="Data\ActiveRecord\DummyActiveRecordModel.cs" />
-    <Compile Include="Data\ActiveRecord\PropertyUniqueNameAttribute.cs" />
-    <Compile Include="Data\ActiveRecord\TypePropertyAttribute.cs" />
-    <Compile Include="Data\Hierarchy\ITreeEntity.cs" />
-    <Compile Include="Data\Hierarchy\ITreeRepository.cs" />
-    <Compile Include="Data\Hierarchy\SiblingList.cs" />
-    <Compile Include="Data\Hierarchy\TreeActiveRecordRepository.cs" />
-    <Compile Include="Data\Hierarchy\TreeCriteria.cs" />
-    <Compile Include="Data\Hierarchy\TreeEntityChildren.cs" />
-    <Compile Include="Data\Hierarchy\TreeInfo.cs" />
-    <Compile Include="Data\Hibernate\SingletonConnectionProvider.cs" />
-    <Compile Include="Data\ActiveRecord\ColorPropertyAttribute.cs" />
-    <Compile Include="Data\Hibernate\UserTypes\ColorUserType.cs" />
-    <Compile Include="Data\Hibernate\UserTypes\SimpleUserTypeBase.cs" />
-    <Compile Include="Data\Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\FileInfoExtensions.cs" />
@@ -263,8 +243,6 @@
     <Compile Include="Services\Repository\GenericListRepository.cs" />
     <Compile Include="Services\Repository\GenericListRepositoryForNamedEntity.cs" />
     <Compile Include="Services\Repository\IEntityWithUniqueNameRepository`1.cs" />
-    <Compile Include="Services\Repository\NamedEntityActiveRecordRepository.cs" />
-    <Compile Include="Services\Security\ActiveRecordIntegration.cs" />
     <Compile Include="Services\Security\SaltedHasher.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Services\ServiceManagerServiceContainerAdapter.cs" />
@@ -277,14 +255,8 @@
     <Compile Include="TestHelpers\MvcTestHelpers.cs" />
     <Compile Include="ThrowException.cs" />
     <Compile Include="CommonUtilities.cs" />
-    <Compile Include="Data\ActiveRecord\DatabaseFixtureBase.cs" />
-    <Compile Include="Data\Hibernate\UserTypes\PropertyInfoUserType.cs" />
-    <Compile Include="Data\Hibernate\UserTypes\TypeUserType.cs" />
     <Compile Include="FoundationException.cs" />
     <Compile Include="Services\Repository\ISqlRepository.cs" />
-    <Compile Include="Services\Security\DeleteEntityOperation.cs" />
-    <Compile Include="Services\Security\EntityOperation.cs" />
-    <Compile Include="Services\Security\EntityType.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\IEntityWithUniqueName.cs" />
     <Compile Include="Services\Security\IGroup.cs" />
@@ -292,12 +264,9 @@
     <Compile Include="Services\Security\IWebUser.cs" />
     <Compile Include="Services\Security\IUser.cs" />
     <Compile Include="Services\Security\PasswordGenerator.cs" />
-    <Compile Include="Services\Security\Permission.cs" />
     <Compile Include="Services\Security\SaltedValue.cs" />
     <Compile Include="Services\Security\Salter.cs" />
     <Compile Include="Services\Security\SaltPosition.cs" />
-    <Compile Include="Services\Security\User.cs" />
-    <Compile Include="Services\Security\UserGroup.cs" />
     <Compile Include="WindowsShell\ImageListDrawItemConstants.cs" />
     <Compile Include="WindowsShell\ImageListDrawStateConstants.cs" />
     <Compile Include="WindowsShell\IShellProvider.cs" />
@@ -320,10 +289,7 @@
     <Compile Include="Services\IUriUtility.cs" />
     <Compile Include="Services\JsonSerializer.cs" />
     <Compile Include="Services\Repository\IRepository`1.cs" />
-    <Compile Include="Services\Repository\ActiveRecordRepository.cs" />
     <Compile Include="Services\UriUtility.cs" />
-    <Compile Include="Services\Validation\ActiveRecordModelValidator.cs" />
-    <Compile Include="Services\Validation\ActiveRecordValidationErrorsAdapter.cs" />
     <Compile Include="Services\Validation\IModelValidator.cs" />
     <Compile Include="Services\Validation\IValidationErrors.cs" />
     <Compile Include="Services\Validation\IValidationPropertyError.cs" />
@@ -355,6 +321,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

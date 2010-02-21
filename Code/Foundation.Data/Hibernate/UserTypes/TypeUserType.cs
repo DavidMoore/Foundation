@@ -9,6 +9,7 @@ namespace Foundation.Data.Hibernate.UserTypes
     {
         static readonly Type returnedType = typeof(Type);
         static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.GetString(255)};
+        public const string TypeName = "Foundation.Data.Hibernate.UserTypes.TypeUserType, Foundation.Data";
 
         public override SqlType[] SqlTypes { get { return sqlTypes; } }
 

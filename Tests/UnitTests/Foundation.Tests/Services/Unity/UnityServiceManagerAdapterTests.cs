@@ -22,7 +22,7 @@ namespace Foundation.Tests.Services.Unity
             // Resolve from the child
             var result = child.GetService<IDummyService>();
 
-            Assert.IsInstanceOfType(typeof(IDummyService), result);
+            Assert.IsInstanceOf<IDummyService>( result);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Services.Unity
 
             // Resolve from the child
             var result = child.GetService<IDummyService>();
-            Assert.IsInstanceOfType(typeof(IDummyService), result);
+            Assert.IsInstanceOf<IDummyService>(result);
 
             // Resolve from the parent
             Assert

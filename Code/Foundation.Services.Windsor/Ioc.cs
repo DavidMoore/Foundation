@@ -2,7 +2,7 @@ using System;
 using Castle.MicroKernel;
 using Castle.Windsor;
 
-namespace Foundation.Services
+namespace Foundation.Services.Windsor
 {
     /// <summary>
     /// Simple class for easily accessing the IoC Container

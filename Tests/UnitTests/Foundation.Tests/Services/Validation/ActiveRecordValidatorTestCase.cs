@@ -5,6 +5,7 @@ using Foundation.Data.ActiveRecord.Validation;
 using Foundation.Services;
 using Foundation.Services.Repository;
 using Foundation.Services.Validation;
+using Foundation.Services.Windsor;
 using NUnit.Framework;
 using Property = Castle.ActiveRecord.PropertyAttribute;
 

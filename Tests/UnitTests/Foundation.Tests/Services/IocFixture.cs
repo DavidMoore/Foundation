@@ -1,4 +1,5 @@
 ﻿using Foundation.Services;
+using Foundation.Services.Windsor;
 using NUnit.Framework;
 
 namespace Foundation.Tests.Services

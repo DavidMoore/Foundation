@@ -79,10 +79,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Castle.MicroKernel.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.MonoRail.Framework, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Dependencies\Castle.MonoRail.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Windsor, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Castle.Windsor.dll</HintPath>
@@ -250,8 +246,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectUtils.cs" />
     <Compile Include="Services\IJsonSerializer.cs" />
-    <Compile Include="Services\Ioc.cs" />
-    <Compile Include="Services\IocContainer.cs" />
     <Compile Include="Services\IUriUtility.cs" />
     <Compile Include="Services\JsonSerializer.cs" />
     <Compile Include="Services\Repository\IRepository`1.cs" />

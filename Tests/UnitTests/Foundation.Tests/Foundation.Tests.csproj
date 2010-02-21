@@ -236,6 +236,10 @@
       <Project>{28B88F2B-5068-4A8F-B900-FF503618A996}</Project>
       <Name>Foundation.Services.Unity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Code\Foundation.Services.Windsor\Foundation.Services.Windsor.csproj">
+      <Project>{799AC8AD-EC5F-4698-AC9D-E45B2B207AB9}</Project>
+      <Name>Foundation.Services.Windsor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Code\Foundation\Foundation.csproj">
       <Project>{76D503C1-FB69-4688-B7F9-49A7D6525263}</Project>
       <Name>Foundation</Name>

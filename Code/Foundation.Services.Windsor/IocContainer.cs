@@ -1,8 +1,6 @@
-using Castle.Core.Resource;
 using Castle.Windsor;
-using Castle.Windsor.Configuration.Interpreters;
 
-namespace Foundation.Services
+namespace Foundation.Services.Windsor
 {
     /// <summary>
     /// Inversion of control container

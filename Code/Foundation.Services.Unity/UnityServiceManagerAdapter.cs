@@ -13,6 +13,7 @@ namespace Foundation.Services.Unity
     public class UnityServiceManagerAdapter : IServiceManager
     {
         readonly IUnityContainer unityContainer;
+        bool isDisposing;
 
         /// <summary>
         /// Creates a new <see cref="UnityContainer"/> and then adapts it by creating a new
@@ -32,7 +33,6 @@ namespace Foundation.Services.Unity
 
             if (!this.IsServiceRegistered<IServiceLocator>()) this.AddInstance<IServiceLocator>(this);
             if (!this.IsServiceRegistered<IServiceManager>()) this.AddInstance<IServiceManager>(this);
-            if (!this.IsServiceRegistered<IUnityContainer>()) this.AddInstance(unityContainer);
         }
 
         /// <summary>
@@ -200,6 +200,27 @@ namespace Foundation.Services.Unity
             {
                 throw new ServiceResolutionFailedException(typeof(TService), rfe);
             }
+        }
+
+        /// <summary>
+        /// Disposes the Unity container
+        /// </summary>
+        /// <filterpriority>2</filterpriority>
+        public void Dispose()
+        {
+            Dipose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        void Dipose(bool disposing)
+        {
+            if (!disposing || isDisposing || unityContainer == null) return;
+
+            // Because this component is registered within itself, it will also
+            // try to dispose of itself recursively, causing a StackOverflowException,
+            // unless we make sure we only try to dispose once.
+            isDisposing = true;
+            unityContainer.Dispose();
         }
     }
 }

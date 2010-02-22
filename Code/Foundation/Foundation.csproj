@@ -75,14 +75,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Castle.DynamicProxy2.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.MicroKernel, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Dependencies\Castle.MicroKernel.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Dependencies\Castle.Windsor.dll</HintPath>
-    </Reference>
     <Reference Include="GeoIp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2ae18b7267db1a07, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\GeoIp.dll</HintPath>
@@ -213,8 +205,6 @@
     <Compile Include="Services\Registration\ServiceRegistrationException.cs" />
     <Compile Include="Services\ServiceResolutionFailedException.cs" />
     <Compile Include="TestHelpers\Lipsum.cs" />
-    <Compile Include="TestHelpers\MockContext.cs" />
-    <Compile Include="TestHelpers\MvcTestHelpers.cs" />
     <Compile Include="ThrowException.cs" />
     <Compile Include="CommonUtilities.cs" />
     <Compile Include="FoundationException.cs" />

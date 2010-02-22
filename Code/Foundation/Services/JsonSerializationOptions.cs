@@ -1,7 +1,9 @@
+using System;
 using Newtonsoft.Json;
 
 namespace Foundation.Services
 {
+    [CLSCompliant(false)]
     public class JsonSerializationOptions
     {
         public JsonSerializationOptions(NullValueHandling nullValueHandling, MissingMemberHandling missingMemberHandling,

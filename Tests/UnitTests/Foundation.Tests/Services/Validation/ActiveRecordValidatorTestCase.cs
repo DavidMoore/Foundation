@@ -26,12 +26,7 @@ namespace Foundation.Tests.Services.Validation
             [ValidateEmail, Property]
             public string Email { get; set; }
         }
-
-        public ActiveRecordValidatorTestCase()
-        {
-            Ioc.Initialize();
-        }
-
+        
         public override void RegisterTypes()
         {
             base.RegisterTypes();

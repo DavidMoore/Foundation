@@ -1,4 +1,5 @@
 using Foundation.TestHelpers;
+using Foundation.Web.TestHelpers;
 using NUnit.Framework;
 
 namespace Foundation.Tests.TestHelpers

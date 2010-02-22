@@ -7,7 +7,7 @@ using System.Web.Routing;
 using Foundation.Extensions;
 using Moq;
 
-namespace Foundation.TestHelpers
+namespace Foundation.Web.TestHelpers
 {
     /// <summary>
     /// Helper for mocking the request context for ASP.NET MVC
@@ -26,21 +26,21 @@ namespace Foundation.TestHelpers
             MockHttpContext = GetHttpContext("/app/", null, null);
 
             RouteCollection = new RouteCollection
-                {
-                    {"Default", new Route("{controller}/{action}/{id}", null)
-                        {
-                            Defaults = new RouteValueDictionary(new {id = string.Empty, action="Index"})
-                        }
-                        },
+                                  {
+                                      {"Default", new Route("{controller}/{action}/{id}", null)
+                                                      {
+                                                          Defaults = new RouteValueDictionary(new {id = string.Empty, action="Index"})
+                                                      }
+                                          },
 
-                    {"AdminMediaLink", new Route("admin/{controller}/{action}/{*path}", null)
-                        {
-                            Defaults = new RouteValueDictionary(new { action = "Index", path = (string)null })
-                        }
-                        },
+                                      {"AdminMediaLink", new Route("admin/{controller}/{action}/{*path}", null)
+                                                             {
+                                                                 Defaults = new RouteValueDictionary(new { action = "Index", path = (string)null })
+                                                             }
+                                          },
 
-                    {"namedroute", new Route("named/{controller}/{action}/{id}", null) {Defaults = new RouteValueDictionary(new {id = "defaultid"})}}
-                };
+                                      {"namedroute", new Route("named/{controller}/{action}/{id}", null) {Defaults = new RouteValueDictionary(new {id = "defaultid"})}}
+                                  };
 
             RouteData = new RouteData();
             RouteData.Values.Add("controller", "home");

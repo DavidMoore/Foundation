@@ -7,7 +7,7 @@ namespace Foundation.Services
     /// <summary>
     /// Offers service location and registration methods
     /// </summary>
-    public interface IServiceManager : IServiceLocator
+    public interface IServiceManager : IServiceLocator, IDisposable
     {
         /// <summary>
         /// Returns true if the specified <paramref name="type"/> is registered in the container; otherwise false

@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 
 namespace Foundation.Services
 {
+    [CLSCompliant(false)]
     public class JavaScriptSerializer : Newtonsoft.Json.JsonSerializer
     {
         /// <summary>

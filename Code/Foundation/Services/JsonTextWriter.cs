@@ -4,6 +4,7 @@ using Foundation.Extensions;
 
 namespace Foundation.Services
 {
+    [CLSCompliant(false)]
     public class JsonTextWriter : Newtonsoft.Json.JsonTextWriter
     {
         public JsonTextWriter(TextWriter textWriter) : base(textWriter) {}

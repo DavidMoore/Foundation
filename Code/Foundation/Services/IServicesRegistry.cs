@@ -1,16 +1,14 @@
-using Castle.Windsor;
-
 namespace Foundation.Services
 {
     /// <summary>
-    /// Contract for registering services in an Ioc container
+    /// Contract for registering services in a container
     /// </summary>
     public interface IServicesRegistry
     {
         /// <summary>
-        /// Does any component registration on the container
+        /// Does any component registration in the services manager
         /// </summary>
-        /// <param name="container"></param>
-        void Configure(IWindsorContainer container);
+        /// <param name="serviceManager"></param>
+        void Configure(IServiceManager serviceManager);
     }
 }

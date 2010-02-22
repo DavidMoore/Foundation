@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Data", "Code\Fou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Services.Windsor", "Code\Foundation.Services.Windsor\Foundation.Services.Windsor.csproj", "{799AC8AD-EC5F-4698-AC9D-E45B2B207AB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Web", "Code\Foundation.Web\Foundation.Web.csproj", "{6C83E48B-E99F-4745-BCAF-5E079FBD1B5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{799AC8AD-EC5F-4698-AC9D-E45B2B207AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{799AC8AD-EC5F-4698-AC9D-E45B2B207AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{799AC8AD-EC5F-4698-AC9D-E45B2B207AB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C83E48B-E99F-4745-BCAF-5E079FBD1B5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C83E48B-E99F-4745-BCAF-5E079FBD1B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C83E48B-E99F-4745-BCAF-5E079FBD1B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C83E48B-E99F-4745-BCAF-5E079FBD1B5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

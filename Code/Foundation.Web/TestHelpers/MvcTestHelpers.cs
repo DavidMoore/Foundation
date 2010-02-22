@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using Moq;
 
-namespace Foundation.TestHelpers
+namespace Foundation.Web.TestHelpers
 {
     [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Mvc")]
     public static class MvcTestHelpers
@@ -16,10 +16,10 @@ namespace Foundation.TestHelpers
         public static HttpContextBase GetHttpContextBase(Uri url)
         {
             var args = new MockHttpContextArguments
-                {
-                    HttpMethod = HttpVerb.Get,
-                    RequestPath = url.AbsolutePath
-                };
+                           {
+                               HttpMethod = HttpVerb.Get,
+                               RequestPath = url.AbsolutePath
+                           };
 
             return GetHttpContextBase(args);
         }

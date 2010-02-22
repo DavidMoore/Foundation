@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Web;
+using Foundation.Extensions;
 
-namespace Foundation.Extensions
+namespace Foundation.Web.Extensions
 {
     public static class HttpRequestBaseExtensions
     {
@@ -16,7 +17,9 @@ namespace Foundation.Extensions
             if (request == null) throw new ArgumentNullException("request");
 
             return request.Headers["X-Requested-By"].Equals("XMLHttpRequest", StringComparison.OrdinalIgnoreCase)
-                || !request.Headers["Ajax"].IsNullOrEmpty();
+                   || !request.Headers["Ajax"].IsNullOrEmpty();
         }
     }
 }
+
+

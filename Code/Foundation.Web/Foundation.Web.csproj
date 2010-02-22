@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\HttpRequestBaseExtensions.cs" />
     <Compile Include="JavaScript\IJsonSerializer.cs" />
     <Compile Include="JavaScript\ISerializableToJavaScript.cs" />
     <Compile Include="JavaScript\JavaScriptObjectAttribute.cs" />

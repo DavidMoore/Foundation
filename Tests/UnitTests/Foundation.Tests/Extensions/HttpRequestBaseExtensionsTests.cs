@@ -1,5 +1,6 @@
 using Foundation.Extensions;
 using Foundation.TestHelpers;
+using Foundation.Web.Extensions;
 using Foundation.Web.TestHelpers;
 using NUnit.Framework;
 

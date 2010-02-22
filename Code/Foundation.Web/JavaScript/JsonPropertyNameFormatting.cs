@@ -1,4 +1,4 @@
-namespace Foundation.Services
+namespace Foundation.Web.JavaScript
 {
     /// <summary>
     /// Methods for altering the output of property names

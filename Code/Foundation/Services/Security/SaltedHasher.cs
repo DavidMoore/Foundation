@@ -85,6 +85,8 @@ namespace Foundation.Services.Security
         /// <returns></returns>
         public byte[] FindSalt(byte[] hash)
         {
+            if (hash == null) throw new ArgumentNullException("hash");
+
             // To hold the salt data once we find it
             var salt = new byte[SaltLength];
 
@@ -129,6 +131,8 @@ namespace Foundation.Services.Security
         /// <returns>Computed hash</returns>
         public byte[] HashBytes(byte[] data, byte[] salt)
         {
+            if (data == null) throw new ArgumentNullException("data");
+            
             // Get the hasher
             var hasher = GetHashAlgorithm(Provider);
 

@@ -12,6 +12,7 @@ namespace Foundation.Services.Validation
     {
         public ModelValidationException(IValidationErrors errors) : base(errors.ToString())
         {
+            if (errors == null) throw new ArgumentNullException("errors");
             Errors = errors;
         }
 

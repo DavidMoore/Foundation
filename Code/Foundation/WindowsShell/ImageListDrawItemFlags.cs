@@ -6,12 +6,12 @@ namespace Foundation.WindowsShell
     /// Flags controlling how the Image List item is drawn
     /// </summary>
     [Flags]
-    public enum ImageListDrawItemConstants
+    public enum ImageListDrawItemFlags
     {
         /// <summary>
         /// Draw item normally.
         /// </summary>
-        Normal = 0x0,
+        None = 0x0,
 
         /// <summary>
         /// Draw item transparently.

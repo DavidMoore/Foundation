@@ -9,6 +9,7 @@ namespace Foundation
     /// more helpful constructors for creating formatted messages instead
     /// of having to call <see cref="string.Format(string,object[])"/> whenever building an exception
     /// </summary>
+    [Serializable]
     public class BaseException : Exception
     {
         /// <summary>

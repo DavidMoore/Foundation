@@ -63,7 +63,7 @@ namespace Foundation.Data.ActiveRecord
 
         public virtual T[] Save(params T[] instances)
         {
-            ThrowException.IfArgumentIsNull( ()=> () => instances );
+            ThrowException.IfArgumentIsNull( "instances", instances );
 
             if( instances ==  null) throw new ArgumentNullException("instances");
 

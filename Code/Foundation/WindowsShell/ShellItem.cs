@@ -8,6 +8,7 @@ namespace Foundation.WindowsShell
     /// <summary>
     /// Represents an item in the system shell, such as a folder, drive, or folder item
     /// </summary>
+    [CLSCompliant(false)]
     public class ShellItem
     {
         readonly ShellFolderItem item;

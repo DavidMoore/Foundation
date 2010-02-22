@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Foundation.Services
 {
@@ -80,6 +81,7 @@ namespace Foundation.Services
         /// </summary>
         /// <typeparam name="TService">The type of the service (e.g. the contract type)</typeparam>
         /// <returns></returns>
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")]
         public static TService GetService<TService>(this IServiceManager serviceManager)
         {
             var serviceType = typeof (TService);

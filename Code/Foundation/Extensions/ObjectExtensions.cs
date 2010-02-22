@@ -1,4 +1,6 @@
-﻿namespace Foundation.Extensions
+﻿using System;
+
+namespace Foundation.Extensions
 {
     public static class ObjectExtensions
     {
@@ -9,6 +11,7 @@
         /// <returns></returns>
         public static object CloneShallow(this object value)
         {
+            if (value == null) throw new ArgumentNullException("value");
             return value.GetType()
                 .GetMethod("MemberwiseClone", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
                 .Invoke(value, new object[0]);
@@ -21,6 +24,7 @@
         /// <returns></returns>
         public static T CloneShallow<T>(this object value) where T : class, new()
         {
+            if (value == null) throw new ArgumentNullException("value");
             return (T)value.GetType()
                 .GetMethod("MemberwiseClone", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
                 .Invoke(value, new object[0]);

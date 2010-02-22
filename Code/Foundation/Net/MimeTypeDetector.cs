@@ -6,7 +6,7 @@ namespace Foundation.Net
     /// <summary>
     /// Methods to help detect the MIME / Internet media type of a file
     /// </summary>
-    public class MimeTypeDetector
+    public static class MimeTypeDetector
     {
         /// <summary>
         /// Tries to detect the MIME Type of a file by its extension

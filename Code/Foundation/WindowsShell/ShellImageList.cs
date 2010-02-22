@@ -31,7 +31,7 @@ namespace Foundation.WindowsShell
         /// </summary>
         public ShellImageList()
         {
-            create();
+            Create();
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Foundation.WindowsShell
         public ShellImageList(ShellImageListSize size)
         {
             this.size = size;
-            create();
+            Create();
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Foundation.WindowsShell
             set
             {
                 size = value;
-                create();
+                Create();
             }
         }
 
@@ -169,13 +169,13 @@ namespace Foundation.WindowsShell
                 hIcon = ImageList_GetIcon(
                     hIml,
                     index,
-                    (int) ImageListDrawItemConstants.Transparent);
+                    (int) ImageListDrawItemFlags.Transparent);
             }
             else
             {
                 iImageList.GetIcon(
                     index,
-                    (int) ImageListDrawItemConstants.Transparent,
+                    (int) ImageListDrawItemFlags.Transparent,
                     ref hIcon);
             }
 
@@ -283,7 +283,7 @@ namespace Foundation.WindowsShell
             int y
             )
         {
-            DrawImage(hdc, index, x, y, ImageListDrawItemConstants.Transparent);
+            DrawImage(hdc, index, x, y, ImageListDrawItemFlags.Transparent);
         }
 
         /// <summary>
@@ -299,7 +299,7 @@ namespace Foundation.WindowsShell
             int index,
             int x,
             int y,
-            ImageListDrawItemConstants flags
+            ImageListDrawItemFlags flags
             )
         {
             if( iImageList == null )
@@ -343,7 +343,7 @@ namespace Foundation.WindowsShell
             int index,
             int x,
             int y,
-            ImageListDrawItemConstants flags,
+            ImageListDrawItemFlags flags,
             int cx,
             int cy
             )
@@ -393,11 +393,11 @@ namespace Foundation.WindowsShell
             int index,
             int x,
             int y,
-            ImageListDrawItemConstants flags,
+            ImageListDrawItemFlags flags,
             int cx,
             int cy,
             Color foreColor,
-            ImageListDrawStateConstants stateFlags,
+            ImageListDrawStateFlags stateFlags,
             Color saturateColorOrAlpha,
             Color glowOrShadowColor
             )
@@ -415,14 +415,14 @@ namespace Foundation.WindowsShell
             Console.WriteLine("{0}", pimldp.rgbFg);
             pimldp.fStyle = (int) flags;
             pimldp.fState = (int) stateFlags;
-            if( (stateFlags & ImageListDrawStateConstants.Alpha) ==
-                ImageListDrawStateConstants.Alpha )
+            if( (stateFlags & ImageListDrawStateFlags.Alpha) ==
+                ImageListDrawStateFlags.Alpha )
             {
                 // Set the alpha:
                 pimldp.Frame = saturateColorOrAlpha.A;
             }
-            else if( (stateFlags & ImageListDrawStateConstants.Saturate) ==
-                ImageListDrawStateConstants.Saturate )
+            else if( (stateFlags & ImageListDrawStateFlags.Saturate) ==
+                ImageListDrawStateFlags.Saturate )
             {
                 // discard alpha channel:
                 saturateColorOrAlpha = Color.FromArgb(0,
@@ -453,7 +453,7 @@ namespace Foundation.WindowsShell
         /// or above
         /// </summary>
         /// <returns>True if system is running XP or above, False otherwise</returns>
-        bool isXpOrAbove()
+        static bool IsXpOrAbove()
         {
             var ret = false;
             if( Environment.OSVersion.Version.Major > 5 )
@@ -472,12 +472,12 @@ namespace Foundation.WindowsShell
         /// <summary>
         /// Creates the SystemImageList
         /// </summary>
-        void create()
+        void Create()
         {
             // forget last image list if any:
             hIml = IntPtr.Zero;
 
-            if( isXpOrAbove() )
+            if( IsXpOrAbove() )
             {
                 // Get the System IImageList object from the Shell:
                 var iidImageList = new Guid("46EB5926-582E-4017-9FDF-E8998DAA0950");

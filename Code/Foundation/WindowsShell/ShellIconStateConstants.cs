@@ -1,11 +1,12 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Foundation.WindowsShell
 {
     /// <summary>
     /// Flags specifying the state of the icon to draw from the Shell
     /// </summary>
-    [Flags]
+    [Flags, SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue")]
     public enum ShellIconStateConstants
     {
         /// <summary>

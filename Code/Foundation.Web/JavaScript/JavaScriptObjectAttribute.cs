@@ -1,6 +1,6 @@
 using System;
 
-namespace Foundation.Services
+namespace Foundation.Web.JavaScript
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class JavaScriptObjectAttribute : Attribute

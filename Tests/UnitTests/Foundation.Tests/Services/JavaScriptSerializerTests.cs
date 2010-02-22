@@ -1,9 +1,10 @@
 using System.IO;
 using Foundation.Services;
+using Foundation.Web.JavaScript;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using JsonSerializer=Newtonsoft.Json.JsonSerializer;
-using JsonTextWriter=Foundation.Services.JsonTextWriter;
+using JsonTextWriter=Foundation.Web.JavaScript.JsonTextWriter;
 
 namespace Foundation.Tests.Services
 {
@@ -46,7 +47,7 @@ namespace Foundation.Tests.Services
         [Test]
         public void SerializeToJavaScript()
         {
-            var result = new Foundation.Services.JsonSerializer().Serialize(new TestClass2 {StringValue = "StringValue"});
+            var result = new Web.JavaScript.JsonSerializer().Serialize(new TestClass2 {StringValue = "StringValue"});
             Assert.AreEqual("thePrefix{\"StringValue\":\"StringValue\"}theSuffix", result);
         }
     }

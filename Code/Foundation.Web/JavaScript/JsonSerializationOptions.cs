@@ -1,13 +1,13 @@
 using System;
 using Newtonsoft.Json;
 
-namespace Foundation.Services
+namespace Foundation.Web.JavaScript
 {
     [CLSCompliant(false)]
     public class JsonSerializationOptions
     {
         public JsonSerializationOptions(NullValueHandling nullValueHandling, MissingMemberHandling missingMemberHandling,
-            ReferenceLoopHandling referenceLoopHandling)
+                                        ReferenceLoopHandling referenceLoopHandling)
         {
             NullValueHandling = nullValueHandling;
             MissingMemberHandling = missingMemberHandling;

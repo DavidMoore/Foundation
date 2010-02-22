@@ -11,13 +11,9 @@ D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\NHibernate.dll
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\NHibernate.Linq.dll
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\NHibernate.Search.dll
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\nunit.framework.dll
-D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Newtonsoft.Json.dll
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Castle.Windsor.dll
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Interop.Shell32.dll
-D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Moq.dll
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\log4net.dll
-D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Castle.MicroKernel.dll
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Antlr3.Runtime.dll
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Castle.DynamicProxy2.dll
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Lucene.Net.dll
@@ -26,10 +22,6 @@ D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Castle.ActiveRecord.pdb
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Castle.Components.Validator.pdb
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Castle.Core.pdb
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Castle.Windsor.pdb
-D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Moq.pdb
-D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Moq.xml
-D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Castle.MicroKernel.pdb
 D:\Projects\Foundation\Code\Foundation.Data\bin\Debug\Castle.DynamicProxy2.pdb
 D:\Projects\Foundation\Code\Foundation.Data\obj\Debug\Foundation.Data.dll
 D:\Projects\Foundation\Code\Foundation.Data\obj\Debug\Foundation.Data.pdb

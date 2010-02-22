@@ -1,7 +1,8 @@
 using System;
 
-namespace Foundation.Services
+namespace Foundation.Web.JavaScript
 {
+    [CLSCompliant(false)]
     public interface IJsonSerializer
     {
         /// <summary>

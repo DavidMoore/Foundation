@@ -6,6 +6,11 @@
     public enum LifestyleType
     {
         /// <summary>
+        /// A lifestyle with no value
+        /// </summary>
+        None = 0,
+
+        /// <summary>
         /// A new instance is created and returned each
         /// time the service is resolved from the container
         /// </summary>

@@ -41,6 +41,10 @@
     <Reference Include="Moq">
       <HintPath>..\..\..\Commons\Libraries\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Commons\Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -53,6 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JavaScript\IJsonSerializer.cs" />
+    <Compile Include="JavaScript\ISerializableToJavaScript.cs" />
+    <Compile Include="JavaScript\JavaScriptObjectAttribute.cs" />
+    <Compile Include="JavaScript\JavaScriptSerializer.cs" />
+    <Compile Include="JavaScript\JsonPropertyNameFormatting.cs" />
+    <Compile Include="JavaScript\JsonSerializationOptions.cs" />
+    <Compile Include="JavaScript\JsonSerializer.cs" />
+    <Compile Include="JavaScript\JsonTextWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHelpers\MockContext.cs" />
     <Compile Include="TestHelpers\MvcTestHelpers.cs" />
@@ -68,6 +80,7 @@
       <Link>Foundation.snk</Link>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

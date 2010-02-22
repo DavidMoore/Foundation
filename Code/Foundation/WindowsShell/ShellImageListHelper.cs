@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -7,7 +8,7 @@ namespace Foundation.WindowsShell
     /// <summary>
     /// Helper Methods for Connecting ShellImageList to Common Controls
     /// </summary>
-    public class ShellImageListHelper
+    public static class ShellImageListHelper
     {
         const int LVM_FIRST = 0x1000;
         const int LVM_SETIMAGELIST = (LVM_FIRST + 3);
@@ -35,6 +36,7 @@ namespace Foundation.WindowsShell
         /// <param name="listView">ListView control to associate ImageList with</param>
         /// <param name="shellImageList">System Image List to associate</param>
         /// <param name="forStateImages">Whether to add ImageList as StateImageList</param>
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "This sets the ImageList using a windows message so could cause problems if set on a Control")]
         public static void SetListViewImageList(
             ListView listView,
             ShellImageList shellImageList,
@@ -63,6 +65,7 @@ namespace Foundation.WindowsShell
         /// <param name="treeView">TreeView control to associated ImageList with</param>
         /// <param name="shellImageList">System Image List to associate</param>
         /// <param name="forStateImages">Whether to add ImageList as StateImageList</param>
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "This sets the ImageList using a windows message so could cause problems if set on a Control")]
         public static void SetTreeViewImageList(
             TreeView treeView,
             ShellImageList shellImageList,

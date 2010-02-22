@@ -2,11 +2,12 @@ using System;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Foundation.Services
+namespace Foundation.Web.JavaScript
 {
     /// <summary>
     /// Provides methods for converting objects to and from JSON
     /// </summary>
+    [CLSCompliant(false)]
     public class JsonSerializer : IJsonSerializer
     {
         public JsonSerializer() : this(new JsonSerializationOptions()) {}
@@ -26,11 +27,11 @@ namespace Foundation.Services
         public virtual string Serialize(object target)
         {
             var serializer = new JavaScriptSerializer
-                {
-                    ReferenceLoopHandling = SerializationOptions.ReferenceLoopHandling,
-                    NullValueHandling = SerializationOptions.NullValueHandling,
-                    MissingMemberHandling = SerializationOptions.MissingMemberHandling
-                };
+                                 {
+                                     ReferenceLoopHandling = SerializationOptions.ReferenceLoopHandling,
+                                     NullValueHandling = SerializationOptions.NullValueHandling,
+                                     MissingMemberHandling = SerializationOptions.MissingMemberHandling
+                                 };
 
             using (var writer = new StringWriter())
             {

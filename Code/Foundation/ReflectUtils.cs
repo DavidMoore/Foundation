@@ -17,18 +17,20 @@ namespace Foundation
         /// </summary>
         public static IEnumerable<PropertyInfo> GetPropertiesWithAttribute(Type type, Type attribute)
         {
+            if (type == null) throw new ArgumentNullException("type");
             return type.GetProperties().Where(info => info.GetCustomAttributes(attribute, true).Length > 0);
         }
 
         /// <summary>
-        /// Returns true if the specified type is annotated with the specified attribute
+        /// Returns true if the specified member info is annotated with the specified attribute
         /// </summary>
-        /// <param name="type"></param>
+        /// <param name="memberInfo"></param>
         /// <param name="attribute"></param>
         /// <returns></returns>
-        public static bool HasAttribute(Type type, Type attribute)
+        public static bool HasAttribute(MemberInfo memberInfo, Type attribute)
         {
-            return type.GetCustomAttributes(attribute, true).Length > 0;
+            if (memberInfo == null) throw new ArgumentNullException("memberInfo");
+            return memberInfo.GetCustomAttributes(attribute, true).Length > 0;
         }
 
         /// <summary>
@@ -39,6 +41,8 @@ namespace Foundation
         /// <returns></returns>
         public static bool Implements(Type type, MemberInfo desiredInterface)
         {
+            if (type == null) throw new ArgumentNullException("type");
+            if (desiredInterface == null) throw new ArgumentNullException("desiredInterface");
             return type.GetInterface(desiredInterface.Name) != null;
         }
 
@@ -60,18 +64,15 @@ namespace Foundation
         /// <returns></returns>
         public static bool HasAttribute(MemberInfo memberInfo, params Type[] attributes)
         {
+            if (memberInfo == null) throw new ArgumentNullException("memberInfo");
+
             var actualAttributes = memberInfo.GetCustomAttributes(true).ToList();
 
             var actualTypes = actualAttributes.ConvertAll(attribute => attribute.GetType());
 
             var lookingFor = attributes.ToList();
 
-            foreach( var type in lookingFor )
-            {
-                if( actualTypes.Contains(type) ) return true;
-            }
-
-            return false;
+            return lookingFor.Any(actualTypes.Contains);
         }
         
         /// <summary>
@@ -96,6 +97,8 @@ namespace Foundation
         /// <returns>The attribute(s) if found, otherwise null</returns>
         public static IEnumerable<T> GetAttributes<T>(object value) where T : Attribute
         {
+            if (value == null) throw new ArgumentNullException("value");
+
             // Get the object Type. If the passed value is already a type, we don't have to do anything.
             var objectValueAsCustomAttributeProvider = value as ICustomAttributeProvider;
             var customAttributeProvider = objectValueAsCustomAttributeProvider ?? value.GetType();

@@ -62,11 +62,11 @@ namespace Foundation.Services.Discovery
 
                 Type loaderType = typeof(AssemblyLoader);
 
-                AssemblyLoader loader = (AssemblyLoader)childDomain.CreateInstanceFrom(loaderType.Assembly.Location, loaderType.FullName)
+                var loader = (AssemblyLoader)childDomain.CreateInstanceFrom(loaderType.Assembly.Location, loaderType.FullName)
                                                             .Unwrap();
 
                 foreach (Assembly assembly in Directory.GetFiles(AssemblyFileSearchPattern)
-                    .Select(input => loader.LoadAssembly(input))
+                    .Select(loader.LoadAssembly)
                     .Where(assembly => assembly != null))
                 {
                     yield return assembly;
@@ -80,16 +80,16 @@ namespace Foundation.Services.Discovery
             }
         }
 
-        Assembly OnReflectionOnlyResolve(ResolveEventArgs args, DirectoryInfo directory)
+        static Assembly OnReflectionOnlyResolve(ResolveEventArgs args, DirectoryInfo directory)
         {
-            Assembly loadedAssembly = AppDomain.CurrentDomain.ReflectionOnlyGetAssemblies().FirstOrDefault(
+            var loadedAssembly = AppDomain.CurrentDomain.ReflectionOnlyGetAssemblies().FirstOrDefault(
                 asm => string.Equals(asm.FullName, args.Name, StringComparison.OrdinalIgnoreCase));
             if (loadedAssembly != null)
             {
                 return loadedAssembly;
             }
-            AssemblyName assemblyName = new AssemblyName(args.Name);
-            string dependentAssemblyFilename = Path.Combine(directory.FullName, assemblyName.Name + AssemblyFileExtension);
+            var assemblyName = new AssemblyName(args.Name);
+            var dependentAssemblyFilename = Path.Combine(directory.FullName, assemblyName.Name + AssemblyFileExtension);
 
             return File.Exists(dependentAssemblyFilename)
                        ? Assembly.ReflectionOnlyLoadFrom(dependentAssemblyFilename)

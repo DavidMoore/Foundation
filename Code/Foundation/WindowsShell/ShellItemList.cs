@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using Shell32;
 
@@ -6,6 +7,7 @@ namespace Foundation.WindowsShell
     /// <summary>
     /// A collection of ShellItems based on the generic List
     /// </summary>
+    [CLSCompliant(false)]
     public class ShellItemList : Collection<ShellItem>
     {
         /// <summary>

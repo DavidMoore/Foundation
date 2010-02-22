@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
@@ -128,7 +129,7 @@ namespace Foundation.Services.Security
         /// <param name="expectedLength">Expected length of the string for optimization</param>
         /// <returns>Hex string</returns>
         /// <exception cref="ArgumentNullException">when <paramref name="data"/> is null</exception>
-        public string BytesToHexString(byte[] data, int expectedLength)
+        public static string BytesToHexString(IEnumerable<byte> data, int expectedLength)
         {
             if (data == null) throw new ArgumentNullException("data");
 
@@ -145,7 +146,7 @@ namespace Foundation.Services.Security
         /// </summary>
         /// <param name="data">Data to convert to string</param>
         /// <returns>Hex string</returns>
-        public string BytesToHexString(byte[] data)
+        public static string BytesToHexString(IEnumerable<byte> data)
         {
             // Convert the string, allocating the string length to 128 by default
             return BytesToHexString(data, 128);

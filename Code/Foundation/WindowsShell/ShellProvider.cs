@@ -6,6 +6,7 @@ namespace Foundation.WindowsShell
     /// <summary>
     /// Provides methods for opening and manipulating a Windows shell
     /// </summary>
+    [CLSCompliant(false)]
     public class ShellProvider : IShellProvider, IDisposable
     {
         static ShellClass shell;

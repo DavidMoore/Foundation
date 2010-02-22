@@ -13,20 +13,12 @@ namespace Foundation.Media
 
         protected virtual Type MyType
         {
-            get
-            {
-                if (type == null) type = GetType();
-                return type;
-            }
+            get { return type ?? (type = GetType()); }
         }
 
         protected virtual ILog Logger
         {
-            get
-            {
-                if (logger == null) logger = LogManager.GetLogger(MyType);
-                return logger;
-            }
+            get { return logger ?? (logger = LogManager.GetLogger(MyType)); }
         }
 
         /// <summary>
@@ -67,15 +59,15 @@ namespace Foundation.Media
             {
                 CacheDirectory.Delete(true);
             }
-            catch(Exception ex)
+            catch(IOException ioe)
             {
-                Logger.Error(string.Format("Exception when deleting ThumbnailCache directory {0}! Exception was: {1}", CacheDirectory, ex.Message), ex);
+                Logger.Error(string.Format("Exception when deleting ThumbnailCache directory {0}! Exception was: {1}", CacheDirectory, ioe.Message), ioe);
             }
             
             CacheDirectory = null;
         }
 
-        public string GetCacheHash(string fileName, int width, int height)
+        public static string GetCacheHash(string fileName, int width, int height)
         {
             return Hasher.Md5Hash(string.Concat(fileName, width, height));
         }

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Foundation.Services;
 using Newtonsoft.Json;
 
-namespace Foundation.Services
+namespace Foundation.Web.JavaScript
 {
     [CLSCompliant(false)]
     public class JavaScriptSerializer : Newtonsoft.Json.JsonSerializer

@@ -1,7 +1,9 @@
+using System;
 using Shell32;
 
 namespace Foundation.WindowsShell
 {
+    [CLSCompliant(false)]
     public interface IShellProvider
     {
         /// <summary>

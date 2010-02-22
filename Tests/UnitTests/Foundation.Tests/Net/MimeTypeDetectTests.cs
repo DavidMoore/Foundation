@@ -9,8 +9,6 @@ namespace Foundation.Tests.Net
         [Test]
         public void FromExtension()
         {
-            var detector = new MimeTypeDetector();
-
             var jpeg = MimeTypes.Image.Jpeg;
 
             Assert.AreEqual(jpeg, MimeTypeDetector.FromExtension("jpg") );

@@ -6,6 +6,7 @@ namespace Foundation.Net
     {
         public MimeContentType(string mimeType)
         {
+            if (mimeType == null) throw new ArgumentNullException("mimeType");
             var parts = mimeType.Split("/".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             Type = parts[0].ToLower();
             SubType = parts[1].ToLower();

@@ -1,7 +1,7 @@
-using Foundation.Services;
+using Foundation.Web.JavaScript;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using JsonSerializer=Foundation.Services.JsonSerializer;
+using JsonSerializer=Foundation.Web.JavaScript.JsonSerializer;
 
 namespace Foundation.Tests.Services
 {

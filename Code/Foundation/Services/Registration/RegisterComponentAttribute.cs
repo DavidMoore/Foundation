@@ -42,12 +42,12 @@ namespace Foundation.Services.Registration
         /// The type of the service contract to register this service implementation for.
         /// </summary>
         /// <remarks>Optional. If null, the top-most interface the service implements will be used</remarks>
-        public Type ServiceContract { get; set; }
+        public Type ServiceContract { get; private set; }
 
         /// <summary>
         /// The lifestyle to register the component with.
         /// </summary>
-        public LifestyleType Lifestyle { get; set; }
+        public LifestyleType Lifestyle { get; private set; }
 
         /// <summary>
         /// The name for the service / component

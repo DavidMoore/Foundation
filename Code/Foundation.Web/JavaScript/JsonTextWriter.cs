@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Foundation.Extensions;
 
-namespace Foundation.Services
+namespace Foundation.Web.JavaScript
 {
     [CLSCompliant(false)]
     public class JsonTextWriter : Newtonsoft.Json.JsonTextWriter

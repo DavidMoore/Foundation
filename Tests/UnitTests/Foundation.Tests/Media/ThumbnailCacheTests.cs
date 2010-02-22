@@ -56,7 +56,7 @@ namespace Foundation.Tests.Media
             var originalName = @"C:\Test.jpg";
             var width = 150;
             var height = 150;
-            var cacheName = cache.GetCacheHash(originalName, width, height);
+            var cacheName = ThumbnailCache.GetCacheHash(originalName, width, height);
             Console.WriteLine(cacheName);
 
             Assert.AreEqual("9af7e7184738e0dd3e53641051ab5768", cacheName);

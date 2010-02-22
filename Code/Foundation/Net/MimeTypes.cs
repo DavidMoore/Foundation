@@ -34,26 +34,29 @@ namespace Foundation.Net
         /// <summary>
         /// Video Internet media types
         /// </summary>
-        public class Video
+        public static class Video
         {
             static IList<MimeType> all;
 
-            public static IEnumerable<MimeType> All { get { return all ?? (all = GetMimeTypes(typeof (Video))); }
+            public static IEnumerable<MimeType> All
+            {
+                get { return all ?? (all = GetMimeTypes(typeof(Video))); }
             }
+
             [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Avi")]
-            public static MimeType Avi = new MimeType("AVI", new[] { "avi" }, "video/avi");
-            public static MimeType Flash = new MimeType("Flash Video", new[] { "flv" }, "video/x-flv");
+            public readonly static MimeType Avi = new MimeType("AVI", new[] { "avi" }, "video/avi");
+            public readonly static MimeType Flash = new MimeType("Flash Video", new[] { "flv" }, "video/x-flv");
             [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Matroska")]
-            public static MimeType Matroska = new MimeType("Matroska Video", new[] { "mkv" }, "video/x-mkv");
-            public static MimeType Mpeg = new MimeType("MPEG", new[] { "mpg", "mpeg", "mpe", "m1v", "m2v", "mpv2", "mp2v", "ts", "tp", "tpr", "pva", "pss", "m2ts", "m2t", "mts", "evo" }, "video/mpeg");
-            public static MimeType Mpeg4 = new MimeType("MPEG4", new[] { "mp4", "m4v", "hdmov", "3gp", "3gpp" }, "video/mp4");
+            public readonly static MimeType Matroska = new MimeType("Matroska Video", new[] { "mkv" }, "video/x-mkv");
+            public readonly static MimeType Mpeg = new MimeType("MPEG", new[] { "mpg", "mpeg", "mpe", "m1v", "m2v", "mpv2", "mp2v", "ts", "tp", "tpr", "pva", "pss", "m2ts", "m2t", "mts", "evo" }, "video/mpeg");
+            public readonly static MimeType Mpeg4 = new MimeType("MPEG4", new[] { "mp4", "m4v", "hdmov", "3gp", "3gpp" }, "video/mp4");
             [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ogg")]
-            public static MimeType Ogg = new MimeType("Ogg Media", new[] { "ogm", "ogv" }, "video/ogg");
-            public static MimeType DivX = new MimeType("DivX", new[] { "divx" }, "video/x-divx");
-            public static MimeType Quicktime = new MimeType("Quicktime", new[] { "mov","qt","amr","3g2","3gp2" }, "video/quicktime");
-            public static MimeType WindowsMedia = new MimeType("WindowsMedia", new[] { "wmv", "wmp", "wm", "asf" }, "video/x-ms-wmv");
-            public static MimeType RealMedia = new MimeType("RealMedia", new[] { "rm","rmm" }, "application/vnd.rn-realmedia");
-            public static MimeType RealVideo = new MimeType("RealVideo", new[] { "rv" }, "video/vnd.rn-realvideo");
+            public readonly static MimeType Ogg = new MimeType("Ogg Media", new[] { "ogm", "ogv" }, "video/ogg");
+            public readonly static MimeType DivX = new MimeType("DivX", new[] { "divx" }, "video/x-divx");
+            public readonly static MimeType Quicktime = new MimeType("Quicktime", new[] { "mov", "qt", "amr", "3g2", "3gp2" }, "video/quicktime");
+            public readonly static MimeType WindowsMedia = new MimeType("WindowsMedia", new[] { "wmv", "wmp", "wm", "asf" }, "video/x-ms-wmv");
+            public readonly static MimeType RealMedia = new MimeType("RealMedia", new[] { "rm","rmm" }, "application/vnd.rn-realmedia");
+            public readonly static MimeType RealVideo = new MimeType("RealVideo", new[] { "rv" }, "video/vnd.rn-realvideo");
         }
 
         static List<MimeType> GetMimeTypes(Type type)

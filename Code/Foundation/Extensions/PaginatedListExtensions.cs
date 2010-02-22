@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Foundation.Extensions
 {
@@ -6,6 +7,7 @@ namespace Foundation.Extensions
     {
         public static IPaginatedList<TCastTo> CastTo<TCastFrom, TCastTo>(this IPaginatedList<TCastFrom> list) where TCastFrom : TCastTo
         {
+            if (list == null) throw new ArgumentNullException("list");
             return new PaginatedList<TCastTo>(list.Cast<TCastTo>(), list.Page, list.PageSize, list.RecordCount);
         }
     }

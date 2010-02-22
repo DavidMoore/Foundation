@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Foundation.WindowsShell
 {
@@ -22,7 +23,7 @@ namespace Foundation.WindowsShell
     /// however, and should be used if possible.
     /// </para>
     /// </remarks>
-    [Flags]
+    [Flags, SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue")]
     public enum ShellNamespaceIdentifier
     {
         /// <summary>

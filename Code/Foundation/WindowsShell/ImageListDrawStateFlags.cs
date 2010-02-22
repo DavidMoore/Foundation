@@ -6,12 +6,12 @@ namespace Foundation.WindowsShell
     /// Enumeration containing XP ImageList Draw State options
     /// </summary>
     [Flags]
-    public enum ImageListDrawStateConstants
+    public enum ImageListDrawStateFlags
     {
         /// <summary>
         /// The image state is not modified. 
         /// </summary>
-        Normal = (0x00000000),
+        None = (0x00000000),
 
         /// <summary>
         /// Adds a glow effect to the icon, which causes the icon to appear to glow 

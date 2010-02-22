@@ -1,7 +1,6 @@
 using System;
 using System.Globalization;
 using System.IO;
-using log4net;
 
 namespace Foundation
 {
@@ -23,8 +22,6 @@ namespace Foundation
     public class TempFile : IDisposable
     {
         readonly FileInfo fileInfo;
-        ILog logger;
-        Type type;
 
         /// <summary>
         /// Creates a new temporary file, which ensures the temporary
@@ -52,32 +49,12 @@ namespace Foundation
 
             fileInfo.MoveTo( Path.Combine(fileInfo.DirectoryName, newName ) );
         }
-
-        protected virtual Type MyType
-        {
-            get
-            {
-                if( type == null ) type = GetType();
-                return type;
-            }
-        }
-
-        protected virtual ILog Logger
-        {
-            get
-            {
-                if( logger == null ) logger = LogManager.GetLogger(MyType);
-                return logger;
-            }
-        }
-
+        
         /// <summary>
         /// Handle to the temporary file
         /// </summary>
         public FileInfo FileInfo { get { return fileInfo; } }
-
-        #region IDisposable Members
-
+        
         ///<summary>
         /// Deletes the temporary file once out of scope or disposed
         ///</summary>
@@ -88,13 +65,11 @@ namespace Foundation
             GC.SuppressFinalize(this);
         }
 
-        #endregion
-
         /// <summary>
         /// Frees up managed resources
         /// </summary>
         /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing)
+        void Dispose(bool disposing)
         {
             if( !disposing || fileInfo == null || !fileInfo.Exists ) return;
 
@@ -104,7 +79,7 @@ namespace Foundation
             }
             catch(IOException ioe)
             {
-                if( Logger.IsWarnEnabled ) Logger.Warn(ioe.Message, ioe);
+                FoundationEventLog.Error(ioe, "Couldn't delete temporary file {0}", fileInfo);
             }
         }
 

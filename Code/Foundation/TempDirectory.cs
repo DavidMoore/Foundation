@@ -1,7 +1,5 @@
 using System;
-using System.Diagnostics;
 using System.IO;
-using log4net;
 
 namespace Foundation
 {
@@ -23,8 +21,6 @@ namespace Foundation
     public class TempDirectory : IDisposable
     {
         readonly DirectoryInfo directoryInfo;
-        ILog logger;
-        Type type;
 
         /// <summary>
         /// Creates a new temporary directory, which will automatically
@@ -34,32 +30,12 @@ namespace Foundation
         {
             directoryInfo = new DirectoryInfo(GetTempDirectory());
         }
-
-        protected virtual Type MyType
-        {
-            get
-            {
-                if( type == null ) type = GetType();
-                return type;
-            }
-        }
-
-        protected virtual ILog Logger
-        {
-            get
-            {
-                if( logger == null ) logger = LogManager.GetLogger(MyType);
-                return logger;
-            }
-        }
-
+        
         /// <summary>
         /// Handle to the temporary file
         /// </summary>
         public DirectoryInfo DirectoryInfo { get { return directoryInfo; } }
-
-        #region IDisposable Members
-
+        
         ///<summary>
         /// Deletes the temporary dir once out of scope or disposed
         ///</summary>
@@ -69,9 +45,7 @@ namespace Foundation
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-        #endregion
-
+        
         static string GetTempDirectory()
         {
             var path = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -83,7 +57,7 @@ namespace Foundation
         /// Frees up managed resources
         /// </summary>
         /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing)
+        void Dispose(bool disposing)
         {
             if( !disposing || directoryInfo == null || !directoryInfo.Exists ) return;
 
@@ -94,7 +68,6 @@ namespace Foundation
             catch(IOException ioe)
             {
                 FoundationEventLog.Error(ioe, "Couldn't delete the temporary directory: {0}", directoryInfo.FullName);
-                if( Logger.IsWarnEnabled ) Logger.Warn(ioe.Message, ioe);
             }
         }
 

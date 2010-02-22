@@ -1,24 +1,18 @@
 using System;
 using System.IO;
 using Foundation.Extensions;
+using Foundation.Services.Logging;
 using Foundation.Services.Security;
-using log4net;
 
 namespace Foundation.Media
 {
     public class ThumbnailCache : IThumbnailCache, IDisposable
     {
         Type type;
-        ILog logger;
-
-        protected virtual Type MyType
+        
+        protected virtual ILogger Logger
         {
-            get { return type ?? (type = GetType()); }
-        }
-
-        protected virtual ILog Logger
-        {
-            get { return logger ?? (logger = LogManager.GetLogger(MyType)); }
+            get; private set;
         }
 
         /// <summary>
@@ -28,6 +22,15 @@ namespace Foundation.Media
         {
             CacheDirectory = new DirectoryInfo( Path.Combine( Path.GetTempPath(), Guid.NewGuid().ToString() ) );
             CacheDirectory.Create();
+        }
+
+        /// <summary>
+        /// Creates a new media thumbnail cache in a GUID-named directory under the system temp dir
+        /// </summary>
+        /// <param name="logger">The logging implementation to use for logging any messages</param>
+        public ThumbnailCache(ILogger logger) : this()
+        {
+            Logger = logger;
         }
 
         /// <summary>
@@ -61,6 +64,7 @@ namespace Foundation.Media
             }
             catch(IOException ioe)
             {
+                if (Logger == null) throw;
                 Logger.Error(string.Format("Exception when deleting ThumbnailCache directory {0}! Exception was: {1}", CacheDirectory, ioe.Message), ioe);
             }
             

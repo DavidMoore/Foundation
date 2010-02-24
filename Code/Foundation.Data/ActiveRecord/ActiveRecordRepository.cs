@@ -103,7 +103,7 @@ namespace Foundation.Data.ActiveRecord
             // Do a truncate if using MySQL
             var config = ActiveRecordMediator.GetSessionFactoryHolder().GetConfiguration(typeof(ActiveRecordBase));
             var driver = config.GetProperty("connection.driver_class");
-            if( driver.Equals(typeof(MySqlDataDriver).AssemblyQualifiedName) ) ExecuteSql("TRUNCATE {0}".FormatUICulture(Type.Name));
+            if( driver.Equals(typeof(MySqlDataDriver).AssemblyQualifiedName) ) ExecuteSql("TRUNCATE {0}".FormatUiCulture(Type.Name));
         }
 
         /// <summary>

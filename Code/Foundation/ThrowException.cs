@@ -43,7 +43,7 @@ namespace Foundation
         public static void IfTrue(bool assertion, string message, params object[] stringFormatParameters)
         {
             if( !assertion ) return;
-            if( stringFormatParameters.Length > 0 ) message = message.FormatUICulture(stringFormatParameters);
+            if( stringFormatParameters.Length > 0 ) message = message.FormatUiCulture(stringFormatParameters);
             throw new FoundationException(message);
         }
 
@@ -57,7 +57,7 @@ namespace Foundation
             if( !test ) return;
             IfArgumentIsNullOrEmpty("message", message);
             if( string.IsNullOrEmpty(message) ) throw new TException();
-            if( stringFormatParameters.Length > 0 ) message = message.FormatUICulture(stringFormatParameters);
+            if( stringFormatParameters.Length > 0 ) message = message.FormatUiCulture(stringFormatParameters);
             var exception = Activator.CreateInstance(typeof(TException), message) as Exception;
             IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(TException).Name, message);
             throw exception;

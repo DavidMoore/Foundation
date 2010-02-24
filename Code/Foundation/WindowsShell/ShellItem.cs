@@ -97,7 +97,7 @@ namespace Foundation.WindowsShell
         /// <returns></returns>
         public override string ToString()
         {
-            return "{0} [{1}]".FormatUICulture(Name, Path);
+            return "{0} [{1}]".FormatUiCulture(Name, Path);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Foundation.Services.Validation
         {
             var typeName = GetType().Name;
 
-            if( Count == 0 ) return "{{{0}: No errors}}".FormatUICulture(typeName);
+            if( Count == 0 ) return "{{{0}: No errors}}".FormatUiCulture(typeName);
 
             var sb = new StringBuilder();
 

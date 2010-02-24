@@ -24,6 +24,7 @@ namespace Foundation.Tests.Extensions
             Assert.IsTrue( ((string)null).IsNullOrEmpty() );
             Assert.IsFalse( "blah".IsNullOrEmpty());
             Assert.IsTrue("".IsNullOrEmpty());
+            Assert.IsTrue("     ".IsNullOrEmpty());
         }
 
         [Test]

@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
-using System.Web;
 
 namespace Foundation.Extensions
 {
@@ -52,7 +51,7 @@ namespace Foundation.Extensions
         [DebuggerStepThrough]
         public static bool IsNullOrEmpty(this string value)
         {
-            return string.IsNullOrEmpty(value);
+            return string.IsNullOrEmpty(value) || value.Trim().Length == 0;
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace Foundation.Extensions
         /// <param name="format"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public static string FormatUICulture(this string format, params object[] args)
+        public static string FormatUiCulture(this string format, params object[] args)
         {
             return string.Format(CultureInfo.CurrentUICulture, format, args);
         }
@@ -96,9 +95,7 @@ namespace Foundation.Extensions
         /// <returns></returns>
         public static string StripLeft(this string value, string strip)
         {
-            if( !value.StartsWith(strip, StringComparison.OrdinalIgnoreCase) ) return value;
-
-            return value.Substring(strip.Length);
+            return !value.StartsWith(strip, StringComparison.OrdinalIgnoreCase) ? value : value.Substring(strip.Length);
         }
 
         /// <summary>

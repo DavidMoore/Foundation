@@ -66,7 +66,7 @@ namespace Foundation.Services.Discovery
                                                             .Unwrap();
 
                 foreach (Assembly assembly in Directory.GetFiles(AssemblyFileSearchPattern)
-                    .Select(loader.LoadAssembly)
+                    .Select<FileInfo,Assembly>(loader.LoadAssembly)
                     .Where(assembly => assembly != null))
                 {
                     yield return assembly;

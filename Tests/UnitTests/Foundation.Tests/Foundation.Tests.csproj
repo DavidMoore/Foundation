@@ -165,6 +165,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\Code\Foundation\Properties\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="ArrayExtensionMethodsTests.cs" />
     <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />

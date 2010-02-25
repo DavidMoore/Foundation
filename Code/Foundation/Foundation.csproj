@@ -134,6 +134,7 @@
     <Compile Include="Services\Registration\ServiceRegistration.cs" />
     <Compile Include="Services\Registration\ServiceRegistrationException.cs" />
     <Compile Include="Services\ServiceResolutionFailedException.cs" />
+    <Compile Include="Properties\SolutionInfo.cs" />
     <Compile Include="TestHelpers\Lipsum.cs" />
     <Compile Include="ThrowException.cs" />
     <Compile Include="CommonUtilities.cs" />

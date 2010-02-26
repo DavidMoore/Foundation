@@ -102,6 +102,8 @@ namespace Foundation
         /// <returns></returns>
         public static SubnetMaskedIp Parse(string src)
         {
+            if (src == null) throw new ArgumentNullException("src");
+
             string[] pair = src.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
             var maskedIP = new SubnetMaskedIp {NetworkAddress = IPAddress.Parse(pair[0])};
 
@@ -128,6 +130,8 @@ namespace Foundation
         /// <returns></returns>
         public bool IsInner(IPAddress address)
         {
+            if (address == null) throw new ArgumentNullException("address");
+
             byte[] networkbytes = NetworkAddressBytes;
             byte[] addressbytes = address.GetAddressBytes();
 
@@ -146,6 +150,9 @@ namespace Foundation
 
         protected static bool Equal(byte[] byte1, byte[] byte2)
         {
+            if (byte1 == null) throw new ArgumentNullException("byte1");
+            if (byte2 == null) throw new ArgumentNullException("byte2");
+
             if (byte1.Length != byte2.Length) return false;
 
             for (int i = 0; i < byte1.Length; i++)
@@ -158,6 +165,9 @@ namespace Foundation
 
         protected static byte[] And(byte[] byte1, byte[] byte2)
         {
+            if (byte1 == null) throw new ArgumentNullException("byte1");
+            if (byte2 == null) throw new ArgumentNullException("byte2");
+
             var andbyte = new byte[byte1.Length];
 
             for (int i = 0; i < byte1.Length && i < byte2.Length; i++)

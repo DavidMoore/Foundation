@@ -149,7 +149,7 @@ namespace Foundation.Tests
         [Test]
         public void GetProductName()
         {
-            Assert.AreEqual("Foundation", ReflectUtils.GetProductName(GetType().Assembly) );
+            Assert.AreEqual("Foundation .NET Library", ReflectUtils.GetProductName(GetType().Assembly) );
         }
     }
 }

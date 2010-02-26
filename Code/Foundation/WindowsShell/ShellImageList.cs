@@ -20,7 +20,7 @@ namespace Foundation.WindowsShell
         const int FORMAT_MESSAGE_FROM_SYSTEM = 0x1000;
         const int FORMAT_MESSAGE_IGNORE_INSERTS = 0x200;
         const int FORMAT_MESSAGE_MAX_WIDTH_MASK = 0xFF;
-        const int MAX_PATH = 260;
+        internal const int MAX_PATH = 260;
         bool disposed;
         IntPtr hIml = IntPtr.Zero;
         IImageList iImageList;
@@ -73,7 +73,7 @@ namespace Foundation.WindowsShell
                 var cy = 0;
                 if( iImageList == null )
                 {
-                    ImageList_GetIconSize(
+                    NativeMethods.ImageList_GetIconSize(
                         hIml,
                         ref cx,
                         ref cy);
@@ -101,58 +101,6 @@ namespace Foundation.WindowsShell
 
         #endregion
 
-        [DllImport("shell32")]
-        static extern IntPtr SHGetFileInfo(
-            string pszPath,
-            int dwFileAttributes,
-            ref SHFILEINFO psfi,
-            uint cbFileInfo,
-            uint uFlags);
-
-        [DllImport("comctl32")]
-        static extern int ImageList_Draw(
-            IntPtr hIml,
-            int i,
-            IntPtr hdcDst,
-            int x,
-            int y,
-            int fStyle);
-
-        [DllImport("comctl32")]
-        static extern int ImageList_DrawIndirect(
-            ref IMAGELISTDRAWPARAMS pimldp);
-
-        [DllImport("comctl32")]
-        static extern int ImageList_GetIconSize(
-            IntPtr himl,
-            ref int cx,
-            ref int cy);
-
-        [DllImport("comctl32")]
-        static extern IntPtr ImageList_GetIcon(
-            IntPtr himl,
-            int i,
-            int flags);
-
-        /// <summary>
-        /// SHGetImageList is not exported correctly in XP.  See KB316931
-        /// http://support.microsoft.com/default.aspx?scid=kb;EN-US;Q316931
-        /// Apparently (and hopefully) ordinal 727 isn't going to change.
-        /// </summary>
-        [DllImport("shell32.dll", EntryPoint = "#727")]
-        static extern int SHGetImageList(
-            int iImageList,
-            ref Guid riid,
-            ref IImageList ppv
-            );
-
-        [DllImport("shell32.dll", EntryPoint = "#727")]
-        static extern int SHGetImageListHandle(
-            int iImageList,
-            ref Guid riid,
-            ref IntPtr handle
-            );
-
         /// <summary>
         /// Returns a GDI+ copy of the icon from the ImageList
         /// at the specified index.
@@ -166,7 +114,7 @@ namespace Foundation.WindowsShell
             var hIcon = IntPtr.Zero;
             if( iImageList == null )
             {
-                hIcon = ImageList_GetIcon(
+                hIcon = NativeMethods.ImageList_GetIcon(
                     hIml,
                     index,
                     (int) ImageListDrawItemFlags.Transparent);
@@ -254,7 +202,7 @@ namespace Foundation.WindowsShell
             // icon, for example sFileSpec = "C:\PANTS.DOC"
             var shfi = new SHFILEINFO();
             var shfiSize = (uint) Marshal.SizeOf(shfi.GetType());
-            var retVal = SHGetFileInfo(
+            var retVal = NativeMethods.SHGetFileInfo(
                 fileName, dwAttr, ref shfi, shfiSize,
                 ((uint) (dwFlags) | (uint) iconState));
 
@@ -304,7 +252,7 @@ namespace Foundation.WindowsShell
         {
             if( iImageList == null )
             {
-                var ret = ImageList_Draw(
+                var ret = NativeMethods.ImageList_Draw(
                     hIml,
                     index,
                     hdc,
@@ -360,7 +308,7 @@ namespace Foundation.WindowsShell
             if( iImageList == null )
             {
                 pimldp.himl = hIml;
-                var ret = ImageList_DrawIndirect(ref pimldp);
+                var ret = NativeMethods.ImageList_DrawIndirect(ref pimldp);
             }
             else
             {
@@ -440,7 +388,7 @@ namespace Foundation.WindowsShell
             if( iImageList == null )
             {
                 pimldp.himl = hIml;
-                var ret = ImageList_DrawIndirect(ref pimldp);
+                var ret = NativeMethods.ImageList_DrawIndirect(ref pimldp);
             }
             else
             {
@@ -481,7 +429,7 @@ namespace Foundation.WindowsShell
             {
                 // Get the System IImageList object from the Shell:
                 var iidImageList = new Guid("46EB5926-582E-4017-9FDF-E8998DAA0950");
-                var ret = SHGetImageList(
+                var ret = NativeMethods.SHGetImageList(
                     (int) size,
                     ref iidImageList,
                     ref iImageList
@@ -490,7 +438,7 @@ namespace Foundation.WindowsShell
                 // using Marshal.GetIUnknownForObject doesn't return
                 // the right value.  It really doesn't hurt to make
                 // a second call to get the handle:
-                SHGetImageListHandle((int) size, ref iidImageList, ref hIml);
+                NativeMethods.SHGetImageListHandle((int) size, ref iidImageList, ref hIml);
             }
             else
             {
@@ -507,7 +455,7 @@ namespace Foundation.WindowsShell
 
                 // Call SHGetFileInfo to get the image list handle
                 // using an arbitrary file:
-                hIml = SHGetFileInfo(
+                hIml = NativeMethods.SHGetFileInfo(
                     ".txt",
                     FILE_ATTRIBUTE_NORMAL,
                     ref shfi,
@@ -538,275 +486,5 @@ namespace Foundation.WindowsShell
         {
             Dispose(false);
         }
-
-        #region Nested type: IImageList
-
-        [ComImport]
-        [Guid("46EB5926-582E-4017-9FDF-E8998DAA0950")]
-        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-        //helpstring("Image List"),
-            interface IImageList
-        {
-            [PreserveSig]
-            int Add(
-                IntPtr hbmImage,
-                IntPtr hbmMask,
-                ref int pi);
-
-            [PreserveSig]
-            int ReplaceIcon(
-                int i,
-                IntPtr hicon,
-                ref int pi);
-
-            [PreserveSig]
-            int SetOverlayImage(
-                int iImage,
-                int iOverlay);
-
-            [PreserveSig]
-            int Replace(
-                int i,
-                IntPtr hbmImage,
-                IntPtr hbmMask);
-
-            [PreserveSig]
-            int AddMasked(
-                IntPtr hbmImage,
-                int crMask,
-                ref int pi);
-
-            [PreserveSig]
-            int Draw(
-                ref IMAGELISTDRAWPARAMS pimldp);
-
-            [PreserveSig]
-            int Remove(
-                int i);
-
-            [PreserveSig]
-            int GetIcon(
-                int i,
-                int flags,
-                ref IntPtr picon);
-
-            [PreserveSig]
-            int GetImageInfo(
-                int i,
-                ref IMAGEINFO pImageInfo);
-
-            [PreserveSig]
-            int Copy(
-                int iDst,
-                IImageList punkSrc,
-                int iSrc,
-                int uFlags);
-
-            [PreserveSig]
-            int Merge(
-                int i1,
-                IImageList punk2,
-                int i2,
-                int dx,
-                int dy,
-                ref Guid riid,
-                ref IntPtr ppv);
-
-            [PreserveSig]
-            int Clone(
-                ref Guid riid,
-                ref IntPtr ppv);
-
-            [PreserveSig]
-            int GetImageRect(
-                int i,
-                ref RECT prc);
-
-            [PreserveSig]
-            int GetIconSize(
-                ref int cx,
-                ref int cy);
-
-            [PreserveSig]
-            int SetIconSize(
-                int cx,
-                int cy);
-
-            [PreserveSig]
-            int GetImageCount(
-                ref int pi);
-
-            [PreserveSig]
-            int SetImageCount(
-                int uNewCount);
-
-            [PreserveSig]
-            int SetBkColor(
-                int clrBk,
-                ref int pclr);
-
-            [PreserveSig]
-            int GetBkColor(
-                ref int pclr);
-
-            [PreserveSig]
-            int BeginDrag(
-                int iTrack,
-                int dxHotspot,
-                int dyHotspot);
-
-            [PreserveSig]
-            int EndDrag();
-
-            [PreserveSig]
-            int DragEnter(
-                IntPtr hwndLock,
-                int x,
-                int y);
-
-            [PreserveSig]
-            int DragLeave(
-                IntPtr hwndLock);
-
-            [PreserveSig]
-            int DragMove(
-                int x,
-                int y);
-
-            [PreserveSig]
-            int SetDragCursorImage(
-                ref IImageList punk,
-                int iDrag,
-                int dxHotspot,
-                int dyHotspot);
-
-            [PreserveSig]
-            int DragShowNolock(
-                int fShow);
-
-            [PreserveSig]
-            int GetDragImage(
-                ref POINT ppt,
-                ref POINT pptHotspot,
-                ref Guid riid,
-                ref IntPtr ppv);
-
-            [PreserveSig]
-            int GetItemFlags(
-                int i,
-                ref int dwFlags);
-
-            [PreserveSig]
-            int GetOverlayImage(
-                int iOverlay,
-                ref int piIndex);
-        } ;
-
-        #endregion
-
-        #region Nested type: IMAGEINFO
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct IMAGEINFO
-        {
-            public IntPtr hbmImage;
-            public IntPtr hbmMask;
-            public int Unused1;
-            public int Unused2;
-            public RECT rcImage;
-        }
-
-        #endregion
-
-        #region Nested type: IMAGELISTDRAWPARAMS
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct IMAGELISTDRAWPARAMS
-        {
-            public int cbSize;
-            public IntPtr himl;
-            public int i;
-            public IntPtr hdcDst;
-            public int x;
-            public int y;
-            public int cx;
-            public int cy;
-            public int xBitmap; // x offest from the upperleft of bitmap
-            public int yBitmap; // y offset from the upperleft of bitmap
-            public int rgbBk;
-            public int rgbFg;
-            public int fStyle;
-            public int dwRop;
-            public int fState;
-            public int Frame;
-            public int crEffect;
-        }
-
-        #endregion
-
-        #region Nested type: POINT
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct POINT
-        {
-            int x;
-            int y;
-        }
-
-        #endregion
-
-        #region Nested type: RECT
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct RECT
-        {
-            int left;
-            int top;
-            int right;
-            int bottom;
-        }
-
-        #endregion
-
-        #region Nested type: SHFILEINFO
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct SHFILEINFO
-        {
-            public IntPtr hIcon;
-            public int iIcon;
-            public int dwAttributes;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_PATH)] public string szDisplayName;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)] public string szTypeName;
-        }
-
-        #endregion
-
-        #region Nested type: SHGetFileInfoConstants
-
-        [Flags]
-        enum SHGetFileInfoConstants
-        {
-            SHGFI_ICON = 0x100, // get icon 
-            SHGFI_DISPLAYNAME = 0x200, // get display name 
-            SHGFI_TYPENAME = 0x400, // get type name 
-            SHGFI_ATTRIBUTES = 0x800, // get attributes 
-            SHGFI_ICONLOCATION = 0x1000, // get icon location 
-            SHGFI_EXETYPE = 0x2000, // return exe type 
-            SHGFI_SYSICONINDEX = 0x4000, // get system icon index 
-            SHGFI_LINKOVERLAY = 0x8000, // put a link overlay on icon 
-            SHGFI_SELECTED = 0x10000, // show icon in selected state 
-            SHGFI_ATTR_SPECIFIED = 0x20000, // get only specified attributes 
-            SHGFI_LARGEICON = 0x0, // get large icon 
-            SHGFI_SMALLICON = 0x1, // get small icon 
-            SHGFI_OPENICON = 0x2, // get open icon 
-            SHGFI_SHELLICONSIZE = 0x4, // get shell size icon 
-            //SHGFI_PIDL = 0x8,                  // pszPath is a pidl 
-            SHGFI_USEFILEATTRIBUTES = 0x10, // use passed dwFileAttribute 
-            SHGFI_ADDOVERLAYS = 0x000000020, // apply the appropriate overlays
-            SHGFI_OVERLAYINDEX = 0x000000040 // Get the index of the overlay
-        }
-
-        #endregion
     }
 }

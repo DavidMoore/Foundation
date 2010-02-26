@@ -150,9 +150,15 @@
     <Compile Include="Services\Security\SaltedValue.cs" />
     <Compile Include="Services\Security\Salter.cs" />
     <Compile Include="Services\Security\SaltPosition.cs" />
+    <Compile Include="WindowsShell\IImageList.cs" />
+    <Compile Include="WindowsShell\IMAGEINFO.cs" />
     <Compile Include="WindowsShell\ImageListDrawItemFlags.cs" />
+    <Compile Include="WindowsShell\IMAGELISTDRAWPARAMS.cs" />
     <Compile Include="WindowsShell\ImageListDrawStateFlags.cs" />
     <Compile Include="WindowsShell\IShellProvider.cs" />
+    <Compile Include="WindowsShell\NativeMethods.cs" />
+    <Compile Include="WindowsShell\POINT.cs" />
+    <Compile Include="WindowsShell\RECT.cs" />
     <Compile Include="WindowsShell\ShellFolder.cs" />
     <Compile Include="WindowsShell\ShellItemList.cs" />
     <Compile Include="WindowsShell\ShellIconStateConstants.cs" />
@@ -178,6 +184,8 @@
     <Compile Include="Services\Validation\ValidationPropertyError.cs" />
     <Compile Include="SubnetMaskedIp.cs" />
     <Compile Include="TempFile.cs" />
+    <Compile Include="WindowsShell\SHFILEINFO.cs" />
+    <Compile Include="WindowsShell\SHGetFileInfoConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

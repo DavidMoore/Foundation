@@ -23,13 +23,6 @@ namespace Foundation.WindowsShell
         const int TVSIL_NORMAL = 0;
         const int TVSIL_STATE = 2;
 
-        [DllImport("user32", CharSet = CharSet.Auto)]
-        static extern IntPtr SendMessage(
-            IntPtr hWnd,
-            int wMsg,
-            IntPtr wParam,
-            IntPtr lParam);
-
         /// <summary>
         /// Associates a ShellImageList with a ListView control
         /// </summary>
@@ -52,7 +45,7 @@ namespace Foundation.WindowsShell
             {
                 wParam = (IntPtr) LVSIL_STATE;
             }
-            SendMessage(
+            NativeMethods.SendMessage(
                 listView.Handle,
                 LVM_SETIMAGELIST,
                 wParam,
@@ -77,7 +70,7 @@ namespace Foundation.WindowsShell
             {
                 wParam = (IntPtr) TVSIL_STATE;
             }
-            SendMessage(
+            NativeMethods.SendMessage(
                 treeView.Handle,
                 TVM_SETIMAGELIST,
                 wParam,

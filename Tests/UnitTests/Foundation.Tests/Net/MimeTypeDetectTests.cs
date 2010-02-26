@@ -1,4 +1,4 @@
-﻿using Foundation.Net;
+using Foundation.Net;
 using NUnit.Framework;
 
 namespace Foundation.Tests.Net
@@ -9,7 +9,7 @@ namespace Foundation.Tests.Net
         [Test]
         public void FromExtension()
         {
-            var jpeg = MimeTypes.Image.Jpeg;
+            var jpeg = MimeTypesImage.Jpeg;
 
             Assert.AreEqual(jpeg, MimeTypeDetector.FromExtension("jpg") );
         }

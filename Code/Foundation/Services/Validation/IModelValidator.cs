@@ -23,6 +23,6 @@ namespace Foundation.Services.Validation
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        IValidationErrors GetValidationErrors(object model);
+        IValidationErrorsCollection GetValidationErrors(object model);
     }
 }

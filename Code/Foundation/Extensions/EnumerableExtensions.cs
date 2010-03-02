@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -15,9 +15,9 @@ namespace Foundation.Extensions
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static IPaginatedList<T> ToPaginatedList<T>(this IEnumerable<T> source, int page, int pageSize)
+        public static IPaginatedCollection<T> ToPaginatedList<T>(this IEnumerable<T> source, int page, int pageSize)
         {
-            return new PaginatedList<T>(source, page, pageSize);
+            return new PaginatedCollection<T>(source, page, pageSize);
         }
 
         /// <summary>
@@ -29,15 +29,15 @@ namespace Foundation.Extensions
         /// <param name="pageSize"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static IPaginatedList<T> ToPaginatedList<T>(this IEnumerable<T> source, int page, int pageSize, int count)
+        public static IPaginatedCollection<T> ToPaginatedList<T>(this IEnumerable<T> source, int page, int pageSize, int count)
         {
-            return new PaginatedList<T>(source, page, pageSize, count);
+            return new PaginatedCollection<T>(source, page, pageSize, count);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        public static IPaginatedList<T> ToNamedPaginatedList<T>(this IEnumerable<T> source, int page, int pageSize, Func<IEnumerable<T>, string> getPageNameFunction)
+        public static IPaginatedCollection<T> ToNamedPaginatedList<T>(this IEnumerable<T> source, int page, int pageSize, Func<IEnumerable<T>, string> getPageNameFunction)
         {
-            return new NamedPaginatedList<T>(source.ToList(), page, pageSize, getPageNameFunction);
+            return new NamedPaginatedCollection<T>(source.ToList(), page, pageSize, getPageNameFunction);
         }
 
         /// <exception cref="ArgumentNullException">when <paramref name="action"/> is null</exception>

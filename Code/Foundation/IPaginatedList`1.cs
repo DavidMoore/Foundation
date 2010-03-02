@@ -2,5 +2,5 @@ using System.Collections.Generic;
 
 namespace Foundation
 {
-    public interface IPaginatedList<T> : IPaginatedList, IList<T> {}
+    public interface IPaginatedCollection<T> : IPaginatedCollection, IList<T> {}
 }

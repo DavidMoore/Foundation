@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +15,8 @@ namespace Foundation.Services.Registration
 
         public ServiceRegistration RegisterService(Type type)
         {
-            var registerServiceAttributes = ReflectUtils.GetAttributes<RegisterComponentAttribute>(type);
+            if (type == null) throw new ArgumentNullException("type");
+            var registerServiceAttributes = ReflectionUtilities.GetAttributes<RegisterComponentAttribute>(type);
 
             foreach (var registerServiceAttribute in registerServiceAttributes)
             {
@@ -53,6 +54,7 @@ namespace Foundation.Services.Registration
 
         public void RegisterServices(IEnumerable<Type> types)
         {
+            if (types == null) throw new ArgumentNullException("types");
             foreach (var type in types)
             {
                 RegisterService(type);

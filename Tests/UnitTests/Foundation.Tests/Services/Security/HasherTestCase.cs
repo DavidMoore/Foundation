@@ -12,7 +12,7 @@ namespace Foundation.Tests.Services.Security
             var test = "The quick brown fox jumps over the lazy dog";
             var hash = "9e107d9d372bb6826bd81d3542a419d6";
 
-            Assert.IsTrue(Hasher.Md5Compare(test, hash));
+            Assert.IsTrue(Hasher.MD5Compare(test, hash));
         }
 
         [Test]
@@ -20,7 +20,7 @@ namespace Foundation.Tests.Services.Security
         {
             var test = "The quick brown fox jumps over the lazy dog";
 
-            var result = Hasher.Md5Hash(test);
+            var result = Hasher.MD5Hash(test);
 
             Assert.AreEqual("9e107d9d372bb6826bd81d3542a419d6", result);
         }

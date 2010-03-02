@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace Foundation
@@ -16,7 +17,7 @@ namespace Foundation
 
         public FoundationException(string message) : base(message) {}
 
-        public FoundationException(string message, params object[] args) : this(string.Format(message, args)) {}
+        public FoundationException(string message, params object[] args) : this(string.Format(CultureInfo.CurrentCulture, message, args)) { }
 
 
         /// <summary>

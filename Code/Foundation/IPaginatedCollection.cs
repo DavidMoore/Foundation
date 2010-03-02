@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foundation
 {
-    public interface IPaginatedList : IEnumerable
+    public interface IPaginatedCollection : IEnumerable
     {
         int Page { get; set; }
         int PageSize { get; set; }

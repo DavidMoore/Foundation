@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 
 namespace Foundation.Extensions
@@ -16,7 +16,7 @@ namespace Foundation.Extensions
         /// <returns></returns>
         public static bool HasAttribute(this MemberInfo memberInfo, params Type[] attributes)
         {
-            return ReflectUtils.HasAttribute(memberInfo, attributes);
+            return ReflectionUtilities.HasAttribute(memberInfo, attributes);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Foundation.Extensions
         /// <returns>The attribute instance, or null if the attribute was not found on the member</returns>
         public static TAttribute GetAttribute<TAttribute>(this MemberInfo memberInfo) where TAttribute : Attribute
         {
-            return ReflectUtils.GetAttribute<TAttribute>(memberInfo);
+            return ReflectionUtilities.GetAttribute<TAttribute>(memberInfo);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Foundation.WindowsShell
 {
     static class NativeMethods
     {
-        [DllImport("shell32")]
+        [DllImport("shell32", CharSet = CharSet.Unicode)]
         internal static extern IntPtr SHGetFileInfo(
             string pszPath,
             int dwFileAttributes,

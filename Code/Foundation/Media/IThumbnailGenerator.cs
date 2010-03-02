@@ -11,7 +11,7 @@ namespace Foundation.Media
         /// </summary>
         IThumbnailCache Cache { get; }
 
-        void Generate(string filename, string destinationFilename);
+        void Generate(string fileName, string destinationFileName);
 
         Rectangle CalculateSourceRectangle(int originalWidth, int originalHeight, int thumbWidth, int thumbHeight);
     }

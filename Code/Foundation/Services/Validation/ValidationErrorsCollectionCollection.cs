@@ -9,22 +9,22 @@ namespace Foundation.Services.Validation
     /// <summary>
     /// Contains a collection of validation errors for a model
     /// </summary>
-    public class ValidationErrorsCollection : List<IValidationPropertyError>, IValidationErrors
+    public class ValidationErrorsCollectionCollection : List<IValidationPropertyError>, IValidationErrorsCollection
     {
         #region IValidationErrors Members
 
         /// <summary>
         /// Get only the errors for a specific property
         /// </summary>
-        /// <param name="property"></param>
+        /// <param name="propertyName"></param>
         /// <returns></returns>
-        public IList<IValidationPropertyError> ErrorsForProperty(string property)
+        public IList<IValidationPropertyError> ErrorsForProperty(string propertyName)
         {
             IList<IValidationPropertyError> errors = new List<IValidationPropertyError>(Count);
 
             foreach( var error in this )
             {
-                if( error.PropertyName.Equals(property, StringComparison.InvariantCultureIgnoreCase) )
+                if( error.PropertyName.Equals(propertyName, StringComparison.OrdinalIgnoreCase) )
                 {
                     errors.Add(error);
                 }
@@ -39,12 +39,12 @@ namespace Foundation.Services.Validation
         {
             var typeName = GetType().Name;
 
-            if( Count == 0 ) return "{{{0}: No errors}}".FormatUiCulture(typeName);
+            if( Count == 0 ) return "{{{0}: No errors}}".FormatCurrentCulture(typeName);
 
             var sb = new StringBuilder();
 
             sb.AppendFormat(CultureInfo.CurrentUICulture, "{{{0}: ", typeName);
-            sb.Append(Count == 1 ? "1 property" : string.Format("{0} properties", Count));
+            sb.Append(Count == 1 ? "1 property" : string.Format(CultureInfo.CurrentCulture, "{0} properties", Count));
             sb.Append(" failed validation. [");
 
             var first = true;

@@ -6,7 +6,7 @@ namespace Foundation.Services.Registration
     /// Registers a service using a lifestyle of <see cref="LifestyleType.Singleton"/>
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-    public class RegisterComponentAsSingletonAttribute : RegisterComponentAttribute
+    public sealed class RegisterComponentAsSingletonAttribute : RegisterComponentAttribute
     {
         /// <summary>
         /// Registers this service with a lifestyle of <see cref="LifestyleType.Singleton"/>

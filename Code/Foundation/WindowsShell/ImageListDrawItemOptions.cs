@@ -6,7 +6,7 @@ namespace Foundation.WindowsShell
     /// Flags controlling how the Image List item is drawn
     /// </summary>
     [Flags]
-    public enum ImageListDrawItemFlags
+    public enum ImageListDrawItemOptions
     {
         /// <summary>
         /// Draw item normally.
@@ -41,9 +41,9 @@ namespace Foundation.WindowsShell
         Image = 0x20,
 
         /// <summary>
-        /// Draw the icon using the ROP specified.
+        /// Draws the image using the raster-operation code specified by the dwRop member.
         /// </summary>
-        Rop = 0x40,
+        RasterOperation = 0x40,
 
         /// <summary>
         /// Preserves the alpha channel in dest. XP only.

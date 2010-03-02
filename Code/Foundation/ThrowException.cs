@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq.Expressions;
 using Foundation.Extensions;
 
 namespace Foundation
@@ -9,6 +8,7 @@ namespace Foundation
     /// <summary>
     /// Assertion methods for throwing exceptions in common scenarios
     /// </summary>
+    [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
     public static class ThrowException
     {
         /// <summary>
@@ -43,7 +43,7 @@ namespace Foundation
         public static void IfTrue(bool assertion, string message, params object[] stringFormatParameters)
         {
             if( !assertion ) return;
-            if( stringFormatParameters.Length > 0 ) message = message.FormatUiCulture(stringFormatParameters);
+            if( stringFormatParameters != null && stringFormatParameters.Length > 0 ) message = message.FormatCurrentCulture(stringFormatParameters);
             throw new FoundationException(message);
         }
 
@@ -57,7 +57,7 @@ namespace Foundation
             if( !test ) return;
             IfArgumentIsNullOrEmpty("message", message);
             if( string.IsNullOrEmpty(message) ) throw new TException();
-            if( stringFormatParameters.Length > 0 ) message = message.FormatUiCulture(stringFormatParameters);
+            if( stringFormatParameters != null && stringFormatParameters.Length > 0 ) message = message.FormatCurrentCulture(stringFormatParameters);
             var exception = Activator.CreateInstance(typeof(TException), message) as Exception;
             IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(TException).Name, message);
             throw exception;
@@ -116,7 +116,7 @@ namespace Foundation
             if( value != null ) return;
             IfArgumentIsNullOrEmpty("message", message);
             if( string.IsNullOrEmpty(message) ) throw new TException();
-            if( stringFormatArguments.Length > 0 ) message = string.Format(message, stringFormatArguments);
+            if (stringFormatArguments != null && stringFormatArguments.Length > 0) message = string.Format(CultureInfo.CurrentCulture, message, stringFormatArguments);
             var exception = Activator.CreateInstance(typeof(TException), message) as Exception;
             IfNull(exception, "Couldn't create Exception of type {0} with message \"{1}\"", typeof(TException).Name, message);
             throw exception;

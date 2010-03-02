@@ -36,6 +36,8 @@ namespace Foundation.WindowsShell
             bool forStateImages
             )
         {
+            if (listView == null) throw new ArgumentNullException("listView");
+            if (shellImageList == null) throw new ArgumentNullException("shellImageList");
             var wParam = (IntPtr) LVSIL_NORMAL;
             if( shellImageList.ImageListSize == ShellImageListSize.SmallIcons )
             {
@@ -59,12 +61,10 @@ namespace Foundation.WindowsShell
         /// <param name="shellImageList">System Image List to associate</param>
         /// <param name="forStateImages">Whether to add ImageList as StateImageList</param>
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "This sets the ImageList using a windows message so could cause problems if set on a Control")]
-        public static void SetTreeViewImageList(
-            TreeView treeView,
-            ShellImageList shellImageList,
-            bool forStateImages
-            )
+        public static void SetTreeViewImageList( TreeView treeView, ShellImageList shellImageList, bool forStateImages)
         {
+            if (treeView == null) throw new ArgumentNullException("treeView");
+            if (shellImageList == null) throw new ArgumentNullException("shellImageList");
             var wParam = (IntPtr) TVSIL_NORMAL;
             if( forStateImages )
             {

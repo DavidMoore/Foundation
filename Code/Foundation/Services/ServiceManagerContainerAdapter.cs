@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using Foundation.Services.Registration;
 
@@ -8,6 +9,7 @@ namespace Foundation.Services
     /// <summary>
     /// Adapts an <see cref="IServiceManager"/> to the <see cref="IContainer"/> interface
     /// </summary>
+    [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated at runtime through auto-registration")]
     [RegisterComponent(typeof(IContainer))]
     class ServiceManagerContainerAdapter : Container
     {

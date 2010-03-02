@@ -20,13 +20,13 @@ namespace Foundation.Media
 
         public IThumbnailCache Cache { get; set; }
 
-        public void Generate(string filename, string destinationFilename)
+        public void Generate(string fileName, string destinationFileName)
         {
-            ThrowException.IfArgumentIsNullOrEmpty("filename", filename);
+            ThrowException.IfArgumentIsNullOrEmpty("filename", fileName);
 
-            var file = new FileInfo(filename);
+            var file = new FileInfo(fileName);
 
-            ThrowException.IfFalse<FileNotFoundException>(file.Exists, "The image filename {0} couldn't be found.", filename);
+            ThrowException.IfFalse<FileNotFoundException>(file.Exists, "The image filename {0} couldn't be found.", fileName);
 
 //            // See if the file exists in the cache
 //            var cacheVersion = Cache.GetCacheFile(filename);
@@ -54,14 +54,14 @@ namespace Foundation.Media
                 graphics.DrawImage(source, destRect, srcRect, GraphicsUnit.Pixel);
                 graphics.Flush();
 
-                destination.Save(destinationFilename, ImageFormat.Png);
+                destination.Save(destinationFileName, ImageFormat.Png);
 
                 // Add to the cache
-                Cache.Add(filename, Options.Width, Options.Height);
+                Cache.Add(fileName, Options.Width, Options.Height);
             }
         }
 
-        public Size CalculateSourceDimensions(int originalWidth, int originalHeight, int thumbWidth, int thumbHeight)
+        public static Size CalculateSourceDimensions(int originalWidth, int originalHeight, int thumbWidth, int thumbHeight)
         {
             var sourceAspectRatio = originalWidth / (double)originalHeight;
             var thumbAspectRatio = thumbWidth / (double)thumbHeight;

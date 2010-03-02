@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
@@ -18,7 +19,8 @@ namespace Foundation.Services
         /// <returns></returns>
         public string MapPath(string path)
         {
-            if( path.StartsWith("~") )
+            if (path == null) throw new ArgumentNullException("path");
+            if( path.StartsWith("~", StringComparison.Ordinal) )
             {
                 if( HttpContext.Current == null )
                 {
@@ -121,11 +123,12 @@ namespace Foundation.Services
         /// <returns></returns>
         public string TidyPath(string path)
         {
+            if (path == null) throw new ArgumentNullException("path");
             // Replace all forward slashes with backslashes
             path = path.Replace("/", @"\");
 
             // Remove duplicate backslashes
-            while( path.IndexOf(@"\\") > -1 )
+            while( path.IndexOf(@"\\", StringComparison.Ordinal) > -1 )
             {
                 path = path.Replace(@"\\", @"\");
             }
@@ -135,11 +138,13 @@ namespace Foundation.Services
 
         #endregion
 
-        public string UrlFromTitle(string title)
+        public static string UrlFromTitle(string title)
         {
+            if (title == null) throw new ArgumentNullException("title");
+
             var result = Regex.Replace(title.Replace(" ", "-").ToLower(CultureInfo.CurrentCulture), @"[^0-9\-a-z]", "");
 
-            while( result.IndexOf("--") > -1 )
+            while( result.IndexOf("--", StringComparison.Ordinal) > -1 )
             {
                 result = result.Replace("--", "-");
             }
@@ -161,7 +166,7 @@ namespace Foundation.Services
 
             if( trailing )
             {
-                while( path.EndsWith("/") || path.EndsWith("\\") )
+                while( path.EndsWith("/", StringComparison.OrdinalIgnoreCase) || path.EndsWith("\\",StringComparison.OrdinalIgnoreCase ) )
                 {
                     path = path.Substring(0, path.Length - 1);
                 }
@@ -169,7 +174,7 @@ namespace Foundation.Services
 
             if( leading )
             {
-                while( path.StartsWith("/") || path.StartsWith("\\") )
+                while( path.StartsWith("/", StringComparison.OrdinalIgnoreCase) || path.StartsWith("\\",StringComparison.OrdinalIgnoreCase) )
                 {
                     path = path.Substring(1);
                 }

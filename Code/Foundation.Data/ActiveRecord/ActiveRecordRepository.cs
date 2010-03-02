@@ -103,7 +103,7 @@ namespace Foundation.Data.ActiveRecord
             // Do a truncate if using MySQL
             var config = ActiveRecordMediator.GetSessionFactoryHolder().GetConfiguration(typeof(ActiveRecordBase));
             var driver = config.GetProperty("connection.driver_class");
-            if( driver.Equals(typeof(MySqlDataDriver).AssemblyQualifiedName) ) ExecuteSql("TRUNCATE {0}".FormatUiCulture(Type.Name));
+            if( driver.Equals(typeof(MySqlDataDriver).AssemblyQualifiedName) ) ExecuteSql("TRUNCATE {0}".FormatCurrentCulture(Type.Name));
         }
 
         /// <summary>
@@ -199,12 +199,12 @@ namespace Foundation.Data.ActiveRecord
             return ActiveRecordMediator<T>.FindAll(new[] {order});
         }
 
-        public IPaginatedList<T> PagedList(int pageNumber, int pageSize)
+        public IPaginatedCollection<T> PagedList(int pageNumber, int pageSize)
         {
             return PagedList(pageNumber, pageSize, null);
         }
 
-        public IPaginatedList<T> PagedList(int pageNumber, int pageSize, string search, params SortInfo[] sortInfo)
+        public IPaginatedCollection<T> PagedList(int pageNumber, int pageSize, string search, params SortInfo[] sortInfo)
         {
             if( pageNumber < 1) throw new ArgumentException("Page number must be 1 or more!", "pageNumber");
             if( sortInfo == null) throw new ArgumentNullException("sortInfo");
@@ -231,7 +231,7 @@ namespace Foundation.Data.ActiveRecord
 
             var count = ActiveRecordMediator<T>.Count();
 
-            return new PaginatedList<T>(results, pageNumber, pageSize, count);
+            return new PaginatedCollection<T>(results, pageNumber, pageSize, count);
         }
     }
 }

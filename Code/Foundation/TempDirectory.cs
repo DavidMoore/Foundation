@@ -83,11 +83,11 @@ namespace Foundation
         /// <summary>
         /// Creates a temporary file in the directory using the specified name
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="fileName"></param>
         /// <returns></returns>
-        public FileInfo CreateTempFile(string s)
+        public FileInfo CreateTempFile(string fileName)
         {
-            var file = new FileInfo(Path.Combine(DirectoryInfo.FullName, s));
+            var file = new FileInfo(Path.Combine(DirectoryInfo.FullName, fileName));
             file.Create().Close();
             return file;
         }

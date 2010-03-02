@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Linq;
 
 namespace Foundation.Extensions
 {
     public static class PaginatedListExtensions
     {
-        public static IPaginatedList<TCastTo> CastTo<TCastFrom, TCastTo>(this IPaginatedList<TCastFrom> list) where TCastFrom : TCastTo
+        public static IPaginatedCollection<TCastTo> CastTo<TCastFrom, TCastTo>(this IPaginatedCollection<TCastFrom> collection) where TCastFrom : TCastTo
         {
-            if (list == null) throw new ArgumentNullException("list");
-            return new PaginatedList<TCastTo>(list.Cast<TCastTo>(), list.Page, list.PageSize, list.RecordCount);
+            if (collection == null) throw new ArgumentNullException("collection");
+            return new PaginatedCollection<TCastTo>(collection.Cast<TCastTo>(), collection.Page, collection.PageSize, collection.RecordCount);
         }
     }
 }

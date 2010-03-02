@@ -8,9 +8,9 @@ namespace Foundation.Data.ActiveRecord.Validation
     /// <summary>
     /// Converts an ActiveRecord validation error summary into a ValidationErrorsCollection object
     /// </summary>
-    internal class ActiveRecordValidationErrorsAdapter : ValidationErrorsCollection
+    internal class ActiveRecordValidationErrorsCollectionAdapter : ValidationErrorsCollectionCollection
     {
-        public ActiveRecordValidationErrorsAdapter(IValidationProvider validator)
+        public ActiveRecordValidationErrorsCollectionAdapter(IValidationProvider validator)
         {
             foreach( DictionaryEntry entry in validator.PropertiesValidationErrorMessages )
             {

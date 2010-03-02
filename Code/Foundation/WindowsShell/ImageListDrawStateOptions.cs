@@ -6,7 +6,7 @@ namespace Foundation.WindowsShell
     /// Enumeration containing XP ImageList Draw State options
     /// </summary>
     [Flags]
-    public enum ImageListDrawStateFlags
+    public enum ImageListDrawStateOptions
     {
         /// <summary>
         /// The image state is not modified. 

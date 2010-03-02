@@ -26,7 +26,7 @@ namespace Foundation.Data.ActiveRecord.Validation
         {
             IValidationProvider validator = new ActiveRecordValidator(model);
             if( validator.IsValid() ) return;
-            throw new ModelValidationException(new ActiveRecordValidationErrorsAdapter(validator));
+            throw new ModelValidationException(new ActiveRecordValidationErrorsCollectionAdapter(validator));
         }
 
         /// <summary>
@@ -34,11 +34,11 @@ namespace Foundation.Data.ActiveRecord.Validation
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public IValidationErrors GetValidationErrors(object model)
+        public IValidationErrorsCollection GetValidationErrors(object model)
         {
             IValidationProvider validator = new ActiveRecordValidator(model);
 
-            return validator.IsValid() ? new ValidationErrorsCollection() : new ActiveRecordValidationErrorsAdapter(validator);
+            return validator.IsValid() ? new ValidationErrorsCollectionCollection() : new ActiveRecordValidationErrorsCollectionAdapter(validator);
         }
 
         #endregion

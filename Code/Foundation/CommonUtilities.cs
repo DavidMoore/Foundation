@@ -15,7 +15,7 @@ namespace Foundation
         /// <returns>The URL encoded and JavaScript escaped text.</returns>
         public static string LineBreaksToHtml(string content)
         {
-            return IsNullOrEmpty(content) ? string.Empty : content.Replace("\r", "").Replace("\n", "<br />");
+            return string.IsNullOrEmpty(content) ? string.Empty : content.Replace("\r", "").Replace("\n", "<br />");
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Foundation
         /// <returns></returns>
         public static string TidyUrl(string url)
         {
-            if( IsNullOrEmpty(url) ) return url;
+            if( string.IsNullOrEmpty(url) ) return url;
 
             // Replace all back slashes with forward slashes
             url = url.Replace("\\", "/");

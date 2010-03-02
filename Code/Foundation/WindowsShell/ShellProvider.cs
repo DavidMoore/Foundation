@@ -27,9 +27,9 @@ namespace Foundation.WindowsShell
 
         #region IShellProvider Members
 
-        public ShellFolder Desktop { get { return GetShellFolderByPath(ShellNamespaceIdentifier.Desktop); } }
+        public ShellFolder Desktop { get { return GetShellFolder(ShellNamespaceIdentifier.Desktop); } }
 
-        public ShellFolder MyComputer { get { return GetShellFolderByPath(ShellNamespaceIdentifier.MyComputer); } }
+        public ShellFolder MyComputer { get { return GetShellFolder(ShellNamespaceIdentifier.MyComputer); } }
 
         public ShellClass ShellInstance
         {
@@ -45,34 +45,34 @@ namespace Foundation.WindowsShell
             return new ShellClass();
         }
 
-        public ShellFolder GetShellFolderByPath(ShellNamespaceIdentifier nameSpace)
+        public ShellFolder GetShellFolder(ShellNamespaceIdentifier shellNamespaceIdentifier)
         {
-            return new ShellFolder(GetFolder(nameSpace));
+            return new ShellFolder(GetFolder(shellNamespaceIdentifier));
         }
 
-        public ShellFolder GetShellFolderByPath(string nameSpace)
+        public ShellFolder GetShellFolder(string shellNamespace)
         {
-            return new ShellFolder(GetFolder(nameSpace));
-        }
-
-        /// <summary>
-        /// Returns a collection of objects found under the specified path/namespace
-        /// </summary>
-        /// <param name="nameSpace"></param>
-        /// <returns></returns>
-        public ShellItemList GetItemsUnderPath(ShellNamespaceIdentifier nameSpace)
-        {
-            return GetShellFolderByPath(nameSpace).Children;
+            return new ShellFolder(GetFolder(shellNamespace));
         }
 
         /// <summary>
         /// Returns a collection of objects found under the specified path/namespace
         /// </summary>
-        /// <param name="nameSpace"></param>
+        /// <param name="shellNamespaceIdentifier"></param>
         /// <returns></returns>
-        public ShellItemList GetItemsUnderPath(string nameSpace)
+        public ShellItemCollection GetItemsUnderPath(ShellNamespaceIdentifier shellNamespaceIdentifier)
         {
-            return GetShellFolderByPath(nameSpace).Children;
+            return GetShellFolder(shellNamespaceIdentifier).Children;
+        }
+
+        /// <summary>
+        /// Returns a collection of objects found under the specified path/namespace
+        /// </summary>
+        /// <param name="shellNamespace"></param>
+        /// <returns></returns>
+        public ShellItemCollection GetItemsUnderPath(string shellNamespace)
+        {
+            return GetShellFolder(shellNamespace).Children;
         }
 
         #endregion
@@ -90,11 +90,11 @@ namespace Foundation.WindowsShell
         /// <summary>
         /// Gets a shell folder by its path or namespace
         /// </summary>
-        /// <param name="nameSpace"></param>
+        /// <param name="pathOrNamespace"></param>
         /// <returns></returns>
-        protected virtual Folder3 GetFolder(object nameSpace)
+        protected virtual Folder3 GetFolder(object pathOrNamespace)
         {
-            return (Folder3) ShellInstance.NameSpace(nameSpace);
+            return (Folder3) ShellInstance.NameSpace(pathOrNamespace);
         }
     }
 }

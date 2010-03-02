@@ -23,7 +23,9 @@ namespace Foundation.WindowsShell
     /// however, and should be used if possible.
     /// </para>
     /// </remarks>
-    [Flags, SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue")]
+    [SuppressMessage("Microsoft.Naming", "CA1714:FlagsEnumsShouldHavePluralNames")]
+    [SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue")]
+    [Flags]
     public enum ShellNamespaceIdentifier
     {
         /// <summary>
@@ -31,7 +33,7 @@ namespace Foundation.WindowsShell
         /// Version 5.0. Combine this CSIDL with any of the following CSIDLs to force the creation of the associated folder. 
         /// </para>
         ///</summary>
-        FlagCreate = 0x8000,
+        Create = 0x8000,
 
         /// <summary>
         /// <para>
@@ -68,7 +70,7 @@ namespace Foundation.WindowsShell
         /// A typical path is C:\Documents and Settings\username\Local Settings\Application Data\Microsoft\CD Burning.
         /// </para>
         ///</summary>
-        CdBurnArea = 0x003b,
+        CDBurnArea = 0x003b,
 
         /// <summary>
         /// <para>

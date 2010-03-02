@@ -1,17 +1,14 @@
-using System.Text;
-
 namespace Foundation.Services.Security
 {
     public class Salter
     {
-        const int defaultSaltLength = 4;
-        Encoding utf8 = Encoding.UTF8;
-
+        const int DefaultSaltLength = 4;
+        
         public Salter()
         {
             PasswordGenerator = new PasswordGenerator();
             Position = SaltPosition.Suffix;
-            Length = defaultSaltLength;
+            Length = DefaultSaltLength;
         }
 
         public PasswordGenerator PasswordGenerator { get; set; }

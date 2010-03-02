@@ -8,18 +8,18 @@ namespace Foundation.WindowsShell
     /// A collection of ShellItems based on the generic List
     /// </summary>
     [CLSCompliant(false)]
-    public class ShellItemList : Collection<ShellItem>
+    public class ShellItemCollection : Collection<ShellItem>
     {
         /// <summary>
         /// Creates an empty list
         /// </summary>
-        public ShellItemList() {}
+        public ShellItemCollection() {}
 
         /// <summary>
         /// Creates the list from an existing list of Shell32 objects
         /// </summary>
         /// <param name="items"></param>
-        public ShellItemList(FolderItems items)
+        public ShellItemCollection(FolderItems items)
         {
             Add(items);
         }

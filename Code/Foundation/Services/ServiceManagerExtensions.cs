@@ -15,6 +15,7 @@ namespace Foundation.Services
         /// <returns></returns>
         public static bool IsServiceRegistered<T>(this IServiceManager serviceManager)
         {
+            if (serviceManager == null) throw new ArgumentNullException("serviceManager");
             return serviceManager.IsServiceRegistered(typeof(T));
         }
 
@@ -27,6 +28,7 @@ namespace Foundation.Services
         /// <returns></returns>
         public static IServiceManager AddInstance<TServiceType>(this IServiceManager serviceManager, TServiceType instance)
         {
+            if (serviceManager == null) throw new ArgumentNullException("serviceManager");
             return serviceManager.AddInstance(typeof (TServiceType), instance);
         }
 
@@ -40,6 +42,7 @@ namespace Foundation.Services
         /// <returns></returns>
         public static IServiceManager AddInstance(this IServiceManager serviceManager, Type serviceType, object instance)
         {
+            if (serviceManager == null) throw new ArgumentNullException("serviceManager");
             return serviceManager.AddInstance(serviceType, instance, null);
         }
 
@@ -51,6 +54,7 @@ namespace Foundation.Services
         /// <param name="toType"></param>
         public static IServiceManager AddService(this IServiceManager serviceManager, Type fromType, Type toType)
         {
+            if (serviceManager == null) throw new ArgumentNullException("serviceManager");
             return serviceManager.AddService(fromType, toType, null, LifestyleType.Singleton);
         }
 
@@ -61,6 +65,7 @@ namespace Foundation.Services
         /// <typeparam name="TService">The implementing service type</typeparam>
         public static IServiceManager AddService<TContract, TService>(this IServiceManager serviceManager)
         {
+            if (serviceManager == null) throw new ArgumentNullException("serviceManager");
             return serviceManager.AddService(typeof (TContract), typeof (TService));
         }
 
@@ -73,6 +78,7 @@ namespace Foundation.Services
         /// <param name="lifestyle">The lifestyle to use for the service</param>
         public static IServiceManager AddService<TContract, TService>(this IServiceManager serviceManager, LifestyleType lifestyle)
         {
+            if (serviceManager == null) throw new ArgumentNullException("serviceManager");
             return serviceManager.AddService(typeof (TContract), typeof (TService), null, lifestyle);
         }
 
@@ -84,6 +90,7 @@ namespace Foundation.Services
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")]
         public static TService GetService<TService>(this IServiceManager serviceManager)
         {
+            if (serviceManager == null) throw new ArgumentNullException("serviceManager");
             var serviceType = typeof (TService);
             var value = serviceManager.GetService(serviceType);
             if( value is TService ) return (TService) value;

@@ -30,29 +30,29 @@ namespace Foundation.WindowsShell
         /// <summary>
         /// Returns a shell object for the specified namespace
         /// </summary>
-        /// <param name="nameSpace"></param>
+        /// <param name="shellNamespaceIdentifier"></param>
         /// <returns></returns>
-        ShellFolder GetShellFolderByPath(ShellNamespaceIdentifier nameSpace);
+        ShellFolder GetShellFolder(ShellNamespaceIdentifier shellNamespaceIdentifier);
 
         /// <summary>
         /// Returns a shell object for the specified namespace
         /// </summary>
-        /// <param name="nameSpace"></param>
+        /// <param name="shellNamespace"></param>
         /// <returns></returns>
-        ShellFolder GetShellFolderByPath(string nameSpace);
+        ShellFolder GetShellFolder(string shellNamespace);
 
         /// <summary>
         /// Returns a collection of objects found under the specified namespace
         /// </summary>
-        /// <param name="nameSpace"></param>
+        /// <param name="shellNamespaceIdentifier"></param>
         /// <returns></returns>
-        ShellItemList GetItemsUnderPath(ShellNamespaceIdentifier nameSpace);
+        ShellItemCollection GetItemsUnderPath(ShellNamespaceIdentifier shellNamespaceIdentifier);
 
         /// <summary>
         /// Returns a collection of objects found under the specified namespace
         /// </summary>
-        /// <param name="nameSpace"></param>
+        /// <param name="shellNamespace"></param>
         /// <returns></returns>
-        ShellItemList GetItemsUnderPath(string nameSpace);
+        ShellItemCollection GetItemsUnderPath(string shellNamespace);
     }
 }

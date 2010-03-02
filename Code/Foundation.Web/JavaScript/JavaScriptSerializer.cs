@@ -23,7 +23,7 @@ namespace Foundation.Web.JavaScript
             if (writer == null) throw new ArgumentNullException("writer");
             if (value == null) throw new ArgumentNullException("value");
 
-            if( ReflectUtils.Implements(value.GetType(), typeof(ISerializableToJavaScript)) && !customSerializationObjects.Contains(value) )
+            if( ReflectionUtilities.Implements(value.GetType(), typeof(ISerializableToJavaScript)) && !customSerializationObjects.Contains(value) )
             {
                 customSerializationObjects.Add(value);
                 ((ISerializableToJavaScript) value).SerializeToJavaScript(this, writer);
@@ -31,7 +31,7 @@ namespace Foundation.Web.JavaScript
                 return;
             }
 
-            var attribute = ReflectUtils.GetAttribute<JavaScriptObjectAttribute>(value);
+            var attribute = ReflectionUtilities.GetAttribute<JavaScriptObjectAttribute>(value);
 
             if( attribute != null && !string.IsNullOrEmpty(attribute.Prefix) ) writer.WriteRaw(attribute.Prefix);
 

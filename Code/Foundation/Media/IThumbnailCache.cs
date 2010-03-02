@@ -20,15 +20,15 @@ namespace Foundation.Media
         /// Copies the specified file to the cache, under the hash as the unique identifier
         /// </summary>
         /// <param name="hash"></param>
-        /// <param name="filename"></param>
-        void Add(string hash, string filename);
+        /// <param name="fileName"></param>
+        void Add(string hash, string fileName);
 
         /// <summary>
         /// Adds a thumbnail to the cache
         /// </summary>
-        /// <param name="filename"></param>
+        /// <param name="fileName"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        void Add(string filename, int width, int height);
+        void Add(string fileName, int width, int height);
     }
 }

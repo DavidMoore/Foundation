@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Foundation
     /// <summary>
     /// Reflection-related utilties
     /// </summary>
-    public static class ReflectUtils
+    public static class ReflectionUtilities
     {
         /// <summary>
         /// Gets all the properties from the object's type with the specified attribute
@@ -85,7 +86,7 @@ namespace Foundation
         {
             var attributes = GetAttributes<T>(value);
             if (attributes.Count() > 1) throw new InvalidOperationException(
-                 string.Format("The object {0} has more than one instance of the {1} attribute, but you're asking for 1 instance. Either use GetAttributes instead, or ensure {1} is only allowed one instance on a member.", value, typeof(T)));
+                 string.Format(CultureInfo.CurrentCulture, "The object {0} has more than one instance of the {1} attribute, but you're asking for 1 instance. Either use GetAttributes instead, or ensure {1} is only allowed one instance on a member.", value, typeof(T)));
             return attributes.SingleOrDefault();
         }
 
@@ -124,6 +125,7 @@ namespace Foundation
         /// <param name="fileName">The path to the assembly file</param>
         /// <param name="logger">A delegate to call with a logging message if <see cref="BadImageFormatException"/> is encountered. Can be null.</param>
         /// <returns>The loaded assembly, or null if <see cref="BadImageFormatException"/> was encountered</returns>
+        [SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Reflection.Assembly.LoadFile")]
         public static Assembly LoadAssembly(string fileName, Action<string> logger)
         {
             if (string.IsNullOrEmpty(fileName)) throw new ArgumentException("Null or empty filename!", fileName);
@@ -137,7 +139,7 @@ namespace Foundation
                 if (logger != null)
                 {
                     var message =
-                   string.Format(
+                   string.Format(CultureInfo.CurrentCulture,
                        "Got a BadImageFormatException with message \"{0}\" when trying to load \"{1}\" as an assembly. If it's not a .NET assembly, you can safely ignore this.",
                        bife.Message, fileName);
                     logger(message);

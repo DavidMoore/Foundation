@@ -30,7 +30,7 @@ namespace Foundation.Services
         public static IList<Type> ThatImplement(Type expectedInterface, Assembly assembly)
         {
             if (assembly == null) throw new ArgumentNullException("assembly");
-            return assembly.GetTypes().Where(type => ReflectUtils.Implements(type, expectedInterface)).ToList();
+            return assembly.GetTypes().Where(type => ReflectionUtilities.Implements(type, expectedInterface)).ToList();
         }
 
         /// <summary>

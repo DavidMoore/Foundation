@@ -11,9 +11,9 @@ namespace Foundation.Tests.Services.Security
         public void MD5HashAndCompare()
         {
             var test = "The quick brown fox jumps over the lazy dog";
-            var result = SaltedHasher.Md5Hash(test);
+            var result = SaltedHasher.MD5Hash(test);
 
-            Assert.IsTrue(SaltedHasher.Md5Compare(test, result));
+            Assert.IsTrue(SaltedHasher.MD5Compare(test, result));
         }
 
         [Test]

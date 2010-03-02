@@ -10,9 +10,15 @@ namespace Foundation.Services
     [RegisterComponent(typeof(IServiceContainer))]
     public class ServiceManagerServiceContainerAdapter : ServiceContainer
     {
-        readonly IServiceContainer serviceContainer;
+        readonly ServiceContainer serviceContainer;
         readonly Type thisType;
         
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if( serviceContainer != null) serviceContainer.Dispose();
+        }
+
         /// <summary>
         /// Constructs a new <see cref="ServiceManagerServiceContainerAdapter"/> by
         /// wrapping the passed <see cref="IServiceManager"/>
@@ -37,9 +43,10 @@ namespace Foundation.Services
         ///                 </param><filterpriority>2</filterpriority>
         public override object GetService(Type serviceType)
         {
+            if (serviceType == null) throw new ArgumentNullException("serviceType");
             return serviceType.IsAssignableFrom(thisType) ? this : serviceContainer.GetService(serviceType);
         }
-        
+
         /// <summary>
         /// Adds the specified service to the service container, and optionally promotes the service to any parent service containers.
         /// </summary>

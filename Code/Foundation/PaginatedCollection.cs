@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Foundation
 {
-    public class PaginatedList<T> : List<T>, IPaginatedList<T>
+    public class PaginatedCollection<T> : List<T>, IPaginatedCollection<T>
     {
         const int defaultPageSize = 25;
         public int Page { get; set; }
@@ -12,7 +13,7 @@ namespace Foundation
         public int RecordCount { get; set; }
         public int PageCount { get; set; }
 
-        public PaginatedList()
+        public PaginatedCollection()
         {
             Page = 1;
             PageSize = defaultPageSize;
@@ -20,9 +21,9 @@ namespace Foundation
             PageCount = 1;
         }
 
-        public PaginatedList(IEnumerable<T> source, int page, int pageSize) : this(source, page, pageSize, source.Count()){}
+        public PaginatedCollection(IEnumerable<T> source, int page, int pageSize) : this(source, page, pageSize, source.Count()){}
 
-        public PaginatedList(IEnumerable<T> source, int page, int pageSize, int recordCount)
+        public PaginatedCollection(IEnumerable<T> source, int page, int pageSize, int recordCount)
         {
             Page = page;
             PageSize = pageSize;
@@ -34,7 +35,7 @@ namespace Foundation
             var skip = source.Count() <= pageSize ? 0 : (Page - 1) * PageSize;
 
             // Default page names
-            PageNames = Enumerable.Range(1, PageCount).ToList().ConvertAll(input => input.ToString());
+            PageNames = Enumerable.Range(1, PageCount).ToList().ConvertAll(input => input.ToString(CultureInfo.CurrentCulture));
 
             AddRange(source.Skip(skip).Take(pageSize));
         }

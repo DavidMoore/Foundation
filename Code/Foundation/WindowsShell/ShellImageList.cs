@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
@@ -47,7 +48,10 @@ namespace Foundation.WindowsShell
         /// <summary>
         /// Gets the hImageList handle
         /// </summary>
-        public IntPtr Handle { get { return hIml; } }
+        public IntPtr Handle
+        {
+            get { return hIml; }
+        }
 
         /// <summary>
         /// Gets/sets the size of System Image List to retrieve.
@@ -65,27 +69,24 @@ namespace Foundation.WindowsShell
         /// <summary>
         /// Returns the size of the Image List Icons.
         /// </summary>
-        public Size Size
+        /// <exception cref="ShellImageListException"> if there is an error when getting the image size</exception>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Potentially throws exceptions so is best served as a method")]
+        public Size GetImageSize()
         {
-            get
+            int cx = 0;
+            int cy = 0;
+            if (iImageList == null)
             {
-                var cx = 0;
-                var cy = 0;
-                if( iImageList == null )
-                {
-                    NativeMethods.ImageList_GetIconSize(
-                        hIml,
-                        ref cx,
-                        ref cy);
-                }
-                else
-                {
-                    iImageList.GetIconSize(ref cx, ref cy);
-                }
-                var sz = new Size(
-                    cx, cy);
-                return sz;
+                var result = NativeMethods.ImageList_GetIconSize(hIml,ref cx,ref cy);
+                if( result != 0) throw new ShellImageListException("Couldn't get icon size. Result={0}, Last Win32 Error={1}", result, Marshal.GetLastWin32Error());
             }
+            else
+            {
+                var result = iImageList.GetIconSize(ref cx, ref cy);
+                if (result != 0) throw new ShellImageListException("Couldn't get icon size. Result={0}");
+            }
+            var sz = new Size(cx, cy);
+            return sz;
         }
 
         #region IDisposable Members
@@ -111,23 +112,18 @@ namespace Foundation.WindowsShell
         {
             Icon icon = null;
 
-            var hIcon = IntPtr.Zero;
-            if( iImageList == null )
+            IntPtr hIcon = IntPtr.Zero;
+            if (iImageList == null)
             {
-                hIcon = NativeMethods.ImageList_GetIcon(
-                    hIml,
-                    index,
-                    (int) ImageListDrawItemFlags.Transparent);
+                hIcon = NativeMethods.ImageList_GetIcon( hIml, index, (int) ImageListDrawItemOptions.Transparent);
             }
             else
             {
-                iImageList.GetIcon(
-                    index,
-                    (int) ImageListDrawItemFlags.Transparent,
-                    ref hIcon);
+                var result = iImageList.GetIcon( index, (int) ImageListDrawItemOptions.Transparent, ref hIcon);
+                if( result != 0) throw new ShellImageListException("Couldn't get icon copy. Result: {0}", result);
             }
 
-            if( hIcon != IntPtr.Zero )
+            if (hIcon != IntPtr.Zero)
             {
                 icon = System.Drawing.Icon.FromHandle(hIcon);
             }
@@ -152,9 +148,7 @@ namespace Foundation.WindowsShell
         /// <param name="forceLoadFromDisk">If True, then hit the disk to get the icon,
         /// otherwise only hit the disk if no cached icon is available.</param>
         /// <returns>Index of the icon</returns>
-        public int IconIndex(
-            string fileName,
-            bool forceLoadFromDisk)
+        public int IconIndex(string fileName,bool forceLoadFromDisk)
         {
             return IconIndex(
                 fileName,
@@ -171,15 +165,11 @@ namespace Foundation.WindowsShell
         /// <param name="iconState">Flags specifying the state of the icon
         /// returned.</param>
         /// <returns>Index of the icon</returns>
-        public int IconIndex(
-            string fileName,
-            bool forceLoadFromDisk,
-            ShellIconStateConstants iconState
-            )
+        public int IconIndex(string fileName,bool forceLoadFromDisk,ShellIconStateConstants iconState)
         {
-            var dwFlags = SHGetFileInfoConstants.SHGFI_SYSICONINDEX;
-            var dwAttr = 0;
-            if( size == ShellImageListSize.SmallIcons )
+            SHGetFileInfoConstants dwFlags = SHGetFileInfoConstants.SHGFI_SYSICONINDEX;
+            int dwAttr = 0;
+            if (size == ShellImageListSize.SmallIcons)
             {
                 dwFlags |= SHGetFileInfoConstants.SHGFI_SMALLICON;
             }
@@ -187,7 +177,7 @@ namespace Foundation.WindowsShell
             // We can choose whether to access the disk or not. If you don't
             // hit the disk, you may get the wrong icon if the icon is
             // not cached. Also only works for files.
-            if( !forceLoadFromDisk )
+            if (!forceLoadFromDisk)
             {
                 dwFlags |= SHGetFileInfoConstants.SHGFI_USEFILEATTRIBUTES;
                 dwAttr = FILE_ATTRIBUTE_NORMAL;
@@ -202,11 +192,11 @@ namespace Foundation.WindowsShell
             // icon, for example sFileSpec = "C:\PANTS.DOC"
             var shfi = new SHFILEINFO();
             var shfiSize = (uint) Marshal.SizeOf(shfi.GetType());
-            var retVal = NativeMethods.SHGetFileInfo(
+            IntPtr retVal = NativeMethods.SHGetFileInfo(
                 fileName, dwAttr, ref shfi, shfiSize,
                 ((uint) (dwFlags) | (uint) iconState));
 
-            if( retVal.Equals(IntPtr.Zero) )
+            if (retVal.Equals(IntPtr.Zero))
             {
                 //System.Diagnostics.Debug.Assert((!retVal.Equals(IntPtr.Zero)),"Failed to get icon index");
                 return 0;
@@ -224,14 +214,11 @@ namespace Foundation.WindowsShell
         /// <param name="index">Index of image to draw</param>
         /// <param name="x">X Position to draw at</param>
         /// <param name="y">Y Position to draw at</param>
-        public void DrawImage(
-            IntPtr hdc,
-            int index,
-            int x,
-            int y
-            )
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x")]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y")]
+        public void DrawImage(IntPtr hdc, int index, int x, int y)
         {
-            DrawImage(hdc, index, x, y, ImageListDrawItemFlags.Transparent);
+            DrawImage(hdc, index, x, y, ImageListDrawItemOptions.Transparent);
         }
 
         /// <summary>
@@ -241,24 +228,22 @@ namespace Foundation.WindowsShell
         /// <param name="index">Index of image to draw</param>
         /// <param name="x">X Position to draw at</param>
         /// <param name="y">Y Position to draw at</param>
-        /// <param name="flags">Drawing flags</param>
-        public void DrawImage(
-            IntPtr hdc,
-            int index,
-            int x,
-            int y,
-            ImageListDrawItemFlags flags
-            )
+        /// <param name="imageListDrawItemOptions">Drawing flags</param>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x")]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y")]
+        public void DrawImage(IntPtr hdc,int index,int x,int y,ImageListDrawItemOptions imageListDrawItemOptions)
         {
-            if( iImageList == null )
+            if (iImageList == null)
             {
-                var ret = NativeMethods.ImageList_Draw(
+                int ret = NativeMethods.ImageList_Draw(
                     hIml,
                     index,
                     hdc,
                     x,
                     y,
-                    (int) flags);
+                    (int) imageListDrawItemOptions);
+
+                if( ret != 0 ) throw new ShellImageListException("Error drawing image. Return code: {0}, Last Win32 Error: {1}", ret, Marshal.GetLastWin32Error());
             }
             else
             {
@@ -269,8 +254,9 @@ namespace Foundation.WindowsShell
                 pimldp.x = x;
                 pimldp.y = y;
                 pimldp.rgbFg = -1;
-                pimldp.fStyle = (int) flags;
-                iImageList.Draw(ref pimldp);
+                pimldp.fStyle = (int) imageListDrawItemOptions;
+                var result = iImageList.Draw(ref pimldp);
+                if (result != 0) throw new ShellImageListException("Error drawing image. Return code: {0}", result);
             }
         }
 
@@ -283,17 +269,19 @@ namespace Foundation.WindowsShell
         /// <param name="index">Index of image to draw</param>
         /// <param name="x">X Position to draw at</param>
         /// <param name="y">Y Position to draw at</param>
-        /// <param name="flags">Drawing flags</param>
-        /// <param name="cx">Width to draw</param>
-        /// <param name="cy">Height to draw</param>
+        /// <param name="imageListDrawItemOptions">Drawing flags</param>
+        /// <param name="width">Width to draw</param>
+        /// <param name="height">Height to draw</param>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x")]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y")]
         public void DrawImage(
             IntPtr hdc,
             int index,
             int x,
             int y,
-            ImageListDrawItemFlags flags,
-            int cx,
-            int cy
+            ImageListDrawItemOptions imageListDrawItemOptions,
+            int width,
+            int height
             )
         {
             var pimldp = new IMAGELISTDRAWPARAMS();
@@ -302,17 +290,19 @@ namespace Foundation.WindowsShell
             pimldp.i = index;
             pimldp.x = x;
             pimldp.y = y;
-            pimldp.cx = cx;
-            pimldp.cy = cy;
-            pimldp.fStyle = (int) flags;
-            if( iImageList == null )
+            pimldp.cx = width;
+            pimldp.cy = height;
+            pimldp.fStyle = (int) imageListDrawItemOptions;
+            if (iImageList == null)
             {
                 pimldp.himl = hIml;
-                var ret = NativeMethods.ImageList_DrawIndirect(ref pimldp);
+                int ret = NativeMethods.ImageList_DrawIndirect(ref pimldp);
+                if (ret != 0) throw new ShellImageListException("Error drawing image. Return code: {0}, Last Win32 Error: {1}", ret, Marshal.GetLastWin32Error());
             }
             else
             {
-                iImageList.Draw(ref pimldp);
+                var result = iImageList.Draw(ref pimldp);
+                if (result != 0) throw new ShellImageListException("Error drawing image. Return code: {0}", result);
             }
         }
 
@@ -323,12 +313,12 @@ namespace Foundation.WindowsShell
         /// <param name="index">Index of image to draw</param>
         /// <param name="x">X Position to draw at</param>
         /// <param name="y">Y Position to draw at</param>
-        /// <param name="flags">Drawing flags</param>
-        /// <param name="cx">Width to draw</param>
-        /// <param name="cy">Height to draw</param>
+        /// <param name="imageListDrawItemOptions">Drawing flags</param>
+        /// <param name="width">Width to draw</param>
+        /// <param name="height">Height to draw</param>
         /// <param name="foreColor">Fore colour to blend with when using the 
         /// Selected or Blend25 flags</param>
-        /// <param name="stateFlags">State flags</param>
+        /// <param name="stateOptions">State flags</param>
         /// <param name="glowOrShadowColor">If stateFlags include ILS_GLOW, then
         /// the colour to use for the glow effect.  Otherwise if stateFlags includes 
         /// ILS_SHADOW, then the colour to use for the shadow.</param>
@@ -336,19 +326,10 @@ namespace Foundation.WindowsShell
         /// then the alpha component is applied to the icon. Otherwise if 
         /// ILS_SATURATE is included, then the (R,G,B) components are used
         /// to saturate the image.</param>
-        public void DrawImage(
-            IntPtr hdc,
-            int index,
-            int x,
-            int y,
-            ImageListDrawItemFlags flags,
-            int cx,
-            int cy,
-            Color foreColor,
-            ImageListDrawStateFlags stateFlags,
-            Color saturateColorOrAlpha,
-            Color glowOrShadowColor
-            )
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x")]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y")]
+        public void DrawImage(IntPtr hdc,int index,int x,int y,ImageListDrawItemOptions imageListDrawItemOptions,int width,int height,
+            Color foreColor,ImageListDrawStateOptions stateOptions,Color saturateColorOrAlpha,Color glowOrShadowColor)
         {
             var pimldp = new IMAGELISTDRAWPARAMS();
             pimldp.hdcDst = hdc;
@@ -356,43 +337,45 @@ namespace Foundation.WindowsShell
             pimldp.i = index;
             pimldp.x = x;
             pimldp.y = y;
-            pimldp.cx = cx;
-            pimldp.cy = cy;
+            pimldp.cx = width;
+            pimldp.cy = height;
             pimldp.rgbFg = Color.FromArgb(0,
-                foreColor.R, foreColor.G, foreColor.B).ToArgb();
+                                          foreColor.R, foreColor.G, foreColor.B).ToArgb();
             Console.WriteLine("{0}", pimldp.rgbFg);
-            pimldp.fStyle = (int) flags;
-            pimldp.fState = (int) stateFlags;
-            if( (stateFlags & ImageListDrawStateFlags.Alpha) ==
-                ImageListDrawStateFlags.Alpha )
+            pimldp.fStyle = (int) imageListDrawItemOptions;
+            pimldp.fState = (int) stateOptions;
+            if ((stateOptions & ImageListDrawStateOptions.Alpha) ==
+                ImageListDrawStateOptions.Alpha)
             {
                 // Set the alpha:
                 pimldp.Frame = saturateColorOrAlpha.A;
             }
-            else if( (stateFlags & ImageListDrawStateFlags.Saturate) ==
-                ImageListDrawStateFlags.Saturate )
+            else if ((stateOptions & ImageListDrawStateOptions.Saturate) ==
+                     ImageListDrawStateOptions.Saturate)
             {
                 // discard alpha channel:
                 saturateColorOrAlpha = Color.FromArgb(0,
-                    saturateColorOrAlpha.R,
-                    saturateColorOrAlpha.G,
-                    saturateColorOrAlpha.B);
+                                                      saturateColorOrAlpha.R,
+                                                      saturateColorOrAlpha.G,
+                                                      saturateColorOrAlpha.B);
                 // set the saturate color
                 pimldp.Frame = saturateColorOrAlpha.ToArgb();
             }
             glowOrShadowColor = Color.FromArgb(0,
-                glowOrShadowColor.R,
-                glowOrShadowColor.G,
-                glowOrShadowColor.B);
+                                               glowOrShadowColor.R,
+                                               glowOrShadowColor.G,
+                                               glowOrShadowColor.B);
             pimldp.crEffect = glowOrShadowColor.ToArgb();
-            if( iImageList == null )
+            if (iImageList == null)
             {
                 pimldp.himl = hIml;
-                var ret = NativeMethods.ImageList_DrawIndirect(ref pimldp);
+                int ret = NativeMethods.ImageList_DrawIndirect(ref pimldp);
+                if (ret != 0) throw new ShellImageListException("Error drawing image. Return code: {0}, Last Win32 Error: {1}", ret, Marshal.GetLastWin32Error());
             }
             else
             {
-                iImageList.Draw(ref pimldp);
+                var result = iImageList.Draw(ref pimldp);
+                if (result != 0) throw new ShellImageListException("Error drawing image. Result={0}", result);
             }
         }
 
@@ -403,13 +386,13 @@ namespace Foundation.WindowsShell
         /// <returns>True if system is running XP or above, False otherwise</returns>
         static bool IsXpOrAbove()
         {
-            var ret = false;
-            if( Environment.OSVersion.Version.Major > 5 )
+            bool ret = false;
+            if (Environment.OSVersion.Version.Major > 5)
             {
                 ret = true;
             }
-            else if( (Environment.OSVersion.Version.Major == 5) &&
-                (Environment.OSVersion.Version.Minor >= 1) )
+            else if ((Environment.OSVersion.Version.Major == 5) &&
+                     (Environment.OSVersion.Version.Minor >= 1))
             {
                 ret = true;
             }
@@ -425,27 +408,32 @@ namespace Foundation.WindowsShell
             // forget last image list if any:
             hIml = IntPtr.Zero;
 
-            if( IsXpOrAbove() )
+            if (IsXpOrAbove())
             {
                 // Get the System IImageList object from the Shell:
                 var iidImageList = new Guid("46EB5926-582E-4017-9FDF-E8998DAA0950");
-                var ret = NativeMethods.SHGetImageList(
+                int ret = NativeMethods.SHGetImageList(
                     (int) size,
                     ref iidImageList,
                     ref iImageList
                     );
+
+                if( ret != 0) throw new ShellImageListException("Error getting image list. Return code: {0}, LastWin32Error: {1}", ret, Marshal.GetLastWin32Error());
+
                 // the image list handle is the IUnknown pointer, but 
                 // using Marshal.GetIUnknownForObject doesn't return
                 // the right value.  It really doesn't hurt to make
                 // a second call to get the handle:
-                NativeMethods.SHGetImageListHandle((int) size, ref iidImageList, ref hIml);
+                var result = NativeMethods.SHGetImageListHandle((int) size, ref iidImageList, ref hIml);
+
+                if( result != 0 ) throw new ShellImageListException("Error getting image list. Return code: {0}, LastWin32Error: {1}", ret, Marshal.GetLastWin32Error());
             }
             else
             {
                 // Prepare flags:
-                var dwFlags = SHGetFileInfoConstants.SHGFI_USEFILEATTRIBUTES |
-                    SHGetFileInfoConstants.SHGFI_SYSICONINDEX;
-                if( size == ShellImageListSize.SmallIcons )
+                SHGetFileInfoConstants dwFlags = SHGetFileInfoConstants.SHGFI_USEFILEATTRIBUTES |
+                                                 SHGetFileInfoConstants.SHGFI_SYSICONINDEX;
+                if (size == ShellImageListSize.SmallIcons)
                 {
                     dwFlags |= SHGetFileInfoConstants.SHGFI_SMALLICON;
                 }
@@ -472,7 +460,7 @@ namespace Foundation.WindowsShell
         /// <param name="disposing">Whether the object is being disposed</param>
         protected virtual void Dispose(bool disposing)
         {
-            if( !disposed && disposing && iImageList != null )
+            if (!disposed && disposing && iImageList != null)
             {
                 Marshal.ReleaseComObject(iImageList);
             }

@@ -13,7 +13,7 @@ namespace Foundation.Tests
         [Test]
         public void Defaults()
         {
-            var list = new PaginatedList<string>();
+            var list = new PaginatedCollection<string>();
             Assert.IsNotNull(list);
             Assert.AreEqual(list.Page, 1);
             Assert.IsFalse(list.HasNextPage);
@@ -27,7 +27,7 @@ namespace Foundation.Tests
         {
             var results = new[] {"first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"};
 
-            var list = new PaginatedList<string>(results, 1, 5, 10);
+            var list = new PaginatedCollection<string>(results, 1, 5, 10);
 
             Assert.AreEqual(10, list.RecordCount);
             Assert.AreEqual(2, list.PageCount);
@@ -40,7 +40,7 @@ namespace Foundation.Tests
         {
             var results = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" };
 
-            var list = new PaginatedList<string>(results, 2, 5, 10);
+            var list = new PaginatedCollection<string>(results, 2, 5, 10);
 
             Assert.AreEqual(10, list.RecordCount);
             Assert.AreEqual(2, list.PageCount);
@@ -59,7 +59,7 @@ namespace Foundation.Tests
         {
             var results = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" };
 
-            var list = new PaginatedList<string>(results, 1, 2, 10);
+            var list = new PaginatedCollection<string>(results, 1, 2, 10);
 
             Assert.AreEqual("1", list.PageNames[0]);
             Assert.AreEqual("2", list.PageNames[1]);
@@ -71,7 +71,7 @@ namespace Foundation.Tests
         [Test]
         public void Does_not_skip_records_if_passed_source_is_less_than_or_equal_to_page_size()
         {
-            var list = new PaginatedList<string>( new[]{"third","fourth"}, 2, 2, 10);
+            var list = new PaginatedCollection<string>( new[]{"third","fourth"}, 2, 2, 10);
 
             Assert.AreEqual("third", list[0]);
             Assert.AreEqual("fourth", list[1]);

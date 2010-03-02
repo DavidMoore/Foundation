@@ -56,7 +56,7 @@ namespace Foundation.Services.Security
                     return SHA512.Create();
             }
 
-            throw new ArgumentException("Unsupported HashProvider: {0}! ".FormatUiCulture(provider) +
+            throw new ArgumentException("Unsupported HashProvider: {0}! ".FormatCurrentCulture(provider) +
                     "If you add a new algorithm to the HashProvider, make sure you add it to the " +
                         "switch statement in the Hasher.GetHashAlgorithm method!", "provider");
         }
@@ -98,23 +98,23 @@ namespace Foundation.Services.Security
         /// <summary>
         /// Hashes a normal string and compares with another hash to see if they are equal
         /// </summary>
-        /// <param name="unhashedValue">Normal string to compare</param>
+        /// <param name="value">Normal string to compare</param>
         /// <param name="expectedHashValue">Expected hash result</param>
         /// <returns>True if the string hashes to the expected hash result, otherwise false</returns>
-        public virtual bool Compare(string unhashedValue, string expectedHashValue)
+        public virtual bool Compare(string value, string expectedHashValue)
         {
-            return HashString(unhashedValue).Equals(expectedHashValue);
+            return HashString(value).Equals(expectedHashValue);
         }
 
         /// <summary>
         /// Hashes a normal byte array and compares with another hash to see if they are equal
         /// </summary>
-        /// <param name="unhashedValue">Normal byte array to compare</param>
+        /// <param name="value">Normal byte array to compare</param>
         /// <param name="expectedHashValue">Expected hash result</param>
         /// <returns>True if the array hashes to the expected hash result, otherwise false</returns>
-        public virtual bool Compare(byte[] unhashedValue, byte[] expectedHashValue)
+        public virtual bool Compare(byte[] value, byte[] expectedHashValue)
         {
-            var compareHash = HashBytes(unhashedValue);
+            var compareHash = HashBytes(value);
             return Equals(compareHash, expectedHashValue);
         }
 
@@ -159,7 +159,7 @@ namespace Foundation.Services.Security
         /// </summary>
         /// <param name="toHash">The string to hash</param>
         /// <returns>32-character hex MD5 hash</returns>
-        public static string Md5Hash(string toHash)
+        public static string MD5Hash(string toHash)
         {
             var hasher = new Hasher(HashProvider.MD5);
             return hasher.HashString(toHash);
@@ -171,7 +171,7 @@ namespace Foundation.Services.Security
         /// <param name="compare">String to hash and compare</param>
         /// <param name="hash">Expected hash result</param>
         /// <returns>true if they match, otherwise false</returns>
-        public static bool Md5Compare(string compare, string hash)
+        public static bool MD5Compare(string compare, string hash)
         {
             var hasher = new Hasher(HashProvider.MD5);
             return hasher.Compare(compare, hash);

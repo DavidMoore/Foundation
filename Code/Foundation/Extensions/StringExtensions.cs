@@ -16,6 +16,7 @@ namespace Foundation.Extensions
         /// <returns></returns>
         public static string ToPascalCase(this string value)
         {
+            if (value == null) throw new ArgumentNullException("value");
             var letters = value.ToCharArray();
             letters[0] = Char.ToUpperInvariant(letters[0]);
             return new string(letters);
@@ -28,6 +29,7 @@ namespace Foundation.Extensions
         /// <returns></returns>
         public static string ToCamelCase(this string value)
         {
+            if (value == null) throw new ArgumentNullException("value");
             var letters = value.ToCharArray();
             letters[0] = Char.ToLowerInvariant(letters[0]);
             return new string(letters);
@@ -40,6 +42,7 @@ namespace Foundation.Extensions
         /// <returns></returns>
         public static string ToTitleCase(this string value)
         {
+            if (value == null) throw new ArgumentNullException("value");
             return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(value);
         }
 
@@ -62,29 +65,34 @@ namespace Foundation.Extensions
         /// <returns></returns>
         public static bool ContainsCaseInsensitive(this string haystack, string needle)
         {
+            if (haystack == null) throw new ArgumentNullException("haystack");
+            if (needle == null) return false;
+
             return haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase) > -1;
         }
 
         /// <summary>
-        /// Compares the string to another, using StringComparison.OrdinalIgnoreCase
+        /// Compares the string to another, using <see cref="StringComparison.OrdinalIgnoreCase"/>
         /// </summary>
-        /// <param name="strA"></param>
-        /// <param name="strB"></param>
+        /// <param name="value">The string value to compare with another</param>
+        /// <param name="comparisonValue">The value to compare with <paramref name="value"/></param>
         /// <returns></returns>
-        public static int CompareToOrdinalIgnoreCase(this string strA, string strB)
+        public static int CompareToOrdinalIgnoreCase(this string value, string comparisonValue)
         {
-            return string.Compare(strA, strB, StringComparison.OrdinalIgnoreCase);
+            if (value == null) throw new ArgumentNullException("value");
+            return string.Compare(value, comparisonValue, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
-        /// Formats the specified string using the current culture
+        /// Formats the specified string using <see cref="CultureInfo.CurrentCulture"/>
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public static string FormatUiCulture(this string format, params object[] args)
+        public static string FormatCurrentCulture(this string format, params object[] args)
         {
-            return string.Format(CultureInfo.CurrentUICulture, format, args);
+            if (format == null) throw new ArgumentNullException("format");
+            return string.Format(CultureInfo.CurrentCulture, format, args);
         }
 
         /// <summary>
@@ -95,17 +103,20 @@ namespace Foundation.Extensions
         /// <returns></returns>
         public static string StripLeft(this string value, string strip)
         {
+            if (value == null) throw new ArgumentNullException("value");
+            if (strip == null) throw new ArgumentNullException("strip");
             return !value.StartsWith(strip, StringComparison.OrdinalIgnoreCase) ? value : value.Substring(strip.Length);
         }
 
         /// <summary>
-        /// Shortcut for string.Format(value, args)
+        /// Shortcut for string.Format(CultureInfo.CurrentCulture, value, args)
         /// </summary>
         /// <param name="value"></param>
         /// <param name="args"></param>
         /// <returns></returns>
         public static string StringFormat(this string value, params object[] args)
         {
+            if (value == null) throw new ArgumentNullException("value");
             return string.Format(CultureInfo.CurrentCulture, value, args);
         }
     }

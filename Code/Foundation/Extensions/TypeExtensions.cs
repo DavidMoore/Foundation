@@ -13,6 +13,7 @@ namespace Foundation.Extensions
         /// <returns></returns>
         public static PropertyInfo GetProperty(this Type type, Type propertyType)
         {
+            if (type == null) throw new ArgumentNullException("type");
             PropertyInfo propertyInfo = null;
 
             foreach( var property in type.GetProperties() )

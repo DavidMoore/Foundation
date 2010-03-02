@@ -1,4 +1,4 @@
-﻿using Foundation.Services;
+using Foundation.Services;
 using Foundation.Services.Registration;
 using NUnit.Framework;
 
@@ -10,7 +10,7 @@ namespace Foundation.Tests.Services.Registration
         [Test]
         public void Default_lifestyle_is_singleton()
         {
-            var attribute = ReflectUtils.GetAttribute<RegisterComponentAttribute>(typeof (ServiceImplementation));
+            var attribute = ReflectionUtilities.GetAttribute<RegisterComponentAttribute>(typeof (ServiceImplementation));
             Assert.AreEqual(LifestyleType.Singleton, attribute.Lifestyle);
         }
 

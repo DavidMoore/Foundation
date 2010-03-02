@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Net;
 
 namespace Foundation
@@ -8,7 +10,7 @@ namespace Foundation
     /// Contains a subnet mask in addition to the IP Address, and methods for
     /// comparing IPs based on their subnets
     /// </summary>
-    public class SubnetMaskedIp
+    public class SubnetMaskedIP
     {
         private int? addressBitLength;
         private IPAddress networkAddress;
@@ -32,16 +34,9 @@ namespace Foundation
         /// <summary>
         /// A copy of the NetworkAddress as bytes
         /// </summary>
-        public byte[] NetworkAddressBytes
+        public IEnumerable<byte> NetworkAddressBytes
         {
-            get
-            {
-                if (networkAddressBytes == null)
-                {
-                    networkAddressBytes = NetworkAddress.GetAddressBytes();
-                }
-                return networkAddressBytes;
-            }
+            get { return networkAddressBytes ?? (networkAddressBytes = NetworkAddress.GetAddressBytes()); }
         }
 
         /// <summary>
@@ -58,7 +53,7 @@ namespace Foundation
             {
                 if (!addressBitLength.HasValue)
                 {
-                    addressBitLength = NetworkAddressBytes.Length*8;
+                    addressBitLength = NetworkAddressBytes.Count()*8;
                 }
                 return addressBitLength.Value;
             }
@@ -68,9 +63,9 @@ namespace Foundation
         /// Returns byte array of subnet mask
         /// </summary>
         /// <returns></returns>
-        public byte[] GetSubnetMaskbytes()
+        public byte[] GetSubnetMaskBytes()
         {
-            int length = NetworkAddressBytes.Length;
+            int length = NetworkAddressBytes.Count();
             var maskbytes = new byte[length];
 
             for (int i = 0; i < length; i++)
@@ -98,29 +93,29 @@ namespace Foundation
         /// <summary>
         /// Converts the string representation of the network address to SubnetMaskedIp object.
         /// </summary>
-        /// <param name="src"></param>
+        /// <param name="address"></param>
         /// <returns></returns>
-        public static SubnetMaskedIp Parse(string src)
+        public static SubnetMaskedIP Parse(string address)
         {
-            if (src == null) throw new ArgumentNullException("src");
+            if (address == null) throw new ArgumentNullException("address");
 
-            string[] pair = src.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
-            var maskedIP = new SubnetMaskedIp {NetworkAddress = IPAddress.Parse(pair[0])};
+            string[] pair = address.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
+            var maskedIp = new SubnetMaskedIP { NetworkAddress = IPAddress.Parse(pair[0]) };
 
-            int bitLength = maskedIP.NetworkAddressBytes.Length*8;
-            maskedIP.SubnetMaskLength = bitLength;
+            int bitLength = maskedIp.NetworkAddressBytes.Count() * 8;
+            maskedIp.SubnetMaskLength = bitLength;
 
             if (pair.Length > 1)
             {
-                maskedIP.SubnetMaskLength = int.Parse(pair[1],CultureInfo.CurrentCulture);
-                if (maskedIP.SubnetMaskLength > bitLength)
+                maskedIp.SubnetMaskLength = int.Parse(pair[1],CultureInfo.CurrentCulture);
+                if (maskedIp.SubnetMaskLength > bitLength)
                 {
-                    maskedIP.SubnetMaskLength = bitLength;
+                    maskedIp.SubnetMaskLength = bitLength;
                 }
             }
             // TODO: Auto-detect the network mask from IP address
 
-            return maskedIP;
+            return maskedIp;
         }
 
         /// <summary>
@@ -132,15 +127,15 @@ namespace Foundation
         {
             if (address == null) throw new ArgumentNullException("address");
 
-            byte[] networkbytes = NetworkAddressBytes;
+            byte[] networkbytes = NetworkAddressBytes.ToArray();
             byte[] addressbytes = address.GetAddressBytes();
 
-            if (addressbytes.Length != networkbytes.Length)
+            if (addressbytes.Length != networkbytes.Count())
             {
                 return false;
             }
 
-            byte[] maskbytes = GetSubnetMaskbytes();
+            byte[] maskbytes = GetSubnetMaskBytes();
 
             byte[] maskedNetwork = And(networkbytes, maskbytes);
             byte[] maskedAddress = And(addressbytes, maskbytes);

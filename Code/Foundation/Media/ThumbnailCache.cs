@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using Foundation.Extensions;
 using Foundation.Services.Logging;
@@ -8,8 +9,6 @@ namespace Foundation.Media
 {
     public class ThumbnailCache : IThumbnailCache, IDisposable
     {
-        Type type;
-        
         protected virtual ILogger Logger
         {
             get; private set;
@@ -36,11 +35,11 @@ namespace Foundation.Media
         /// <summary>
         /// Gets a file from the cache, identified by its hash
         /// </summary>
-        /// <param name="hash"></param>
+        /// <param name="originalImagePath"></param>
         /// <returns>The image file info, or null if it's not in the cache</returns>
-        public FileInfo GetCacheFile(string hash)
+        public FileInfo GetCacheFile(string originalImagePath)
         {
-            return CacheDirectory.GetFile(hash);
+            return CacheDirectory.GetFile(originalImagePath);
         }
 
         /// <summary>
@@ -65,7 +64,7 @@ namespace Foundation.Media
             catch(IOException ioe)
             {
                 if (Logger == null) throw;
-                Logger.Error(string.Format("Exception when deleting ThumbnailCache directory {0}! Exception was: {1}", CacheDirectory, ioe.Message), ioe);
+                Logger.Error(string.Format(CultureInfo.CurrentCulture, "Exception when deleting ThumbnailCache directory {0}! Exception was: {1}", CacheDirectory, ioe.Message), ioe);
             }
             
             CacheDirectory = null;
@@ -73,34 +72,34 @@ namespace Foundation.Media
 
         public static string GetCacheHash(string fileName, int width, int height)
         {
-            return Hasher.Md5Hash(string.Concat(fileName, width, height));
+            return Hasher.MD5Hash(string.Concat(fileName, width, height));
         }
 
         /// <summary>
         /// Adds a thumbnail to the cache
         /// </summary>
-        /// <param name="filename"></param>
+        /// <param name="fileName"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public void Add(string filename, int width, int height)
+        public void Add(string fileName, int width, int height)
         {
-            var hash = GetCacheHash(filename, width, height);
-            Add(hash, filename);
+            var hash = GetCacheHash(fileName, width, height);
+            Add(hash, fileName);
         }
 
         /// <summary>
         /// Copies the specified file to the cache, under the hash as the unique identifier
         /// </summary>
         /// <param name="hash"></param>
-        /// <param name="filename"></param>
-        public void Add(string hash, string filename)
+        /// <param name="fileName"></param>
+        public void Add(string hash, string fileName)
         {
-            File.Copy(filename, Path.Combine(CacheDirectory.FullName, hash) );
+            File.Copy(fileName, Path.Combine(CacheDirectory.FullName, hash) );
         }
 
-        public FileInfo GetCacheFile(string filename, int width, int height)
+        public FileInfo GetCacheFile(string fileName, int width, int height)
         {
-            return GetCacheFile(GetCacheHash(filename, width, height));
+            return GetCacheFile(GetCacheHash(fileName, width, height));
         }
     }
 }

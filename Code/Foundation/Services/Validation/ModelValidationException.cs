@@ -10,10 +10,16 @@ namespace Foundation.Services.Validation
     [Serializable]
     public class ModelValidationException : Exception
     {
-        public ModelValidationException(IValidationErrors errors) : base(errors.ToString())
+        public ModelValidationException(IValidationErrorsCollection errorsCollection) : base(ErrorsToString(errorsCollection))
         {
-            if (errors == null) throw new ArgumentNullException("errors");
-            Errors = errors;
+            if (errorsCollection == null) throw new ArgumentNullException("errorsCollection");
+            ErrorsCollection = errorsCollection;
+        }
+
+        static string ErrorsToString(IValidationErrorsCollection errorsCollection)
+        {
+            if (errorsCollection == null) throw new ArgumentNullException("errorsCollection");
+            return errorsCollection.ToString();
         }
 
         public ModelValidationException() {}
@@ -27,7 +33,7 @@ namespace Foundation.Services.Validation
         /// <summary>
         /// Collection of validation errors
         /// </summary>
-        public IValidationErrors Errors { get; private set; }
+        public IValidationErrorsCollection ErrorsCollection { get; private set; }
 
         /// <summary>
         /// Sets the <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with information about the exception.
@@ -41,7 +47,7 @@ namespace Foundation.Services.Validation
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);
-            info.AddValue("Errors", Errors);
+            info.AddValue("Errors", ErrorsCollection);
         }
     }
 }

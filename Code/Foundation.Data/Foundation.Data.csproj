@@ -86,7 +86,7 @@
     <Compile Include="ActiveRecord\PropertyUniqueNameAttribute.cs" />
     <Compile Include="ActiveRecord\TypePropertyAttribute.cs" />
     <Compile Include="ActiveRecord\Validation\ActiveRecordModelValidator.cs" />
-    <Compile Include="ActiveRecord\Validation\ActiveRecordValidationErrorsAdapter.cs" />
+    <Compile Include="ActiveRecord\Validation\ActiveRecordValidationErrorsCollectionAdapter.cs" />
     <Compile Include="Hibernate\SingletonConnectionProvider.cs" />
     <Compile Include="Hibernate\UserTypes\ColorUserType.cs" />
     <Compile Include="Hibernate\UserTypes\PropertyInfoUserType.cs" />

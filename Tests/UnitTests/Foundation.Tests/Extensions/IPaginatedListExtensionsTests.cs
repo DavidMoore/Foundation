@@ -12,8 +12,8 @@ namespace Foundation.Tests.Extensions
         [Test]
         public void Cast()
         {
-            var list = new PaginatedList<User>();
-            IPaginatedList<IEntityWithUniqueName> cast = list.CastTo<User, IEntityWithUniqueName>();
+            var list = new PaginatedCollection<User>();
+            IPaginatedCollection<IEntityWithUniqueName> cast = list.CastTo<User, IEntityWithUniqueName>();
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Foundation.Services.Registration
 {
     /// <summary>
     /// Marks a class to be registered in the <see cref="IServiceManager"/>
     /// </summary>
+    [SuppressMessage("Microsoft.Performance", "CA1813:AvoidUnsealedAttributes")]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
     public class RegisterComponentAttribute : Attribute
     {

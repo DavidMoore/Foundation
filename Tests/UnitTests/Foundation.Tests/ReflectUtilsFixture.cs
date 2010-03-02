@@ -46,34 +46,34 @@ namespace Foundation.Tests
         [Test]
         public void GetAttribute()
         {
-            var attribute = ReflectUtils.GetAttribute<DummyReflectionAttributeAttribute>(new DummyReflectionObject());
+            var attribute = ReflectionUtilities.GetAttribute<DummyReflectionAttributeAttribute>(new DummyReflectionObject());
             Assert.IsNotNull(attribute);
         }
 
         [Test, ExpectedException(typeof(InvalidOperationException))]
         public void GetAttribute_throws_exception_if_more_than_one_instance_found()
         {
-            ReflectUtils.GetAttribute<DuplicateAttributeAttribute>(new DummyReflectionObject());
+            ReflectionUtilities.GetAttribute<DuplicateAttributeAttribute>(new DummyReflectionObject());
         }
 
         [Test]
         public void GetAttributes()
         {
-            var attributes = ReflectUtils.GetAttributes<DuplicateAttributeAttribute>(new DummyReflectionObject());
+            var attributes = ReflectionUtilities.GetAttributes<DuplicateAttributeAttribute>(new DummyReflectionObject());
             Assert.AreEqual(2, attributes.Count());
         }
 
         [Test]
         public void GetAttribute_does_not_call_GetType_when_passed_instance_is_already_a_Type()
         {
-            var attribute = ReflectUtils.GetAttribute<DummyReflectionAttributeAttribute>( typeof(DummyReflectionObject) );
+            var attribute = ReflectionUtilities.GetAttribute<DummyReflectionAttributeAttribute>( typeof(DummyReflectionObject) );
             Assert.IsNotNull(attribute);
         }
 
         [Test]
         public void GetAttribute_does_not_call_GetType_when_passed_instance_is_a_PropertyInfo()
         {
-            var attribute = ReflectUtils.GetAttribute<DummyReflectionAttributeAttribute>(typeof(DummyReflectionObject).GetProperty("StringProperty"));
+            var attribute = ReflectionUtilities.GetAttribute<DummyReflectionAttributeAttribute>(typeof(DummyReflectionObject).GetProperty("StringProperty"));
             Assert.IsNotNull(attribute);
         }
 
@@ -82,16 +82,16 @@ namespace Foundation.Tests
         {
             var propertyInfo = typeof(DummyReflectionObject).GetProperty("StringProperty");
 
-            Assert.IsTrue(ReflectUtils.HasAttribute(propertyInfo, typeof(DummyReflectionAttributeAttribute)));
-            Assert.IsFalse(ReflectUtils.HasAttribute(propertyInfo, typeof(FooReflectionAttributeAttribute)));
-            Assert.IsTrue(ReflectUtils.HasAttribute(propertyInfo, typeof(DummyReflectionAttributeAttribute), typeof(FooReflectionAttributeAttribute)));
-            Assert.IsFalse(ReflectUtils.HasAttribute(propertyInfo, typeof(BarReflectionAttributeAttribute), typeof(FooReflectionAttributeAttribute)));
+            Assert.IsTrue(ReflectionUtilities.HasAttribute(propertyInfo, typeof(DummyReflectionAttributeAttribute)));
+            Assert.IsFalse(ReflectionUtilities.HasAttribute(propertyInfo, typeof(FooReflectionAttributeAttribute)));
+            Assert.IsTrue(ReflectionUtilities.HasAttribute(propertyInfo, typeof(DummyReflectionAttributeAttribute), typeof(FooReflectionAttributeAttribute)));
+            Assert.IsFalse(ReflectionUtilities.HasAttribute(propertyInfo, typeof(BarReflectionAttributeAttribute), typeof(FooReflectionAttributeAttribute)));
         }
 
         [Test]
         public void Implements_returns_true_when_passed_type_implements_the_specified_interface()
         {
-            Assert.IsTrue(ReflectUtils.Implements(typeof(ActivationContext), typeof(IDisposable)));
+            Assert.IsTrue(ReflectionUtilities.Implements(typeof(ActivationContext), typeof(IDisposable)));
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace Foundation.Tests
             var type = typeof(DummyReflectionObject);
             var attribute = typeof(DummyReflectionAttributeAttribute);
 
-            var properties = ReflectUtils.GetPropertiesWithAttribute(type, attribute);
+            var properties = ReflectionUtilities.GetPropertiesWithAttribute(type, attribute);
             Assert.AreEqual(2, properties.Count());
         }
 
@@ -110,25 +110,25 @@ namespace Foundation.Tests
             var type = typeof(DummyReflectionObject);
             var attribute = typeof(DummyReflectionAttributeAttribute);
 
-            Assert.IsTrue(ReflectUtils.HasAttribute(type, attribute));
+            Assert.IsTrue(ReflectionUtilities.HasAttribute(type, attribute));
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void LoadAssembly_throws_ArgumentNullException_if_FileSystemInfo_is_null()
         {
-            ReflectUtils.LoadAssembly( (FileSystemInfo)null);
+            ReflectionUtilities.LoadAssembly( (FileSystemInfo)null);
         }
 
         [Test, ExpectedException(typeof(ArgumentException))]
         public void LoadAssembly_throws_ArgumentException_if_fileName_is_null()
         {
-            ReflectUtils.LoadAssembly((string)null);
+            ReflectionUtilities.LoadAssembly((string)null);
         }
 
         [Test, ExpectedException(typeof(ArgumentException))]
         public void LoadAssembly_throws_ArgumentException_if_fileName_is_empty()
         {
-            ReflectUtils.LoadAssembly((string)null);
+            ReflectionUtilities.LoadAssembly((string)null);
         }
 
         [Test]
@@ -136,20 +136,20 @@ namespace Foundation.Tests
         {
             var file = new FileInfo(Environment.ExpandEnvironmentVariables("%WinDir%\\regedit.exe"));
 
-            Assert.IsNull(ReflectUtils.LoadAssembly(file));
-            Assert.IsNull( ReflectUtils.LoadAssembly( file.FullName) );
+            Assert.IsNull(ReflectionUtilities.LoadAssembly(file));
+            Assert.IsNull( ReflectionUtilities.LoadAssembly( file.FullName) );
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void GetProductName_throws_ArgumentNullException_for_null_assembly()
         {
-            ReflectUtils.GetProductName(null);
+            ReflectionUtilities.GetProductName(null);
         }
 
         [Test]
         public void GetProductName()
         {
-            Assert.AreEqual("Foundation .NET Library", ReflectUtils.GetProductName(GetType().Assembly) );
+            Assert.AreEqual("Foundation .NET Library", ReflectionUtilities.GetProductName(GetType().Assembly) );
         }
     }
 }

@@ -57,6 +57,7 @@ namespace Foundation.Web.TestHelpers
             MockViewDataContainer.Setup(vdc => vdc.ViewData).Returns(ViewDataDictionary);
         }
 
+        [CLSCompliant(false)]
         public Mock<HttpContextBase> MockHttpContext { get; set; }
 
         public ControllerContext GetControllerContext(ControllerBase controller)
@@ -66,7 +67,11 @@ namespace Foundation.Web.TestHelpers
 
         public HttpContextBase HttpContext { get { return MockHttpContext.Object; } }
         public RouteCollection RouteCollection { get; private set; }
+
+        [CLSCompliant(false)]
         public RouteData RouteData { get; set; }
+
+        [CLSCompliant(false)]
         public Mock<ViewContext> MockViewContext { get; set; }
         public Mock<IViewDataContainer> MockViewDataContainer { get; set; }
         public ViewDataDictionary ViewDataDictionary { get; private set; }
@@ -76,6 +81,7 @@ namespace Foundation.Web.TestHelpers
         /// </summary>
         public NameValueCollection Form { get; private set; }
 
+        [CLSCompliant(false)]
         public Mock<HttpContextBase> GetHttpContext(string appPath, string requestPath, string httpMethod, string protocol, int port)
         {
             var context = new Mock<HttpContextBase>();
@@ -132,6 +138,7 @@ namespace Foundation.Web.TestHelpers
         /// </summary>
         public NameValueCollection RequestHeaders { get; private set; }
 
+        [CLSCompliant(false)]
         public Mock<HttpContextBase> GetHttpContext(string appPath, string requestPath, string httpMethod)
         {
             return GetHttpContext(appPath, requestPath, httpMethod, Uri.UriSchemeHttp, -1);

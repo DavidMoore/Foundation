@@ -1,4 +1,4 @@
-﻿using Foundation.Net;
+using Foundation.Net;
 using NUnit.Framework;
 
 namespace Foundation.Tests.Net
@@ -11,8 +11,8 @@ namespace Foundation.Tests.Net
         {
             var type = new MimeContentType("image/jpeg");
 
-            Assert.AreEqual("image", type.Type);
-            Assert.AreEqual("jpeg", type.SubType);
+            Assert.AreEqual("image", type.MajorType);
+            Assert.AreEqual("jpeg", type.MinorType);
             Assert.AreEqual("image/jpeg", type.Full);
         }
     }

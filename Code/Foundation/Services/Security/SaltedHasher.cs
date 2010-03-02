@@ -12,18 +12,18 @@ namespace Foundation.Services.Security
         /// <summary>
         /// Default salt length
         /// </summary>
-        protected static readonly int defaultSaltLength = 8;
+        protected const int DefaultSaltLength = 8;
 
         /// <summary>
         /// Default constructor, which defaults to using the MD5 algorithm with a prefixed salt of 8 characters
         /// </summary>
-        public SaltedHasher() : this(HashProvider.MD5, defaultSaltLength, SaltPosition.Prefix, new PasswordGenerator()) {}
+        public SaltedHasher() : this(HashProvider.MD5, DefaultSaltLength, SaltPosition.Prefix, new PasswordGenerator()) {}
 
         /// <summary>
         /// Creates a SaltedHasher, configuring it to use the specified hashing provider and using a default prefixed salt of 8 characters
         /// </summary>
         /// <param name="provider">Hash algorithm to use by default</param>
-        public SaltedHasher(HashProvider provider) : this(provider, defaultSaltLength, SaltPosition.Prefix, new PasswordGenerator()) {}
+        public SaltedHasher(HashProvider provider) : this(provider, DefaultSaltLength, SaltPosition.Prefix, new PasswordGenerator()) {}
 
         /// <summary>
         /// Creates a SaltedHasher, configuring it to use the specified hashing provider and salt length, prefixing the salt by default 
@@ -236,26 +236,26 @@ namespace Foundation.Services.Security
         /// <summary>
         /// Hashes a normal string and compares with another hash to see if they are equal
         /// </summary>
-        /// <param name="unhashedValue">Normal string to compare</param>
+        /// <param name="value">Normal string to compare</param>
         /// <param name="expectedHashValue">Expected hash result</param>
         /// <returns>True if the string hashes to the expected hash result, otherwise false</returns>
-        public override bool Compare(string unhashedValue, string expectedHashValue)
+        public override bool Compare(string value, string expectedHashValue)
         {
             // Find the salt value
             var salt = FindSalt(expectedHashValue);
 
-            return HashString(unhashedValue, salt).Equals(expectedHashValue);
+            return HashString(value, salt).Equals(expectedHashValue);
         }
 
         /// <summary>
         /// Hashes a normal byte array and compares with another hash to see if they are equal
         /// </summary>
-        /// <param name="unhashedValue">Normal byte array to compare</param>
+        /// <param name="value">Normal byte array to compare</param>
         /// <param name="expectedHashValue">Expected hash result</param>
         /// <returns>True if the array hashes to the expected hash result, otherwise false</returns>
-        public override bool Compare(byte[] unhashedValue, byte[] expectedHashValue)
+        public override bool Compare(byte[] value, byte[] expectedHashValue)
         {
-            var compareHash = HashBytes(unhashedValue);
+            var compareHash = HashBytes(value);
             return Equals(compareHash, expectedHashValue);
         }
 
@@ -266,7 +266,7 @@ namespace Foundation.Services.Security
         /// </summary>
         /// <param name="toHash">The string to hash</param>
         /// <returns>32-character hex MD5 hash</returns>
-        public new static string Md5Hash(string toHash)
+        public new static string MD5Hash(string toHash)
         {
             var hasher = new SaltedHasher(HashProvider.MD5);
             return hasher.HashString(toHash);
@@ -278,7 +278,7 @@ namespace Foundation.Services.Security
         /// <param name="compare">String to hash and compare</param>
         /// <param name="hash">Expected hash result</param>
         /// <returns>true if they match, otherwise false</returns>
-        public new static bool Md5Compare(string compare, string hash)
+        public new static bool MD5Compare(string compare, string hash)
         {
             var hasher = new SaltedHasher(HashProvider.MD5);
             return hasher.Compare(compare, hash);

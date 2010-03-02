@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,7 +30,7 @@ namespace Foundation.Services.Discovery
         {
             var attributeType = typeof (T);
             return AllTypes()
-                .Where(type => ReflectUtils.HasAttribute(type, attributeType));
+                .Where(type => ReflectionUtilities.HasAttribute(type, attributeType));
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Foundation.Services.Discovery
         {
             return AllTypes().Where(
                 type =>
-                ReflectUtils.Implements(type, baseType));
+                ReflectionUtilities.Implements(type, baseType));
         }
     }
 }

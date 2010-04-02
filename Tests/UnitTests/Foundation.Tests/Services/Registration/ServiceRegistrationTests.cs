@@ -4,14 +4,14 @@ using Foundation.Services;
 using Foundation.Services.Registration;
 using Foundation.Tests.Services.Discovery;
 using Moq;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Registration
 {
-    [TestFixture]
+    [TestClass]
     public class ServiceRegistrationTests
     {
-        [Test]
+        [TestMethod]
         public void Registering_UserControl_ignores_dynamic_interface_for_service_contract()
         {
             var serviceManager = new Mock<IServiceManager>();
@@ -23,14 +23,14 @@ namespace Foundation.Tests.Services.Registration
 
             var registration = new ServiceRegistration(serviceManager.Object);
 
-            registration.RegisterService(typeof (UserControl));
+            registration.RegisterService(typeof (TestUserControl));
 
             Assert.AreEqual(2, contractTypes.Count);
             Assert.IsTrue(contractTypes.Contains(typeof(IUserControlInterface)));
             Assert.IsTrue(contractTypes.Contains(typeof(IUserControlInterface2)));
         }
 
-        [Test]
+        [TestMethod]
         public void A_service_can_register_for_more_than_1_contract_by_having_multiple_RegisterService_attributes()
         {
             var serviceManager = new Mock<IServiceManager>();
@@ -42,14 +42,14 @@ namespace Foundation.Tests.Services.Registration
 
             var registration = new ServiceRegistration(serviceManager.Object);
 
-            registration.RegisterService(typeof(UserControl));
+            registration.RegisterService(typeof(TestUserControl));
 
             Assert.AreEqual(2, contractTypes.Count);
             Assert.IsTrue(contractTypes.Contains(typeof(IUserControlInterface)));
             Assert.IsTrue(contractTypes.Contains(typeof(IUserControlInterface2)));
         }
 
-        [Test]
+        [TestMethod]
         public void Registers_service_with_name()
         {
             var serviceManager = new Mock<IServiceManager>();

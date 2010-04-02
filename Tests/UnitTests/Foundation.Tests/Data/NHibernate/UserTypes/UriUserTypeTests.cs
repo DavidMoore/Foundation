@@ -2,13 +2,13 @@ using System;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using Foundation.Data.Hibernate.UserTypes;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Property = Castle.ActiveRecord.PropertyAttribute;
 
 namespace Foundation.Tests.Data.NHibernate.UserTypes
 {
-    [TestFixture]
-    public class UriUserTypeTests : DatabaseFixtureBase
+    [TestClass]
+    public class UriUserTypeTests : DatabaseFixture
     {
         public override void RegisterTypes()
         {
@@ -16,7 +16,7 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             RegisterTypes(typeof(DummyTypeWithUriProperty));
         }
 
-        [Test]
+        [TestMethod]
         public void Can_write_and_write_Uri_to_database()
         {
             const string url = "http://username:password@subdomain.domain.com/pathinfo1/pathinfo2?queryString1=value1&queryString2=value2";
@@ -39,7 +39,7 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
         [PrimaryKey]
         public int Id { get; set; }
 
-        [Property(ColumnType = UriUserType.TypeName)]
+        [Castle.ActiveRecord.Property(ColumnType = UriUserType.TypeName)]
         public Uri Url { get; set; }
     }
 }

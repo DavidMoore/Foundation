@@ -3,14 +3,14 @@ using System.Linq;
 using System.Collections.Generic;
 using Foundation.Models;
 using Foundation.Services.Security;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class PaginatedListTests
     {
-        [Test]
+        [TestMethod]
         public void Defaults()
         {
             var list = new PaginatedCollection<string>();
@@ -22,7 +22,7 @@ namespace Foundation.Tests
             Assert.AreEqual(0, list.Count);
         }
 
-        [Test]
+        [TestMethod]
         public void Setting_up_pagination_with_1_page_of_records_and_setting_total_count()
         {
             var results = new[] {"first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"};
@@ -35,7 +35,7 @@ namespace Foundation.Tests
             Assert.AreEqual(5, list.Count);
         }
 
-        [Test]
+        [TestMethod]
         public void Returns_expected_records_on_page_2()
         {
             var results = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" };
@@ -54,7 +54,7 @@ namespace Foundation.Tests
             Assert.IsTrue(list[4].Equals("tenth"));
         }
 
-        [Test]
+        [TestMethod]
         public void Pages_have_names_defaulting_to_numbers()
         {
             var results = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" };
@@ -68,7 +68,7 @@ namespace Foundation.Tests
             Assert.AreEqual("5", list.PageNames[4]);
         }
 
-        [Test]
+        [TestMethod]
         public void Does_not_skip_records_if_passed_source_is_less_than_or_equal_to_page_size()
         {
             var list = new PaginatedCollection<string>( new[]{"third","fourth"}, 2, 2, 10);

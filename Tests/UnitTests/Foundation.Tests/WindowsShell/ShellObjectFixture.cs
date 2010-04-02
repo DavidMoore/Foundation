@@ -1,10 +1,10 @@
 using Foundation.WindowsShell;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shell32;
 
 namespace Foundation.Tests.WindowsShell
 {
-    [TestFixture]
+    [TestClass]
     public class ShellObjectFixture
     {
         readonly Shell shell = new Shell();
@@ -16,7 +16,7 @@ namespace Foundation.Tests.WindowsShell
             Assert.IsTrue(desktop.IsFolder);
         }
 
-        [Test]
+        [TestMethod]
         public void Can_get_Desktop_node()
         {
             var folder = (Folder3) shell.NameSpace(ShellNamespaceIdentifier.Desktop);

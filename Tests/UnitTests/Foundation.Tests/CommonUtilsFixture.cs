@@ -1,35 +1,35 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class CommonUtilsFixture
     {
-        [Test]
+        [TestMethod]
         public void HtmlEncode()
         {
             const string rawText = "A 'quote' is <b>bold</b>";
-            const string expected = "A 'quote' is &lt;b&gt;bold&lt;/b&gt;";
+            const string expected = "A &#39;quote&#39; is &lt;b&gt;bold&lt;/b&gt;";
             Assert.AreEqual(expected, CommonUtilities.HtmlEncode(rawText));
         }
 
-        [Test]
+        [TestMethod]
         public void HtmlEncode_with_linebreaks_to_html()
         {
             const string rawText = "A 'quote'\r\n is <b>bold</b>";
-            const string expected = "A 'quote'<br /> is &lt;b&gt;bold&lt;/b&gt;";
+            const string expected = "A &#39;quote&#39;<br /> is &lt;b&gt;bold&lt;/b&gt;";
             Assert.AreEqual(expected, CommonUtilities.HtmlEncode(rawText, true));
         }
 
-        [Test]
+        [TestMethod]
         public void HtmlEncode_without_linebreaks_to_html()
         {
             const string rawText = "A 'quote'\r\n is <b>bold</b>";
-            const string expected = "A 'quote'\r\n is &lt;b&gt;bold&lt;/b&gt;";
+            const string expected = "A &#39;quote&#39;\r\n is &lt;b&gt;bold&lt;/b&gt;";
             Assert.AreEqual(expected, CommonUtilities.HtmlEncode(rawText));
         }
 
-        [Test]
+        [TestMethod]
         public void LineBreaksToHtml()
         {
             const string stringWithLineBreaks = "Line1\nLine2\r\nLine3\r";
@@ -37,7 +37,7 @@ namespace Foundation.Tests
             Assert.AreEqual(expected, CommonUtilities.LineBreaksToHtml(stringWithLineBreaks));
         }
 
-        [Test]
+        [TestMethod]
         public void LineBreaksToHtml_handles_null_value_by_returning_empty_string()
         {
             Assert.AreEqual(string.Empty, CommonUtilities.LineBreaksToHtml(null));

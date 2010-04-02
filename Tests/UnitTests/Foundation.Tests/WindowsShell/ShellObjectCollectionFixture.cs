@@ -1,19 +1,19 @@
 using Foundation.WindowsShell;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.WindowsShell
 {
-    [TestFixture]
+    [TestClass]
     public class ShellObjectCollectionFixture
     {
-        [Test]
+        [TestMethod]
         public void Can_get_mycomputer_nodes()
         {
             var provider = new ShellProvider();
 
             var list = provider.MyComputer.Children;
 
-            Assert.Greater(list.Count, 0);
+            Assert.IsTrue(list.Count > 0);
         }
     }
 }

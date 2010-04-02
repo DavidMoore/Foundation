@@ -1,4 +1,4 @@
-﻿using Foundation.Services;
+﻿using System.Windows.Controls;
 using Foundation.Services.Registration;
 
 namespace Foundation.Tests.Services.Discovery
@@ -8,11 +8,10 @@ namespace Foundation.Tests.Services.Discovery
     /// </summary>
     [RegisterComponent]
     [RegisterComponent(typeof(IUserControlInterface2))]
-    public partial class UserControl : System.Windows.Controls.UserControl, IUserControlInterface
+    public partial class TestUserControl : IUserControlInterface
     {
-        public UserControl()
+        public TestUserControl()
         {
-            this.InitializeComponent();
         }
     }
 

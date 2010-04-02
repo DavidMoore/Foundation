@@ -1,12 +1,12 @@
 using Foundation.Extensions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Extensions
 {
-    [TestFixture]
+    [TestClass]
     public class PropertyInfoExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void HasAttribute()
         {
             var propertyInfo = typeof(ReflectUtilsFixture.DummyReflectionObject).GetProperty("StringProperty");
@@ -17,7 +17,7 @@ namespace Foundation.Tests.Extensions
             Assert.IsFalse(propertyInfo.HasAttribute(typeof(ReflectUtilsFixture.BarReflectionAttributeAttribute), typeof(ReflectUtilsFixture.FooReflectionAttributeAttribute)));
         }
 
-        [Test]
+        [TestMethod]
         public void GetAttribute()
         {
             var propertyInfo = typeof(ReflectUtilsFixture.DummyReflectionObject).GetProperty("StringProperty");
@@ -25,7 +25,7 @@ namespace Foundation.Tests.Extensions
             var attribute = propertyInfo.GetAttribute<ReflectUtilsFixture.DummyReflectionAttributeAttribute>();
 
             Assert.IsNotNull(attribute);
-            Assert.IsInstanceOf(typeof(ReflectUtilsFixture.DummyReflectionAttributeAttribute), attribute);
+            Assert.IsInstanceOfType(attribute, typeof(ReflectUtilsFixture.DummyReflectionAttributeAttribute));
         }
     }
 }

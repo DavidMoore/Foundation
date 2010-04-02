@@ -1,11 +1,11 @@
 using Foundation.Web.JavaScript;
 using Newtonsoft.Json;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JsonSerializer=Foundation.Web.JavaScript.JsonSerializer;
 
 namespace Foundation.Tests.Services
 {
-    [TestFixture]
+    [TestClass]
     public class JsonSerializerFixture
     {
         [JsonObject(MemberSerialization.OptIn)]
@@ -16,7 +16,7 @@ namespace Foundation.Tests.Services
             [JsonProperty] public string visible;
         }
 
-        [Test]
+        [TestMethod]
         public void Deserialize()
         {
             const string expectedSerialized = "{\"visible\":\"visible\"}";
@@ -29,7 +29,7 @@ namespace Foundation.Tests.Services
             Assert.AreEqual("visible", result.visible);
         }
 
-        [Test]
+        [TestMethod]
         public void SerializationOptions()
         {
             var serializer = new JsonSerializer();
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Services
             Assert.AreEqual("{\"Visible\":\"testText\"}", serializer.Serialize(new DummyObject {visible = "testText"}));
         }
 
-        [Test]
+        [TestMethod]
         public void Serialize()
         {
             const string expected = "{\"visible\":null}";

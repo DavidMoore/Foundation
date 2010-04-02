@@ -1,12 +1,12 @@
 using Foundation.Services.Security;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Security
 {
-    [TestFixture]
+    [TestClass]
     public class SalterFixture
     {
-        [Test]
+        [TestMethod]
         public void Salted_at_end_of_string_with_default_length()
         {
             const string stringToSalt = "string to salt";

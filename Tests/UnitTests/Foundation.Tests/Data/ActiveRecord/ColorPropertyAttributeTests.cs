@@ -2,29 +2,30 @@ using System.Drawing;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using Foundation.Services.Repository;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Data.ActiveRecord
 {
-    [TestFixture]
-    public class ColorPropertyAttributeTests : DatabaseFixtureBase
+    [TestClass]
+    public class ColorPropertyAttributeTests : DatabaseFixture
     {
+        static IRepository<DummyClassWithColorProperty> repository;
+
         public override void RegisterTypes()
         {
             base.RegisterTypes();
             RegisterTypes(typeof(DummyClassWithColorProperty));
         }
 
-        IRepository<DummyClassWithColorProperty> repository;
-
-        public override void FixtureSetup()
+        [TestInitialize]
+        public override void Setup()
         {
-            base.FixtureSetup();
+            base.Setup();
             repository = new ActiveRecordRepository<DummyClassWithColorProperty>();
         }
 
         [ActiveRecord]
-        internal class DummyClassWithColorProperty
+        class DummyClassWithColorProperty
         {
             [PrimaryKey]
             public int Id { get; set; }
@@ -33,7 +34,7 @@ namespace Foundation.Tests.Data.ActiveRecord
             public Color Colour { get; set; }
         }
 
-        [Test]
+        [TestMethod]
         public void Can_save_and_load()
         {
             var dummy = new DummyClassWithColorProperty {Colour = Color.Red};

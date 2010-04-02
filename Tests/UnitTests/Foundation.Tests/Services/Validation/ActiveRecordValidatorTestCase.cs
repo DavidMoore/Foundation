@@ -2,17 +2,15 @@ using Castle.ActiveRecord;
 using Castle.Components.Validator;
 using Foundation.Data.ActiveRecord;
 using Foundation.Data.ActiveRecord.Validation;
-using Foundation.Services;
 using Foundation.Services.Repository;
 using Foundation.Services.Validation;
-using Foundation.Services.Windsor;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Property = Castle.ActiveRecord.PropertyAttribute;
 
 namespace Foundation.Tests.Services.Validation
 {
-    [TestFixture]
-    public class ActiveRecordValidatorTestCase : DatabaseFixtureBase
+    [TestClass]
+    public class ActiveRecordValidatorTestCase : DatabaseFixture
     {
         [ActiveRecord]
         internal class MockInvalidTestObject
@@ -20,10 +18,10 @@ namespace Foundation.Tests.Services.Validation
             [PrimaryKey]
             public int MockObjectId { get; set; }
 
-            [ValidateNonEmpty, Property]
+            [ValidateNonEmpty, Castle.ActiveRecord.Property]
             public string Name { get; set; }
 
-            [ValidateEmail, Property]
+            [ValidateEmail, Castle.ActiveRecord.Property]
             public string Email { get; set; }
         }
         
@@ -34,7 +32,7 @@ namespace Foundation.Tests.Services.Validation
             RegisterTypes(typeof(MockInvalidTestObject));
         }
 
-        [Test]
+        [TestMethod]
         public void Can_get_list_of_errors_for_specific_property()
         {
             var value = new MockInvalidTestObject {Name = null, Email = "invalid"};
@@ -48,7 +46,7 @@ namespace Foundation.Tests.Services.Validation
             Assert.AreEqual(propErrors[0].PropertyName, "Name");
         }
 
-        [Test]
+        [TestMethod]
         public void Can_get_validation_errors_object_for_model()
         {
             var value = new MockInvalidTestObject {Name = "Test", Email = "valid_emai@email.com"};
@@ -59,7 +57,7 @@ namespace Foundation.Tests.Services.Validation
             Assert.IsNotNull(errors);
         }
 
-        [Test]
+        [TestMethod]
         public void Invalid_property_count_matches_for_invalid_model()
         {
             var value = new MockInvalidTestObject {Name = null, Email = "invalid"};
@@ -70,7 +68,7 @@ namespace Foundation.Tests.Services.Validation
             Assert.AreEqual(2, errors.Count);
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(ModelValidationException))]
         public void Validation_associates_with_repository_and_throws_exception_for_invalid_model_when_saved()
         {
@@ -81,7 +79,7 @@ namespace Foundation.Tests.Services.Validation
             repository.Save(value);
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(ModelValidationException))]
         public void Validation_exception_thrown_when_invalid_property_encountered()
         {
@@ -89,7 +87,7 @@ namespace Foundation.Tests.Services.Validation
             new ActiveRecordModelValidator().Validate(value);
         }
 
-        [Test]
+        [TestMethod]
         public void Validation_succeeds_for_valid_properties()
         {
             var value = new MockInvalidTestObject {Name = "Test", Email = "valid_emai@email.com"};

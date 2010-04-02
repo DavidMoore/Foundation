@@ -2,19 +2,20 @@ using System.Drawing;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using Foundation.Services.Repository;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Data.NHibernate.UserTypes
 {
-    [TestFixture]
-    public class ColorUserTypeTests : DatabaseFixtureBase
+    [TestClass]
+    public class ColorUserTypeTests : DatabaseFixture
     {
         IRepository<DummyClassWithColorProperty> repository;
         Color colour;
 
-        public override void FixtureSetup()
+        [TestInitialize]
+        public override void Setup()
         {
-            base.FixtureSetup();
+            base.Setup();
             repository = new ActiveRecordRepository<DummyClassWithColorProperty>();
             colour = Color.Red;
         }
@@ -35,14 +36,14 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             public Color Colour { get; set; }
         }
 
-        [Test]
+        [TestMethod]
         public void Can_save()
         {
             var dummy = new DummyClassWithColorProperty {Colour = colour};
             repository.Save(dummy);
         }
 
-        [Test]
+        [TestMethod]
         public void Can_update()
         {
             var dummy = new DummyClassWithColorProperty {Colour = colour};

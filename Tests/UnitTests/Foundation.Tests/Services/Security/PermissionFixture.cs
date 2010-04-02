@@ -1,13 +1,13 @@
 ﻿using Foundation.Data.ActiveRecord.Security;
 using Foundation.Services.Security;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Security
 {
-    [TestFixture]
+    [TestClass]
     public class PermissionFixture
     {
-        [Test]
+        [TestMethod]
         public void Can_create()
         {
             var dummyUser = new User {Email = "fake@fake.com", Name = "Dummy"};

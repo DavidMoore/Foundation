@@ -2,14 +2,14 @@ using Foundation.Data.ActiveRecord.Security;
 using Foundation.Extensions;
 using Foundation.Models;
 using Foundation.Services.Security;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Extensions
 {
-    [TestFixture]
+    [TestClass]
     public class IPaginatedListExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void Cast()
         {
             var list = new PaginatedCollection<User>();

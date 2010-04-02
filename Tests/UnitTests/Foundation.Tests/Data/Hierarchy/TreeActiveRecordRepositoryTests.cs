@@ -1,11 +1,11 @@
 using Foundation.Data.ActiveRecord;
 using Foundation.Data.Hierarchy;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Data.Hierarchy
 {
-    [TestFixture]
-    public class TreeActiveRecordRepositoryTests : DatabaseFixtureBase
+    [TestClass]
+    public class TreeActiveRecordRepositoryTests : DatabaseFixture
     {
         TreeActiveRecordRepository<Category> repository;
 
@@ -16,7 +16,7 @@ namespace Foundation.Tests.Data.Hierarchy
             repository = new TreeActiveRecordRepository<Category>();
         }
 
-        [Test]
+        [TestMethod]
         public void IsDirty_gets_toggled_off_once_saved()
         {
             var category = new Category("Category1");
@@ -30,7 +30,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.IsFalse(category.TreeInfo.IsDirty);
         }
 
-        [Test]
+        [TestMethod]
         public void Saving_single_node_gives_LeftValue_1_RightValue_2()
         {
             var category = new Category("Category1");

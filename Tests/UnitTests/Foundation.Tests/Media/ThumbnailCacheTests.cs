@@ -1,28 +1,28 @@
 using System;
 using System.IO;
 using Foundation.Media;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Media
 {
-    [TestFixture]
+    [TestClass]
     public class ThumbnailCacheTests
     {
         ThumbnailCache cache;
 
-        [SetUp]
+        [TestInitialize]
         public void Setup()
         {
             cache = new ThumbnailCache();
         }
 
-        [TearDown]
+        [TestCleanup]
         public void Cleanup()
         {
             if( cache != null ) cache.Dispose();
         }
 
-        [Test]
+        [TestMethod]
         public void Creates_subdir_in_temporary_directory_by_default()
         {
             var directory = cache.CacheDirectory;
@@ -36,7 +36,7 @@ namespace Foundation.Tests.Media
             Assert.IsTrue( directory.Exists);
         }
 
-        [Test]
+        [TestMethod]
         public void Dispose_deletes_directory_and_all_within()
         {
             DirectoryInfo dir;
@@ -50,7 +50,7 @@ namespace Foundation.Tests.Media
             Assert.IsFalse(dir.Exists);
         }
 
-        [Test]
+        [TestMethod]
         public void Generates_cache_filename_using_hash_of_original_filename_and_dimensions()
         {
             var originalName = @"C:\Test.jpg";
@@ -62,13 +62,13 @@ namespace Foundation.Tests.Media
             Assert.AreEqual("9af7e7184738e0dd3e53641051ab5768", cacheName);
         }
 
-        [Test]
+        [TestMethod]
         public void GetCacheFile_by_hash_returns_null_if_file_is_not_cached()
         {
             Assert.IsNull(cache.GetCacheFile("9af7e7184738e0dd3e53641051ab5768"));
         }
 
-        [Test]
+        [TestMethod]
         public void Add_takes_filename_and_dimensions_and_creates_new_file_in_cache()
         {
             using( var temp = new TempFile())

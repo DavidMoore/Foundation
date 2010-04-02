@@ -1,11 +1,11 @@
 using System;
 using System.IO;
 using System.Linq;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class ReflectUtilsFixture
     {
         internal class DummyReflectionAttributeAttribute : Attribute { }
@@ -43,41 +43,41 @@ namespace Foundation.Tests
             string PrivateProperty { get; set; }
         }
 
-        [Test]
+        [TestMethod]
         public void GetAttribute()
         {
             var attribute = ReflectionUtilities.GetAttribute<DummyReflectionAttributeAttribute>(new DummyReflectionObject());
             Assert.IsNotNull(attribute);
         }
 
-        [Test, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void GetAttribute_throws_exception_if_more_than_one_instance_found()
         {
             ReflectionUtilities.GetAttribute<DuplicateAttributeAttribute>(new DummyReflectionObject());
         }
 
-        [Test]
+        [TestMethod]
         public void GetAttributes()
         {
             var attributes = ReflectionUtilities.GetAttributes<DuplicateAttributeAttribute>(new DummyReflectionObject());
             Assert.AreEqual(2, attributes.Count());
         }
 
-        [Test]
+        [TestMethod]
         public void GetAttribute_does_not_call_GetType_when_passed_instance_is_already_a_Type()
         {
             var attribute = ReflectionUtilities.GetAttribute<DummyReflectionAttributeAttribute>( typeof(DummyReflectionObject) );
             Assert.IsNotNull(attribute);
         }
 
-        [Test]
+        [TestMethod]
         public void GetAttribute_does_not_call_GetType_when_passed_instance_is_a_PropertyInfo()
         {
             var attribute = ReflectionUtilities.GetAttribute<DummyReflectionAttributeAttribute>(typeof(DummyReflectionObject).GetProperty("StringProperty"));
             Assert.IsNotNull(attribute);
         }
 
-        [Test]
+        [TestMethod]
         public void HasAttribute_for_PropertyInfo()
         {
             var propertyInfo = typeof(DummyReflectionObject).GetProperty("StringProperty");
@@ -88,13 +88,13 @@ namespace Foundation.Tests
             Assert.IsFalse(ReflectionUtilities.HasAttribute(propertyInfo, typeof(BarReflectionAttributeAttribute), typeof(FooReflectionAttributeAttribute)));
         }
 
-        [Test]
+        [TestMethod]
         public void Implements_returns_true_when_passed_type_implements_the_specified_interface()
         {
             Assert.IsTrue(ReflectionUtilities.Implements(typeof(ActivationContext), typeof(IDisposable)));
         }
 
-        [Test]
+        [TestMethod]
         public void Returns_all_public_properties_with_specified_attribute()
         {
             var type = typeof(DummyReflectionObject);
@@ -104,7 +104,7 @@ namespace Foundation.Tests
             Assert.AreEqual(2, properties.Count());
         }
 
-        [Test]
+        [TestMethod]
         public void Returns_true_for_type_with_specified_attribute_when_calling_HasAttribute()
         {
             var type = typeof(DummyReflectionObject);
@@ -113,25 +113,25 @@ namespace Foundation.Tests
             Assert.IsTrue(ReflectionUtilities.HasAttribute(type, attribute));
         }
 
-        [Test, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void LoadAssembly_throws_ArgumentNullException_if_FileSystemInfo_is_null()
         {
             ReflectionUtilities.LoadAssembly( (FileSystemInfo)null);
         }
 
-        [Test, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
         public void LoadAssembly_throws_ArgumentException_if_fileName_is_null()
         {
             ReflectionUtilities.LoadAssembly((string)null);
         }
 
-        [Test, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
         public void LoadAssembly_throws_ArgumentException_if_fileName_is_empty()
         {
             ReflectionUtilities.LoadAssembly((string)null);
         }
 
-        [Test]
+        [TestMethod]
         public void LoadAssembly_returns_null_if_BadImageFormatException_encountered()
         {
             var file = new FileInfo(Environment.ExpandEnvironmentVariables("%WinDir%\\regedit.exe"));
@@ -140,13 +140,13 @@ namespace Foundation.Tests
             Assert.IsNull( ReflectionUtilities.LoadAssembly( file.FullName) );
         }
 
-        [Test, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetProductName_throws_ArgumentNullException_for_null_assembly()
         {
             ReflectionUtilities.GetProductName(null);
         }
 
-        [Test]
+        [TestMethod]
         public void GetProductName()
         {
             Assert.AreEqual("Foundation .NET Library", ReflectionUtilities.GetProductName(GetType().Assembly) );

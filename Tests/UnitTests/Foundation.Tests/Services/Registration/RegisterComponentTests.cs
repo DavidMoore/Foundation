@@ -1,13 +1,13 @@
 using Foundation.Services;
 using Foundation.Services.Registration;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Registration
 {
-    [TestFixture]
+    [TestClass]
     public class RegisterComponentTests
     {
-        [Test]
+        [TestMethod]
         public void Default_lifestyle_is_singleton()
         {
             var attribute = ReflectionUtilities.GetAttribute<RegisterComponentAttribute>(typeof (ServiceImplementation));

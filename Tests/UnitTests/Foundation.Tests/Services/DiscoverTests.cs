@@ -2,32 +2,32 @@
 using System.IO;
 using System.Linq;
 using Foundation.Services.Discovery;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services
 {
-    [TestFixture]
+    [TestClass]
     public class DiscoverTests
     {
-        [Test, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ArgumentNullException_if_DirectoryInfo_is_null()
         {
             DiscoverTypes.FromDirectory((DirectoryInfo)null);
         }
 
-        [Test, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ArgumentNullException_if_Directory_string_is_null()
         {
             DiscoverTypes.FromDirectory((string)null);
         }
 
-        [Test, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
         public void ArgumentException_if_Directory_string_is_empty()
         {
             DiscoverTypes.FromDirectory("  ");
         }
 
-        [Test]
+        [TestMethod]
         public void Discovers_2_implementing_classes()
         {
             var results = DiscoverTypes

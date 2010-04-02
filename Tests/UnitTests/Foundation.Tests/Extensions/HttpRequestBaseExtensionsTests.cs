@@ -2,14 +2,14 @@ using Foundation.Extensions;
 using Foundation.TestHelpers;
 using Foundation.Web.Extensions;
 using Foundation.Web.TestHelpers;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Extensions
 {
-    [TestFixture]
+    [TestClass]
     public class HttpRequestBaseExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void IsAjax()
         {
             var mock = new MockContext();

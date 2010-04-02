@@ -1,13 +1,13 @@
 using System;
 using Foundation.TestHelpers;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.TestHelpers
 {
-    [TestFixture]
+    [TestClass]
     public class LipsumTests
     {
-        [Test]
+        [TestMethod]
         public void Generates_4_words()
         {
             var sentence = new Lipsum().Words(4);
@@ -16,7 +16,7 @@ namespace Foundation.Tests.TestHelpers
             Console.WriteLine(sentence);
         }
 
-        [Test]
+        [TestMethod]
         public void Generates_sentence_starting_with_capital_and_ending_with_fullstop()
         {
             var sentence = new Lipsum().Sentences(1);

@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Foundation.Data.ActiveRecord;
 using Foundation.Data.Hierarchy;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Data.Hierarchy
 {
-    [TestFixture]
-    public class HierarchyTests : DatabaseFixtureBase
+    [TestClass]
+    public class HierarchyTests : DatabaseFixture
     {
         #region Setup/Teardown
 
+        [TestInitialize]
         public override void Setup()
         {
             base.Setup();
@@ -82,14 +83,14 @@ namespace Foundation.Tests.Data.Hierarchy
             return list;
         }
 
-        [Test]
+        [TestMethod]
         public void Adding_a_child_to_a_node_updates_the_child_parent()
         {
             var node1 = tree[0];
             Assert.AreEqual(node1, node1.TreeInfo.Children[0].TreeInfo.Parent);
         }
 
-        [Test]
+        [TestMethod]
         public void Child_collections_are_not_null()
         {
             var root = new Category("root");
@@ -100,7 +101,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.IsNotNull(root.TreeInfo.Descendants);
         }
 
-        [Test]
+        [TestMethod]
         public void Get_ancestors()
         {
             Assert.AreEqual(9, repository.List().Count);
@@ -111,7 +112,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual("Node1_1_2", results[2].Name);
         }
 
-        [Test]
+        [TestMethod]
         public void Get_children()
         {
             Assert.AreEqual(9, repository.List().Count);
@@ -121,7 +122,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual("Node1_2", results[1].Name);
         }
 
-        [Test]
+        [TestMethod]
         public void Get_descendants()
         {
             Assert.AreEqual(9, repository.List().Count);
@@ -134,7 +135,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual("Node1_2", results[4].Name);
         }
 
-        [Test]
+        [TestMethod]
         public void Get_parent()
         {
             Assert.AreEqual(9, repository.List().Count);
@@ -145,7 +146,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.IsNull(node.TreeInfo.Parent.TreeInfo.Parent.TreeInfo.Parent.TreeInfo.Parent);
         }
 
-        [Test]
+        [TestMethod]
         public void Get_root_nodes()
         {
             Assert.AreEqual(9, repository.List().Count);
@@ -153,7 +154,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual(3, results.Count);
         }
 
-        [Test]
+        [TestMethod]
         public void Get_siblings()
         {
             Assert.AreEqual(9, repository.List().Count);
@@ -179,7 +180,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual("Node3", results[2].Name);
         }
 
-        [Test]
+        [TestMethod]
         public void Has_expected_properties()
         {
             var root = new Category("root");
@@ -193,7 +194,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual(0, root.TreeInfo.Descendants.Count);
         }
 
-        [Test]
+        [TestMethod]
         public void RebuildTree()
         {
             Assert.AreEqual("Node1", flatList.Single(x => x.TreeInfo.LeftValue == 1 && x.TreeInfo.RightValue == 12).Name);
@@ -207,7 +208,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual("Node3_1", flatList.Single(x => x.TreeInfo.LeftValue == 16 && x.TreeInfo.RightValue == 17).Name);
         }
 
-        [Test]
+        [TestMethod]
         public void TreeInfo_is_not_null()
         {
             var root = new Category("root");

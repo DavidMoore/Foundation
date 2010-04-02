@@ -1,12 +1,12 @@
 using Foundation.Services.Security;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Security
 {
-    [TestFixture]
+    [TestClass]
     public class HasherTestCase
     {
-        [Test]
+        [TestMethod]
         public void MD5Compare()
         {
             var test = "The quick brown fox jumps over the lazy dog";
@@ -15,7 +15,7 @@ namespace Foundation.Tests.Services.Security
             Assert.IsTrue(Hasher.MD5Compare(test, hash));
         }
 
-        [Test]
+        [TestMethod]
         public void MD5Hash()
         {
             var test = "The quick brown fox jumps over the lazy dog";
@@ -25,7 +25,7 @@ namespace Foundation.Tests.Services.Security
             Assert.AreEqual("9e107d9d372bb6826bd81d3542a419d6", result);
         }
 
-        [Test]
+        [TestMethod]
         public void SHA256Compare()
         {
             var test = "The quick brown fox jumps over the lazy dog";
@@ -34,7 +34,7 @@ namespace Foundation.Tests.Services.Security
             Assert.IsTrue(Hasher.Sha256Compare(test, hash));
         }
 
-        [Test]
+        [TestMethod]
         public void SHA256Hash()
         {
             var test = "The quick brown fox jumps over the lazy dog";

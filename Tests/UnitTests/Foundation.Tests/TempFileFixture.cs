@@ -1,13 +1,13 @@
 using System;
 using System.IO;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class TempFileFixture
     {
-        [Test]
+        [TestMethod]
         public void Can_open_for_writing_and_read_back()
         {
             using( var file = new TempFile() )
@@ -26,7 +26,7 @@ namespace Foundation.Tests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void Can_read_and_write_text()
         {
             using( var file = new TempFile() )
@@ -37,7 +37,7 @@ namespace Foundation.Tests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void Should_create_temporary_file()
         {
             using( var file = new TempFile() )
@@ -46,7 +46,7 @@ namespace Foundation.Tests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void Should_delete_temporary_file_when_finished()
         {
             string filename;
@@ -60,7 +60,7 @@ namespace Foundation.Tests
             Assert.IsFalse(File.Exists(filename));
         }
 
-        [Test]
+        [TestMethod]
         public void Allows_constructor_argument_to_choose_filename()
         {
             using( var file = new TempFile("{0}.gif"))
@@ -71,7 +71,7 @@ namespace Foundation.Tests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void Should_gracefully_handle_error_if_file_is_locked_when_trying_to_delete_on_disposal()
         {
             FileStream stream = null;

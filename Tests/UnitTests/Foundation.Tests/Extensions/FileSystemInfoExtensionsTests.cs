@@ -1,12 +1,12 @@
 ﻿using Foundation.Extensions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Extensions
 {
-    [TestFixture]
+    [TestClass]
     public class FileSystemInfoExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void Rename()
         {
             using( var dir = new TempDirectory() )

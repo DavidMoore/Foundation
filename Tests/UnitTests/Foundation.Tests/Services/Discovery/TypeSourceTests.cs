@@ -3,14 +3,14 @@ using System.Linq;
 using System.Reflection;
 using Foundation.Services.Discovery;
 using Moq;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Discovery
 {
-    [TestFixture]
+    [TestClass]
     public class TypeSourceTests
     {
-        [Test]
+        [TestMethod]
         public void Discovers_types_directly_or_implicitly()
         {
             var assemblies = new List<Assembly> {GetType().Assembly};
@@ -28,7 +28,7 @@ namespace Foundation.Tests.Services.Discovery
             Assert.IsTrue(typeof(ITestTypeDiscoveryInterface).IsAssignableFrom(results.Last()));
         }
 
-        [Test]
+        [TestMethod]
         public void Discovered_expected_number_of_types()
         {
             var assemblies = new List<Assembly> {GetType().Assembly};
@@ -47,7 +47,7 @@ namespace Foundation.Tests.Services.Discovery
             Assert.AreEqual(expectedCount, count);
         }
 
-        [Test]
+        [TestMethod]
         public void Can_pass_desired_type_instead_of_using_generics()
         {
             var assemblies = new List<Assembly> { GetType().Assembly };

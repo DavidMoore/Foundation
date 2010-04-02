@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Castle.ActiveRecord;
 using Castle.ActiveRecord.Framework;
 using Castle.ActiveRecord.Framework.Config;
@@ -12,21 +13,21 @@ namespace Foundation.Data.ActiveRecord
 {
     public class DatabaseFixtureBase
     {
-        protected SessionScope Scope { get; set;}
-
-        [TestFixtureTearDown]
-        public virtual void FixtureTeardown()
+        IEnumerable<Type> typesToRegister;
+        protected virtual IEnumerable<Type> TypesToRegister
         {
-            ActiveRecordStarter.DropSchema();
+            get { return typesToRegister; }
+            set { typesToRegister = value; }
         }
 
-        [TestFixtureSetUp]
-        public virtual void FixtureSetup()
+        protected SessionScope Scope { get; set;}
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+        /// </summary>
+        public DatabaseFixtureBase()
         {
-            ActiveRecordStarter.ResetInitializationFlag();
-            ActiveRecordStarter.Initialize(GetConfigSource());
-            RegisterTypes();
-            ActiveRecordStarter.CreateSchema();
+            typesToRegister =  Enumerable.Empty<Type>();
         }
 
         public virtual void RegisterTypes()
@@ -42,6 +43,9 @@ namespace Foundation.Data.ActiveRecord
         [SetUp]
         public virtual void Setup()
         {
+            ActiveRecordStarter.ResetInitializationFlag();
+            ActiveRecordStarter.Initialize(GetConfigSource());
+            RegisterTypes();
             ActiveRecordStarter.CreateSchema();
             Scope = new SessionScope();
         }
@@ -55,7 +59,7 @@ namespace Foundation.Data.ActiveRecord
             ActiveRecordStarter.DropSchema();
         }
 
-        public virtual IConfigurationSource GetConfigSource()
+        public static IConfigurationSource GetConfigSource()
         {
             return GetSqliteMemoryConfigSource();
         }

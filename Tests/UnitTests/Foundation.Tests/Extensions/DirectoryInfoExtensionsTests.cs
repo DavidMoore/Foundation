@@ -1,14 +1,14 @@
 using System;
 using System.IO;
 using Foundation.Extensions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Extensions
 {
-    [TestFixture]
+    [TestClass]
     public class DirectoryInfoExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void GetFile_returns_null_when_file_not_found()
         {
             using(var dir = new TempDirectory())
@@ -17,7 +17,7 @@ namespace Foundation.Tests.Extensions
             }
         }
 
-        [Test, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void GetFile_throws_exception_if_more_than_one_file_matches()
         {
             using(var dir = new TempDirectory())
@@ -29,7 +29,7 @@ namespace Foundation.Tests.Extensions
             }
         }
 
-        [Test]
+        [TestMethod]
         public void IsFile()
         {
             using( var dir = new TempDirectory())

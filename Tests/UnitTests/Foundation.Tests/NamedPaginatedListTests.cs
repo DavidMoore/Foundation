@@ -1,13 +1,13 @@
 using System.Linq;
 using Foundation.Extensions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class NamedPaginatedListTests
     {
-        [Test]
+        [TestMethod]
         public void AlphabeticPaginate()
         {
             var data = new[] { "aaa", "aab", "aac", "baa", "bab", "bac", "bad", "daaa", "daac" };

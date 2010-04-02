@@ -3,33 +3,33 @@ using System.Linq;
 using System.Reflection;
 using Foundation.Services;
 using Foundation.Services.Unity;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services
 {
-    [TestFixture]
+    [TestClass]
     class ServiceManagerTests
     {
-        [SetUp]
+        [TestInitialize]
         public void Setup()
         {
             ServiceManager.Reset();
         }
 
-        [Test]
+        [TestMethod]
         public void Initialize_gets_first_IServiceManager_implementation_loaded_in_domain()
         {
             ServiceManager.Initialize();
         }
 
-        [Test, ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Cannot initialize the service manager more than once!")]
+        [TestMethod, ExpectedException(typeof(InvalidOperationException))]//, ExpectedMessage = "Cannot initialize the service manager more than once!")]
         public void Initialize_throws_InvalidOperationException_if_called_more_than_once()
         {
             ServiceManager.Initialize<UnityServiceManagerAdapter>();
             ServiceManager.Initialize();
         }
 
-        [Test]
+        [TestMethod]
         public void Initialize_accepts_type_of_IServiceManager_implementation_to_use()
         {
             ServiceManager.Initialize<UnityServiceManagerAdapter>();

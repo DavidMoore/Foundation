@@ -2,13 +2,13 @@ using System.IO;
 using Foundation.Services;
 using Foundation.Web.JavaScript;
 using Newtonsoft.Json;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JsonSerializer=Newtonsoft.Json.JsonSerializer;
 using JsonTextWriter=Foundation.Web.JavaScript.JsonTextWriter;
 
 namespace Foundation.Tests.Services
 {
-    [TestFixture]
+    [TestClass]
     public class JavaScriptSerializerTests
     {
         [JavaScriptObject(Prefix = "thePrefix", Suffix = "theSuffix")]
@@ -29,7 +29,7 @@ namespace Foundation.Tests.Services
             }
         }
 
-        [Test]
+        [TestMethod]
         public void Prefix_and_suffix()
         {
             var serializer = new JavaScriptSerializer();
@@ -44,7 +44,7 @@ namespace Foundation.Tests.Services
             }
         }
 
-        [Test]
+        [TestMethod]
         public void SerializeToJavaScript()
         {
             var result = new Web.JavaScript.JsonSerializer().Serialize(new TestClass2 {StringValue = "StringValue"});

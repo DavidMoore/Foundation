@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using Shell32;
 
 namespace Foundation.WindowsShell
@@ -33,11 +34,7 @@ namespace Foundation.WindowsShell
 
         public ShellClass ShellInstance
         {
-            get
-            {
-                if( shell == null ) shell = new ShellClass();
-                return shell;
-            }
+            get { return shell ?? (shell = new ShellClass()); }
         }
 
         public virtual ShellClass OpenNewShell()
@@ -84,6 +81,7 @@ namespace Foundation.WindowsShell
         protected virtual void Dispose(bool disposing)
         {
             if( !disposing || shell == null ) return;
+            Marshal.ReleaseComObject(shell);
             shell = null;
         }
 

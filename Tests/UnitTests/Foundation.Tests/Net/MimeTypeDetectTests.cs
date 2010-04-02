@@ -1,12 +1,12 @@
 using Foundation.Net;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Net
 {
-    [TestFixture]
+    [TestClass]
     public class MimeTypeDetectTests
     {
-        [Test]
+        [TestMethod]
         public void FromExtension()
         {
             var jpeg = MimeTypesImage.Jpeg;

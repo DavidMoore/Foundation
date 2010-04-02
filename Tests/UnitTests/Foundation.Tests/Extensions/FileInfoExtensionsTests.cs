@@ -1,13 +1,13 @@
 ﻿using System.IO;
 using Foundation.Extensions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Extensions
 {
-    [TestFixture]
+    [TestClass]
     public class FileInfoExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void NameWithoutExtension()
         {
             Assert.AreEqual("test", new FileInfo(@"C:\test.txt").NameWithoutExtension());
@@ -15,7 +15,7 @@ namespace Foundation.Tests.Extensions
             Assert.AreEqual("test", new FileInfo(@"C:\test").NameWithoutExtension());
         }
 
-        [Test]
+        [TestMethod]
         public void ExtensionWithNoDot()
         {
             Assert.AreEqual("txt", new FileInfo(@"C:\test.txt").ExtensionWithoutDot());

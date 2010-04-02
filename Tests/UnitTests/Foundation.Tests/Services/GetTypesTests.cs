@@ -1,26 +1,26 @@
 using Foundation.Services;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services
 {
-    [TestFixture]
+    [TestClass]
     public class GetTypesTests
     {
-        [Test]
+        [TestMethod]
         public void OfType()
         {
             var types = GetTypes.OfType(typeof(GetTypes), typeof(GetTypes).Assembly);
             Assert.AreEqual(1, types.Count);
         }
 
-        [Test]
+        [TestMethod]
         public void ThatImplement()
         {
             var types = GetTypes.ThatImplement(typeof(IBogusInterface), GetType().Assembly);
             Assert.AreEqual(1, types.Count);
         }
 
-        [Test]
+        [TestMethod]
         public void ThatImplement_AllAssemblies()
         {
             var types = GetTypes.ThatImplement(typeof(IBogusInterface), GetType().Assembly, true);

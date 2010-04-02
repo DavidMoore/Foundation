@@ -1,12 +1,12 @@
 using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class ArrayExtensionMethodsTests
     {
-        [Test]
+        [TestMethod]
         public void Append()
         {
             var array1 = new[] {"a", "b", "c"};

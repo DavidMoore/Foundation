@@ -1,17 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Foundation.Data.ActiveRecord;
 using Foundation.Data.Hierarchy;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Data.Hierarchy
 {
-    [TestFixture]
-    public class TreeCriteriaTests : DatabaseFixtureBase
+    [TestClass]
+    public class TreeCriteriaTests : DatabaseFixture
     {
-        #region Setup/Teardown
-
+        [TestInitialize]
         public override void Setup()
         {
             base.Setup();
@@ -19,8 +17,6 @@ namespace Foundation.Tests.Data.Hierarchy
             CreateTree();
             Assert.AreEqual(9, flatList.Count);
         }
-
-        #endregion
 
         TreeActiveRecordRepository<Category> repository;
         List<Category> flatList;
@@ -83,7 +79,7 @@ namespace Foundation.Tests.Data.Hierarchy
             return list;
         }
 
-        [Test]
+        [TestMethod]
         public void AncestorOf()
         {
             var results = repository.List(TreeCriteria.AncestorOf(flatList.Single(x => x.Name == "Node1_1_2_1")));
@@ -94,13 +90,13 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual("Node1_1_2", results[2].Name);
         }
 
-        [Test, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void AncestorOf_throws_ArgumentNullException_when_ancestor_is_null()
         {
             TreeCriteria.AncestorOf<Category>(null);
         }
 
-        [Test]
+        [TestMethod]
         public void ChildOf()
         {
             var results = repository.List(TreeCriteria.ChildOf(null));
@@ -116,7 +112,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual("Node1_2", results[1].Name);
         }
 
-        [Test]
+        [TestMethod]
         public void DescendantOf()
         {
             var results = repository.List(TreeCriteria.DescendantOf(flatList.Single(x => x.Name == "Node1")));
@@ -129,13 +125,13 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual("Node1_2", results[4].Name);
         }
 
-        [Test, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DescendantOf_throws_ArgumentNullException_when_descendant_is_null()
         {
             TreeCriteria.DescendantOf<Category>(null);
         }
 
-        [Test]
+        [TestMethod]
         public void ParentOf()
         {
             var results = repository.List(TreeCriteria.ParentOf(flatList.Single(x => x.Name == "Node1_1")));
@@ -150,13 +146,13 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual(0, results.Count);
         }
 
-        [Test, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ParentOf_throws_ArgumentNullException_when_child_is_null()
         {
             TreeCriteria.ParentOf<Category>(null);
         }
 
-        [Test]
+        [TestMethod]
         public void SameOrDescendantOf()
         {
             var results = repository.List(TreeCriteria.SameOrDescendantOf(flatList.Single(x => x.Name == "Node1")));
@@ -170,7 +166,7 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual("Node1_2", results[5].Name);
         }
 
-        [Test]
+        [TestMethod]
         public void SiblingOf()
         {
             var results = repository.List(TreeCriteria.SiblingOf(flatList.Single(x => x.Name == "Node1")));

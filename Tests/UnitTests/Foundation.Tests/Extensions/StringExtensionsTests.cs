@@ -1,24 +1,24 @@
 using Foundation.Extensions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Extensions
 {
-    [TestFixture]
+    [TestClass]
     public class StringExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void ToCamelCase()
         {
             Assert.AreEqual("theExpectedResult", "TheExpectedResult".ToCamelCase());
         }
 
-        [Test]
+        [TestMethod]
         public void ToPascalCase()
         {
             Assert.AreEqual("TheExpectedResult", "theExpectedResult".ToPascalCase());
         }
 
-        [Test]
+        [TestMethod]
         public void IsNullOrEmpty()
         {
             Assert.IsTrue( ((string)null).IsNullOrEmpty() );
@@ -27,13 +27,13 @@ namespace Foundation.Tests.Extensions
             Assert.IsTrue("     ".IsNullOrEmpty());
         }
 
-        [Test]
+        [TestMethod]
         public void StripLeft()
         {
             Assert.AreEqual( "After the strip.", "Before the strip.After the strip.".StripLeft("Before the strip."));
         }
 
-        [Test]
+        [TestMethod]
         public void StringFormat()
         {
             Assert.AreEqual( "After the format", "After {0} format".StringFormat("the"));

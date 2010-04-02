@@ -1,13 +1,13 @@
 using System.Text;
 using Foundation.Extensions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Extensions
 {
-    [TestFixture]
+    [TestClass]
     public class EnumerableExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void ToPaginatedList()
         {
             var list = new[] {"one", "two", "three"}.ToPaginatedList(1, 3);
@@ -18,7 +18,7 @@ namespace Foundation.Tests.Extensions
             Assert.AreEqual(1, list.PageCount);
         }
 
-        [Test]
+        [TestMethod]
         public void ForEach()
         {
             var list = new[] {"one", "two", "three"};

@@ -1,12 +1,12 @@
 using System.Drawing;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class ColorExtensionMethodsTests
     {
-        [Test]
+        [TestMethod]
         public void ToHtml()
         {
             Assert.AreEqual("Red", Color.Red.ToHtml());

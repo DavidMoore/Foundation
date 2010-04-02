@@ -1,12 +1,12 @@
 using Foundation.Services.Security;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Security
 {
-    [TestFixture]
+    [TestClass]
     public class PasswordGeneratorFixture
     {
-        [Test]
+        [TestMethod]
         public void Length_of_generated_password_should_match_configured_default()
         {
             const int length = 15;
@@ -18,7 +18,7 @@ namespace Foundation.Tests.Services.Security
             Assert.AreEqual(length, password.Length);
         }
 
-        [Test]
+        [TestMethod]
         public void Length_of_generated_password_should_match_specified_length()
         {
             const int length = 15;

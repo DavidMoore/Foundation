@@ -2,12 +2,12 @@ using System;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using Foundation.Services.Repository;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Data.ActiveRecord
 {
-    [TestFixture]
-    public class TypePropertyAttributeTests : DatabaseFixtureBase
+    [TestClass]
+    public class TypePropertyAttributeTests : DatabaseFixture
     {
         public override void RegisterTypes()
         {
@@ -17,9 +17,10 @@ namespace Foundation.Tests.Data.ActiveRecord
 
         IRepository<DummyClassWithTypePropertyAttribute> repository;
 
-        public override void FixtureSetup()
+        [TestInitialize]
+        public override void Setup()
         {
-            base.FixtureSetup();
+            base.Setup();
             repository = new ActiveRecordRepository<DummyClassWithTypePropertyAttribute>();
         }
 
@@ -33,7 +34,7 @@ namespace Foundation.Tests.Data.ActiveRecord
             public Type DummyType { get; set; }
         }
 
-        [Test]
+        [TestMethod]
         public void Can_save_and_load()
         {
             var dummy = new DummyClassWithTypePropertyAttribute {DummyType = typeof(DateTime)};

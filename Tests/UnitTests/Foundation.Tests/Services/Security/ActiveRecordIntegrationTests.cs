@@ -1,13 +1,11 @@
 using Castle.ActiveRecord;
-using Foundation.Data.ActiveRecord;
 using Foundation.Data.ActiveRecord.Security;
-using Foundation.Services.Security;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Security
 {
-    [TestFixture]
-    public class ActiveRecordIntegrationTests : DatabaseFixtureBase
+    [TestClass]
+    public class ActiveRecordIntegrationTests : DatabaseFixture
     {
         public override void RegisterTypes()
         {
@@ -15,7 +13,19 @@ namespace Foundation.Tests.Services.Security
             ActiveRecordIntegration.RegisterTypes();
         }
 
-        [Test]
+        [TestInitialize]
+        public override void Setup()
+        {
+            base.Setup();
+        }
+
+        [TestCleanup]
+        public override void Teardown()
+        {
+            base.Teardown();
+        }
+
+        [TestMethod]
         public void Registers_types_with_ActiveRecord()
         {
             ActiveRecordMediator<User>.Save(new User {Name = "Test", Email = "Test@test.com"});

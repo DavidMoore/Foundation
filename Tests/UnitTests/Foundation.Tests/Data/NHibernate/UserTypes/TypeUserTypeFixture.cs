@@ -3,13 +3,13 @@ using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using Foundation.Data.Hibernate.UserTypes;
 using Foundation.Services.Repository;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Property = Castle.ActiveRecord.PropertyAttribute;
 
 namespace Foundation.Tests.Data.NHibernate.UserTypes
 {
-    [TestFixture]
-    public class TypeUserTypeFixture : DatabaseFixtureBase
+    [TestClass]
+    public class TypeUserTypeFixture : DatabaseFixture
     {
         [ActiveRecord]
         internal class DummyClassWithTypeProperty
@@ -17,15 +17,16 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             [PrimaryKey]
             public int Id { get; set; }
 
-            [Property(ColumnType = TypeUserType.TypeName)]
+            [Castle.ActiveRecord.Property(ColumnType = TypeUserType.TypeName)]
             public Type DummyType { get; set; }
         }
 
         IRepository<DummyClassWithTypeProperty> repository;
 
-        public override void FixtureSetup()
+        [TestInitialize]
+        public override void Setup()
         {
-            base.FixtureSetup();
+            base.Setup();
             repository = new ActiveRecordRepository<DummyClassWithTypeProperty>();
         }
 
@@ -35,14 +36,14 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             RegisterTypes(typeof(DummyClassWithTypeProperty));
         }
 
-        [Test]
+        [TestMethod]
         public void Can_save()
         {
             var dummy = new DummyClassWithTypeProperty {DummyType = typeof(DateTime)};
             repository.Save(dummy);
         }
 
-        [Test]
+        [TestMethod]
         public void Can_update()
         {
             var dummy = new DummyClassWithTypeProperty {DummyType = typeof(DateTime)};
@@ -52,7 +53,7 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             Assert.AreEqual(typeof(TimeSpan), dummy.DummyType);
         }
 
-        [Test]
+        [TestMethod]
         public void Null_Type_is_saved_and_fetched_as_null()
         {
             var dummy = new DummyClassWithTypeProperty();
@@ -61,7 +62,7 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             Assert.IsNull(repository.Find(1).DummyType);
         }
 
-        [Test]
+        [TestMethod]
         public void Type_name_is_assembly_qualified()
         {
             // TODO: Find a way to inspect the string data

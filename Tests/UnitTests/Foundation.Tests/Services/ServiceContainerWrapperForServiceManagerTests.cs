@@ -2,14 +2,14 @@
 using System.ComponentModel.Design;
 using Foundation.Services;
 using Moq;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services
 {
-    [TestFixture]
+    [TestClass]
     public class ServiceContainerWrapperForServiceManagerTests
     {
-        [Test]
+        [TestMethod]
         public void GetService_for_IServiceContainer_returns_self()
         {
             var serviceManager = new Mock<IServiceManager>();
@@ -19,7 +19,7 @@ namespace Foundation.Tests.Services
             Assert.AreEqual(serviceContainer, serviceContainer.GetService(typeof(IServiceProvider)));
         }
 
-        [Test]
+        [TestMethod]
         public void Registers_self_in_container_for_IServiceProvider()
         {
             var serviceManager = new Mock<IServiceManager>();

@@ -1,30 +1,24 @@
 using Foundation.Data.ActiveRecord;
 using Foundation.Data.ActiveRecord.Security;
-using Foundation.Extensions;
-using Foundation.Models;
-using Foundation.Services.Repository;
-using Foundation.Services.Security;
 using Foundation.Services.Validation;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Repository
 {
-    [TestFixture]
+    [TestClass]
     public class ActiveRecordRepositoryFixture : SecurityFixtureBase
     {
-        #region Setup/Teardown
 
+        [TestInitialize]
         public override void Setup()
         {
             base.Setup();
             repository = new ActiveRecordRepository<User>();
         }
 
-        #endregion
-
         ActiveRecordRepository<User> repository;
 
-        [Test]
+        [TestMethod]
         public void Can_execute_SQL()
         {
             var user = repository.Save(new User {Email = "user1@usertest.com", Name = "User1"});
@@ -33,13 +27,13 @@ namespace Foundation.Tests.Services.Repository
             Assert.AreEqual("user1updated@usertest.com", user.Email);
         }
 
-        [Test]
+        [TestMethod]
         public void Create()
         {
             Assert.IsNotNull(repository.Create());
         }
 
-        [Test]
+        [TestMethod]
         public void DeleteAll()
         {
             repository.Save(
@@ -51,7 +45,7 @@ namespace Foundation.Tests.Services.Repository
             Assert.IsTrue(repository.List().Count == 0);
         }
 
-        [Test]
+        [TestMethod]
         public void Find_by_id()
         {
             var user = new User {Email = "test@test.com", Name = "TestUser1"};
@@ -65,7 +59,7 @@ namespace Foundation.Tests.Services.Repository
             Assert.AreEqual(user2, user);
         }
 
-        [Test]
+        [TestMethod]
         public void PagedList()
         {
             var user1 = new User {Email = "user1@usertest.com", Name = "User1"};
@@ -90,7 +84,7 @@ namespace Foundation.Tests.Services.Repository
             Assert.IsTrue(page.Contains(user5));
         }
 
-        [Test]
+        [TestMethod]
         public void Save()
         {
             var user = repository.Create();
@@ -102,7 +96,7 @@ namespace Foundation.Tests.Services.Repository
             Assert.IsTrue(repository.List().Count == 1);
         }
 
-        [Test, ExpectedException(typeof(ModelValidationException))]
+        [TestMethod, ExpectedException(typeof(ModelValidationException))]
         public void Uses_ActiveRecordModelValidator_by_default()
         {
             var user = new User {Name = null};

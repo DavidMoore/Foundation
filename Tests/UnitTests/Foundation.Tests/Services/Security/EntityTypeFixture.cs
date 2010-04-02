@@ -1,13 +1,13 @@
 using Foundation.Data.ActiveRecord.Security;
 using Foundation.Services.Security;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Security
 {
-    [TestFixture]
+    [TestClass]
     public class EntityTypeFixture : SecurityFixtureBase
     {
-        [Test]
+        [TestMethod]
         public void Can_create_by_concrete_Type()
         {
             var userType = typeof(User);
@@ -17,7 +17,7 @@ namespace Foundation.Tests.Services.Security
             Assert.AreEqual(entityType.Type, userType);
         }
 
-        [Test]
+        [TestMethod]
         public void Can_create_by_Type_name()
         {
             var userType = typeof(User);

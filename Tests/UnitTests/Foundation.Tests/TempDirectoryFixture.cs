@@ -1,12 +1,12 @@
 using System.IO;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class TempDirectoryFixture
     {
-        [Test]
+        [TestMethod]
         public void Can_create_temporary_file()
         {
             using( var dir = new TempDirectory() )
@@ -16,7 +16,7 @@ namespace Foundation.Tests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void Can_create_temporary_file_with_a_specific_filename()
         {
             using( var dir = new TempDirectory() )
@@ -28,7 +28,7 @@ namespace Foundation.Tests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void Can_write_to_temporary_file()
         {
             using( var dir = new TempDirectory() )
@@ -40,7 +40,7 @@ namespace Foundation.Tests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void Removes_directory_once_out_of_scope()
         {
             string path;
@@ -54,7 +54,7 @@ namespace Foundation.Tests
             Assert.IsFalse(Directory.Exists(path));
         }
 
-        [Test]
+        [TestMethod]
         public void Temporary_file_gets_removed_properly_when_out_of_scope()
         {
             string filename;

@@ -1,10 +1,10 @@
 using System;
 using Foundation.Extensions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Extensions
 {
-    [TestFixture]
+    [TestClass]
     public class TypeExtensionsTests
     {
         class TestClass
@@ -14,19 +14,19 @@ namespace Foundation.Tests.Extensions
             public string StringProperty { get; set; }
         }
 
-        [Test, ExpectedException(typeof(FoundationException))]
+        [TestMethod, ExpectedException(typeof(FoundationException))]
         public void GetProperty_of_specific_type_throws_FoundationException_if_more_than_one_matching_property_found()
         {
             var property = typeof(TestClass).GetProperty(typeof(DateTime));
         }
 
-        [Test]
+        [TestMethod]
         public void GetProperty_of_specific_type_returns_null_if_matching_property_not_found()
         {
             Assert.IsNull(typeof(TestClass).GetProperty(typeof(Guid)));
         }
 
-        [Test]
+        [TestMethod]
         public void GetProperty_of_specific_type_returns_matching_property()
         {
             var property = typeof(TestClass).GetProperty(typeof(string));

@@ -1,12 +1,12 @@
 using Foundation.Net;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Net
 {
-    [TestFixture]
+    [TestClass]
     public class MimeContentTypeTests
     {
-        [Test]
+        [TestMethod]
         public void Constructor_with_passed_full_type()
         {
             var type = new MimeContentType("image/jpeg");

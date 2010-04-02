@@ -1,13 +1,13 @@
 using Foundation.Models;
 using Foundation.Services.Repository;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Repository
 {
-    [TestFixture]
+    [TestClass]
     public class GenericListRepositoryTests
     {
-        [SetUp]
+        [TestInitialize]
         public void Setup()
         {
             repository = new GenericListRepository<DummyClass>();
@@ -15,7 +15,7 @@ namespace Foundation.Tests.Services.Repository
 
         GenericListRepository<DummyClass> repository;
 
-        [Test]
+        [TestMethod]
         public void Can_get_by_id()
         {
             var instance = repository.Create();
@@ -24,7 +24,7 @@ namespace Foundation.Tests.Services.Repository
             Assert.AreEqual(instance, repository.Find(1));
         }
 
-        [Test]
+        [TestMethod]
         public void Delete()
         {
             var test1 = new DummyClass {Title = "test1"};
@@ -41,14 +41,14 @@ namespace Foundation.Tests.Services.Repository
             Assert.AreEqual(test2, repository.List()[0]);
         }
 
-        [Test]
+        [TestMethod]
         public void Can_get_new_instance_with_Create()
         {
             var instance = repository.Create();
             Assert.IsNotNull(instance);
         }
 
-        [Test]
+        [TestMethod]
         public void Can_save()
         {
             var instance = repository.Create();

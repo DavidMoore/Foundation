@@ -1,13 +1,13 @@
 using System;
 using Foundation.Services.Security;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Security
 {
-    [TestFixture]
+    [TestClass]
     public class SaltedHasherTestCase
     {
-        [Test]
+        [TestMethod]
         public void MD5HashAndCompare()
         {
             var test = "The quick brown fox jumps over the lazy dog";
@@ -16,7 +16,7 @@ namespace Foundation.Tests.Services.Security
             Assert.IsTrue(SaltedHasher.MD5Compare(test, result));
         }
 
-        [Test]
+        [TestMethod]
         public void SHA256HashAndCompare()
         {
             var test = "The quick brown fox jumps over the lazy dog";

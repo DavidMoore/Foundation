@@ -2,11 +2,11 @@ using System;
 using System.IO;
 using Foundation.Lucene;
 using Lucene.Net.Analysis;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Lucene
 {
-    [TestFixture]
+    [TestClass]
     public class SnowballAnalyzerFixture
     {
         protected virtual void AssertAnalyzesTo(Analyzer analyzer, String input, String[] output)
@@ -22,7 +22,7 @@ namespace Foundation.Tests.Lucene
             tokenStream.Close();
         }
 
-        [Test]
+        [TestMethod]
         public void English_words_are_stemmed()
         {
             Analyzer a = new SnowballAnalyzer();

@@ -1,10 +1,10 @@
 using Foundation.TestHelpers;
 using Foundation.Web.TestHelpers;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.TestHelpers
 {
-    [TestFixture]
+    [TestClass]
     public class MvcTestHelpersTests
     {
         public void Can_access_request_object()
@@ -12,7 +12,7 @@ namespace Foundation.Tests.TestHelpers
             var httpContextBase = MvcTestHelpers.GetHttpContextBase();
         }
 
-        [Test]
+        [TestMethod]
         public void Can_get_mocked_HttpContextBase()
         {
             var httpContextBase = MvcTestHelpers.GetHttpContextBase();

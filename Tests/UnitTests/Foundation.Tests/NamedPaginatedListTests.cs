@@ -14,9 +14,9 @@ namespace Foundation.Tests
 
             var list = new NamedPaginatedCollection<string>(data, 1, 3,  x => "{0}-{1}".StringFormat( x.First(), x.Last() ) );
 
-            Assert.AreEqual("aaa-aac", list.PageNames[0]);
-            Assert.AreEqual("baa-bac", list.PageNames[1]);
-            Assert.AreEqual("bad-daac", list.PageNames[2]);
+            Assert.AreEqual("aaa-aac", list.PageNames.First());
+            Assert.AreEqual("baa-bac", list.PageNames.Skip(1).First());
+            Assert.AreEqual("bad-daac", list.PageNames.Skip(2).First());
         }
     }
 }

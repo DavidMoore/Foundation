@@ -59,13 +59,13 @@ namespace Foundation.Tests
         {
             var results = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" };
 
-            var list = new PaginatedCollection<string>(results, 1, 2, 10);
+            var names = new PaginatedCollection<string>(results, 1, 2, 10).PageNames.ToList();
 
-            Assert.AreEqual("1", list.PageNames[0]);
-            Assert.AreEqual("2", list.PageNames[1]);
-            Assert.AreEqual("3", list.PageNames[2]);
-            Assert.AreEqual("4", list.PageNames[3]);
-            Assert.AreEqual("5", list.PageNames[4]);
+            Assert.AreEqual("1", names[0]);
+            Assert.AreEqual("2", names[1]);
+            Assert.AreEqual("3", names[2]);
+            Assert.AreEqual("4", names[3]);
+            Assert.AreEqual("5", names[4]);
         }
 
         [TestMethod]

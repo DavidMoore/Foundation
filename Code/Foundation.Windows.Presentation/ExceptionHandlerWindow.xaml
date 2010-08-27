@@ -1,0 +1,18 @@
+﻿<Window x:Class="Foundation.Windows.Presentation.ExceptionHandlerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="An unexpected application error occurred" Height="300" Width="300">
+    <StackPanel>
+        <TextBox Text="Error Type:"/>
+        <TextBox Text="{Binding Path=Type,Mode=OneWay}"/>
+        
+        <TextBox Text="Error Message:"/>
+        <TextBox  Text="{Binding Path=Message, Mode=OneWay}"/>
+        
+        <TextBox Text="Error Details:"/>
+        <TextBox Text="{Binding Path=Details, Mode=OneWay}"/>
+
+        <Button x:Name="ContinueButton" Content="Continue" Click="ContinueButton_Click" />
+        <Button x:Name="ExitButton" Content="Exit" Click="CancelButton_Click" />
+    </StackPanel>
+</Window>

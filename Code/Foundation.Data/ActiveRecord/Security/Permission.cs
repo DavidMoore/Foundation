@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using Castle.ActiveRecord;
+using Foundation.Data.Hibernate.UserTypes;
 
 namespace Foundation.Data.ActiveRecord.Security
 {
@@ -34,7 +35,7 @@ namespace Foundation.Data.ActiveRecord.Security
         /// <summary>
         /// The specific property of the Entity this permission applies to (null to apply to all properties in the Entity)
         /// </summary>
-        [Property]
+        [PropertyInfoProperty]
         public PropertyInfo Property { get; set; }
 
         /// <summary>

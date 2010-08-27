@@ -1,42 +1,47 @@
 ﻿namespace Foundation.Services.Logging
 {
     /// <summary>
-    /// The types of messages that can be logged by <see cref="ILogger"/>
+    /// The types of messages that can be logged by <see cref="ILogger"/>.
     /// </summary>
     public enum LogMessageType
     {
         /// <summary>
-        /// Unknown / un-set
+        /// Unknown / un-set.
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// Verbose log message for detailed
-        /// troubleshooting or development
+        /// Trace log message for verbose logging.
         /// </summary>
-        Debug,
+        Trace = 10,
 
         /// <summary>
-        /// Informative message
+        /// Verbose log message for detailed
+        /// troubleshooting or development.
         /// </summary>
-        Info,
+        Debug = 20,
+
+        /// <summary>
+        /// Informative message.
+        /// </summary>
+        Info = 30,
 
         /// <summary>
         /// A problem that should be addressed but
         /// will not prevent the application
-        /// from executing properly
+        /// from executing properly.
         /// </summary>
-        Warning,
+        Warning = 40,
 
         /// <summary>
-        /// An error preventing proper execution
+        /// An error preventing proper execution.
         /// </summary>
-        Error,
+        Error = 50,
 
         /// <summary>
         /// An error that is severe enough
-        /// to force an application shutdown
+        /// to force an application shutdown.
         /// </summary>
-        Fatal
+        Fatal = 60
     }
 }

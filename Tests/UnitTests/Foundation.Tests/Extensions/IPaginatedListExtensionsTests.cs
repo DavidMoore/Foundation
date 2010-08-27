@@ -13,7 +13,7 @@ namespace Foundation.Tests.Extensions
         public void Cast()
         {
             var list = new PaginatedCollection<User>();
-            IPaginatedCollection<IEntityWithUniqueName> cast = list.CastTo<User, IEntityWithUniqueName>();
+            IPaginatedCollection<INamedEntity> cast = list.CastTo<User, INamedEntity>();
         }
     }
 }

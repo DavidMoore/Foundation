@@ -5,7 +5,7 @@ using Foundation.Models;
 namespace Foundation.Services.Repository
 {
     public class GenericListRepositoryForNamedEntity<T> : GenericListRepository<T>, IEntityWithUniqueNameRepository<T>
-        where T : class, IEntityWithUniqueName, new()
+        where T : class, INamedEntity, new()
     {
         public T Find(string name)
         {

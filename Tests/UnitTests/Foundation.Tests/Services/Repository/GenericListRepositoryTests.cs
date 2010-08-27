@@ -1,3 +1,4 @@
+using System.Linq;
 using Foundation.Models;
 using Foundation.Services.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,13 +33,13 @@ namespace Foundation.Tests.Services.Repository
 
             repository.Save(test1, test2);
 
-            Assert.AreEqual(2, repository.List().Count);
+            Assert.AreEqual(2, repository.List().Count());
 
             repository.Delete(test1);
 
-            Assert.AreEqual(1, repository.List().Count);
+            Assert.AreEqual(1, repository.List().Count());
 
-            Assert.AreEqual(test2, repository.List()[0]);
+            Assert.AreEqual(test2, repository.List().First());
         }
 
         [TestMethod]

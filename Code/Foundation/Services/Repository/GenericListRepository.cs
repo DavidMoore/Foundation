@@ -72,9 +72,9 @@ namespace Foundation.Services.Repository
             return Items.SingleOrDefault(x => x.Id == id);
         }
 
-        public IList<T> List()
+        public IQueryable<T> List()
         {
-            return Items;
+            return Items.AsQueryable();
         }
 
         #endregion

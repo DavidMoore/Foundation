@@ -5,7 +5,7 @@ using NHibernate.Criterion;
 namespace Foundation.Data.ActiveRecord
 {
     public class NamedEntityActiveRecordRepository<T> : ActiveRecordRepository<T>, IEntityWithUniqueNameRepository<T>
-        where T : class, IEntityWithUniqueName, new()
+        where T : class, INamedEntity, new()
     {
         public virtual T Find(string name)
         {

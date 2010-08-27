@@ -2,7 +2,7 @@ using Foundation.Models;
 
 namespace Foundation.Services.Repository
 {
-    public interface IEntityWithUniqueNameRepository<T> : IRepository<T> where T : class, IEntityWithUniqueName, new()
+    public interface IEntityWithUniqueNameRepository<T> : IRepository<T> where T : class, INamedEntity, new()
     {
         /// <summary>
         /// Finds an entity using its unique name

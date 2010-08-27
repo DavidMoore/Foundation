@@ -60,20 +60,20 @@ namespace Foundation.Tests.Data.Hierarchy
             var node1_1 = new Category("Node1_1");
             var node1_2 = new Category("Node1_2");
 
-            node1.TreeInfo.Children.Add(node1_1);
-            node1.TreeInfo.Children.Add(node1_2);
+            node1.Tree.Children.Add(node1_1);
+            node1.Tree.Children.Add(node1_2);
 
             var node1_1_1 = new Category("Node1_1_1");
             var node1_1_2 = new Category("Node1_1_2");
 
-            node1_1.TreeInfo.Children.Add(node1_1_1);
-            node1_1.TreeInfo.Children.Add(node1_1_2);
+            node1_1.Tree.Children.Add(node1_1_1);
+            node1_1.Tree.Children.Add(node1_1_2);
 
             var node1_1_2_1 = new Category("Node1_1_2_1");
-            node1_1_2.TreeInfo.Children.Add(node1_1_2_1);
+            node1_1_2.Tree.Children.Add(node1_1_2_1);
 
             var node3_1 = new Category("Node3_1");
-            node3.TreeInfo.Children.Add(node3_1);
+            node3.Tree.Children.Add(node3_1);
 
             flatList = new List<Category> {node1, node1_1, node1_1_1, node1_1_2, node1_1_2_1, node1_2, node2, node3, node3_1};
 
@@ -87,24 +87,24 @@ namespace Foundation.Tests.Data.Hierarchy
         public void Adding_a_child_to_a_node_updates_the_child_parent()
         {
             var node1 = tree[0];
-            Assert.AreEqual(node1, node1.TreeInfo.Children[0].TreeInfo.Parent);
+            Assert.AreEqual(node1, node1.Tree.Children[0].Tree.Parent);
         }
 
         [TestMethod]
         public void Child_collections_are_not_null()
         {
             var root = new Category("root");
-            Assert.IsNotNull(root.TreeInfo);
-            Assert.IsNotNull(root.TreeInfo.Siblings);
-            Assert.IsNotNull(root.TreeInfo.Children);
-            Assert.IsNotNull(root.TreeInfo.Ancestors);
-            Assert.IsNotNull(root.TreeInfo.Descendants);
+            Assert.IsNotNull(root.Tree);
+            Assert.IsNotNull(root.Tree.Siblings);
+            Assert.IsNotNull(root.Tree.Children);
+            Assert.IsNotNull(root.Tree.Ancestors);
+            Assert.IsNotNull(root.Tree.Descendants);
         }
 
         [TestMethod]
         public void Get_ancestors()
         {
-            Assert.AreEqual(9, repository.List().Count);
+            Assert.AreEqual(9, repository.List().Count());
             var results = repository.ListAncestors(flatList.Single(i => i.Name.Equals("Node1_1_2_1")));
             Assert.AreEqual(3, results.Count);
             Assert.AreEqual("Node1", results[0].Name);
@@ -115,17 +115,17 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Get_children()
         {
-            Assert.AreEqual(9, repository.List().Count);
+            Assert.AreEqual(9, repository.List().Count());
             var results = repository.ListByParent(tree.Single(i => i.Name.Equals("Node1")));
-            Assert.AreEqual(2, results.Count);
-            Assert.AreEqual("Node1_1", results[0].Name);
-            Assert.AreEqual("Node1_2", results[1].Name);
+            Assert.AreEqual(2, results.Count());
+            Assert.AreEqual("Node1_1", results.First().Name);
+            Assert.AreEqual("Node1_2", results.Skip(1).Single().Name);
         }
 
         [TestMethod]
         public void Get_descendants()
         {
-            Assert.AreEqual(9, repository.List().Count);
+            Assert.AreEqual(9, repository.List().Count());
             var results = repository.ListDescendants(tree.Single(i => i.Name.Equals("Node1")));
             Assert.AreEqual(5, results.Count);
             Assert.AreEqual("Node1_1", results[0].Name);
@@ -138,26 +138,26 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Get_parent()
         {
-            Assert.AreEqual(9, repository.List().Count);
+            Assert.AreEqual(9, repository.List().Count());
             var node = flatList.Single(i => i.Name.Equals("Node1_1_2_1"));
-            Assert.AreEqual("Node1_1_2", node.TreeInfo.Parent.Name);
-            Assert.AreEqual("Node1_1", node.TreeInfo.Parent.TreeInfo.Parent.Name);
-            Assert.AreEqual("Node1", node.TreeInfo.Parent.TreeInfo.Parent.TreeInfo.Parent.Name);
-            Assert.IsNull(node.TreeInfo.Parent.TreeInfo.Parent.TreeInfo.Parent.TreeInfo.Parent);
+            Assert.AreEqual("Node1_1_2", node.Tree.Parent.Name);
+            Assert.AreEqual("Node1_1", node.Tree.Parent.Tree.Parent.Name);
+            Assert.AreEqual("Node1", node.Tree.Parent.Tree.Parent.Tree.Parent.Name);
+            Assert.IsNull(node.Tree.Parent.Tree.Parent.Tree.Parent.Tree.Parent);
         }
 
         [TestMethod]
         public void Get_root_nodes()
         {
-            Assert.AreEqual(9, repository.List().Count);
+            Assert.AreEqual(9, repository.List().Count());
             var results = repository.ListByParent(null);
-            Assert.AreEqual(3, results.Count);
+            Assert.AreEqual(3, results.Count());
         }
 
         [TestMethod]
         public void Get_siblings()
         {
-            Assert.AreEqual(9, repository.List().Count);
+            Assert.AreEqual(9, repository.List().Count());
 
             var results = repository.ListSiblings(flatList.Single(i => i.Name.Equals("Node1_1")));
             Assert.AreEqual(1, results.Count);
@@ -184,35 +184,35 @@ namespace Foundation.Tests.Data.Hierarchy
         public void Has_expected_properties()
         {
             var root = new Category("root");
-            Assert.IsNotNull(root.TreeInfo);
-            Assert.IsNull(root.TreeInfo.Parent);
-            Assert.AreEqual(0, root.TreeInfo.LeftValue);
-            Assert.AreEqual(0, root.TreeInfo.RightValue);
-            Assert.AreEqual(0, root.TreeInfo.Siblings.Count);
-            Assert.AreEqual(0, root.TreeInfo.Children.Count);
-            Assert.AreEqual(0, root.TreeInfo.Ancestors.Count);
-            Assert.AreEqual(0, root.TreeInfo.Descendants.Count);
+            Assert.IsNotNull(root.Tree);
+            Assert.IsNull(root.Tree.Parent);
+            Assert.AreEqual(0, root.Tree.LeftValue);
+            Assert.AreEqual(0, root.Tree.RightValue);
+            Assert.AreEqual(0, root.Tree.Siblings.Count);
+            Assert.AreEqual(0, root.Tree.Children.Count);
+            Assert.AreEqual(0, root.Tree.Ancestors.Count);
+            Assert.AreEqual(0, root.Tree.Descendants.Count);
         }
 
         [TestMethod]
         public void RebuildTree()
         {
-            Assert.AreEqual("Node1", flatList.Single(x => x.TreeInfo.LeftValue == 1 && x.TreeInfo.RightValue == 12).Name);
-            Assert.AreEqual("Node1_1", flatList.Single(x => x.TreeInfo.LeftValue == 2 && x.TreeInfo.RightValue == 9).Name);
-            Assert.AreEqual("Node1_1_1", flatList.Single(x => x.TreeInfo.LeftValue == 3 && x.TreeInfo.RightValue == 4).Name);
-            Assert.AreEqual("Node1_1_2", flatList.Single(x => x.TreeInfo.LeftValue == 5 && x.TreeInfo.RightValue == 8).Name);
-            Assert.AreEqual("Node1_1_2_1", flatList.Single(x => x.TreeInfo.LeftValue == 6 && x.TreeInfo.RightValue == 7).Name);
-            Assert.AreEqual("Node1_2", flatList.Single(x => x.TreeInfo.LeftValue == 10 && x.TreeInfo.RightValue == 11).Name);
-            Assert.AreEqual("Node2", flatList.Single(x => x.TreeInfo.LeftValue == 13 && x.TreeInfo.RightValue == 14).Name);
-            Assert.AreEqual("Node3", flatList.Single(x => x.TreeInfo.LeftValue == 15 && x.TreeInfo.RightValue == 18).Name);
-            Assert.AreEqual("Node3_1", flatList.Single(x => x.TreeInfo.LeftValue == 16 && x.TreeInfo.RightValue == 17).Name);
+            Assert.AreEqual("Node1", flatList.Single(x => x.Tree.LeftValue == 1 && x.Tree.RightValue == 12).Name);
+            Assert.AreEqual("Node1_1", flatList.Single(x => x.Tree.LeftValue == 2 && x.Tree.RightValue == 9).Name);
+            Assert.AreEqual("Node1_1_1", flatList.Single(x => x.Tree.LeftValue == 3 && x.Tree.RightValue == 4).Name);
+            Assert.AreEqual("Node1_1_2", flatList.Single(x => x.Tree.LeftValue == 5 && x.Tree.RightValue == 8).Name);
+            Assert.AreEqual("Node1_1_2_1", flatList.Single(x => x.Tree.LeftValue == 6 && x.Tree.RightValue == 7).Name);
+            Assert.AreEqual("Node1_2", flatList.Single(x => x.Tree.LeftValue == 10 && x.Tree.RightValue == 11).Name);
+            Assert.AreEqual("Node2", flatList.Single(x => x.Tree.LeftValue == 13 && x.Tree.RightValue == 14).Name);
+            Assert.AreEqual("Node3", flatList.Single(x => x.Tree.LeftValue == 15 && x.Tree.RightValue == 18).Name);
+            Assert.AreEqual("Node3_1", flatList.Single(x => x.Tree.LeftValue == 16 && x.Tree.RightValue == 17).Name);
         }
 
         [TestMethod]
         public void TreeInfo_is_not_null()
         {
             var root = new Category("root");
-            Assert.IsNotNull(root.TreeInfo);
+            Assert.IsNotNull(root.Tree);
         }
     }
 }

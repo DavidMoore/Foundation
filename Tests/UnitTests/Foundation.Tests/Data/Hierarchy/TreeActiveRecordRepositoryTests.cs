@@ -20,14 +20,14 @@ namespace Foundation.Tests.Data.Hierarchy
         public void IsDirty_gets_toggled_off_once_saved()
         {
             var category = new Category("Category1");
-            Assert.IsFalse(category.TreeInfo.IsDirty);
+            Assert.IsFalse(category.Tree.IsDirty);
 
-            category.TreeInfo.RightValue = 1;
-            Assert.IsTrue(category.TreeInfo.IsDirty);
+            category.Tree.RightValue = 1;
+            Assert.IsTrue(category.Tree.IsDirty);
 
             repository.Save(category);
 
-            Assert.IsFalse(category.TreeInfo.IsDirty);
+            Assert.IsFalse(category.Tree.IsDirty);
         }
 
         [TestMethod]
@@ -35,8 +35,8 @@ namespace Foundation.Tests.Data.Hierarchy
         {
             var category = new Category("Category1");
             repository.Save(category);
-            Assert.AreEqual(1, category.TreeInfo.LeftValue);
-            Assert.AreEqual(2, category.TreeInfo.RightValue);
+            Assert.AreEqual(1, category.Tree.LeftValue);
+            Assert.AreEqual(2, category.Tree.RightValue);
         }
     }
 }

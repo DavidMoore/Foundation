@@ -16,7 +16,7 @@ namespace Foundation.Data.Hierarchy
         /// </summary>
         /// <param name="parent"></param>
         /// <returns></returns>
-        IList<T> ListByParent(T parent);
+        IEnumerable<T> ListByParent(T parent);
 
         /// <summary>
         /// Returns all nodes under the specified parent in the tree, down to the lowest level

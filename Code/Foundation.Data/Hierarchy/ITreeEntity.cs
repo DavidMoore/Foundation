@@ -8,6 +8,6 @@ namespace Foundation.Data.Hierarchy
     /// <typeparam name="T"></typeparam>
     public interface ITreeEntity<T> where T : class, ITreeEntity<T>, IEntity
     {
-        TreeInfo<T> TreeInfo { get; set; }
+        TreeInfo<T> Tree { get; }
     }
 }

@@ -12,7 +12,7 @@ namespace Foundation.Data.Hierarchy
         /// <returns></returns>
         public static AbstractCriterion ChildOf(object parent)
         {
-            return parent == null ? Restrictions.IsNull("TreeInfo.Parent") : Restrictions.Eq("TreeInfo.Parent", parent);
+            return parent == null ? Restrictions.IsNull("Tree.Parent") : Restrictions.Eq("Tree.Parent", parent);
         }
 
         /// <summary>
@@ -25,8 +25,8 @@ namespace Foundation.Data.Hierarchy
         {
             ThrowException.IfArgumentIsNull("ancestor", ancestor);
 
-            return Restrictions.Gt("TreeInfo.LeftValue", ancestor.TreeInfo.LeftValue) &&
-                Restrictions.Lt("TreeInfo.RightValue", ancestor.TreeInfo.RightValue);
+            return Restrictions.Gt("Tree.LeftValue", ancestor.Tree.LeftValue) &&
+                Restrictions.Lt("Tree.RightValue", ancestor.Tree.RightValue);
         }
 
         /// <summary>
@@ -39,8 +39,8 @@ namespace Foundation.Data.Hierarchy
         {
             ThrowException.IfArgumentIsNull("descendant", descendant);
 
-            return Restrictions.Lt("TreeInfo.LeftValue", descendant.TreeInfo.LeftValue) &&
-                Restrictions.Gt("TreeInfo.RightValue", descendant.TreeInfo.RightValue);
+            return Restrictions.Lt("Tree.LeftValue", descendant.Tree.LeftValue) &&
+                Restrictions.Gt("Tree.RightValue", descendant.Tree.RightValue);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Foundation.Data.Hierarchy
         public static AbstractCriterion ParentOf<T>(T child) where T : class, ITreeEntity<T>, IEntity, new()
         {
             ThrowException.IfArgumentIsNull("child", child);
-            return Restrictions.Eq("Id", child.TreeInfo.Parent == null ? 0 : child.TreeInfo.Parent.Id);
+            return Restrictions.Eq("Id", child.Tree.Parent == null ? 0 : child.Tree.Parent.Id);
         }
 
         public static AbstractCriterion SiblingOf<T>(T item) where T : class, ITreeEntity<T>, IEntity, new()
@@ -63,9 +63,9 @@ namespace Foundation.Data.Hierarchy
         public static AbstractCriterion SiblingOf<T>(T item, SiblingList self) where T : class, ITreeEntity<T>, IEntity, new()
         {
             ThrowException.IfArgumentIsNull("item", item);
-            var criteria = item.TreeInfo.Parent != null
-                ? Restrictions.Eq("TreeInfo.Parent", item.TreeInfo.Parent)
-                : Restrictions.IsNull("TreeInfo.Parent");
+            var criteria = item.Tree.Parent != null
+                ? Restrictions.Eq("Tree.Parent", item.Tree.Parent)
+                : Restrictions.IsNull("Tree.Parent");
             return self == SiblingList.ExcludeSelf ? criteria && !Restrictions.Eq("Id", item.Id) : criteria;
         }
 
@@ -77,7 +77,7 @@ namespace Foundation.Data.Hierarchy
         public static AbstractCriterion SameOrDescendantOf<T>(T item) where T : class, ITreeEntity<T>, IEntity, new()
         {
             ThrowException.IfArgumentIsNull("item", item);
-            return Restrictions.Ge("TreeInfo.LeftValue", item.TreeInfo.LeftValue) && Restrictions.Le("TreeInfo.RightValue", item.TreeInfo.RightValue);
+            return Restrictions.Ge("Tree.LeftValue", item.Tree.LeftValue) && Restrictions.Le("Tree.RightValue", item.Tree.RightValue);
         }
     }
 }

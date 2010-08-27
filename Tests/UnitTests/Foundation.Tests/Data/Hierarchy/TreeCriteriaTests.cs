@@ -56,20 +56,20 @@ namespace Foundation.Tests.Data.Hierarchy
             var node1_1 = new Category("Node1_1");
             var node1_2 = new Category("Node1_2");
 
-            node1.TreeInfo.Children.Add(node1_1);
-            node1.TreeInfo.Children.Add(node1_2);
+            node1.Tree.Children.Add(node1_1);
+            node1.Tree.Children.Add(node1_2);
 
             var node1_1_1 = new Category("Node1_1_1");
             var node1_1_2 = new Category("Node1_1_2");
 
-            node1_1.TreeInfo.Children.Add(node1_1_1);
-            node1_1.TreeInfo.Children.Add(node1_1_2);
+            node1_1.Tree.Children.Add(node1_1_1);
+            node1_1.Tree.Children.Add(node1_1_2);
 
             var node1_1_2_1 = new Category("Node1_1_2_1");
-            node1_1_2.TreeInfo.Children.Add(node1_1_2_1);
+            node1_1_2.Tree.Children.Add(node1_1_2_1);
 
             var node3_1 = new Category("Node3_1");
-            node3.TreeInfo.Children.Add(node3_1);
+            node3.Tree.Children.Add(node3_1);
 
             flatList = new List<Category> {node1, node1_1, node1_1_1, node1_1_2, node1_1_2_1, node1_2, node2, node3, node3_1};
 

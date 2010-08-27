@@ -4,7 +4,6 @@ using System.Linq;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using Foundation.Models;
-using Foundation.Services.Repository;
 using NHibernate.Criterion;
 
 namespace Foundation.Data.Hierarchy
@@ -19,31 +18,31 @@ namespace Foundation.Data.Hierarchy
 
             using( new TransactionScope() )
             {
-                if( !isTreeBeingRebuilt && (model.TreeInfo.LeftValue == 0 || model.TreeInfo.RightValue == 0 || model.TreeInfo.IsDirty) )
+                if( !isTreeBeingRebuilt && (model.Tree.LeftValue == 0 || model.Tree.RightValue == 0 || model.Tree.IsDirty) )
                 {
                     RebuildTree();
                 }
             }
 
-            result.TreeInfo.IsDirty = false;
+            result.Tree.IsDirty = false;
 
             return result;
         }
 
-        public IList<T> ListByParent(T parent)
+        public IEnumerable<T> ListByParent(T parent)
         {
-            return parent == null ? List(Restrictions.IsNull("TreeInfo.Parent")) : List(Restrictions.Eq("TreeInfo.Parent", parent));
+            return parent == null ? List(Restrictions.IsNull("Tree.Parent")) : List(Restrictions.Eq("Tree.Parent", parent));
         }
 
         public IList<T> ListByParent(T parent, string sortBy, bool descending)
         {
-            var criteria = parent == null ? Restrictions.IsNull("TreeInfo.Parent") : Restrictions.Eq("TreeInfo.Parent", parent);
+            var criteria = parent == null ? Restrictions.IsNull("Tree.Parent") : Restrictions.Eq("Tree.Parent", parent);
             return List(sortBy, descending, criteria );
         }
 
         public IList<T> ListDescendants(T parent)
         {
-            return List(Restrictions.Between("TreeInfo.LeftValue", parent.TreeInfo.LeftValue + 1, parent.TreeInfo.RightValue - 1));
+            return List(Restrictions.Between("Tree.LeftValue", parent.Tree.LeftValue + 1, parent.Tree.RightValue - 1));
         }
 
         public void RebuildTree()
@@ -54,7 +53,7 @@ namespace Foundation.Data.Hierarchy
             var nodes = List();
 
             // Get the root nodes
-            var rootList = nodes.Where(x => x.TreeInfo.Parent == null);
+            var rootList = nodes.Where(x => x.Tree.Parent == null);
 
             var rightValue = 1;
 
@@ -70,11 +69,11 @@ namespace Foundation.Data.Hierarchy
         public IList<T> ListAncestors(T child)
         {
             ThrowException.IfArgumentIsNull("child", child);
-            ThrowException.IfNull<InvalidOperationException>(child.TreeInfo, "Instance {0} has its TreeInfo set to null. Try rebuilding the tree.", child);
+            ThrowException.IfNull<InvalidOperationException>(child.Tree, "Instance {0} has its TreeInfo set to null. Try rebuilding the tree.", child);
 
             return List(
-                Restrictions.Lt("TreeInfo.LeftValue", child.TreeInfo.LeftValue) &&
-                    Restrictions.Gt("TreeInfo.RightValue", child.TreeInfo.RightValue));
+                Restrictions.Lt("Tree.LeftValue", child.Tree.LeftValue) &&
+                    Restrictions.Gt("Tree.RightValue", child.Tree.RightValue));
         }
 
         public IList<T> ListSiblings(T item)
@@ -84,23 +83,23 @@ namespace Foundation.Data.Hierarchy
 
         public IList<T> ListSiblings(T item, SiblingList siblingList)
         {
-            var criteria = item.TreeInfo.Parent == null
-                ? Restrictions.IsNull("TreeInfo.Parent")
-                : Restrictions.Eq("TreeInfo.Parent", item.TreeInfo.Parent);
+            var criteria = item.Tree.Parent == null
+                ? Restrictions.IsNull("Tree.Parent")
+                : Restrictions.Eq("Tree.Parent", item.Tree.Parent);
 
             return List(siblingList == SiblingList.ExcludeSelf ? criteria && !Restrictions.Eq("Id", item.Id) : criteria);
         }
 
-        int UpdateNode(T node, int leftValue, IList<T> nodes)
+        int UpdateNode(T node, int leftValue, IEnumerable<T> nodes)
         {
-            node.TreeInfo.LeftValue = leftValue;
+            node.Tree.LeftValue = leftValue;
 
             // A node with no children has a rightValue of leftValue + 1
             var rightValue = leftValue + 1;
 
             // If we have any children, process recursively, updating
             // the rightValue as we go.
-            var children = nodes.Where(x => x.TreeInfo.Parent != null && x.TreeInfo.Parent.Id.Equals(node.Id));
+            var children = nodes.Where(x => x.Tree.Parent != null && x.Tree.Parent.Id.Equals(node.Id));
 
             foreach( var child in children )
             {
@@ -108,7 +107,7 @@ namespace Foundation.Data.Hierarchy
             }
 
             // Now we have our rightValue
-            node.TreeInfo.RightValue = rightValue;
+            node.Tree.RightValue = rightValue;
 
             Save(node);
 

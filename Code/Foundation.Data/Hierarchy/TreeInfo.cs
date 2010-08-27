@@ -30,6 +30,12 @@ namespace Foundation.Data.Hierarchy
             Children = new TreeEntityChildren<T>(Entity);
         }
 
+        /// <summary>
+        /// Gets or sets the entity that this tree info is for.
+        /// The <see cref="Children"/> belong to this entity, and
+        /// the <see cref="Parent"/> owns this entity.
+        /// </summary>
+        /// <value>The entity.</value>
         public T Entity { get; set; }
 
         [PrimaryKey]
@@ -73,7 +79,22 @@ namespace Foundation.Data.Hierarchy
                 // Mark as changed (dirty) if the parent has been altered.
                 if( parent != value ) IsDirty = true;
 
+                // If the parent was changed, we need to remove ourselves
+                // from the previous parent's Children
+                if (IsDirty && parent != null && parent.Tree != null)
+                {
+                    parent.Tree.Children.Remove(Entity);
+                }
+
+                // Set the parent first. If we don't do this, we'll get a stack overflow, because the next step will call
+                // this property setter again when it sees parent is null.
                 parent = value;
+
+                // Add to the new parent's children (if applicable)
+                if (IsDirty && value != null && value.Tree != null && Entity != null)
+                {
+                    value.Tree.Children.Add(Entity);
+                }
             }
         }
 

@@ -14,11 +14,11 @@ namespace Foundation.Tests.Data.Hierarchy
 
         public Category()
         {
-            TreeInfo = new TreeInfo<Category>(this);
+            Tree = new TreeInfo<Category>(this);
         }
 
         [Nested]
-        public TreeInfo<Category> TreeInfo { get; set; }
+        public TreeInfo<Category> Tree { get; set; }
 
         [Property]
         public string Name { get; set; }

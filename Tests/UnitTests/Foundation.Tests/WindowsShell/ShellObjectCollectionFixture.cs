@@ -9,11 +9,11 @@ namespace Foundation.Tests.WindowsShell
         [TestMethod]
         public void Can_get_mycomputer_nodes()
         {
-            var provider = new ShellProvider();
-
-            var list = provider.MyComputer.Children;
-
-            Assert.IsTrue(list.Count > 0);
+            using (var provider = new ShellProvider())
+            {
+                var list = provider.MyComputer.Children;
+                Assert.IsTrue(list.Count > 0);
+            }
         }
     }
 }

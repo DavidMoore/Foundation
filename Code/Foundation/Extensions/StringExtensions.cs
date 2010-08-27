@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Foundation.Extensions
 {
@@ -9,6 +10,8 @@ namespace Foundation.Extensions
     /// </summary>
     public static class StringExtensions
     {
+        static readonly Regex emailRegex = new Regex(@"^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$",RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
         /// <summary>
         /// Converts the string to pascal case e.g. ThisIsPascalCase
         /// </summary>
@@ -118,6 +121,18 @@ namespace Foundation.Extensions
         {
             if (value == null) throw new ArgumentNullException("value");
             return string.Format(CultureInfo.CurrentCulture, value, args);
+        }
+
+        /// <summary>
+        /// Determines whether [is valid email] [the specified value].
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        /// 	<c>true</c> if [is valid email] [the specified value]; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsValidEmail(this string value)
+        {
+            return emailRegex.IsMatch(value);
         }
     }
 }

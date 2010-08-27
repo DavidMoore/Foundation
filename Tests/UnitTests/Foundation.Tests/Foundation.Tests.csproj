@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\..\Code\Foundation.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.ActiveRecord">
       <HintPath>..\..\..\..\Commons\Libraries\Castle.ActiveRecord.dll</HintPath>
@@ -117,6 +123,7 @@
     <Compile Include="ReflectUtilsFixture.cs" />
     <Compile Include="SecurityFixtureBase.cs" />
     <Compile Include="Services\DiscoverTests.cs" />
+    <Compile Include="Services\Discovery\AssemblySourceTests.cs" />
     <Compile Include="Services\Discovery\DirectoryAssemblySourceTests.cs" />
     <Compile Include="Services\Discovery\TypeSourceTests.cs" />
     <Compile Include="Services\Discovery\UserControl.xaml.cs">
@@ -140,7 +147,14 @@
     <Compile Include="Services\ServiceManagerTests.cs" />
     <Compile Include="Services\Unity\UnityServiceManagerAdapterTests.cs" />
     <Compile Include="Services\Validation\ActiveRecordValidatorTestCase.cs" />
-    <Compile Include="StateMachine\SimpleStateMachineTests.cs" />
+    <Compile Include="StateMachine\FiniteStateMachineTests.cs" />
+    <Compile Include="StateMachine\StateTransitionTests.cs" />
+    <Compile Include="StateMachine\ValueStateTransitionTests.cs" />
+    <Compile Include="StateMachine\TransitionCollectionTests.cs" />
+    <Compile Include="StateMachine\UpdateCommand.cs" />
+    <Compile Include="StateMachine\UpdateState.cs" />
+    <Compile Include="StateMachine\UpdateStateMachine.cs" />
+    <Compile Include="StateMachine\UpdateStateMachineTests.cs" />
     <Compile Include="SubnetMaskedIpFixture.cs" />
     <Compile Include="TempDirectoryFixture.cs" />
     <Compile Include="TempFileFixture.cs" />
@@ -151,6 +165,7 @@
     <Compile Include="WindowsShell\ShellObjectCollectionFixture.cs" />
     <Compile Include="WindowsShell\ShellObjectFixture.cs" />
     <Compile Include="WindowsShell\ShellProviderFixture.cs" />
+    <Compile Include="Windows\WindowRegistry\RegistryRedirectionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Code\Foundation.Data\Foundation.Data.csproj">
@@ -182,6 +197,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Code\Foundation.snk">
+      <Link>Foundation.snk</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Foundation.Data</RootNamespace>
     <AssemblyName>Foundation.Data</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -42,6 +42,9 @@
   <ItemGroup>
     <Reference Include="Castle.ActiveRecord">
       <HintPath>..\..\..\Commons\Libraries\Castle.ActiveRecord.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.ActiveRecord.Linq">
+      <HintPath>..\..\..\Commons\Libraries\Castle.ActiveRecord.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Components.Validator">
       <HintPath>..\..\..\Commons\Libraries\Castle.Components.Validator.dll</HintPath>
@@ -85,6 +88,7 @@
     <Compile Include="ActiveRecord\DatabaseFixtureBase.cs" />
     <Compile Include="ActiveRecord\DummyActiveRecordModel.cs" />
     <Compile Include="ActiveRecord\NamedEntityActiveRecordRepository.cs" />
+    <Compile Include="ActiveRecord\PropertyInfoPropertyAttribute.cs" />
     <Compile Include="ActiveRecord\PropertyUniqueNameAttribute.cs" />
     <Compile Include="ActiveRecord\TypePropertyAttribute.cs" />
     <Compile Include="ActiveRecord\Validation\ActiveRecordModelValidator.cs" />

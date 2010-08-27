@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Foundation</RootNamespace>
     <AssemblyName>Foundation</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../Foundation.snk</AssemblyOriginatorKeyFile>
@@ -19,7 +19,8 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -46,6 +47,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\Foundation.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -57,6 +59,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Interop.Shell32, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -64,6 +67,8 @@
       <HintPath>..\..\..\Dependencies\Interop.Shell32.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -76,6 +81,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensionMethods.cs" />
@@ -91,7 +99,7 @@
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="FoundationEventLog.cs" />
     <Compile Include="IPaginatedCollection.cs" />
-    <Compile Include="IPaginatedList`1.cs" />
+    <Compile Include="IPaginatedCollection`1.cs" />
     <Compile Include="Media\IThumbnailCache.cs" />
     <Compile Include="Media\ThumbnailCache.cs" />
     <Compile Include="Models\SortInfo.cs" />
@@ -102,7 +110,10 @@
     <Compile Include="Net\MimeTypes.cs" />
     <Compile Include="PaginatedCollection.cs" />
     <Compile Include="BaseException.cs" />
+    <Compile Include="Services\Discovery\AssemblySource.cs" />
+    <Compile Include="Services\IExceptionHandlerWindow.cs" />
     <Compile Include="Services\Logging\LoggerExtensions.cs" />
+    <Compile Include="Services\ServiceManager.cs" />
     <Compile Include="Services\ServiceManagerContainerAdapter.cs" />
     <Compile Include="Services\Discovery\DirectoryAssemblySource.cs" />
     <Compile Include="Services\Discovery\IAssemblySource.cs" />
@@ -136,13 +147,18 @@
     <Compile Include="Services\Registration\ServiceRegistrationException.cs" />
     <Compile Include="Services\ServiceResolutionFailedException.cs" />
     <Compile Include="Properties\SolutionInfo.cs" />
+    <Compile Include="StateMachine\FiniteStateMachine.cs" />
+    <Compile Include="StateMachine\FiniteStateMachineExtensions.cs" />
+    <Compile Include="StateMachine\StateTransition.cs" />
+    <Compile Include="StateMachine\TransitionsCollection.cs" />
+    <Compile Include="StateMachine\ValueStateTransition.cs" />
     <Compile Include="TestHelpers\Lipsum.cs" />
     <Compile Include="ThrowException.cs" />
     <Compile Include="CommonUtilities.cs" />
     <Compile Include="FoundationException.cs" />
     <Compile Include="Services\Repository\ISqlRepository.cs" />
     <Compile Include="Models\IEntity.cs" />
-    <Compile Include="Models\IEntityWithUniqueName.cs" />
+    <Compile Include="Models\INamedEntity.cs" />
     <Compile Include="Services\Security\IGroup.cs" />
     <Compile Include="Services\Security\IEntityOperation.cs" />
     <Compile Include="Services\Security\IWebUser.cs" />
@@ -188,6 +204,11 @@
     <Compile Include="TempFile.cs" />
     <Compile Include="WindowsShell\SHFILEINFO.cs" />
     <Compile Include="WindowsShell\SHGetFileInfoConstants.cs" />
+    <Compile Include="Windows\LoadLibraryException.cs" />
+    <Compile Include="Windows\LoadLibraryExFlags.cs" />
+    <Compile Include="Windows\Registry\RegistryRedirector.cs" />
+    <Compile Include="Windows\SafeLibraryHandle.cs" />
+    <Compile Include="Windows\Win32Api.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -211,7 +232,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interop\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

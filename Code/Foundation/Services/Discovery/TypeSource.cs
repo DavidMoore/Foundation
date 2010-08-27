@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Foundation.Services.Discovery
 {
@@ -40,9 +41,24 @@ namespace Foundation.Services.Discovery
         public IEnumerable<Type> AllTypes()
         {
             return assemblySource
-                .Assemblies
-                .SelectMany(assembly => assembly.GetTypes()
-                                            .Where(type => !type.IsAbstract));
+            .Assemblies
+            .SelectMany(delegate(Assembly assembly)
+                            {
+                                try
+                                {
+                                    return assembly.GetTypes()
+                                    .Where(type => !type.IsAbstract);
+                                }
+                                catch (ReflectionTypeLoadException rtle)
+                                {
+                                    return Enumerable.Empty<Type>();
+                                }
+                                catch (TypeLoadException tle)
+                                {
+                                    return Enumerable.Empty<Type>();
+                                }
+                                
+                            });
         }
 
         /// <summary>

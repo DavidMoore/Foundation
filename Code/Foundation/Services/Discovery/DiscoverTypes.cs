@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Security.Policy;
 
 namespace Foundation.Services.Discovery
@@ -17,6 +18,11 @@ namespace Foundation.Services.Discovery
         public static ITypeSource FromDirectory(string currentDirectory)
         {
             return new TypeSource( new DirectoryAssemblySource(new DirectoryInfo(currentDirectory)) );
+        }
+
+        public static ITypeSource FromAssemblies(params Assembly[] assemblies)
+        {
+            return new TypeSource(new AssemblySource(assemblies));
         }
 
         /// <summary>

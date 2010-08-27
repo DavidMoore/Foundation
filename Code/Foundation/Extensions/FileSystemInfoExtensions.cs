@@ -67,10 +67,7 @@ namespace Foundation.Extensions
         public static string NameWithoutExtension(this FileSystemInfo fileSystemInfo)
         {
             if (fileSystemInfo == null) throw new ArgumentNullException("fileSystemInfo");
-
-            var extensionIndex = fileSystemInfo.Name.LastIndexOf(".", StringComparison.OrdinalIgnoreCase);
-
-            return extensionIndex < 0 ? fileSystemInfo.Name : fileSystemInfo.Name.Substring(0, extensionIndex);
+            return Path.GetFileNameWithoutExtension(fileSystemInfo.Name);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Foundation.Data.Hibernate
     {
         readonly ISessionFactory sessionFactory;
         readonly ISession session;
+        ITransaction transaction;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HibernateUnitOfWork"/> class.
@@ -23,18 +24,7 @@ namespace Foundation.Data.Hibernate
             session = sessionFactory.OpenSession();
             session.FlushMode = FlushMode.Commit;
             CurrentSessionContext.Bind(session);
-        }
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        void Dispose(bool disposing)
-        {
-            if (!disposing || session == null) return;
-
-            session.Dispose();
-            CurrentSessionContext.Unbind(sessionFactory);
+            transaction = session.BeginTransaction();
         }
 
         /// <summary>
@@ -50,7 +40,7 @@ namespace Foundation.Data.Hibernate
         /// </summary>
         public void Commit()
         {
-            session.Flush();
+            transaction.Commit();
         }
 
         /// <summary>
@@ -60,6 +50,19 @@ namespace Foundation.Data.Hibernate
         public void Dispose()
         {
             Dispose(true);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+
+            if( transaction != null ) transaction.Dispose();
+            if (session != null) session.Dispose();
+            if (sessionFactory != null) CurrentSessionContext.Unbind(sessionFactory);
         }
     }
 }

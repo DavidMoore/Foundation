@@ -89,6 +89,8 @@
     <Compile Include="ArrayExtensionMethods.cs" />
     <Compile Include="ColorExtensionMethods.cs" />
     <Compile Include="CommandLine\Options.cs" />
+    <Compile Include="ICanInitialize.cs" />
+    <Compile Include="Data\IDataProvider.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\FileSystemInfoExtensions.cs" />
@@ -237,7 +239,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Interop\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -145,6 +145,7 @@
     <Compile Include="Services\Security\SalterFixture.cs" />
     <Compile Include="Services\ServiceContainerWrapperForServiceManagerTests.cs" />
     <Compile Include="Services\ServiceManagerTests.cs" />
+    <Compile Include="Services\UnitOfWorkServices\UnitOfWorkTests.cs" />
     <Compile Include="Services\Unity\UnityServiceManagerAdapterTests.cs" />
     <Compile Include="Services\Validation\ActiveRecordValidatorTestCase.cs" />
     <Compile Include="StateMachine\FiniteStateMachineTests.cs" />

@@ -147,6 +147,10 @@
     <Compile Include="Services\Registration\ServiceRegistrationException.cs" />
     <Compile Include="Services\ServiceResolutionFailedException.cs" />
     <Compile Include="Properties\SolutionInfo.cs" />
+    <Compile Include="Services\UnitOfWorkServices\IUnitOfWork.cs" />
+    <Compile Include="Services\UnitOfWorkServices\IUnitOfWorkFactory.cs" />
+    <Compile Include="Services\UnitOfWorkServices\UnitOfWork.cs" />
+    <Compile Include="Services\UnitOfWorkServices\UnitOfWorkFactory.cs" />
     <Compile Include="StateMachine\FiniteStateMachine.cs" />
     <Compile Include="StateMachine\FiniteStateMachineExtensions.cs" />
     <Compile Include="StateMachine\StateTransition.cs" />

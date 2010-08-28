@@ -94,12 +94,15 @@
     <Compile Include="DatabaseFixture.cs" />
     <Compile Include="Data\ActiveRecord\ColorPropertyAttributeTests.cs" />
     <Compile Include="Data\ActiveRecord\TypePropertyAttributeTests.cs" />
+    <Compile Include="Data\DataProviderTests.cs" />
     <Compile Include="Data\Hierarchy\Category.cs" />
     <Compile Include="Data\Hierarchy\HierarchyTests.cs" />
     <Compile Include="Data\Hierarchy\TreeActiveRecordRepositoryTests.cs" />
     <Compile Include="Data\Hierarchy\TreeCriteriaTests.cs" />
     <Compile Include="Data\Hierarchy\TreeEntityChildrenTests.cs" />
     <Compile Include="Data\Hierarchy\TreeInfoTests.cs" />
+    <Compile Include="Data\NHibernate\HibernateUnitOfWorkFactoryTests.cs" />
+    <Compile Include="Data\NHibernate\HibernateUnitOfWorkTests.cs" />
     <Compile Include="Data\NHibernate\UserTypes\ColorUserTypeTests.cs" />
     <Compile Include="Data\NHibernate\UserTypes\PropertyInfoUserTypeFixture.cs" />
     <Compile Include="Data\NHibernate\UserTypes\TypeUserTypeFixture.cs" />

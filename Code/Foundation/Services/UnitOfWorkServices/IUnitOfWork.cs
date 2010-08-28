@@ -9,12 +9,12 @@ namespace Foundation.Services.UnitOfWorkServices
     public interface IUnitOfWork : IDisposable
     {
         /// <summary>
-        /// Rolls back this unit of work.
+        /// Rolls back this unit of work, and any pending transactions within it.
         /// </summary>
         void Rollback();
 
         /// <summary>
-        /// Commits this unit of work.
+        /// Commits this unit of work, and any pending transactions within it.
         /// </summary>
         void Commit();
     }

@@ -12,7 +12,7 @@ namespace Foundation.Data.Hibernate.UserTypes
         static readonly Type returnedType = typeof(PropertyInfo);
         static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.GetString(255)};
 
-        public const string TypeName = "Foundation.Data.Hibernate.UserTypes.PropertyInfoUserType, Foundation.Data";
+        public const string TypeName = "Foundation.Data.Hibernate.UserTypes.PropertyInfoUserType, Foundation.Data.Hibernate";
         
         /// <summary>
         /// The SQL types for the columns mapped by this type. 

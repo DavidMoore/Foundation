@@ -10,7 +10,7 @@ namespace Foundation.Data.Hibernate.UserTypes
     {
         static readonly Type returnedType = typeof(Uri);
         static readonly SqlType[] sqlTypes = new[] {SqlTypeFactory.GetString(255)};
-        public const string TypeName = "Foundation.Data.Hibernate.UserTypes.UriUserType, Foundation.Data";
+        public const string TypeName = "Foundation.Data.Hibernate.UserTypes.UriUserType, Foundation.Data.Hibernate";
 
         #region IUserType Members
 

@@ -57,6 +57,40 @@ namespace Foundation.Tests.Services.UnitOfWorkServices
 
             work.Verify(mock => mock.Dispose());
         }
+
+        [TestMethod]
+        public void Rollback_calls_implementation()
+        {
+            var work = new Mock<IUnitOfWork>();
+            var factory = new Mock<IUnitOfWorkFactory>();
+            factory.Setup(workFactory => workFactory.Start()).Returns(work.Object);
+
+            UnitOfWorkFactory.SetFactory(factory.Object);
+
+            using (var unit = new UnitOfWork())
+            {
+                unit.Rollback();
+            }
+            
+            work.Verify(mock => mock.Rollback());
+        }
+
+        [TestMethod]
+        public void Commit_calls_implementation()
+        {
+            var work = new Mock<IUnitOfWork>();
+            var factory = new Mock<IUnitOfWorkFactory>();
+            factory.Setup(workFactory => workFactory.Start()).Returns(work.Object);
+
+            UnitOfWorkFactory.SetFactory(factory.Object);
+
+            using (var unit = new UnitOfWork())
+            {
+                unit.Commit();
+            }
+
+            work.Verify(mock => mock.Commit());
+        }
     }
 
     [TestClass]
@@ -159,7 +193,38 @@ namespace Foundation.Tests.Services.UnitOfWorkServices
         {
             if( disposing && implementation != null) implementation.Dispose();
         }
+
+        /// <summary>
+        /// Rolls back this unit of work.
+        /// </summary>
+        public void Rollback()
+        {
+            implementation.Rollback();
+        }
+
+        /// <summary>
+        /// Commits this unit of work.
+        /// </summary>
+        public void Commit()
+        {
+            implementation.Commit();
+        }
     }
 
-    public interface IUnitOfWork : IDisposable {}
+    /// <summary>
+    /// A unit of work is a scope of business logic; essentially a transaction
+    /// that can be committed or rolled back.
+    /// </summary>
+    public interface IUnitOfWork : IDisposable
+    {
+        /// <summary>
+        /// Rolls back this unit of work.
+        /// </summary>
+        void Rollback();
+
+        /// <summary>
+        /// Commits this unit of work.
+        /// </summary>
+        void Commit();
+    }
 }

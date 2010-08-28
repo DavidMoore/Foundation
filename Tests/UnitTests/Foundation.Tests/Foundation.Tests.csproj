@@ -169,6 +169,14 @@
     <Compile Include="Windows\WindowRegistry\RegistryRedirectionTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Code\Foundation.Data.ActiveRecord\Foundation.Data.ActiveRecord.csproj">
+      <Project>{9F18BB71-9334-45A3-9506-44982A7483DE}</Project>
+      <Name>Foundation.Data.ActiveRecord</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Code\Foundation.Data.Hibernate\Foundation.Data.Hibernate.csproj">
+      <Project>{3E4F06A9-4B30-4FD1-A7F0-763DF519A744}</Project>
+      <Name>Foundation.Data.Hibernate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Code\Foundation.Data\Foundation.Data.csproj">
       <Project>{1289CF87-299D-4BDD-B1D5-0B1B552901DB}</Project>
       <Name>Foundation.Data</Name>

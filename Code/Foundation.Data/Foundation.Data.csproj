@@ -82,23 +82,6 @@
     <Compile Include="..\Foundation\Properties\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="ActiveRecord\ActiveRecordRepository.cs" />
-    <Compile Include="ActiveRecord\ActiveRecordTypeConverter.cs" />
-    <Compile Include="ActiveRecord\ColorPropertyAttribute.cs" />
-    <Compile Include="ActiveRecord\DatabaseFixtureBase.cs" />
-    <Compile Include="ActiveRecord\DummyActiveRecordModel.cs" />
-    <Compile Include="ActiveRecord\NamedEntityActiveRecordRepository.cs" />
-    <Compile Include="ActiveRecord\PropertyInfoPropertyAttribute.cs" />
-    <Compile Include="ActiveRecord\PropertyUniqueNameAttribute.cs" />
-    <Compile Include="ActiveRecord\TypePropertyAttribute.cs" />
-    <Compile Include="ActiveRecord\Validation\ActiveRecordModelValidator.cs" />
-    <Compile Include="ActiveRecord\Validation\ActiveRecordValidationErrorsCollectionAdapter.cs" />
-    <Compile Include="Hibernate\SingletonConnectionProvider.cs" />
-    <Compile Include="Hibernate\UserTypes\ColorUserType.cs" />
-    <Compile Include="Hibernate\UserTypes\PropertyInfoUserType.cs" />
-    <Compile Include="Hibernate\UserTypes\SimpleUserTypeBase.cs" />
-    <Compile Include="Hibernate\UserTypes\TypeUserType.cs" />
-    <Compile Include="Hibernate\UserTypes\UriUserType.cs" />
     <Compile Include="Hierarchy\ITreeEntity.cs" />
     <Compile Include="Hierarchy\ITreeRepository.cs" />
     <Compile Include="Hierarchy\SiblingList.cs" />
@@ -107,15 +90,16 @@
     <Compile Include="Hierarchy\TreeEntityChildren.cs" />
     <Compile Include="Hierarchy\TreeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ActiveRecord\Security\ActiveRecordIntegration.cs" />
-    <Compile Include="ActiveRecord\Security\DeleteEntityOperation.cs" />
-    <Compile Include="ActiveRecord\Security\EntityOperation.cs" />
-    <Compile Include="ActiveRecord\Security\EntityType.cs" />
-    <Compile Include="ActiveRecord\Security\Permission.cs" />
-    <Compile Include="ActiveRecord\Security\User.cs" />
-    <Compile Include="ActiveRecord\Security\UserGroup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foundation.Data.ActiveRecord\Foundation.Data.ActiveRecord.csproj">
+      <Project>{9F18BB71-9334-45A3-9506-44982A7483DE}</Project>
+      <Name>Foundation.Data.ActiveRecord</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Data.Hibernate\Foundation.Data.Hibernate.csproj">
+      <Project>{3E4F06A9-4B30-4FD1-A7F0-763DF519A744}</Project>
+      <Name>Foundation.Data.Hibernate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foundation\Foundation.csproj">
       <Project>{76D503C1-FB69-4688-B7F9-49A7D6525263}</Project>
       <Name>Foundation</Name>

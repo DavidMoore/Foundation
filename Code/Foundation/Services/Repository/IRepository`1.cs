@@ -32,13 +32,6 @@ namespace Foundation.Services.Repository
         /// Deletes all instances from the database.
         /// </summary>
         void DeleteAll();
-
-        /// <summary>
-        /// Finds an instance with the specified primary key.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        T Find(int id);
         
         /// <summary>
         /// Returns a queryable list of all the instances of the model.

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using Foundation.Data.Hibernate.UserTypes;
@@ -59,7 +60,7 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             var dummy = new DummyClassWithTypeProperty();
             repository.Save(dummy);
             Assert.IsNull(dummy.DummyType);
-            Assert.IsNull(repository.Find(1).DummyType);
+            Assert.IsNull(repository.List().Single(instance => instance.Id.Equals(1)).DummyType);
         }
 
         [TestMethod]

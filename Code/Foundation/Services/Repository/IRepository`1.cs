@@ -23,13 +23,6 @@ namespace Foundation.Services.Repository
         T Save(T instance);
 
         /// <summary>
-        /// Saves the specified instances.
-        /// </summary>
-        /// <param name="instances">The instances.</param>
-        /// <returns></returns>
-        T[] Save(params T[] instances);
-
-        /// <summary>
         /// Deletes the instance from the database.
         /// </summary>
         /// <param name="instance">The object to remove from the database.</param>

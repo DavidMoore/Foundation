@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Foundation.Data.ActiveRecord;
 using Foundation.Data.Hierarchy;
+using Foundation.Services.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Data.Hierarchy
@@ -9,8 +9,6 @@ namespace Foundation.Tests.Data.Hierarchy
     [TestClass]
     public class HierarchyTests : DatabaseFixture
     {
-        #region Setup/Teardown
-
         [TestInitialize]
         public override void Setup()
         {
@@ -18,8 +16,6 @@ namespace Foundation.Tests.Data.Hierarchy
             repository = new TreeActiveRecordRepository<Category>();
             tree = CreateTree();
         }
-
-        #endregion
 
         IList<Category> tree;
         ITreeRepository<Category> repository;

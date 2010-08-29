@@ -47,6 +47,7 @@
     <Reference Include="Castle.Components.Validator">
       <HintPath>..\..\..\..\Commons\Libraries\Castle.Components.Validator.dll</HintPath>
     </Reference>
+    <Reference Include="FluentNHibernate, Version=1.1.0.685, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL" />
     <Reference Include="Interop.Shell32">
       <HintPath>..\..\..\..\Commons\Libraries\Interop.Shell32.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -101,6 +102,7 @@
     <Compile Include="Data\Hierarchy\TreeCriteriaTests.cs" />
     <Compile Include="Data\Hierarchy\TreeEntityChildrenTests.cs" />
     <Compile Include="Data\Hierarchy\TreeInfoTests.cs" />
+    <Compile Include="Data\NHibernate\HibernateDataProviderTests.cs" />
     <Compile Include="Data\NHibernate\HibernateUnitOfWorkFactoryTests.cs" />
     <Compile Include="Data\NHibernate\HibernateUnitOfWorkTests.cs" />
     <Compile Include="Data\NHibernate\UserTypes\ColorUserTypeTests.cs" />

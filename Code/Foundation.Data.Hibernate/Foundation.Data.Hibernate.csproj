@@ -37,7 +37,18 @@
     <AssemblyOriginatorKeyFile>..\Foundation.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\..\Commons\Libraries\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="LinFu.DynamicProxy">
+      <HintPath>..\..\..\Commons\Libraries\LinFu.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.LinFu">
+      <HintPath>..\..\..\Commons\Libraries\NHibernate.ByteCode.LinFu.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -51,6 +62,8 @@
     <Compile Include="..\Foundation\Properties\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="HibernateDataProvider.cs" />
+    <Compile Include="HibernateDataProviderException.cs" />
     <Compile Include="HibernateUnitOfWork.cs" />
     <Compile Include="HibernateUnitOfWorkFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

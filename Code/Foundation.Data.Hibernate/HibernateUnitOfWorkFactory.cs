@@ -4,8 +4,13 @@ using NHibernate;
 
 namespace Foundation.Data.Hibernate
 {
+    /// <summary>
+    /// Creates a unit of work for the NHibernate data provider.
+    /// </summary>
     public class HibernateUnitOfWorkFactory : IUnitOfWorkFactory
     {
+        readonly ISessionFactory sessionFactory;
+
         /// <summary>
         /// Starts and returns a new unit of work.
         /// </summary>
@@ -15,7 +20,14 @@ namespace Foundation.Data.Hibernate
             return new HibernateUnitOfWork(sessionFactory);
         }
 
-        readonly ISessionFactory sessionFactory;
+        /// <summary>
+        /// Gets the session factory.
+        /// </summary>
+        /// <value>The session factory.</value>
+        internal ISessionFactory SessionFactory
+        {
+            get { return sessionFactory; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HibernateUnitOfWorkFactory"/> class.

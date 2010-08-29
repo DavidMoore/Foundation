@@ -1,4 +1,3 @@
-using System;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Foundation.Services.UnitOfWorkServices;
@@ -90,6 +89,15 @@ namespace Foundation.Data.Hibernate
         {
             if( SessionFactory == null) throw new HibernateDataProviderException("The session factory was not configured. Either pass it into the constructor, or call Initialize() before trying to get a Unit of Work.");
             return new HibernateUnitOfWorkFactory(SessionFactory);
+        }
+
+        /// <summary>
+        /// Gets the current session.
+        /// </summary>
+        /// <returns></returns>
+        public ISession GetCurrentSession()
+        {
+            return SessionFactory.GetCurrentSession();
         }
     }
 }

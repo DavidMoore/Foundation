@@ -68,6 +68,7 @@
     <Reference Include="NHibernate">
       <HintPath>..\..\..\..\Commons\Libraries\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=4b67d0d894330a22, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -103,6 +104,7 @@
     <Compile Include="Data\Hierarchy\TreeEntityChildrenTests.cs" />
     <Compile Include="Data\Hierarchy\TreeInfoTests.cs" />
     <Compile Include="Data\NHibernate\HibernateDataProviderTests.cs" />
+    <Compile Include="Data\NHibernate\HibernateRepositoryTests.cs" />
     <Compile Include="Data\NHibernate\HibernateUnitOfWorkFactoryTests.cs" />
     <Compile Include="Data\NHibernate\HibernateUnitOfWorkTests.cs" />
     <Compile Include="Data\NHibernate\UserTypes\ColorUserTypeTests.cs" />

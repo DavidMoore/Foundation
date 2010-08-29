@@ -39,5 +39,14 @@ namespace Foundation.Tests.Data.NHibernate
             var provider = new HibernateDataProvider();
             provider.GetUnitOfWorkFactory();
         }
+
+        [TestMethod]
+        public void GetCurrentSession_delegates_to_session_factory()
+        {
+            var factory = new Mock<ISessionFactory>();
+            var provider = new HibernateDataProvider(factory.Object);
+            provider.GetCurrentSession();
+            factory.Verify(sessionFactory => sessionFactory.GetCurrentSession());
+        }
     }
 }

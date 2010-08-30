@@ -49,6 +49,7 @@
     <Reference Include="NHibernate.ByteCode.LinFu">
       <HintPath>..\..\..\Commons\Libraries\NHibernate.ByteCode.LinFu.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -64,6 +65,7 @@
     </Compile>
     <Compile Include="HibernateDataProvider.cs" />
     <Compile Include="HibernateDataProviderException.cs" />
+    <Compile Include="HibernateRepository.cs" />
     <Compile Include="HibernateUnitOfWork.cs" />
     <Compile Include="HibernateUnitOfWorkFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

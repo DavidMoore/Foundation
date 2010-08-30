@@ -4,6 +4,7 @@ namespace Foundation.Models
     /// An entity that possesses a unique <see cref="IEntity{T}.Id"/>
     /// and a unique <see cref="Name"/>.
     /// </summary>
+    /// <typeparam name="T">The type of the identifier field <see cref="IEntity{T}.Id"/>.</typeparam>
     public interface INamedEntity<T> : IEntity<T>
     {
         /// <summary>

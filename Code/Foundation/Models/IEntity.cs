@@ -6,12 +6,13 @@ namespace Foundation.Models
     /// the model object is stored in a database, <see cref="Id"/>
     /// would be the primary key.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of the identifier field <see cref="Id"/>.</typeparam>
     public interface IEntity<T>
     {
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
+        /// <value>The id.</value>
         T Id { get; set; }
     }
 }

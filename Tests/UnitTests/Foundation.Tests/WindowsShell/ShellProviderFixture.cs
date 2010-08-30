@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Foundation.Extensions;
 using Foundation.WindowsShell;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -44,14 +45,11 @@ namespace Foundation.Tests.WindowsShell
         }
 
         [TestMethod]
-        public void MyComputer_contains_system_logical_drives()
+        public void MyComputer_Children()
         {
-            var drives = new List<string>(Environment.GetLogicalDrives());
-
             var myComputer = provider.MyComputer;
             var list = myComputer.Children;
-
-            drives.ForEach(drive => Assert.IsNotNull(list.SingleOrDefault(obj => obj.Path.Equals(drive))));
+            Assert.IsTrue(list.Count > 0);
         }
     }
 }

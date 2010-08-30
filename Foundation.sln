@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation", "Code\Foundati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Services.Unity", "Code\Foundation.Services.Unity\Foundation.Services.Unity.csproj", "{28B88F2B-5068-4A8F-B900-FF503618A996}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Data", "Code\Foundation.Data\Foundation.Data.csproj", "{1289CF87-299D-4BDD-B1D5-0B1B552901DB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Services.Windsor", "Code\Foundation.Services.Windsor\Foundation.Services.Windsor.csproj", "{799AC8AD-EC5F-4698-AC9D-E45B2B207AB9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Web", "Code\Foundation.Web\Foundation.Web.csproj", "{6C83E48B-E99F-4745-BCAF-5E079FBD1B5D}"
@@ -61,16 +59,6 @@ Global
 		{28B88F2B-5068-4A8F-B900-FF503618A996}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{28B88F2B-5068-4A8F-B900-FF503618A996}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{28B88F2B-5068-4A8F-B900-FF503618A996}.Release|Win32.ActiveCfg = Release|Any CPU
-		{1289CF87-299D-4BDD-B1D5-0B1B552901DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1289CF87-299D-4BDD-B1D5-0B1B552901DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1289CF87-299D-4BDD-B1D5-0B1B552901DB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{1289CF87-299D-4BDD-B1D5-0B1B552901DB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{1289CF87-299D-4BDD-B1D5-0B1B552901DB}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{1289CF87-299D-4BDD-B1D5-0B1B552901DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1289CF87-299D-4BDD-B1D5-0B1B552901DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1289CF87-299D-4BDD-B1D5-0B1B552901DB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{1289CF87-299D-4BDD-B1D5-0B1B552901DB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{1289CF87-299D-4BDD-B1D5-0B1B552901DB}.Release|Win32.ActiveCfg = Release|Any CPU
 		{799AC8AD-EC5F-4698-AC9D-E45B2B207AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{799AC8AD-EC5F-4698-AC9D-E45B2B207AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{799AC8AD-EC5F-4698-AC9D-E45B2B207AB9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

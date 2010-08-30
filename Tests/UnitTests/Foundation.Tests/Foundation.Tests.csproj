@@ -186,10 +186,6 @@
       <Project>{3E4F06A9-4B30-4FD1-A7F0-763DF519A744}</Project>
       <Name>Foundation.Data.Hibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Code\Foundation.Data\Foundation.Data.csproj">
-      <Project>{1289CF87-299D-4BDD-B1D5-0B1B552901DB}</Project>
-      <Name>Foundation.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Code\Foundation.Services.Unity\Foundation.Services.Unity.csproj">
       <Project>{28B88F2B-5068-4A8F-B900-FF503618A996}</Project>
       <Name>Foundation.Services.Unity</Name>

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Castle.ActiveRecord;
 using Foundation.Models;
 
 namespace Foundation.Data.Hierarchy
@@ -10,7 +9,6 @@ namespace Foundation.Data.Hierarchy
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TId">The type of the id.</typeparam>
-    [ActiveRecord]
     public class TreeInfo<T, TId> where T : class, ITreeEntity<T,TId>, IEntity<TId>
     {
         int leftValue;
@@ -39,10 +37,8 @@ namespace Foundation.Data.Hierarchy
         /// <value>The entity.</value>
         public T Entity { get; set; }
 
-        [PrimaryKey]
-        public int Id { get; set; }
+        public TId Id { get; set; }
 
-        [Property(NotNull = true)]
         public int LeftValue
         {
             get { return leftValue; }
@@ -53,7 +49,6 @@ namespace Foundation.Data.Hierarchy
             }
         }
 
-        [Property(NotNull = true)]
         public int RightValue
         {
             get { return rightValue; }
@@ -64,7 +59,6 @@ namespace Foundation.Data.Hierarchy
             }
         }
 
-        [BelongsTo]
         public T Parent
         {
             get { return parent; }

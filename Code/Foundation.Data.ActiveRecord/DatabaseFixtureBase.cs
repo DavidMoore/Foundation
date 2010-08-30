@@ -75,7 +75,7 @@ namespace Foundation.Data.ActiveRecord
             props["connection.release_mode"] = "on_close";
             props["connection.provider"] = typeof(SingletonConnectionProvider).AssemblyQualifiedName;
             props["proxyfactory.factory_class"] = typeof(NHibernate.ByteCode.Castle.ProxyFactoryFactory).AssemblyQualifiedName;
-            var source = InPlaceConfigurationSource.Build(DatabaseType.MSSQLServer2005, connectionString);
+            var source = InPlaceConfigurationSource.Build(DatabaseType.SQLite, connectionString);
             source.Add(typeof(ActiveRecordBase), props);
             return source;
         }

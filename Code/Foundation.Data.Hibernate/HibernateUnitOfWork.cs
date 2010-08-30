@@ -1,4 +1,3 @@
-using System;
 using Foundation.Services.UnitOfWorkServices;
 using NHibernate;
 using NHibernate.Context;
@@ -12,7 +11,7 @@ namespace Foundation.Data.Hibernate
     {
         readonly ISessionFactory sessionFactory;
         readonly ISession session;
-        ITransaction transaction;
+        readonly ITransaction transaction;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HibernateUnitOfWork"/> class.
@@ -32,7 +31,7 @@ namespace Foundation.Data.Hibernate
         /// </summary>
         public void Rollback()
         {
-            throw new NotImplementedException();
+            transaction.Rollback();
         }
 
         /// <summary>

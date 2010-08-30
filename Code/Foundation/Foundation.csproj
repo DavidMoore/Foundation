@@ -89,6 +89,14 @@
     <Compile Include="ArrayExtensionMethods.cs" />
     <Compile Include="ColorExtensionMethods.cs" />
     <Compile Include="CommandLine\Options.cs" />
+    <Compile Include="Data\Hierarchy\ITreeEntity.cs" />
+    <Compile Include="Data\Hierarchy\SiblingList.cs" />
+    <Compile Include="Data\Hierarchy\TreeEntityChildren.cs" />
+    <Compile Include="Data\Hierarchy\TreeEntityEnumerableExtensions.cs" />
+    <Compile Include="Data\Hierarchy\TreeEntityException.cs" />
+    <Compile Include="Data\Hierarchy\TreeEntityRepositoryExtensions.cs" />
+    <Compile Include="Data\Hierarchy\TreeInfo.cs" />
+    <Compile Include="Data\Hierarchy\TreeListOptions.cs" />
     <Compile Include="ICanInitialize.cs" />
     <Compile Include="Data\IDataProvider.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />

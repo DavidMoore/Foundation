@@ -40,36 +40,6 @@
     <AssemblyOriginatorKeyFile>..\Foundation.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.ActiveRecord">
-      <HintPath>..\..\..\Commons\Libraries\Castle.ActiveRecord.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.ActiveRecord.Linq">
-      <HintPath>..\..\..\Commons\Libraries\Castle.ActiveRecord.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Components.Validator">
-      <HintPath>..\..\..\Commons\Libraries\Castle.Components.Validator.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\..\Commons\Libraries\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\..\..\Commons\Libraries\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\..\..\Commons\Libraries\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\..\..\Commons\Libraries\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.Linq">
-      <HintPath>..\..\..\Commons\Libraries\NHibernate.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.Search">
-      <HintPath>..\..\..\Commons\Libraries\NHibernate.Search.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\..\Commons\Libraries\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -93,14 +63,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Foundation.Data.ActiveRecord\Foundation.Data.ActiveRecord.csproj">
-      <Project>{9F18BB71-9334-45A3-9506-44982A7483DE}</Project>
-      <Name>Foundation.Data.ActiveRecord</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Foundation.Data.Hibernate\Foundation.Data.Hibernate.csproj">
-      <Project>{3E4F06A9-4B30-4FD1-A7F0-763DF519A744}</Project>
-      <Name>Foundation.Data.Hibernate</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Foundation\Foundation.csproj">
       <Project>{76D503C1-FB69-4688-B7F9-49A7D6525263}</Project>
       <Name>Foundation</Name>

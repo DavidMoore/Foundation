@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Foundation.Models;
@@ -26,19 +25,12 @@ namespace Foundation.Services.Repository
 
         public T Save(T instance)
         {
-            var index = Items.IndexOf(instance);
-
-            if( index > -1 )
-            {
-                Items[index] = instance;
-            }
-            else
+            if (!Items.Contains(instance))
             {
                 // Set the primary key
                 instance.Id = GetNextPrimaryKey();
                 Items.Add(instance);
             }
-
             return instance;
         }
 

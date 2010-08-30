@@ -14,7 +14,7 @@ namespace Foundation.Data.Hierarchy
         /// <summary>
         /// The parent node of this collection
         /// </summary>
-        T Parent { get; set; }
+        public T Parent { get; private set; }
 
         protected override void InsertItem(int index, T item)
         {

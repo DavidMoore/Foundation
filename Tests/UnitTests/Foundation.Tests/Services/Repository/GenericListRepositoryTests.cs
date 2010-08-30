@@ -33,13 +33,13 @@ namespace Foundation.Tests.Services.Repository
 
             repository.Save(test1, test2);
 
-            Assert.AreEqual(2, repository.List().Count());
+            Assert.AreEqual(2, repository.Query().Count());
 
             repository.Delete(test1);
 
-            Assert.AreEqual(1, repository.List().Count());
+            Assert.AreEqual(1, repository.Query().Count());
 
-            Assert.AreEqual(test2, repository.List().First());
+            Assert.AreEqual(test2, repository.Query().First());
         }
 
         [TestMethod]

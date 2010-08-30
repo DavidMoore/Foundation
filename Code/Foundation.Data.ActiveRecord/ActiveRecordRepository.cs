@@ -80,7 +80,7 @@ namespace Foundation.Data.ActiveRecord
         /// Returns a queryable list of all the instances of the model.
         /// </summary>
         /// <returns></returns>
-        public virtual IQueryable<T> List()
+        public virtual IQueryable<T> Query()
         {
             return ActiveRecordLinq.AsQueryable<T>();
         }

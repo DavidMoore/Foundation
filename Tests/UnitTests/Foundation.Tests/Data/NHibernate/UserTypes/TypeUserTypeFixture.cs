@@ -60,7 +60,7 @@ namespace Foundation.Tests.Data.NHibernate.UserTypes
             var dummy = new DummyClassWithTypeProperty();
             repository.Save(dummy);
             Assert.IsNull(dummy.DummyType);
-            Assert.IsNull(repository.List().Single(instance => instance.Id.Equals(1)).DummyType);
+            Assert.IsNull(repository.Query().Single(instance => instance.Id.Equals(1)).DummyType);
         }
 
         [TestMethod]

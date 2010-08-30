@@ -72,7 +72,7 @@ namespace Foundation.Services.Repository
             return Items.SingleOrDefault(x => x.Id == id);
         }
 
-        public IQueryable<T> List()
+        public IQueryable<T> Query()
         {
             return Items.AsQueryable();
         }

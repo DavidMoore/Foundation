@@ -61,11 +61,15 @@ namespace Foundation.Tests.Data.NHibernate
         [TestMethod]
         public void List()
         {
-            repository.List();
+            repository.Query();
             // TODO: How to verify this?
         }
     }
 
+    /// <summary>
+    /// Repository for NHibernate.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class HibernateRepository<T> : IRepository<T> where T : class, new()
     {
         readonly ISessionFactory factory;
@@ -118,18 +122,10 @@ namespace Foundation.Tests.Data.NHibernate
         }
 
         /// <summary>
-        /// Deletes all instances from the database.
-        /// </summary>
-        public void DeleteAll()
-        {
-            CurrentSession.D
-        }
-
-        /// <summary>
         /// Returns a queryable list of all the instances of the model.
         /// </summary>
         /// <returns></returns>
-        public IQueryable<T> List()
+        public IQueryable<T> Query()
         {
             return CurrentSession.Linq<T>();
         }

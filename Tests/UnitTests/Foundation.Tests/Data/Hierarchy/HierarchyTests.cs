@@ -100,7 +100,7 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Get_ancestors()
         {
-            Assert.AreEqual(9, repository.List().Count());
+            Assert.AreEqual(9, repository.Query().Count());
             var results = repository.ListAncestors(flatList.Single(i => i.Name.Equals("Node1_1_2_1")));
             Assert.AreEqual(3, results.Count);
             Assert.AreEqual("Node1", results[0].Name);
@@ -111,7 +111,7 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Get_children()
         {
-            Assert.AreEqual(9, repository.List().Count());
+            Assert.AreEqual(9, repository.Query().Count());
             var results = repository.ListByParent(tree.Single(i => i.Name.Equals("Node1")));
             Assert.AreEqual(2, results.Count());
             Assert.AreEqual("Node1_1", results.First().Name);
@@ -121,7 +121,7 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Get_descendants()
         {
-            Assert.AreEqual(9, repository.List().Count());
+            Assert.AreEqual(9, repository.Query().Count());
             var results = repository.ListDescendants(tree.Single(i => i.Name.Equals("Node1")));
             Assert.AreEqual(5, results.Count);
             Assert.AreEqual("Node1_1", results[0].Name);
@@ -134,7 +134,7 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Get_parent()
         {
-            Assert.AreEqual(9, repository.List().Count());
+            Assert.AreEqual(9, repository.Query().Count());
             var node = flatList.Single(i => i.Name.Equals("Node1_1_2_1"));
             Assert.AreEqual("Node1_1_2", node.Tree.Parent.Name);
             Assert.AreEqual("Node1_1", node.Tree.Parent.Tree.Parent.Name);
@@ -145,7 +145,7 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Get_root_nodes()
         {
-            Assert.AreEqual(9, repository.List().Count());
+            Assert.AreEqual(9, repository.Query().Count());
             var results = repository.ListByParent(null);
             Assert.AreEqual(3, results.Count());
         }
@@ -153,7 +153,7 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Get_siblings()
         {
-            Assert.AreEqual(9, repository.List().Count());
+            Assert.AreEqual(9, repository.Query().Count());
 
             var results = repository.ListSiblings(flatList.Single(i => i.Name.Equals("Node1_1")));
             Assert.AreEqual(1, results.Count);

@@ -50,7 +50,7 @@ namespace Foundation.Data.Hierarchy
             isTreeBeingRebuilt = true;
 
             // Get all nodes
-            var nodes = List();
+            var nodes = Query();
 
             // Get the root nodes
             var rootList = nodes.Where(x => x.Tree.Parent == null);

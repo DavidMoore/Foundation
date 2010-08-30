@@ -43,7 +43,7 @@ namespace Foundation.Tests.Data.ActiveRecord
             Assert.AreEqual(1, dummy.Id);
             Assert.AreEqual(Color.Red, dummy.Colour);
 
-            var loaded = repository.List().Single( instance => instance.Id.Equals(1) );
+            var loaded = repository.Query().Single( instance => instance.Id.Equals(1) );
             Assert.AreEqual(Color.Red, loaded.Colour);
         }
     }

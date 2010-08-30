@@ -3,8 +3,8 @@ using System.Linq;
 namespace Foundation.Services.Repository
 {
     /// <summary>
-    /// Contract for an ActiveRecord Repository, which is used for all database-related
-    /// model operations (save, delete etc).
+    /// Contract for a Repository, which provides CrUD operations
+    /// and querying of a model from a data store.
     /// </summary>
     /// <typeparam name="T">The model type.</typeparam>
     public interface IRepository<T> where T : class, new()
@@ -23,20 +23,15 @@ namespace Foundation.Services.Repository
         T Save(T instance);
 
         /// <summary>
-        /// Deletes the instance from the database.
+        /// Deletes the specified instance from the repository.
         /// </summary>
-        /// <param name="instance">The object to remove from the database.</param>
+        /// <param name="instance">The instance.</param>
         void Delete(T instance);
-
-        /// <summary>
-        /// Deletes all instances from the database.
-        /// </summary>
-        void DeleteAll();
         
         /// <summary>
         /// Returns a queryable list of all the instances of the model.
         /// </summary>
         /// <returns></returns>
-        IQueryable<T> List();
+        IQueryable<T> Query();
     }
 }

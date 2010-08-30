@@ -41,9 +41,9 @@ namespace Foundation.Tests.Services.Repository
                 new User {Email = "user1@test.com", Name = "TestUser1"},
                 new User {Email = "user2@test.com", Name = "TestUser2"}
                 );
-            Assert.IsTrue(repository.List().Count() > 1);
+            Assert.IsTrue(repository.Query().Count() > 1);
             repository.DeleteAll();
-            Assert.IsTrue(repository.List().Count() == 0);
+            Assert.IsTrue(repository.Query().Count() == 0);
         }
 
         [TestMethod]
@@ -94,7 +94,7 @@ namespace Foundation.Tests.Services.Repository
             var user2 = repository.Save(user);
             Assert.IsFalse(user.Id == 0);
             Assert.AreEqual(user2.Id, user.Id);
-            Assert.IsTrue(repository.List().Count() == 1);
+            Assert.IsTrue(repository.Query().Count() == 1);
         }
 
         [TestMethod, ExpectedException(typeof(ModelValidationException))]

@@ -49,11 +49,11 @@ namespace Foundation.Services.Discovery
                                     return assembly.GetTypes()
                                     .Where(type => !type.IsAbstract);
                                 }
-                                catch (ReflectionTypeLoadException rtle)
+                                catch (ReflectionTypeLoadException)
                                 {
                                     return Enumerable.Empty<Type>();
                                 }
-                                catch (TypeLoadException tle)
+                                catch (TypeLoadException)
                                 {
                                     return Enumerable.Empty<Type>();
                                 }

@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
 using Foundation.Data.ActiveRecord.Security;
 using Foundation.Services.Validation;
@@ -22,10 +24,17 @@ namespace Foundation.Tests.Services.Repository
         [TestMethod]
         public void Can_execute_SQL()
         {
-            var user = repository.Save(new User {Email = "user1@usertest.com", Name = "User1"});
-            repository.ExecuteSql(string.Format("UPDATE User SET Email=\"user1updated@usertest.com\" WHERE Id={0}", user.Id));
-            repository.Refresh(user);
-            Assert.AreEqual("user1updated@usertest.com", user.Email);
+            using (var transaction = new TransactionScope())
+            {
+                var user = repository.Save(new User {Email = "user1@usertest.com", Name = "User1"});
+                transaction.Flush();
+                
+                repository.ExecuteSql(string.Format("UPDATE User SET Email=\"user1updated@usertest.com\"", user.Id));
+                transaction.Flush();
+
+                repository.Refresh(user);
+                Assert.AreEqual("user1updated@usertest.com", user.Email);
+            }
         }
 
         [TestMethod]
@@ -53,9 +62,9 @@ namespace Foundation.Tests.Services.Repository
 
             repository.Save(user);
 
-            Assert.AreEqual(1, user.Id);
+            Assert.AreNotEqual(Guid.Empty, user.Id);
 
-            var user2 = repository.Find(1);
+            var user2 = repository.Query().SingleOrDefault(x => x.Id.Equals(user.Id));
 
             Assert.AreEqual(user2, user);
         }
@@ -92,7 +101,7 @@ namespace Foundation.Tests.Services.Repository
             user.Name = "Joe";
             user.Email = "joe@bloggs.com";
             var user2 = repository.Save(user);
-            Assert.IsFalse(user.Id == 0);
+            Assert.AreNotEqual(Guid.Empty, user.Id);
             Assert.AreEqual(user2.Id, user.Id);
             Assert.IsTrue(repository.Query().Count() == 1);
         }

@@ -71,7 +71,6 @@
     <Compile Include="ColorPropertyAttribute.cs" />
     <Compile Include="DatabaseFixtureBase.cs" />
     <Compile Include="DummyActiveRecordModel.cs" />
-    <Compile Include="NamedEntityActiveRecordRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyInfoPropertyAttribute.cs" />
     <Compile Include="PropertyUniqueNameAttribute.cs" />

@@ -4,7 +4,7 @@ using Foundation.Models;
 
 namespace Foundation.Data.Hierarchy
 {
-    public class TreeEntityChildren<T> : Collection<T> where T : class, ITreeEntity<T>, IEntity
+    public class TreeEntityChildren<T, TId> : Collection<T> where T : class, ITreeEntity<T, TId>, IEntity<TId>
     {
         public TreeEntityChildren(T parent)
         {

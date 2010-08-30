@@ -47,5 +47,17 @@ namespace Foundation.Extensions
             if( action == null) throw new ArgumentNullException("action");
             foreach (var item in items) action(item);
         }
+
+        /// <summary>
+        /// Adds an item to the specified list of items.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items">The items.</param>
+        /// <param name="item">The item to add.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Concat<T>(this IEnumerable<T> items, T item)
+        {
+            return items.Concat(new[] { item });
+        }
     }
 }

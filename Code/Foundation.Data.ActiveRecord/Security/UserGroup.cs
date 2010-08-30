@@ -8,10 +8,8 @@ namespace Foundation.Data.ActiveRecord.Security
     /// Group with 1 or more associated users
     /// </summary>
     [ActiveRecord]
-    public class UserGroup : IGroup
+    public class UserGroup : IGroup<int>
     {
-        #region IGroup Members
-
         /// <summary>
         /// Unique identifier for the group
         /// </summary>
@@ -24,7 +22,5 @@ namespace Foundation.Data.ActiveRecord.Security
         [PropertyUniqueName]
         [ValidateIsUnique, ValidateNonEmpty, ValidateLength(5, 100)]
         public string Name { get; set; }
-
-        #endregion
     }
 }

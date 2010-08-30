@@ -6,26 +6,13 @@ using Foundation.Services.Security;
 namespace Foundation.Data.ActiveRecord.Security
 {
     [ActiveRecord]
-    public class User : IWebUser
+    public class User : IWebUser<Guid>
     {
-        public User()
-        {
-            Guid = Guid.NewGuid();
-        }
-
-        /// <summary>
-        /// The unique guid
-        /// </summary>
-        [Property(Unique = true)]
-        public Guid Guid { get; set; }
-
-        #region IWebUser Members
-
         /// <summary>
         /// Primary key
         /// </summary>
         [PrimaryKey]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Unique username
@@ -40,7 +27,5 @@ namespace Foundation.Data.ActiveRecord.Security
         [Property(Unique = true, NotNull = true)]
         [ValidateIsUnique, ValidateNonEmpty, ValidateEmail]
         public string Email { get; set; }
-
-        #endregion
     }
 }

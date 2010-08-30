@@ -83,12 +83,13 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Hierarchy\ITreeEntity.cs" />
-    <Compile Include="Hierarchy\ITreeRepository.cs" />
     <Compile Include="Hierarchy\SiblingList.cs" />
-    <Compile Include="Hierarchy\TreeActiveRecordRepository.cs" />
-    <Compile Include="Hierarchy\TreeCriteria.cs" />
     <Compile Include="Hierarchy\TreeEntityChildren.cs" />
+    <Compile Include="Hierarchy\TreeEntityEnumerableExtensions.cs" />
+    <Compile Include="Hierarchy\TreeEntityException.cs" />
+    <Compile Include="Hierarchy\TreeEntityRepositoryExtensions.cs" />
     <Compile Include="Hierarchy\TreeInfo.cs" />
+    <Compile Include="Hierarchy\TreeListOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

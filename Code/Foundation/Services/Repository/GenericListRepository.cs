@@ -9,16 +9,15 @@ namespace Foundation.Services.Repository
     /// A simple in-memory repository that uses a generic list
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class GenericListRepository<T> : IRepository<T> where T : class, IEntity, new()
+    /// <typeparam name="TId">The type of the identifier.</typeparam>
+    public abstract class GenericListRepository<T, TId> : IRepository<T> where T : class, IEntity<TId>, new()
     {
         protected IList<T> Items { get; private set;}
 
-        public GenericListRepository()
+        protected GenericListRepository()
         {
             Items = new List<T>();
         }
-
-        #region IRepository<T> Members
 
         public T Create()
         {
@@ -43,50 +42,28 @@ namespace Foundation.Services.Repository
             return instance;
         }
 
-        /// <exception cref="ArgumentNullException">when <paramref name="instances"/> is null</exception>
-        public T[] Save(params T[] instances)
-        {
-            if (instances == null) throw new ArgumentNullException("instances");
-            var results = new List<T>(instances.Length);
-
-            foreach( var instance in instances )
-            {
-                Save(instance);
-            }
-
-            return results.ToArray();
-        }
-
         public void Delete(T instance)
         {
             Items.Remove(instance);
         }
-
-        public void DeleteAll()
-        {
-            Items.Clear();
-        }
-
-        public T Find(int id)
-        {
-            return Items.SingleOrDefault(x => x.Id == id);
-        }
-
+        
         public IQueryable<T> Query()
         {
             return Items.AsQueryable();
         }
 
-        #endregion
+        protected abstract TId GetNextPrimaryKey();
+    }
 
-        int GetNextPrimaryKey()
+    public class GenericListRepositoryInt<T> : GenericListRepository<T, int> where T : class, IEntity<int>, new()
+    {
+        protected override int GetNextPrimaryKey()
         {
-            // If the list is empty we start at 1
             if( Items.Count == 0 ) return 1;
 
             // Find the "newest" item and increment that for our primary key
-            var startId = Items[Items.Count - 1].Id + 1;
-
+            var startId = Items[Items.Count - 1].Id;
+            
             // Make sure no other content has this id, incrementing it
             // until it is unique
             var id = startId;

@@ -1,17 +1,18 @@
-﻿using Castle.ActiveRecord;
+﻿using System;
+using Castle.ActiveRecord;
 using Castle.Components.Validator;
 using Foundation.Services.Security;
 
 namespace Foundation.Data.ActiveRecord.Security
 {
     /// <summary>
-    /// Defines an operation that can be performed on an entity
+    /// Defines an operation that can be performed on an entity.
     /// </summary>
     [ActiveRecord]
-    public class EntityOperation : IEntityOperation
+    public class EntityOperation : IEntityOperation<Guid>
     {
         /// <summary>
-        /// Creates an entity operation with the specified name
+        /// Creates an entity operation with the specified name.
         /// </summary>
         /// <param name="name"></param>
         public EntityOperation(string name)
@@ -20,7 +21,7 @@ namespace Foundation.Data.ActiveRecord.Security
         }
 
         /// <summary>
-        /// Creates an empty entity operation
+        /// Creates an empty entity operation.
         /// </summary>
         public EntityOperation() {}
 
@@ -30,7 +31,7 @@ namespace Foundation.Data.ActiveRecord.Security
         /// Unique identifier
         /// </summary>
         [PrimaryKey]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Unique name

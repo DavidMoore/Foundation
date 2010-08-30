@@ -140,8 +140,6 @@
     <Compile Include="Services\GetTypes.cs" />
     <Compile Include="Services\IServicesRegistry.cs" />
     <Compile Include="Services\Repository\GenericListRepository.cs" />
-    <Compile Include="Services\Repository\GenericListRepositoryForNamedEntity.cs" />
-    <Compile Include="Services\Repository\IEntityWithUniqueNameRepository`1.cs" />
     <Compile Include="Services\Security\SaltedHasher.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Services\ServiceManagerServiceContainerAdapter.cs" />

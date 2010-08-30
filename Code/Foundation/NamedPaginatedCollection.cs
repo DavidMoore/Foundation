@@ -17,11 +17,11 @@ namespace Foundation
         {
             if (source.Count < RecordCount) throw new InvalidOperationException("You must load all results to do custom pagination names");
 
-            pageNames.Clear();
+            pages.Clear();
 
             for (var i = 0; i < PageCount; i++)
             {
-                pageNames.Add(function( source.Skip( i * PageSize ).Take(PageSize) ));
+                pages.Add(function( source.Skip( i * PageSize ).Take(PageSize) ));
             }
         }
     }

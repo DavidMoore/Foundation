@@ -5,7 +5,7 @@ using Foundation.Models;
 namespace Foundation.Tests.Data.Hierarchy
 {
     [ActiveRecord]
-    public class Category : ITreeEntity<Category>, IEntity
+    public class Category : ITreeEntity<Category, int>, IEntity<int>
     {
         public Category(string name) : this()
         {
@@ -14,11 +14,11 @@ namespace Foundation.Tests.Data.Hierarchy
 
         public Category()
         {
-            Tree = new TreeInfo<Category>(this);
+            Tree = new TreeInfo<Category, int>(this);
         }
 
         [Nested]
-        public TreeInfo<Category> Tree { get; set; }
+        public TreeInfo<Category, int> Tree { get; set; }
 
         [Property]
         public string Name { get; set; }

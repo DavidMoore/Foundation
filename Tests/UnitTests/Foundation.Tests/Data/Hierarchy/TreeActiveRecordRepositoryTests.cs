@@ -1,5 +1,4 @@
 using Foundation.Data.ActiveRecord;
-using Foundation.Data.Hierarchy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Data.Hierarchy
@@ -7,13 +6,13 @@ namespace Foundation.Tests.Data.Hierarchy
     [TestClass]
     public class TreeActiveRecordRepositoryTests : DatabaseFixture
     {
-        TreeActiveRecordRepository<Category> repository;
+        ActiveRecordRepository<Category> repository;
 
         public override void RegisterTypes()
         {
             base.RegisterTypes();
             RegisterTypes(typeof(Category));
-            repository = new TreeActiveRecordRepository<Category>();
+            repository = new ActiveRecordRepository<Category>();
         }
 
         [TestMethod]

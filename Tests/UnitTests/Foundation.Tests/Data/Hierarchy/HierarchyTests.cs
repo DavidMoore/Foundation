@@ -13,12 +13,12 @@ namespace Foundation.Tests.Data.Hierarchy
         public override void Setup()
         {
             base.Setup();
-            repository = new TreeActiveRecordRepository<Category>();
+            repository = new ActiveRecordRepository<Category,int>();
             tree = CreateTree();
         }
 
         IList<Category> tree;
-        ITreeRepository<Category> repository;
+        IRepository<Category> repository;
         List<Category> flatList;
 
         public override void RegisterTypes()
@@ -101,7 +101,7 @@ namespace Foundation.Tests.Data.Hierarchy
         public void Get_ancestors()
         {
             Assert.AreEqual(9, repository.Query().Count());
-            var results = repository.ListAncestors(flatList.Single(i => i.Name.Equals("Node1_1_2_1")));
+            var results = repository.Ancestors(flatList.Single(i => i.Name.Equals("Node1_1_2_1")));
             Assert.AreEqual(3, results.Count);
             Assert.AreEqual("Node1", results[0].Name);
             Assert.AreEqual("Node1_1", results[1].Name);

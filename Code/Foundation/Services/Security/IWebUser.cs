@@ -1,6 +1,6 @@
 namespace Foundation.Services.Security
 {
-    public interface IWebUser : IUser
+    public interface IWebUser<T> : IUser<T>
     {
         /// <summary>
         /// Unique email address

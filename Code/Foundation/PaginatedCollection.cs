@@ -13,7 +13,7 @@ namespace Foundation
     {
         const int defaultPageSize = 25;
 
-        protected readonly IList<string> pageNames;
+        protected readonly IList<string> pages;
 
         /// <summary>
         /// Gets or sets the current page number.
@@ -77,7 +77,7 @@ namespace Foundation
             var skip = source.Count() <= pageSize ? 0 : (Page - 1) * PageSize;
 
             // Default page names
-            pageNames = Enumerable.Range(1, PageCount).ToList().ConvertAll(input => input.ToString(CultureInfo.CurrentCulture));
+            pages = Enumerable.Range(1, PageCount).ToList().ConvertAll(input => input.ToString(CultureInfo.CurrentCulture));
 
             AddRange(source.Skip(skip).Take(pageSize));
         }
@@ -104,7 +104,7 @@ namespace Foundation
         /// </summary>
         public IEnumerable<string> PageNames
         {
-            get { return pageNames; }
+            get { return pages; }
         }
     }
 }

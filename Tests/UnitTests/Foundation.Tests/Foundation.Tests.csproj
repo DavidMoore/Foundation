@@ -96,14 +96,15 @@
     <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />
     <Compile Include="DatabaseFixture.cs" />
+    <Compile Include="Data\ActiveRecord\ActiveRecordRepositoryTests.cs" />
     <Compile Include="Data\ActiveRecord\ColorPropertyAttributeTests.cs" />
     <Compile Include="Data\ActiveRecord\TypePropertyAttributeTests.cs" />
     <Compile Include="Data\DataProviderTests.cs" />
     <Compile Include="Data\Hierarchy\Category.cs" />
     <Compile Include="Data\Hierarchy\HierarchyTests.cs" />
     <Compile Include="Data\Hierarchy\TreeActiveRecordRepositoryTests.cs" />
-    <Compile Include="Data\Hierarchy\TreeCriteriaTests.cs" />
     <Compile Include="Data\Hierarchy\TreeEntityChildrenTests.cs" />
+    <Compile Include="Data\Hierarchy\TreeEntityRepositoryTests.cs" />
     <Compile Include="Data\Hierarchy\TreeInfoTests.cs" />
     <Compile Include="Data\Hibernate\HibernateDataProviderTests.cs" />
     <Compile Include="Data\Hibernate\HibernateRepositoryTests.cs" />

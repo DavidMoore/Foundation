@@ -9,8 +9,9 @@ namespace Foundation.Data.Hierarchy
     /// Contains common properties for holding and querying tree hierarchy information
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TId">The type of the id.</typeparam>
     [ActiveRecord]
-    public class TreeInfo<T> where T : class, ITreeEntity<T>, IEntity
+    public class TreeInfo<T, TId> where T : class, ITreeEntity<T,TId>, IEntity<TId>
     {
         int leftValue;
         T parent;
@@ -19,7 +20,7 @@ namespace Foundation.Data.Hierarchy
         public TreeInfo()
         {
             Siblings = new List<T>();
-            Children = new TreeEntityChildren<T>(Entity);
+            Children = new TreeEntityChildren<T,TId>(Entity);
             Descendants = new List<T>();
             Ancestors = new List<T>();
         }
@@ -27,7 +28,7 @@ namespace Foundation.Data.Hierarchy
         public TreeInfo(T entity) : this()
         {
             Entity = entity;
-            Children = new TreeEntityChildren<T>(Entity);
+            Children = new TreeEntityChildren<T,TId>(Entity);
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace Foundation.Data.Hierarchy
                 //if( Entity == null) throw new InvalidOperationException("Please set the Entity before using the TreeInfo object!");
                 if( Entity != null && value != null )
                 {
-                    if( value == Entity || (value.Id > 0 && value.Id.Equals(Entity.Id)) )
+                    if( value == Entity || (!value.Id.Equals(default(TId)) && value.Id.Equals(Entity.Id)) )
                         throw new InvalidOperationException("You can't make a tree node its own parent!");
                 }
 
@@ -106,7 +107,7 @@ namespace Foundation.Data.Hierarchy
         /// <summary>
         /// All children immediately below this node
         /// </summary>
-        public TreeEntityChildren<T> Children { get; private set; }
+        public TreeEntityChildren<T,TId> Children { get; private set; }
 
         /// <summary>
         /// All children below this node, right down to the lowest level

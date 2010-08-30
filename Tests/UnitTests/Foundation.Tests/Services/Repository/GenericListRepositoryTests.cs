@@ -11,10 +11,10 @@ namespace Foundation.Tests.Services.Repository
         [TestInitialize]
         public void Setup()
         {
-            repository = new GenericListRepository<DummyClass>();
+            repository = new GenericListRepositoryInt<DummyClass>();
         }
 
-        GenericListRepository<DummyClass> repository;
+        GenericListRepositoryInt<DummyClass> repository;
 
         [TestMethod]
         public void Can_get_by_id()
@@ -22,7 +22,7 @@ namespace Foundation.Tests.Services.Repository
             var instance = repository.Create();
             instance.Title = "Test";
             repository.Save(instance);
-            Assert.AreEqual(instance, repository.Find(1));
+            Assert.AreEqual(instance, repository.Query().SingleOrDefault(@class => @class.Id.Equals(1)));
         }
 
         [TestMethod]
@@ -59,14 +59,10 @@ namespace Foundation.Tests.Services.Repository
         }
     }
 
-    public class DummyClass : IEntity
+    public class DummyClass : IEntity<int>
     {
         public string Title { get; set; }
 
-        #region IEntity Members
-
         public int Id { get; set; }
-
-        #endregion
     }
 }

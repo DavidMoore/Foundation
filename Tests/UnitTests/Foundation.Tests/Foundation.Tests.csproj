@@ -101,8 +101,6 @@
     <Compile Include="Data\ActiveRecord\TypePropertyAttributeTests.cs" />
     <Compile Include="Data\DataProviderTests.cs" />
     <Compile Include="Data\Hierarchy\Category.cs" />
-    <Compile Include="Data\Hierarchy\HierarchyTests.cs" />
-    <Compile Include="Data\Hierarchy\TreeActiveRecordRepositoryTests.cs" />
     <Compile Include="Data\Hierarchy\TreeEntityChildrenTests.cs" />
     <Compile Include="Data\Hierarchy\TreeEntityRepositoryTests.cs" />
     <Compile Include="Data\Hierarchy\TreeInfoTests.cs" />

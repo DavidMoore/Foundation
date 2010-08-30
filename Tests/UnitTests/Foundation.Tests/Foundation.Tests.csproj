@@ -68,7 +68,9 @@
     <Reference Include="NHibernate">
       <HintPath>..\..\..\..\Commons\Libraries\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=4b67d0d894330a22, processorArchitecture=MSIL" />
+    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />

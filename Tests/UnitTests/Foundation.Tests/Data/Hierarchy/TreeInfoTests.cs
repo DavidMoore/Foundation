@@ -1,3 +1,5 @@
+using System;
+using Foundation.Data.Hierarchy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Data.Hierarchy
@@ -6,7 +8,23 @@ namespace Foundation.Tests.Data.Hierarchy
     public class TreeInfoTests
     {
         [TestMethod]
-        public void Gets_marked_dirty_if_LeftValue_is_changed()
+        public void Tree_property()
+        {
+            Category category = new Category();
+
+            Assert.IsInstanceOfType(category, typeof(ITreeEntity<Category,Guid>));
+
+            Assert.IsNotNull(category.Tree);
+            Assert.IsNull(category.Tree.Parent);
+            Assert.IsNotNull(category.Tree.Children);
+            Assert.AreEqual(category, category.Tree.Children.Parent);
+            Assert.AreEqual(0, category.Tree.LeftValue);
+            Assert.AreEqual(0, category.Tree.RightValue);
+            Assert.AreEqual(false, category.Tree.IsDirty);
+        }
+
+        [TestMethod]
+        public void Gets_marked_dirty_if_left_value_is_changed()
         {
             var category = new Category("Category1");
             Assert.IsFalse(category.Tree.IsDirty);
@@ -16,7 +34,7 @@ namespace Foundation.Tests.Data.Hierarchy
         }
 
         [TestMethod]
-        public void Gets_marked_dirty_if_Parent_is_changed()
+        public void Gets_marked_dirty_if_parent_is_changed()
         {
             var category = new Category("Category1");
             Assert.IsFalse(category.Tree.IsDirty);
@@ -26,7 +44,7 @@ namespace Foundation.Tests.Data.Hierarchy
         }
 
         [TestMethod]
-        public void Gets_marked_dirty_if_RightValue_is_changed()
+        public void Gets_marked_dirty_if_right_value_is_changed()
         {
             var category = new Category("Category1");
             Assert.IsFalse(category.Tree.IsDirty);
@@ -36,7 +54,7 @@ namespace Foundation.Tests.Data.Hierarchy
         }
 
         [TestMethod]
-        public void Setting_Parent_will_remove_the_child_from_its_previous_Parents_children()
+        public void Setting_parent_will_remove_the_child_from_its_previous_parents_children()
         {
             var parent = new Category("Parent");
             var parent2 = new Category("Parent2");
@@ -55,7 +73,7 @@ namespace Foundation.Tests.Data.Hierarchy
         }
 
         [TestMethod]
-        public void Setting_Parent_will_add_the_child_to_its_new_Parents_children()
+        public void Setting_parent_will_add_the_child_to_its_new_parents_children()
         {
             var parent = new Category("Parent");
             var child = new Category("Child");
@@ -77,7 +95,7 @@ namespace Foundation.Tests.Data.Hierarchy
         /// when manipulating these properties.
         /// </summary>
         [TestMethod]
-        public void Adding_child_by_setting_Parent_or_adding_to_Children_will_not_add_duplicates()
+        public void Adding_child_by_setting_parent_or_adding_to_children_will_not_add_duplicates()
         {
             var parent = new Category("Parent");
             var child = new Category("Child");

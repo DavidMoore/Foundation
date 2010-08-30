@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Foundation.Data.Hierarchy;
+using Foundation.Models;
 using Foundation.Services.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,12 +12,12 @@ namespace Foundation.Tests.Data.Hierarchy
     public class TreeEntityRepositoryTests
     {
         IList<Category> flatList;
-        GenericListRepositoryInt<Category> repository;
+        GenericListRepositoryGuid<Category> repository;
 
         [TestInitialize]
         public void Initialize()
         {
-            repository = new GenericListRepositoryInt<Category>();
+            repository = new GenericListRepositoryGuid<Category>();
             CreateTree();
         }
 
@@ -67,7 +69,7 @@ namespace Foundation.Tests.Data.Hierarchy
 
             flatList.ToList().ForEach(category => repository.Save(category));
 
-            repository.RebuildTree<Category,int>();
+            repository.RebuildTree<Category,Guid>();
 
             return list;
         }
@@ -75,21 +77,21 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Siblings()
         {
-            var results = repository.Query().Siblings<Category,int>(flatList.Single(i => i.Name.Equals("Node1_1"))).ToList();
+            var results = repository.Query().Siblings<Category,Guid>(flatList.Single(i => i.Name.Equals("Node1_1"))).ToList();
             Assert.AreEqual(1, results.Count);
             Assert.AreEqual("Node1_2", results[0].Name);
 
-            results = repository.Query().Siblings<Category, int>(flatList.Single(i => i.Name.Equals("Node1_1")), TreeListOptions.IncludeSelf).ToList();
+            results = repository.Query().Siblings<Category, Guid>(flatList.Single(i => i.Name.Equals("Node1_1")), TreeListOptions.IncludeSelf).ToList();
             Assert.AreEqual(2, results.Count);
             Assert.AreEqual("Node1_1", results[0].Name);
             Assert.AreEqual("Node1_2", results[1].Name);
 
-            results = repository.Query().Siblings<Category, int>(flatList.Single(i => i.Name.Equals("Node1"))).ToList();
+            results = repository.Query().Siblings<Category, Guid>(flatList.Single(i => i.Name.Equals("Node1"))).ToList();
             Assert.AreEqual(2, results.Count);
             Assert.AreEqual("Node2", results[0].Name);
             Assert.AreEqual("Node3", results[1].Name);
 
-            results = repository.Query().Siblings<Category, int>(flatList.Single(i => i.Name.Equals("Node1")), TreeListOptions.IncludeSelf).ToList();
+            results = repository.Query().Siblings<Category, Guid>(flatList.Single(i => i.Name.Equals("Node1")), TreeListOptions.IncludeSelf).ToList();
             Assert.AreEqual(3, results.Count);
             Assert.AreEqual("Node1", results[0].Name);
             Assert.AreEqual("Node2", results[1].Name);
@@ -99,7 +101,7 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Ancestors()
         {
-            var ancestors = repository.Query().Ancestors<Category, int>().ToList();
+            var ancestors = repository.Query().Ancestors<Category, Guid>().ToList();
             Assert.AreEqual(9, ancestors.Count);
             Assert.AreEqual("Node1", ancestors[0].Name);
             Assert.AreEqual("Node1_1", ancestors[1].Name);
@@ -115,7 +117,7 @@ namespace Foundation.Tests.Data.Hierarchy
         [TestMethod]
         public void Ancestors_for_specific_entity()
         {
-            var ancestors = repository.Query().Ancestors<Category, int>(flatList.Single(category => category.Name.Equals("Node1_1_2_1"))).ToList();
+            var ancestors = repository.Query().Ancestors<Category, Guid>(flatList.Single(category => category.Name.Equals("Node1_1_2_1"))).ToList();
             Assert.AreEqual(3, ancestors.Count);
             Assert.AreEqual("Node1", ancestors[0].Name);
             Assert.AreEqual("Node1_1", ancestors[1].Name);
@@ -126,7 +128,7 @@ namespace Foundation.Tests.Data.Hierarchy
         public void Children()
         {
             Assert.AreEqual(9, repository.Query().Count());
-            var results = repository.Query().Children<Category, int>(flatList.Single(i => i.Name.Equals("Node1")));
+            var results = repository.Query().Children<Category, Guid>(flatList.Single(i => i.Name.Equals("Node1")));
             Assert.AreEqual(2, results.Count());
             Assert.AreEqual("Node1_1", results.First().Name);
             Assert.AreEqual("Node1_2", results.Skip(1).Single().Name);
@@ -136,7 +138,7 @@ namespace Foundation.Tests.Data.Hierarchy
         public void Descendants()
         {
             Assert.AreEqual(9, repository.Query().Count());
-            var results = repository.Query().Descendants<Category, int>(flatList.Single(i => i.Name.Equals("Node1"))).ToList();
+            var results = repository.Query().Descendants<Category, Guid>(flatList.Single(i => i.Name.Equals("Node1"))).ToList();
             Assert.AreEqual(5, results.Count());
             Assert.AreEqual("Node1_1", results[0].Name);
             Assert.AreEqual("Node1_1_1", results[1].Name);
@@ -160,8 +162,16 @@ namespace Foundation.Tests.Data.Hierarchy
         public void RootNodes()
         {
             Assert.AreEqual(9, repository.Query().Count());
-            var results = repository.Query().Children<Category, int>(null);
+            var results = repository.Query().Children<Category, Guid>(null);
             Assert.AreEqual(3, results.Count());
+        }
+    }
+
+    public class GenericListRepositoryGuid<T> : GenericListRepository<T, Guid> where T : class, IEntity<Guid>, new()
+    {
+        protected override Guid GetNextPrimaryKey()
+        {
+            return Guid.NewGuid();
         }
     }
 }

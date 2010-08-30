@@ -1,11 +1,10 @@
-using Castle.ActiveRecord;
+using System;
 using Foundation.Data.Hierarchy;
 using Foundation.Models;
 
 namespace Foundation.Tests.Data.Hierarchy
 {
-    [ActiveRecord]
-    public class Category : ITreeEntity<Category, int>, IEntity<int>
+    public class Category : ITreeEntity<Category, Guid>, INamedEntity<Guid>
     {
         public Category(string name) : this()
         {
@@ -14,16 +13,19 @@ namespace Foundation.Tests.Data.Hierarchy
 
         public Category()
         {
-            Tree = new TreeInfo<Category, int>(this);
+            Id = Guid.NewGuid();
+            Tree = new TreeInfo<Category, Guid>(this);
         }
 
-        [Nested]
-        public TreeInfo<Category, int> Tree { get; set; }
+        public TreeInfo<Category, Guid> Tree { get; set; }
 
-        [Property]
         public string Name { get; set; }
 
-        [PrimaryKey]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("Category {0} [{1}]", Id, Name);
+        }
     }
 }

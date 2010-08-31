@@ -33,7 +33,7 @@ namespace Foundation.Tests.Data.Hibernate
         }
 
         [TestMethod]
-        public void Save()
+        public void Save_calls_SaveOrUpdate_on_session()
         {
             var category = new Category("Test Category");
             repository.Save(category);

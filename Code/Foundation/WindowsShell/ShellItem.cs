@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Foundation.Extensions;
+using Foundation.ExtensionMethods;
 using Shell32;
 
 namespace Foundation.WindowsShell

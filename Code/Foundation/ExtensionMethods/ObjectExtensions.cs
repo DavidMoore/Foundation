@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Foundation.Extensions
+namespace Foundation.ExtensionMethods
 {
     public static class ObjectExtensions
     {

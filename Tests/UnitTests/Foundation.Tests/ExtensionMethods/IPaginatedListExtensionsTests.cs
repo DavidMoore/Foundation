@@ -1,10 +1,10 @@
 using System;
 using Foundation.Data.ActiveRecord.Security;
-using Foundation.Extensions;
+using Foundation.ExtensionMethods;
 using Foundation.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Foundation.Tests.Extensions
+namespace Foundation.Tests.ExtensionMethods
 {
     [TestClass]
     public class IPaginatedListExtensionsTests

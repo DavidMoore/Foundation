@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Web;
-using Foundation.Extensions;
+using Foundation.ExtensionMethods;
 
 namespace Foundation.Web.Extensions
 {

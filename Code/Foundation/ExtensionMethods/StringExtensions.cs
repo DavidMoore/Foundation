@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Foundation.Extensions
+namespace Foundation.ExtensionMethods
 {
     /// <summary>
     /// Utility extension methods for strings

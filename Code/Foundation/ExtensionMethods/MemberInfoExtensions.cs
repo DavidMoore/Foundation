@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Foundation.Extensions
+namespace Foundation.ExtensionMethods
 {
     /// <summary>
     /// Extension methods for <see cref="MemberInfo"/>

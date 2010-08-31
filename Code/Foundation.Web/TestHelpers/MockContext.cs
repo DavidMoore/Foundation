@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Foundation.Extensions;
+using Foundation.ExtensionMethods;
 using Moq;
 
 namespace Foundation.Web.TestHelpers

@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Foundation.Extensions
+namespace Foundation.ExtensionMethods
 {
     public static class PaginatedListExtensions
     {

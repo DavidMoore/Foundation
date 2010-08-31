@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-namespace Foundation.Extensions
+namespace Foundation.ExtensionMethods
 {
     public static class EnumerableExtensions
     {

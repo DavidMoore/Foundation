@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Foundation.ExtensionMethods;
 using Foundation.Models;
-using Foundation.Extensions;
 
 namespace Foundation.Data.Hierarchy
 {

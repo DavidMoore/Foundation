@@ -1,5 +1,5 @@
 using System.Linq;
-using Foundation.Extensions;
+using Foundation.ExtensionMethods;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests

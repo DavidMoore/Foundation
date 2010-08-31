@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 
-namespace Foundation.Extensions
+namespace Foundation.ExtensionMethods
 {
 // ReSharper disable InconsistentNaming
     public static class ISynchronizeInvokeExtensions

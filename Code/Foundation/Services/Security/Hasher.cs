@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
-using Foundation.Extensions;
+using Foundation.ExtensionMethods;
 
 namespace Foundation.Services.Security
 {

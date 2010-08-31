@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 using System.IO;
-using Foundation.Extensions;
+using Foundation.ExtensionMethods;
 using Foundation.Services.Logging;
 using Foundation.Services.Security;
 

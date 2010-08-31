@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.IO;
 
-namespace Foundation.Extensions
+namespace Foundation.ExtensionMethods
 {
     public static class FileSystemInfoExtensions
     {

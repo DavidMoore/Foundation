@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Foundation.Extensions;
+using Foundation.ExtensionMethods;
 
 namespace Foundation.Services.Validation
 {

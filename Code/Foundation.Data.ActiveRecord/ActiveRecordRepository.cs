@@ -4,7 +4,7 @@ using System.Linq;
 using Castle.ActiveRecord;
 using Castle.ActiveRecord.Linq;
 using Foundation.Data.ActiveRecord.Validation;
-using Foundation.Extensions;
+using Foundation.ExtensionMethods;
 using Foundation.Models;
 using Foundation.Services.Repository;
 using Foundation.Services.Validation;

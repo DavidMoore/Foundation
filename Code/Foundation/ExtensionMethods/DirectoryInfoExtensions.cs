@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
-namespace Foundation.Extensions
+namespace Foundation.ExtensionMethods
 {
     [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")]
     public static class DirectoryInfoExtensions

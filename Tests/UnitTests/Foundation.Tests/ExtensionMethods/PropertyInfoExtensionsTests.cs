@@ -1,7 +1,7 @@
-using Foundation.Extensions;
+using Foundation.ExtensionMethods;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Foundation.Tests.Extensions
+namespace Foundation.Tests.ExtensionMethods
 {
     [TestClass]
     public class PropertyInfoExtensionsTests

@@ -1,10 +1,8 @@
-using Foundation.Extensions;
-using Foundation.TestHelpers;
 using Foundation.Web.Extensions;
 using Foundation.Web.TestHelpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Foundation.Tests.Extensions
+namespace Foundation.Tests.ExtensionMethods
 {
     [TestClass]
     public class HttpRequestBaseExtensionsTests

@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Tests", "Tests\U
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{38C985A9-EA29-41AB-8788-61F322D9FBC4}"
 	ProjectSection(SolutionItems) = preProject
+		Tests\CodeCoverage.testsettings = Tests\CodeCoverage.testsettings
 		Foundation.vsmdi = Foundation.vsmdi
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+		Tests\UnitTests.testsettings = Tests\UnitTests.testsettings
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Windows.Presentation", "Code\Foundation.Windows.Presentation\Foundation.Windows.Presentation.csproj", "{68C1ACEC-AA04-4330-9A9D-D7F137B4A94E}"

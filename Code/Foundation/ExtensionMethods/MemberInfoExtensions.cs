@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace Foundation.ExtensionMethods
@@ -20,7 +21,7 @@ namespace Foundation.ExtensionMethods
         }
 
         /// <summary>
-        /// Gets the instance of the specified attribute on the member
+        /// Gets the instance of the specified attribute on the member.
         /// </summary>
         /// <typeparam name="TAttribute">The attribute to find</typeparam>
         /// <param name="memberInfo">The member marked up with the attribute</param>
@@ -28,6 +29,17 @@ namespace Foundation.ExtensionMethods
         public static TAttribute GetAttribute<TAttribute>(this MemberInfo memberInfo) where TAttribute : Attribute
         {
             return ReflectionUtilities.GetAttribute<TAttribute>(memberInfo);
+        }
+
+        /// <summary>
+        /// Gets all instances of the specified attribute on the member.
+        /// </summary>
+        /// <typeparam name="TAttribute">The type of the attribute to find.</typeparam>
+        /// <param name="memberInfo">The member to look for the attribute on.</param>
+        /// <returns>A collection of instances of the attribute (possibly empty).</returns>
+        public static IEnumerable<TAttribute> GetAttributes<TAttribute>(this MemberInfo memberInfo) where TAttribute : Attribute
+        {
+            return ReflectionUtilities.GetAttributes<TAttribute>(memberInfo);
         }
     }
 }

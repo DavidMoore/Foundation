@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -96,6 +97,22 @@ namespace Foundation.Media
             var y = (size.Height == originalHeight) ? 0 : (originalHeight - size.Height) / 2;
 
             return new Rectangle(x, y, size.Width, size.Height);
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <filterpriority>2</filterpriority>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        void Dispose(bool disposing)
+        {
+            if (!disposing || Cache == null) return;
+            Cache.Dispose();
         }
     }
 }

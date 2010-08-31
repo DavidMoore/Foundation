@@ -7,7 +7,7 @@ using Foundation.Services.Security;
 
 namespace Foundation.Media
 {
-    public class ThumbnailCache : IThumbnailCache, IDisposable
+    public class ThumbnailCache : IThumbnailCache
     {
         protected virtual ILogger Logger
         {

@@ -16,6 +16,12 @@ namespace Foundation.Tests.Media
             generator = new ThumbnailGenerator();
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            if (generator != null) generator.Dispose();
+        }
+
         [TestMethod, ExpectedException(typeof(FileNotFoundException))]
         public void FileNotFoundException_if_image_file_not_found()
         {
@@ -154,7 +160,7 @@ namespace Foundation.Tests.Media
                 generator.Generate(image.FileInfo.FullName, thumb.FileInfo.FullName);
             }
 
-            Assert.AreEqual(1, (generator.Cache as ThumbnailCache).CacheDirectory.GetFiles().Length);
+            Assert.AreEqual(1, ((ThumbnailCache) generator.Cache).CacheDirectory.GetFiles().Length);
         }
     }
 }

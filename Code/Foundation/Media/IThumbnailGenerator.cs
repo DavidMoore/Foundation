@@ -1,8 +1,9 @@
+using System;
 using System.Drawing;
 
 namespace Foundation.Media
 {
-    public interface IThumbnailGenerator
+    public interface IThumbnailGenerator : IDisposable
     {
         ThumbnailOptions Options { get; set; }
 

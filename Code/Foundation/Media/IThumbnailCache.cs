@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace Foundation.Media
@@ -5,7 +6,7 @@ namespace Foundation.Media
     /// <summary>
     /// Contract for classes providing a media thumbnail cache
     /// </summary>
-    public interface IThumbnailCache
+    public interface IThumbnailCache : IDisposable
     {
         /// <summary>
         /// Returns a handle to a cached thumbnail version of the original image, or

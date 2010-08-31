@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Foundation.Tests.Services
 {
     [TestClass]
-    class ServiceManagerTests
+    public class ServiceManagerTests
     {
         [TestInitialize]
         public void Setup()

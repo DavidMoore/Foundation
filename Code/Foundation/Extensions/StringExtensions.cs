@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Foundation.Extensions
@@ -50,14 +51,18 @@ namespace Foundation.Extensions
         }
 
         /// <summary>
-        /// Returns true if the string is null or empty
+        /// Returns true if the string is null or empty. If the string is just
+        /// whitespace, then it will also be considered empty.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         [DebuggerStepThrough]
         public static bool IsNullOrEmpty(this string value)
         {
-            return string.IsNullOrEmpty(value) || value.Trim().Length == 0;
+// ReSharper disable ReplaceWithStringIsNullOrEmpty
+            if (value == null || value.Length == 0) return true;
+// ReSharper restore ReplaceWithStringIsNullOrEmpty
+            return value.All(character => char.IsWhiteSpace(character));
         }
 
         /// <summary>

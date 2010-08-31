@@ -22,7 +22,7 @@ namespace Foundation.Services.UnitOfWorkServices
             factory = unitOfWorkFactory;
         }
 
-        internal static void Reset()
+        public static void Reset()
         {
             factory = null;
         }

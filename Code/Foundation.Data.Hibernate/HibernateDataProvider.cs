@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Foundation.Services.UnitOfWorkServices;
@@ -52,15 +56,27 @@ namespace Foundation.Data.Hibernate
         public FluentConfiguration Configuration { get; protected set; }
 
         /// <summary>
-        /// Gets the mappings.
+        /// Gets the mappings. By default, loads all mappings from all assemblies loaded into the current app domain.
         /// </summary>
         /// <param name="mappingConfiguration">The mapping configuration.</param>
         /// <returns></returns>
         protected virtual MappingConfiguration GetMappings(MappingConfiguration mappingConfiguration)
         {
-            mappingConfiguration.FluentMappings.AddFromAssembly(GetType().Assembly);
+            foreach (var assembly in GetMappingsAssemblies().Where(assembly => !assembly.IsDynamic))
+            {
+                mappingConfiguration.FluentMappings.AddFromAssembly(assembly);
+            }
 
             return mappingConfiguration;
+        }
+
+        /// <summary>
+        /// Gets a collection of all assemblies that mappings should be loaded from, for <see cref="GetMappings"/>.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual IEnumerable<Assembly> GetMappingsAssemblies()
+        {
+            return new[]{ GetType().Assembly };
         }
 
         /// <summary>

@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Data.Hibernate",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Data.ActiveRecord", "Code\Foundation.Data.ActiveRecord\Foundation.Data.ActiveRecord.csproj", "{9F18BB71-9334-45A3-9506-44982A7483DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Build.MSBuild", "Code\Foundation.Build.MSBuild\Foundation.Build.MSBuild.csproj", "{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Foundation.vsmdi
@@ -129,6 +131,16 @@ Global
 		{9F18BB71-9334-45A3-9506-44982A7483DE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9F18BB71-9334-45A3-9506-44982A7483DE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9F18BB71-9334-45A3-9506-44982A7483DE}.Release|Win32.ActiveCfg = Release|Any CPU
+		{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

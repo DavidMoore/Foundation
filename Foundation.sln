@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Data.Hibernate",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Data.ActiveRecord", "Code\Foundation.Data.ActiveRecord\Foundation.Data.ActiveRecord.csproj", "{9F18BB71-9334-45A3-9506-44982A7483DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Models.IntPrimaryKey", "Code\Foundation.Models.IntPrimaryKey\Foundation.Models.IntPrimaryKey.csproj", "{BDA024A7-BB6F-4709-B5A9-F330FE79093B}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Foundation.vsmdi
@@ -117,6 +119,16 @@ Global
 		{9F18BB71-9334-45A3-9506-44982A7483DE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9F18BB71-9334-45A3-9506-44982A7483DE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9F18BB71-9334-45A3-9506-44982A7483DE}.Release|Win32.ActiveCfg = Release|Any CPU
+		{BDA024A7-BB6F-4709-B5A9-F330FE79093B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA024A7-BB6F-4709-B5A9-F330FE79093B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA024A7-BB6F-4709-B5A9-F330FE79093B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BDA024A7-BB6F-4709-B5A9-F330FE79093B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BDA024A7-BB6F-4709-B5A9-F330FE79093B}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{BDA024A7-BB6F-4709-B5A9-F330FE79093B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA024A7-BB6F-4709-B5A9-F330FE79093B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA024A7-BB6F-4709-B5A9-F330FE79093B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BDA024A7-BB6F-4709-B5A9-F330FE79093B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BDA024A7-BB6F-4709-B5A9-F330FE79093B}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

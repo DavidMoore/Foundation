@@ -19,6 +19,8 @@ namespace Foundation.Windows.Registry
         static readonly int majorOsVersion = Environment.OSVersion.Version.Major;
         const string ClassRootPath = @"Software\Classes";
 
+        public bool LeaveRemappedKeyOnDispose { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RegistryRedirector"/> class.
         /// </summary>
@@ -120,7 +122,7 @@ namespace Foundation.Windows.Registry
                 UnmapRegistryKey(Microsoft.Win32.Registry.Users);
             }
 
-            RemoveRemappedKey();
+            if( !LeaveRemappedKeyOnDispose) RemoveRemappedKey();
         }
 
         void RemoveRemappedKey()

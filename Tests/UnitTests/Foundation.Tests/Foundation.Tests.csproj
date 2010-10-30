@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensionMethodsTests.cs" />
+    <Compile Include="Build\MSBuild\VisualCResourceFileTests.cs" />
     <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />
     <Compile Include="DatabaseFixture.cs" />
@@ -179,6 +180,10 @@
     <Compile Include="Windows\WindowRegistry\RegistryRedirectionTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Code\Foundation.Build.MSBuild\Foundation.Build.MSBuild.csproj">
+      <Project>{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}</Project>
+      <Name>Foundation.Build.MSBuild</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Code\Foundation.Data.ActiveRecord\Foundation.Data.ActiveRecord.csproj">
       <Project>{9F18BB71-9334-45A3-9506-44982A7483DE}</Project>
       <Name>Foundation.Data.ActiveRecord</Name>

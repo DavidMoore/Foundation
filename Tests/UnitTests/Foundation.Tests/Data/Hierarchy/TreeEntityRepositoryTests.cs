@@ -166,12 +166,4 @@ namespace Foundation.Tests.Data.Hierarchy
             Assert.AreEqual(3, results.Count());
         }
     }
-
-    public class GenericListRepositoryGuid<T> : GenericListRepository<T, Guid> where T : class, IEntity<Guid>, new()
-    {
-        protected override Guid GetNextPrimaryKey()
-        {
-            return Guid.NewGuid();
-        }
-    }
 }

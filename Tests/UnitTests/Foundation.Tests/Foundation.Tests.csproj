@@ -143,6 +143,7 @@
     <Compile Include="Services\Registration\RegisterComponentTests.cs" />
     <Compile Include="Services\Registration\ServiceRegistrationTests.cs" />
     <Compile Include="Services\Repository\ActiveRecordRepositoryFixture.cs" />
+    <Compile Include="Services\Repository\EntityRepositoryTests.cs" />
     <Compile Include="Services\Repository\GenericListRepositoryTests.cs" />
     <Compile Include="Services\Security\ActiveRecordIntegrationTests.cs" />
     <Compile Include="Services\Security\EntityTypeFixture.cs" />

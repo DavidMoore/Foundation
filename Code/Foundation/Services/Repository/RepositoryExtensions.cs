@@ -1,4 +1,7 @@
-﻿namespace Foundation.Services.Repository
+﻿using System.Linq;
+using Foundation.Models;
+
+namespace Foundation.Services.Repository
 {
     /// <summary>
     /// Adds some helpful extensions to the <see cref="IRepository{T}"/> API.
@@ -15,5 +18,7 @@
         {
             foreach (var instance in instances) repository.Save(instance);
         }
+
+        
     }
 }

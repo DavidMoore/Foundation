@@ -1,12 +1,11 @@
 using System;
 using System.IO;
-using Microsoft.Win32;
 
 namespace Foundation.Build.MSBuild
 {
     public static class VisualStudio6Utility
     {
-        public static string GetVisualStudio6Path()
+        static string GetVisualStudio6Path()
         {
             var visualStudio6Path = Environment.ExpandEnvironmentVariables(@"%ProgramFiles%\Microsoft Visual Studio");
 

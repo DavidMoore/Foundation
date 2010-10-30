@@ -18,7 +18,7 @@ namespace Foundation.Data.Hierarchy
         /// <typeparam name="TEntity">The type of the entity the repository handles.</typeparam>
         /// <typeparam name="TId">The type of the entity identifier.</typeparam>
         /// <param name="repository">The repository.</param>
-        public static void RebuildTree<TEntity,TId>(this IRepository<TEntity> repository) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>, new()
+        public static void RebuildTree<TEntity,TId>(this IRepository<TEntity> repository) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>
         {
             // Get all nodes
             var nodes = repository.Query();
@@ -32,7 +32,7 @@ namespace Foundation.Data.Hierarchy
             foreach(var node in nodes) repository.Save(node);
         }
 
-        static int UpdateNode<TEntity, TId>(TEntity node, int leftValue, IEnumerable<TEntity> nodes) where TEntity : class, ITreeEntity<TEntity, TId>, IEntity<TId>, new()
+        static int UpdateNode<TEntity, TId>(TEntity node, int leftValue, IEnumerable<TEntity> nodes) where TEntity : class, ITreeEntity<TEntity, TId>, IEntity<TId>
         {
             node.Tree.LeftValue = leftValue;
 

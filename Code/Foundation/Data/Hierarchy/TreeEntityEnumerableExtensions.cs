@@ -17,7 +17,7 @@ namespace Foundation.Data.Hierarchy
         /// <param name="entity">The entity whose siblings we are searching for.</param>
         /// <param name="options">Options on whether to include the entity itself in the list.</param>
         /// <returns></returns>
-        public static IEnumerable<TEntity> Siblings<TEntity,TId>(this IEnumerable<TEntity> entities, TEntity entity, TreeListOptions options = TreeListOptions.ExcludeSelf) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>, new()
+        public static IEnumerable<TEntity> Siblings<TEntity,TId>(this IEnumerable<TEntity> entities, TEntity entity, TreeListOptions options = TreeListOptions.ExcludeSelf) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>
         {
             VerifyTreeNode(entity);
             return entities.Where(node => (options == TreeListOptions.IncludeSelf || entity != node) && entity.Tree.Parent == node.Tree.Parent );
@@ -32,7 +32,7 @@ namespace Foundation.Data.Hierarchy
         /// <param name="entity">The node.</param>
         /// <param name="options">Options on whether to include the entity itself in the results.</param>
         /// <returns></returns>
-        public static IEnumerable<TEntity> Ancestors<TEntity,TId>(this IEnumerable<TEntity> entities, TEntity entity, TreeListOptions options = TreeListOptions.ExcludeSelf) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>, new()
+        public static IEnumerable<TEntity> Ancestors<TEntity,TId>(this IEnumerable<TEntity> entities, TEntity entity, TreeListOptions options = TreeListOptions.ExcludeSelf) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>
         {
             VerifyTreeNode(entity);
             var results = entities.Where(node => node.Tree.LeftValue < entity.Tree.LeftValue && node.Tree.RightValue > entity.Tree.RightValue);
@@ -50,7 +50,7 @@ namespace Foundation.Data.Hierarchy
         /// <typeparam name="TId">The type of the entity identifier.</typeparam>
         /// <param name="entities">The entities.</param>
         /// <returns></returns>
-        public static IEnumerable<TEntity> Ancestors<TEntity,TId>(this IEnumerable<TEntity> entities) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>, new()
+        public static IEnumerable<TEntity> Ancestors<TEntity,TId>(this IEnumerable<TEntity> entities) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>
         {
             return entities.SelectMany(entity => Ancestors<TEntity,TId>(entities, entity, TreeListOptions.IncludeSelf)).Distinct();
         }
@@ -63,7 +63,7 @@ namespace Foundation.Data.Hierarchy
         /// <param name="entities">The entities.</param>
         /// <param name="entity">The parent node to find the children for.</param>
         /// <returns></returns>
-        public static IEnumerable<TEntity> Children<TEntity,TId>(this IEnumerable<TEntity> entities, TEntity entity) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>, new()
+        public static IEnumerable<TEntity> Children<TEntity,TId>(this IEnumerable<TEntity> entities, TEntity entity) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>
         {
             VerifyTreeNode(entity, true);
             return entities.Where(node => node.Tree.Parent == entity);
@@ -77,7 +77,7 @@ namespace Foundation.Data.Hierarchy
         /// <param name="entities">The entities.</param>
         /// <param name="entity">The parent node to find the descendants of.</param>
         /// <returns></returns>
-        public static IEnumerable<TEntity> Descendants<TEntity,TId>(this IEnumerable<TEntity> entities, TEntity entity) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>, new()
+        public static IEnumerable<TEntity> Descendants<TEntity,TId>(this IEnumerable<TEntity> entities, TEntity entity) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>
         {
             VerifyTreeNode(entity);
             return entities.Where(node => node.Tree.LeftValue > entity.Tree.LeftValue && node.Tree.RightValue < entity.Tree.RightValue);
@@ -90,7 +90,7 @@ namespace Foundation.Data.Hierarchy
         /// <typeparam name="TId">The type of the entity identifier.</typeparam>
         /// <param name="entity">The entity that is a node in the tree.</param>
         /// <param name="allowNull">All the passed node to be <c>null</c>.</param>
-        static void VerifyTreeNode<TEntity,TId>(ITreeEntity<TEntity,TId> entity, bool allowNull = false) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>, new()
+        static void VerifyTreeNode<TEntity,TId>(ITreeEntity<TEntity,TId> entity, bool allowNull = false) where TEntity : class, ITreeEntity<TEntity,TId>, IEntity<TId>
         {
             if (allowNull && entity == null) return;
             if (entity == null) throw new ArgumentNullException("entity");

@@ -7,7 +7,7 @@ namespace Foundation.Services.Repository
     /// and querying of a model from a data store.
     /// </summary>
     /// <typeparam name="T">The model type.</typeparam>
-    public interface IRepository<T> where T : class, new()
+    public interface IRepository<T> where T : class
     {
         /// <summary>
         /// Creates and returns a new instance of the model.

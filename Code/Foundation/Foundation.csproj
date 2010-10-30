@@ -124,6 +124,7 @@
     <Compile Include="Services\Discovery\AssemblySource.cs" />
     <Compile Include="Services\IExceptionHandlerWindow.cs" />
     <Compile Include="Services\Logging\LoggerExtensions.cs" />
+    <Compile Include="Services\Repository\EntityRepositoryExtensions.cs" />
     <Compile Include="Services\Repository\GenericListRepositoryGuid.cs" />
     <Compile Include="Services\Repository\GenericListRepositoryInt.cs" />
     <Compile Include="Services\Repository\RepositoryExtensions.cs" />

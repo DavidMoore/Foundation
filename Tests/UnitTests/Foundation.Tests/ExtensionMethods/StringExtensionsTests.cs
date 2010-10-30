@@ -91,5 +91,26 @@ namespace Foundation.Tests.ExtensionMethods
             Assert.IsTrue(validAddresses.All(s => s.IsValidEmail()) );
             Assert.IsTrue(invalidAddresses.All(s => !s.IsValidEmail()));
         }
+
+        [TestMethod]
+        public void ToDictionary()
+        {
+            var value = "prop1=val1; prop2=val2";
+            var dictionary = value.ToDictionary(';', '=');
+            Assert.AreEqual(2, dictionary.Count);
+            Assert.AreEqual("val1", dictionary["prop1"]);
+            Assert.AreEqual("val2", dictionary["prop2"]);
+        }
+
+        [TestMethod]
+        public void ToList()
+        {
+            var value = "value1;value2;value3";
+            var list = value.ToList(';').ToList();
+            Assert.AreEqual(3, list.Count());
+            Assert.AreEqual("value1", list[0]);
+            Assert.AreEqual("value2", list[1]);
+            Assert.AreEqual("value3", list[2]);
+        }
     }
 }

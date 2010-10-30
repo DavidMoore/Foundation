@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -138,6 +139,31 @@ namespace Foundation.ExtensionMethods
         public static bool IsValidEmail(this string value)
         {
             return emailRegex.IsMatch(value);
+        }
+
+        public static IDictionary<string,string> ToDictionary(this string value, char entryDelimiter, char keyValueDelimiter)
+        {
+            var result = new Dictionary<string, string>();
+            
+            var entries = value.ToList(entryDelimiter);
+
+            foreach (var propertyOverride in entries)
+            {
+                var parts = propertyOverride.Trim().Split(new[] { keyValueDelimiter });
+                if (parts.Length < 2) continue;
+
+                var keyPart = parts[0].Trim();
+                var valuePart = parts[1].Trim();
+
+                result[keyPart] = valuePart;
+            }
+
+            return result;
+        }
+
+        public static IEnumerable<string> ToList(this string value, char delimiter)
+        {
+            return value.Split(new[] { delimiter }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

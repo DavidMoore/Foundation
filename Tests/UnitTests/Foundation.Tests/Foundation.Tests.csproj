@@ -120,6 +120,7 @@
     <Compile Include="ExtensionMethods\HttpRequestBaseExtensionsTests.cs" />
     <Compile Include="ExtensionMethods\IPaginatedListExtensionsTests.cs" />
     <Compile Include="ExtensionMethods\PropertyInfoExtensionsTests.cs" />
+    <Compile Include="ExtensionMethods\StreamExtensionsTests.cs" />
     <Compile Include="ExtensionMethods\StringExtensionsTests.cs" />
     <Compile Include="ExtensionMethods\TypeExtensionsTests.cs" />
     <Compile Include="Media\ThumbnailCacheTests.cs" />

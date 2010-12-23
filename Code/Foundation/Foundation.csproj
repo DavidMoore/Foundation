@@ -104,6 +104,7 @@
     <Compile Include="ExtensionMethods\MemberInfoExtensions.cs" />
     <Compile Include="ExtensionMethods\ObjectExtensions.cs" />
     <Compile Include="ExtensionMethods\PaginatedListExtensions.cs" />
+    <Compile Include="ExtensionMethods\StreamExtensions.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="ExtensionMethods\TypeExtensions.cs" />
     <Compile Include="ICanInitialize.cs" />

@@ -22,7 +22,7 @@ namespace Foundation.Build.MSBuild
 
         public void UpdateProperties(string propertyOverrides, ITaskItem project, TaskLoggingHelper log)
         {
-            log.LogMessage("Updating properties in file {0}", resourceFile.FullName);
+            log.LogMessage(MessageImportance.Normal, "Updating properties in file {0}", resourceFile.FullName);
 
             if (string.IsNullOrWhiteSpace(propertyOverrides)) return;
 
@@ -34,9 +34,7 @@ namespace Foundation.Build.MSBuild
             {
                 properties[metaDataName] = project.GetMetadata(metaDataName);
             }
-
-            properties.ForEach(pair => log.LogMessage("Property {0}={1}", pair.Key, pair.Value));
-
+            
             var lines = File.ReadLines(resourceFile.FullName).ToList();
             var results = new List<string>(lines.Count);
 
@@ -67,7 +65,7 @@ namespace Foundation.Build.MSBuild
 
                     if (properties.ContainsKey(key))
                     {
-                        log.LogMessage("Setting {0}={1}", key, properties[key]);
+                        log.LogMessage(MessageImportance.Low, "Setting \"{0}\" to \"{1}\"", key, properties[key]);
                         results.Add(string.Format(isValueKey ? "VALUE \"{0}\", \"{1}\\0\"" : "{0} {1}", key, properties[key]));
                     }
                     else

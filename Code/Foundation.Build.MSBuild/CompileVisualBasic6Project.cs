@@ -58,20 +58,15 @@ namespace Foundation.Build.MSBuild
                                            RedirectStandardError = true
                                        };
 
-//            var path = processStartInfo.EnvironmentVariables["PATH"];
-//
-            // Update the PATH to include reference paths
-//            path = ReferencePaths.Aggregate(path, (current, referencePath) => referencePath.GetMetadata("FullPath") + ";" + current);
-//
-//            processStartInfo.EnvironmentVariables["PATH"] = path;
-
             // Get the full path to the output directory
             var outputDirectory = new DirectoryInfo( OutputDirectory.GetMetadata("FullPath") );
 
             foreach(var projectItem in Projects)
             {
                 var projectFile = new FileInfo(projectItem.GetMetadata("FullPath"));
-                if (projectFile.DirectoryName == null) throw new FileNotFoundException("Project has no DirectoryName", projectFile.FullName);
+                
+                Log.LogMessage(MessageImportance.High, new string('-', 60));
+                Log.LogMessage(MessageImportance.High, "Build Visual Basic 6 Project: {0}", projectItem.GetMetadata("FullPath"));
 
                 var projectFileLog = new FileInfo(projectFile.FullName + ".log");
 
@@ -84,10 +79,9 @@ namespace Foundation.Build.MSBuild
 
                 processStartInfo.Arguments = string.Format("/MAKE /OUT \"{0}\" \"{1}\"", projectFileLog.FullName, projectFile.FullName);
 
+                Log.LogMessage("Running {0} {1}", processStartInfo.FileName, processStartInfo.Arguments);
                 using (var process = Process.Start(processStartInfo))
                 {
-                    if( process == null) throw new InvalidOperationException("Process could not be started");
-
                     process.WaitForExit();
                     
                     string output = process.StandardOutput.ReadToEnd();
@@ -100,11 +94,17 @@ namespace Foundation.Build.MSBuild
                     {
                         // Get the binary file
                         var binary = new FileInfo(Path.Combine(projectFile.DirectoryName, project.GetValue("ExeName32")));
-
+                        var binaryDestination = Path.Combine(outputDirectory.FullName, binary.Name);
+                        Log.LogMessage("Copying binary from {0} to {1}", binary.FullName, binaryDestination);
                         File.Copy(binary.FullName, Path.Combine(outputDirectory.FullName, binary.Name), true);
                         
                         var debugSymbols = new FileInfo(Path.ChangeExtension(binary.FullName, ".pdb"));
-                        File.Copy(debugSymbols.FullName, Path.Combine(outputDirectory.FullName, debugSymbols.Name), true);
+                        var debugSymbolsDestination = Path.Combine(outputDirectory.FullName, debugSymbols.Name);
+                        if (debugSymbols.Exists)
+                        {
+                            Log.LogMessage("Copying debug symbols from {0} to {1}", debugSymbols.FullName, debugSymbolsDestination);
+                            File.Copy(debugSymbols.FullName, debugSymbolsDestination, true);
+                        }
 
                         continue;
                     }

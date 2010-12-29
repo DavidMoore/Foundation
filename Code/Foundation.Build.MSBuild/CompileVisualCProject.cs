@@ -63,6 +63,8 @@ namespace Foundation.Build.MSBuild
                 var binaryFileMetaData = projectItem.GetMetadata("BinaryPath");
                 if (binaryFileMetaData == null) throw new InvalidOperationException("Please specify the BinaryPath meta data property for the project " + projectItem);
 
+                Log.LogMessage(MessageImportance.High, new string('-', 60));
+                Log.LogMessage(MessageImportance.High, "Building Visual C++ 6 project: {0}", projectFile.FullName);
                 var projectFileLog = new FileInfo(projectFile.FullName + ".log");
                 
                 var resourceFile = new VisualCResourceFile(file);
@@ -71,6 +73,7 @@ namespace Foundation.Build.MSBuild
                 resourceFile.UpdateProperties(PropertyOverrides, projectItem, Log);
                 
                 processStartInfo.Arguments = string.Format(" \"{0}\" /OUT \"{1}\" /MAKE \"{2}\" /REBUILD", projectFile.FullName, projectFileLog.FullName, configuration);
+                Log.LogMessage("Running {0} {1}", processStartInfo.FileName, processStartInfo.Arguments);
 
                 using (var process = Process.Start(processStartInfo))
                 {

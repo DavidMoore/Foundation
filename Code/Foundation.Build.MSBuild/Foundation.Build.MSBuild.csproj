@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="CompileVisualBasic6Project.cs" />
     <Compile Include="CompileVisualCProject.cs" />
+    <Compile Include="GenerateAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualBasicProject.cs" />
     <Compile Include="VisualCResourceFile.cs" />

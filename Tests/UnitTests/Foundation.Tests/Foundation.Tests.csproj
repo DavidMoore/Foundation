@@ -55,6 +55,8 @@
     <Reference Include="Lucene.Net">
       <HintPath>..\..\..\..\Commons\Libraries\Lucene.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\..\..\Commons\Libraries\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -93,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensionMethodsTests.cs" />
+    <Compile Include="Build\MSBuild\GenerateAssemblyInfoTests.cs" />
     <Compile Include="Build\MSBuild\VisualCResourceFileTests.cs" />
     <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />

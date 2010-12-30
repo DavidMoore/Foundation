@@ -53,6 +53,7 @@ namespace Foundation.Data.Hibernate
         /// Gets or sets the Fluent NHibernate configuration.
         /// </summary>
         /// <value>The Fluent NHibernate configuration.</value>
+        [CLSCompliant(false)]
         public FluentConfiguration Configuration { get; protected set; }
 
         /// <summary>
@@ -60,6 +61,7 @@ namespace Foundation.Data.Hibernate
         /// </summary>
         /// <param name="mappingConfiguration">The mapping configuration.</param>
         /// <returns></returns>
+        [CLSCompliant(false)]        
         protected virtual MappingConfiguration GetMappings(MappingConfiguration mappingConfiguration)
         {
             foreach (var assembly in GetMappingsAssemblies().Where(assembly => !assembly.IsDynamic))

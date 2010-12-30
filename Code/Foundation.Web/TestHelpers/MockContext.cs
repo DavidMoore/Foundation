@@ -73,6 +73,8 @@ namespace Foundation.Web.TestHelpers
 
         [CLSCompliant(false)]
         public Mock<ViewContext> MockViewContext { get; set; }
+        
+        [CLSCompliant(false)]
         public Mock<IViewDataContainer> MockViewDataContainer { get; set; }
         public ViewDataDictionary ViewDataDictionary { get; private set; }
 

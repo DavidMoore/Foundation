@@ -38,18 +38,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentNHibernate">
-      <HintPath>..\..\..\Commons\Libraries\FluentNHibernate.dll</HintPath>
+      <HintPath>..\..\..\..\Commons\Libraries\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="LinFu.DynamicProxy">
-      <HintPath>..\..\..\Commons\Libraries\LinFu.DynamicProxy.dll</HintPath>
+      <HintPath>..\..\..\..\Commons\Libraries\LinFu.DynamicProxy.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Commons\Libraries\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.LinFu">
-      <HintPath>..\..\..\Commons\Libraries\NHibernate.ByteCode.LinFu.dll</HintPath>
+      <HintPath>..\..\..\..\Commons\Libraries\NHibernate.ByteCode.LinFu.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL" />
+    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Commons\Libraries\NHibernate.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -88,7 +91,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

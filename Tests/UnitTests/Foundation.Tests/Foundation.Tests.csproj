@@ -42,36 +42,39 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.ActiveRecord">
-      <HintPath>..\..\..\..\Commons\Libraries\Castle.ActiveRecord.dll</HintPath>
+      <HintPath>..\..\..\..\..\Commons\Libraries\Castle.ActiveRecord.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Components.Validator">
-      <HintPath>..\..\..\..\Commons\Libraries\Castle.Components.Validator.dll</HintPath>
+      <HintPath>..\..\..\..\..\Commons\Libraries\Castle.Components.Validator.dll</HintPath>
     </Reference>
-    <Reference Include="FluentNHibernate, Version=1.1.0.685, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL" />
+    <Reference Include="FluentNHibernate, Version=1.1.0.685, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\Commons\Libraries\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Interop.Shell32">
-      <HintPath>..\..\..\..\Commons\Libraries\Interop.Shell32.dll</HintPath>
+      <HintPath>..\..\..\..\..\Commons\Libraries\Interop.Shell32.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Lucene.Net">
-      <HintPath>..\..\..\..\Commons\Libraries\Lucene.Net.dll</HintPath>
+      <HintPath>..\..\..\..\..\Commons\Libraries\Lucene.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\..\..\Commons\Libraries\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\..\..\..\Commons\Libraries\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Moq">
-      <HintPath>..\..\..\..\Commons\Libraries\Moq.dll</HintPath>
+      <HintPath>..\..\..\..\..\Commons\Libraries\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\Commons\Libraries\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\Commons\Libraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
-      <HintPath>..\..\..\..\Commons\Libraries\NHibernate.dll</HintPath>
+      <HintPath>..\..\..\..\..\Commons\Libraries\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Commons\Libraries\NHibernate.Linq.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -80,7 +83,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\..\..\Commons\Libraries\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\..\..\..\..\Commons\Libraries\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -228,7 +231,7 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

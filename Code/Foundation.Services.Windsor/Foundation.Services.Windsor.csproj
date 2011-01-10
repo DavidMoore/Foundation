@@ -41,16 +41,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\..\..\Commons\Libraries\Castle.Core.dll</HintPath>
+      <HintPath>..\..\..\..\Commons\Libraries\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.DynamicProxy2">
-      <HintPath>..\..\..\Commons\Libraries\Castle.DynamicProxy2.dll</HintPath>
+      <HintPath>..\..\..\..\Commons\Libraries\Castle.DynamicProxy2.dll</HintPath>
     </Reference>
     <Reference Include="Castle.MicroKernel">
-      <HintPath>..\..\..\Commons\Libraries\Castle.MicroKernel.dll</HintPath>
+      <HintPath>..\..\..\..\Commons\Libraries\Castle.MicroKernel.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\..\..\Commons\Libraries\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\..\..\Commons\Libraries\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />

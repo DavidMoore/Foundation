@@ -110,16 +110,16 @@ namespace Foundation.Windows.Registry
             if (majorOsVersion < 6)
             {
                 UnmapRegistryKey(Microsoft.Win32.Registry.LocalMachine);
-                UnmapRegistryKey(Microsoft.Win32.Registry.ClassesRoot);
-                UnmapRegistryKey(Microsoft.Win32.Registry.CurrentUser);
                 UnmapRegistryKey(Microsoft.Win32.Registry.Users);
+                UnmapRegistryKey(Microsoft.Win32.Registry.CurrentUser);
+                UnmapRegistryKey(Microsoft.Win32.Registry.ClassesRoot);
             }
             else
             {
                 UnmapRegistryKey(Microsoft.Win32.Registry.CurrentUser);
-                UnmapRegistryKey(Microsoft.Win32.Registry.ClassesRoot);
-                UnmapRegistryKey(Microsoft.Win32.Registry.LocalMachine);
                 UnmapRegistryKey(Microsoft.Win32.Registry.Users);
+                UnmapRegistryKey(Microsoft.Win32.Registry.LocalMachine);
+                UnmapRegistryKey(Microsoft.Win32.Registry.ClassesRoot);
             }
 
             if( !LeaveRemappedKeyOnDispose) RemoveRemappedKey();

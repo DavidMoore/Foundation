@@ -1,6 +1,8 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
+using Foundation.Windows;
 
 namespace Foundation
 {
@@ -25,7 +27,7 @@ namespace Foundation
 
         /// <summary>
         /// Creates a new temporary file, which ensures the temporary
-        /// file is deleted once the object is disposed
+        /// file is deleted once the object is disposed.
         /// </summary>
         public TempFile()
         {
@@ -51,12 +53,12 @@ namespace Foundation
         }
         
         /// <summary>
-        /// Handle to the temporary file
+        /// Handle to the temporary file.
         /// </summary>
         public FileInfo FileInfo { get { return fileInfo; } }
         
         ///<summary>
-        /// Deletes the temporary file once out of scope or disposed
+        /// Deletes the temporary file once out of scope or disposed.
         ///</summary>
         ///<filterpriority>2</filterpriority>
         public void Dispose()
@@ -66,7 +68,7 @@ namespace Foundation
         }
 
         /// <summary>
-        /// Frees up managed resources
+        /// Frees up managed resources.
         /// </summary>
         /// <param name="disposing"></param>
         void Dispose(bool disposing)
@@ -79,7 +81,16 @@ namespace Foundation
             }
             catch(IOException ioe)
             {
-                FoundationEventLog.Error(ioe, "Couldn't delete temporary file {0}", fileInfo);
+                try
+                {
+                    if (Win32Api.IO.MoveFileEx(fileInfo.FullName, null, Win32Api.IO.MoveFileFlags.DelayUntilReboot)) return;
+                    throw new FoundationException("Couldn't schedule delete of locked file '{0}' at reboot.", 
+                        Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error()));
+                }
+                catch (Exception)
+                {
+                    FoundationEventLog.Error(ioe, "Couldn't delete temporary file {0}", fileInfo);
+                }                
             }
         }
 

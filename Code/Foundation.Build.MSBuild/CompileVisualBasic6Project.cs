@@ -70,6 +70,9 @@ namespace Foundation.Build.MSBuild
 
                 var projectFileLog = new FileInfo(projectFile.FullName + ".log");
 
+                // Delete the log file if it exists to clear it.
+                if( projectFileLog.Exists ) projectFileLog.Delete();
+
                 var project = new VisualBasicProject(projectFile);
 
                 // Update references

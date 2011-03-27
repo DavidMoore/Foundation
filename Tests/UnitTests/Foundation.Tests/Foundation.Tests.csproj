@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="ArrayExtensionMethodsTests.cs" />
     <Compile Include="Build\MSBuild\GenerateAssemblyInfoTests.cs" />
+    <Compile Include="Build\MSBuild\VisualBasicProjectTests.cs" />
     <Compile Include="Build\MSBuild\VisualCResourceFileTests.cs" />
     <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />

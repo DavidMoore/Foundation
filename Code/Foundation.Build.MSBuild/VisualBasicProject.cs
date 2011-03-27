@@ -142,5 +142,23 @@ namespace Foundation.Build.MSBuild
 
             lines = results;
         }
+
+        public static string GetFileNameFromReference(string reference)
+        {
+            if (reference == null) throw new ArgumentNullException("reference");
+
+            // Split the reference into its parts, delimited by #
+            // 0 = GUID
+            // 1 = Version
+            // 2 = ?
+            // 3 = Path and filename
+            // 4 = Name
+            var referenceParts = reference.Split(new[] { '#' }, StringSplitOptions.None);
+
+            var filename = Path.GetFileName(referenceParts[3]);
+            if (filename == null) throw new InvalidOperationException("Couldn't get the filename from the path: " + referenceParts[3]);
+
+            return filename;
+        }
     }
 }

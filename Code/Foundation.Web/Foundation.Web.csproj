@@ -48,6 +48,7 @@
       <HintPath>..\..\..\..\Commons\Libraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -62,6 +63,7 @@
     <Compile Include="..\Foundation\Properties\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="CommonUtilities.cs" />
     <Compile Include="Extensions\HttpRequestBaseExtensions.cs" />
     <Compile Include="JavaScript\IJsonSerializer.cs" />
     <Compile Include="JavaScript\ISerializableToJavaScript.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHelpers\MockContext.cs" />
     <Compile Include="TestHelpers\MvcTestHelpers.cs" />
+    <Compile Include="UriUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Foundation\Foundation.csproj">

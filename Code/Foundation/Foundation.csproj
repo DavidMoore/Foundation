@@ -67,7 +67,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-        <HintPath>..\..\..\..\Commons\Libraries\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\..\..\Commons\Libraries\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -77,7 +77,6 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -173,7 +172,6 @@
     <Compile Include="StateMachine\ValueStateTransition.cs" />
     <Compile Include="TestHelpers\Lipsum.cs" />
     <Compile Include="ThrowException.cs" />
-    <Compile Include="CommonUtilities.cs" />
     <Compile Include="FoundationException.cs" />
     <Compile Include="Services\Repository\ISqlRepository.cs" />
     <Compile Include="Models\IEntity.cs" />
@@ -211,7 +209,6 @@
     <Compile Include="ReflectionUtilities.cs" />
     <Compile Include="Services\IUriUtility.cs" />
     <Compile Include="Services\Repository\IRepository`1.cs" />
-    <Compile Include="Services\UriUtility.cs" />
     <Compile Include="Services\Validation\IModelValidator.cs" />
     <Compile Include="Services\Validation\IValidationErrorsCollection.cs" />
     <Compile Include="Services\Validation\IValidationPropertyError.cs" />
@@ -223,6 +220,7 @@
     <Compile Include="TempFile.cs" />
     <Compile Include="WindowsShell\SHFILEINFO.cs" />
     <Compile Include="WindowsShell\SHGetFileInfoConstants.cs" />
+    <Compile Include="Windows\IO\FileSystemEnumerator.cs" />
     <Compile Include="Windows\LoadLibraryException.cs" />
     <Compile Include="Windows\LoadLibraryExFlags.cs" />
     <Compile Include="Windows\Registry\RegistryRedirector.cs" />

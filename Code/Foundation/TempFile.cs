@@ -44,8 +44,8 @@ namespace Foundation
         public TempFile(string name) : this()
         {
             // Strip the extension
-            var nameWithoutExtension = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length);
-
+            var nameWithoutExtension = Path.GetFileNameWithoutExtension(fileInfo.Name);
+            
             // Get the new name
             var newName = string.Format(CultureInfo.CurrentCulture, name, nameWithoutExtension);
 
@@ -73,7 +73,11 @@ namespace Foundation
         /// <param name="disposing"></param>
         void Dispose(bool disposing)
         {
-            if( !disposing || fileInfo == null || !fileInfo.Exists ) return;
+            if( !disposing || fileInfo == null ) return;
+            
+            // If the file doesn't exist, we don't have to do anything.
+            fileInfo.Refresh();
+            if(!fileInfo.Exists ) return;
 
             try
             {
@@ -83,15 +87,23 @@ namespace Foundation
             {
                 try
                 {
+                    // If we can't delete the temp file now (likely because it's locked for some reason),
+                    // we can schedule to delete it on reboot when the handles on it should be gone. We need to
+                    // be an administrator to do this.
                     if (Win32Api.IO.MoveFileEx(fileInfo.FullName, null, Win32Api.IO.MoveFileFlags.DelayUntilReboot)) return;
+
                     throw new FoundationException("Couldn't schedule delete of locked file '{0}' at reboot.", 
                         Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error()));
                 }
                 catch (Exception)
                 {
-                    FoundationEventLog.Error(ioe, "Couldn't delete temporary file {0}", fileInfo);
+                    FoundationEventLog.Error(ioe, "Couldn't delete temporary file '{0}'.", fileInfo);
                 }                
             }
+            catch (Exception ex)
+            {
+                FoundationEventLog.Error(ex, "Couldn't delete temporary file '{0}'.", fileInfo);
+            } 
         }
 
         /// <summary>Opens a text file, reads all lines of the file, and then closes the file.</summary>

@@ -45,7 +45,7 @@ namespace Foundation.Build.MSBuild
             .AppendFormat("#define PRIVATEBUILDSTRING \"{0}\\0\"", PrivateBuildDescription).AppendLine();
 
             if (!ManifestFile.IsNullOrEmpty()) sb.AppendFormat("#define MANIFESTFILEPATH \"{0}\\0\"", CString(ManifestFile) ).AppendLine();
-            if (IconFile != null && fileType == MSBuild.FileType.Application) sb.AppendFormat("#define ICONFILEPATH \"{0}\"", CString(IconFile.GetMetadata("FullPath"))).AppendLine();
+            if (IconFile != null && fileType == MSBuild.FileType.Application) sb.AppendFormat("#define ICONFILEPATH \"{0}\\0\"", CString(IconFile.GetMetadata("FullPath"))).AppendLine();
 
             if (!AssemblyVersion.IsNullOrEmpty()) sb.AppendFormat("#define ASSEMBLYVERSIONSTRING \"{0}\\0\"", AssemblyVersion).AppendLine();
 
@@ -103,7 +103,7 @@ namespace Foundation.Build.MSBuild
         /// <returns></returns>
         string CString(string value)
         {
-            var parsedValue = value.Replace("\\", @"\\\\");
+            var parsedValue = value.Replace("\\", "\\\\");
             Log.LogMessage(MessageImportance.Low, "Replacing {0} with {1}", value, parsedValue);
             return parsedValue;
         }

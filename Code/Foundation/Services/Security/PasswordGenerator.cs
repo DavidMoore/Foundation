@@ -109,8 +109,10 @@ namespace Foundation.Services.Security
             var randomBytes = new byte[4];
 
             // Generate 4 random bytes.
-            var rng = new RNGCryptoServiceProvider();
-            rng.GetBytes(randomBytes);
+            using( var rng = new RNGCryptoServiceProvider() )
+            {
+                rng.GetBytes(randomBytes);
+            }
 
             // Convert 4 bytes into a 32-bit integer value.
             var seed = (randomBytes[0] & 0x7f) << 24 | randomBytes[1] << 16 | randomBytes[2] << 8 |

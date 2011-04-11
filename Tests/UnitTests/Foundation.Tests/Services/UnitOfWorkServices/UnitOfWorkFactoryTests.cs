@@ -17,16 +17,16 @@ namespace Foundation.Tests.Services.UnitOfWorkServices
         [TestMethod]
         public void Default_factory_is_null()
         {
-            Assert.IsNull(UnitOfWorkFactory.GetFactory());
+            Assert.IsNull(UnitOfWorkFactory.Factory);
         }
 
         [TestMethod]
         public void SetFactory_sets_the_current_factory()
         {
-            Assert.IsNull(UnitOfWorkFactory.GetFactory());
+            Assert.IsNull(UnitOfWorkFactory.Factory);
             var factory = new Mock<IUnitOfWorkFactory>();
             UnitOfWorkFactory.SetFactory(factory.Object);
-            Assert.AreEqual(factory.Object, UnitOfWorkFactory.GetFactory());
+            Assert.AreEqual(factory.Object, UnitOfWorkFactory.Factory);
         }
 
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]

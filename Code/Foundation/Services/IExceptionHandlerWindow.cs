@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Foundation.Services
 {
@@ -16,7 +13,7 @@ namespace Foundation.Services
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <returns></returns>
-        ExceptionHandlingOption HandleException(Exception exception);
+        ExceptionHandlingOptions HandleException(Exception exception);
     }
 
     /// <summary>
@@ -24,7 +21,7 @@ namespace Foundation.Services
     /// with by a <see cref="IExceptionHandlerWindow"/>
     /// </summary>
     [Flags]
-    public enum ExceptionHandlingOption
+    public enum ExceptionHandlingOptions
     {
         /// <summary>
         /// No specific options; the application

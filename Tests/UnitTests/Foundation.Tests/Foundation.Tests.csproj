@@ -185,6 +185,9 @@
     <Compile Include="WindowsShell\ShellObjectCollectionFixture.cs" />
     <Compile Include="WindowsShell\ShellObjectFixture.cs" />
     <Compile Include="WindowsShell\ShellProviderFixture.cs" />
+    <Compile Include="Windows\IO\FileTimeTests.cs" />
+    <Compile Include="Windows\IO\FindDataTests.cs" />
+    <Compile Include="Windows\IO\FindFileApiTests.cs" />
     <Compile Include="Windows\WindowRegistry\RegistryRedirectionTests.cs" />
   </ItemGroup>
   <ItemGroup>

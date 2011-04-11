@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Foundation.Models;
+﻿using System;
 
 namespace Foundation.Services.Repository
 {
@@ -16,9 +15,10 @@ namespace Foundation.Services.Repository
         /// <returns></returns>
         public static void Save<T>(this IRepository<T> repository, params T[] instances) where T : class, new()
         {
+            if( repository == null ) throw new ArgumentNullException("repository");
+            if( instances == null ) throw new ArgumentNullException("instances");
+
             foreach (var instance in instances) repository.Save(instance);
         }
-
-        
     }
 }

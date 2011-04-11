@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Foundation.Models;
 
 namespace Foundation.Services.Repository
@@ -15,6 +16,7 @@ namespace Foundation.Services.Repository
         /// <returns>The entity identified by the primary key of <paramref name="key"/>, otherwise <c>null</c> if one wasn't found.</returns>
         public static T SingleOrDefault<T, TPrimaryKey>(this IRepository<T> repository, TPrimaryKey key) where T : class, IEntity<TPrimaryKey>
         {
+            if( repository == null ) throw new ArgumentNullException("repository");
             return repository.Query().SingleOrDefault(entity => entity.Id.Equals(key));
         }
     }

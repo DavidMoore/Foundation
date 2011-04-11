@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -29,7 +30,7 @@ namespace Foundation.Services
 
             if (serviceManagers.Count > 1)
                 throw new InvalidOperationException(
-                    string.Format("There is more than one type implementing IServiceManager in {0}: {1}", directoryPath,
+                    string.Format(CultureInfo.CurrentCulture, "There is more than one type implementing IServiceManager in {0}: {1}", directoryPath,
                     string.Join(", ", serviceManagers.Select(type => type.AssemblyQualifiedName).ToArray() )  ));
 
             var manager = Activator.CreateInstance(serviceManagers[0]) as IServiceManager;

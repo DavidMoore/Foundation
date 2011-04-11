@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -71,6 +72,7 @@ namespace Foundation
         /// Frees up managed resources.
         /// </summary>
         /// <param name="disposing"></param>
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         void Dispose(bool disposing)
         {
             if( !disposing || fileInfo == null ) return;

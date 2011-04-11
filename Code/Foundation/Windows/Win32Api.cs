@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+using System.Text;
+using Foundation.Windows.IO;
 using Microsoft.Win32.SafeHandles;
 
 namespace Foundation.Windows
@@ -10,8 +13,8 @@ namespace Foundation.Windows
     /// </summary>
     public static class Win32Api
     {
-        const string AdvancedWindows32BaseApi = "advapi32.dll";
-        const string Kernel32ClientBaseApi = "kernel32.dll";
+        const string advancedWindows32BaseApi = "advapi32.dll";
+        const string kernel32ClientBaseApi = "kernel32.dll";
 
         /// <summary>
         /// Contains functions for manipulating the Windows registry.
@@ -37,7 +40,7 @@ namespace Foundation.Windows
             /// <param name="key">Handle to key to override.</param>
             /// <param name="newKey">Handle to override key.</param>
             /// <returns>0 if success.</returns>
-            [DllImport(AdvancedWindows32BaseApi, EntryPoint = "RegOverridePredefKey", CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
+            [DllImport(advancedWindows32BaseApi, EntryPoint = "RegOverridePredefKey", CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
             static extern int RegOverridePredefKey(SafeRegistryHandle key, SafeRegistryHandle newKey);
         }
 
@@ -68,9 +71,12 @@ namespace Foundation.Windows
             /// <p>If the function succeeds, the return value is nonzero.</p>
             /// <p>If the function fails, the return value is zero (0). To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.</p>
             /// </returns>
-            [DllImport(Kernel32ClientBaseApi, SetLastError = true, CharSet = CharSet.Unicode)]
+            [DllImport(kernel32ClientBaseApi, SetLastError = true, CharSet = CharSet.Unicode)]
             internal static extern bool MoveFileEx(string existingFileName, string newFileName, MoveFileFlags moveFileFlags);
 
+            /// <summary>
+            /// Flags for specifying options to <see cref="MoveFileEx"/>.
+            /// </summary>
             [Flags]
             internal enum MoveFileFlags
             {
@@ -118,6 +124,27 @@ namespace Foundation.Windows
                 /// </summary>
                 FailIfNotTrackable = 0x00000020
             }
+
+            [DllImport(kernel32ClientBaseApi, SetLastError = true, CharSet = CharSet.Auto, BestFitMapping = false)]
+            [ResourceExposure(ResourceScope.Machine)]
+            internal static extern int GetLongPathName(String path, StringBuilder longPathBuffer, int bufferLength);
+
+            [DllImport(kernel32ClientBaseApi, SetLastError = true, CharSet = CharSet.Auto, BestFitMapping = false)]
+            [ResourceExposure(ResourceScope.Machine)]
+            internal unsafe static extern int GetLongPathName(char* path, char* longPathBuffer, int bufferLength);
+
+            [DllImport(kernel32ClientBaseApi, SetLastError = true, CharSet = CharSet.Auto, BestFitMapping = false)]
+            [ResourceExposure(ResourceScope.None)]
+            internal static extern SafeFindHandle FindFirstFile(String fileName, [In, Out] FindData data);
+
+            [DllImport(kernel32ClientBaseApi, SetLastError = true, CharSet = CharSet.Auto, BestFitMapping = false)]
+            [ResourceExposure(ResourceScope.None)]
+            internal static extern bool FindNextFile(SafeFindHandle hndFindFile, [In, Out, MarshalAs(UnmanagedType.LPStruct)] FindData lpFindFileData);
+
+            [DllImport(kernel32ClientBaseApi)]
+            [ResourceExposure(ResourceScope.None)]
+            [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+            internal static extern bool FindClose(IntPtr handle);
         }
 
         /// <summary>
@@ -129,11 +156,7 @@ namespace Foundation.Windows
         {
             var handle = LoadLibraryEx(file, IntPtr.Zero, LoadLibraryExFlags.LoadWithAlteredSearchPath);
 
-            if (handle == null)
-            {
-                int lastError = Marshal.GetLastWin32Error();
-                throw new LoadLibraryException(file, lastError);
-            }
+            if (handle == null) throw new LoadLibraryException(file, Marshal.GetLastWin32Error());
 
             return handle;
         }
@@ -149,7 +172,7 @@ namespace Foundation.Windows
         /// If the function succeeds, the return value is a handle to the loaded module.
         /// If the function fails, the return value is NULL. To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
         /// </returns>
-        [DllImport(Kernel32ClientBaseApi, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(kernel32ClientBaseApi, CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern SafeLibraryHandle LoadLibraryEx(string fileName, IntPtr reserved, LoadLibraryExFlags flags);
 
         /// <summary>
@@ -159,7 +182,35 @@ namespace Foundation.Windows
         /// <param name="moduleHandle">A handle to the loaded library module. The <see cref="LoadLibraryEx"/> function returns this handle.</param>
         /// <returns></returns>
         [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-        [DllImport(Kernel32ClientBaseApi, CharSet = CharSet.Unicode)]
+        [DllImport(kernel32ClientBaseApi, CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool FreeLibrary(IntPtr moduleHandle);
+
+        [DllImport(kernel32ClientBaseApi, SetLastError = false)]
+        [ResourceExposure(ResourceScope.Process)]
+        internal static extern int SetErrorMode(int newMode);
+
+        // TODO: Make into an enum
+        /// <summary>
+        /// <p>The system does not display the critical-error-handler message box. Instead, the system sends the error to the calling process.</p>
+        /// <p>Best practice is that all applications call the process-wide <see cref="SetErrorMode"/> function with a parameter of <see cref="FailCriticalErrors"/> at startup. This is to prevent error mode dialogs from hanging the application.</p>
+        /// </summary>
+        internal const int FailCriticalErrors = 1;
+
+        [DllImport(kernel32ClientBaseApi, SetLastError = true, CharSet = CharSet.Auto, BestFitMapping = false)]
+        [ResourceExposure(ResourceScope.Machine)]
+        internal unsafe static extern int GetFullPathName(char* path, int numBufferChars, char* buffer, IntPtr mustBeZero);
+
+        [DllImport(kernel32ClientBaseApi, SetLastError = true, CharSet = CharSet.Auto, BestFitMapping = false)]
+        [ResourceExposure(ResourceScope.Machine)]
+        internal unsafe static extern int GetFullPathName(String path, int numBufferChars, StringBuilder buffer, IntPtr mustBeZero);
+
+        [DllImport(kernel32ClientBaseApi, CharSet = CharSet.Unicode)]
+        [ResourceExposure(ResourceScope.None)]
+        internal static extern int FormatMessage(int dwFlags, IntPtr lpSource,
+                    int dwMessageId, int dwLanguageId, StringBuilder lpBuffer,
+                    int nSize, IntPtr vaListArguments);
+
+        internal static readonly IntPtr Null = IntPtr.Zero;
     }
 }

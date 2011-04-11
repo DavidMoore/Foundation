@@ -11,7 +11,7 @@ namespace Foundation.Services.UnitOfWorkServices
         /// </summary>
         public UnitOfWork()
         {
-            var factory = UnitOfWorkFactory.GetFactory();
+            var factory = UnitOfWorkFactory.Factory;
             if(factory == null) throw new InvalidOperationException("There is no UnitOfWorkFactory configured. Set it by calling UnitOfWorkFactory.SetFactory()");
             
             implementation = factory.Start();
@@ -25,6 +25,7 @@ namespace Foundation.Services.UnitOfWorkServices
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

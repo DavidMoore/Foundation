@@ -4,27 +4,17 @@ namespace Foundation.Services.UnitOfWorkServices
 {
     public static class UnitOfWorkFactory
     {
-        static IUnitOfWorkFactory factory;
-
-        static UnitOfWorkFactory()
-        {
-            factory = null;
-        }
-
-        public static IUnitOfWorkFactory GetFactory()
-        {
-            return factory;
-        }
+        public static IUnitOfWorkFactory Factory { get; private set; }
 
         public static void SetFactory(IUnitOfWorkFactory unitOfWorkFactory)
         {
-            if( factory != null) throw new InvalidOperationException("Unit of Work factory has already been configured.");
-            factory = unitOfWorkFactory;
+            if( Factory != null) throw new InvalidOperationException("Unit of Work factory has already been configured.");
+            Factory = unitOfWorkFactory;
         }
 
         public static void Reset()
         {
-            factory = null;
+            Factory = null;
         }
     }
 }

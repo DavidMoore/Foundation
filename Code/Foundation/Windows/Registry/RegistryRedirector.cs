@@ -38,6 +38,7 @@ namespace Foundation.Windows.Registry
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

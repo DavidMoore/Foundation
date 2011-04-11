@@ -14,15 +14,14 @@ namespace Foundation.Windows.IO
         // useful for parsing paths like "c:\windows" or "MacVolume:System Folder".
         //
 #if !PLATFORM_UNIX
-        public static readonly char VolumeSeparatorChar = ':';
+        public const char VolumeSeparatorChar = ':';
 #else
-        public static readonly char VolumeSeparatorChar = '/'; 
+        public const char VolumeSeparatorChar = '/'; 
 #endif // !PLATFORM_UNIX 
 
         internal static String InternalCombine(String path1, String path2)
         {
-            if (path1 == null || path2 == null)
-                throw new ArgumentNullException((path1 == null) ? "path1" : "path2");
+            if (path1 == null || path2 == null) throw new ArgumentNullException((path1 == null) ? "path1" : "path2");
             Contract.EndContractBlock();
             CheckInvalidPathChars(path1);
             CheckInvalidPathChars(path2);

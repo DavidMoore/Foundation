@@ -165,5 +165,15 @@ namespace Foundation.ExtensionMethods
         {
             return value.Split(new[] { delimiter }, StringSplitOptions.RemoveEmptyEntries);
         }
+
+        public static bool EndsWith(this string value, char character)
+        {
+            var thisLen = value.Length;
+            if (thisLen != 0)
+            {
+                if (value[thisLen - 1] == character) return true;
+            }
+            return false;
+        }
     }
 }

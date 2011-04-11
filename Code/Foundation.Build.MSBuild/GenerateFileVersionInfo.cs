@@ -61,6 +61,16 @@ namespace Foundation.Build.MSBuild
                 // Write out the resource script contents
                 tempFile.WriteAllText(sb.ToString());
 
+                // Any additional script?
+                if (!string.IsNullOrWhiteSpace(AdditionalResourceScript))
+                {
+                    using (var writer = tempFile.FileInfo.AppendText())
+                    {
+                        writer.WriteLine();
+                        writer.WriteLine(CString(AdditionalResourceScript));
+                    }
+                }
+
                 var compilerLocation = GetResourceCompilerLocation();
 
                 // Compile the resource file
@@ -195,6 +205,15 @@ namespace Foundation.Build.MSBuild
         public string InternalName { get; set; }
         public string Copyright { get; set; }
         public string OriginalFileName { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the additional resource script.
+        /// </summary>
+        /// <value>
+        /// The additional resource script.
+        /// </value>
+        public string AdditionalResourceScript { get; set; }
     }
 
     public enum FileType

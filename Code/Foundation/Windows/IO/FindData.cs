@@ -4,13 +4,14 @@ using System.Runtime.InteropServices;
 namespace Foundation.Windows.IO
 {
     /// <summary>
-    /// Contains information about the file that is found by the FindFirstFile, FindFirstFileEx, or FindNextFile function.
+    /// Contains information about the file that is found by the
+    /// <see cref="Win32Api.IO.FindFirstFile"/>, FindFirstFileEx, or <see cref="Win32Api.IO.FindNextFile"/> functions.
     /// </summary>
     /// <remarks>
-    /// <para>If a file has a long file name, the complete name appears in the cFileName member,
-    /// and the 8.3 format truncated version of the name appears in the cAlternateFileName member.
-    /// Otherwise, cAlternateFileName is empty. If the FindFirstFileEx function was called with a
-    /// value of FindExInfoBasic in the fInfoLevelId parameter, the cAlternateFileName member will
+    /// <para>If a file has a long file name, the complete name appears in the <see cref="FileName"/> member,
+    /// and the 8.3 format truncated version of the name appears in the <see cref="AlternateFileName"/> member.
+    /// Otherwise, <see cref="AlternateFileName"/> is empty. If the FindFirstFileEx function was called with a
+    /// value of FindExInfoBasic in the fInfoLevelId parameter, the <see cref="AlternateFileName"/> member will
     /// always contain a NULL string value. This remains true for all subsequent calls to the
     /// FindNextFile function. As an alternative method of retrieving the 8.3 format version of a file name,
     /// you can use the GetShortPathName function. For more information about file names, see File Names, 
@@ -26,6 +27,8 @@ namespace Foundation.Windows.IO
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     public class FindData
     {
+        const uint maxdword = 0xFFFFFFFF;
+
         /// <summary>
         /// The file attributes of the file.
         /// </summary>
@@ -38,7 +41,6 @@ namespace Foundation.Windows.IO
         internal FileTime CreationTime;
 
         /// <summary>
-        /// A FILETIME structure.
         /// <para>For a file, the structure specifies when the file was last read from, written to, or for executable files, run.</para>
         /// <para>For a directory, the structure specifies when the directory is created. If the underlying file system does not support last access time, this member is zero.</para>
         /// <para>On the FAT file system, the specified date for both files and directories is correct, but the time of day is always set to midnight.</para>
@@ -46,7 +48,6 @@ namespace Foundation.Windows.IO
         internal FileTime LastAccessTime;
 
         /// <summary>
-        /// A FILETIME structure.
         /// <para>For a file, the structure specifies when the file was last written to, truncated, or overwritten, for example, when WriteFile or SetEndOfFile are used. The date and time are not updated when file attributes or security descriptors are changed.</para>
         /// <para>For a directory, the structure specifies when the directory is created. If the underlying file system does not support last write time, this member is zero.</para>
         /// </summary>
@@ -65,19 +66,14 @@ namespace Foundation.Windows.IO
         /// </summary>
         /// <see cref="FileSizeHigh"/>
         internal int FileSizeLow;
-
-        // If the file attributes' reparse point flag is set, then 
-        // dwReserved0 is the file tag (aka reparse tag) for the 
-        // reparse point.  Use this to figure out whether something is
-        // a volume mount point or a symbolic link. 
-
-
+        
         /// <summary>
-        /// If the dwFileAttributes member includes the FILE_ATTRIBUTE_REPARSE_POINT attribute, this member specifies the reparse point tag.
+        /// <p>If the <see cref="fileAttributes"/> member includes the <see cref="FileAttributes.ReparsePoint"/> attribute,
+        /// this member specifies the reparse point tag.</p>
         /// 
-        /// Otherwise, this value is undefined and should not be used.
+        /// <p>Otherwise, this value is undefined and should not be used.</p>
         /// 
-        /// For more information see Reparse Point Tags.
+        /// <p>For more information see Reparse Point Tags.
         /// IO_REPARSE_TAG_DFS (0x8000000A)
         /// IO_REPARSE_TAG_DFSR (0x80000012)
         /// IO_REPARSE_TAG_HSM (0xC0000004)
@@ -85,6 +81,7 @@ namespace Foundation.Windows.IO
         /// IO_REPARSE_TAG_MOUNT_POINT (0xA0000003)
         /// IO_REPARSE_TAG_SIS (0x80000007)
         /// IO_REPARSE_TAG_SYMLINK (0xA000000C)
+        /// </p>
         /// </summary>
         internal int dwReserved0;
 
@@ -105,8 +102,6 @@ namespace Foundation.Windows.IO
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
         internal string AlternateFileName;
-
-        const uint maxdword = 0xFFFFFFFF;
 
         /// <summary>
         /// Gets the size of the file.
@@ -135,8 +130,7 @@ namespace Foundation.Windows.IO
             get
             {
                 // Don't add "." nor ".."
-                return (0 != (fileAttributes & FileAttributes.Directory))
-                       && !FileName.Equals(".") && !FileName.Equals("..");
+                return (0 != (fileAttributes & FileAttributes.Directory)) && !FileName.Equals(".") && !FileName.Equals("..");
             }
         }
     }

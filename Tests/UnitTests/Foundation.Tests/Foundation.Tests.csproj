@@ -182,9 +182,9 @@
     <Compile Include="TestHelpers\MvcTestHelpersTests.cs" />
     <Compile Include="TestStrings.cs" />
     <Compile Include="ThrowExceptionFixture.cs" />
-    <Compile Include="WindowsShell\ShellObjectCollectionFixture.cs" />
-    <Compile Include="WindowsShell\ShellObjectFixture.cs" />
-    <Compile Include="WindowsShell\ShellProviderFixture.cs" />
+    <Compile Include="Windows\Shell\ShellObjectCollectionFixture.cs" />
+    <Compile Include="Windows\Shell\ShellObjectFixture.cs" />
+    <Compile Include="Windows\Shell\ShellProviderFixture.cs" />
     <Compile Include="Windows\IO\FileTimeTests.cs" />
     <Compile Include="Windows\IO\FindDataTests.cs" />
     <Compile Include="Windows\IO\FindFileApiTests.cs" />

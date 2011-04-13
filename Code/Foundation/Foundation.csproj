@@ -125,7 +125,12 @@
     <Compile Include="BaseException.cs" />
     <Compile Include="Services\Discovery\AssemblySource.cs" />
     <Compile Include="Services\IExceptionHandlerWindow.cs" />
+    <Compile Include="Services\IServiceMessage.cs" />
+    <Compile Include="Services\IServiceResult.cs" />
     <Compile Include="Services\Logging\LoggerExtensions.cs" />
+    <Compile Include="Services\MessageAudience.cs" />
+    <Compile Include="Services\MessagePriority.cs" />
+    <Compile Include="Services\MessageSeverity.cs" />
     <Compile Include="Services\Repository\EntityRepositoryExtensions.cs" />
     <Compile Include="Services\Repository\GenericListRepositoryGuid.cs" />
     <Compile Include="Services\Repository\GenericListRepositoryInt.cs" />
@@ -161,6 +166,8 @@
     <Compile Include="Services\Registration\ServiceRegistrationException.cs" />
     <Compile Include="Services\ServiceResolutionFailedException.cs" />
     <Compile Include="Properties\SolutionInfo.cs" />
+    <Compile Include="Services\ServiceResult.cs" />
+    <Compile Include="Services\ServiceResultCode.cs" />
     <Compile Include="Services\UnitOfWorkServices\IUnitOfWork.cs" />
     <Compile Include="Services\UnitOfWorkServices\IUnitOfWorkFactory.cs" />
     <Compile Include="Services\UnitOfWorkServices\UnitOfWork.cs" />

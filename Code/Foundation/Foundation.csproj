@@ -88,6 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensionMethods.cs" />
+    <Compile Include="Build\VersionControl\BaseCommandLineVersionControlProvider.cs" />
+    <Compile Include="Build\VersionControl\BaseVersionControlProvider.cs" />
+    <Compile Include="Build\VersionControl\IVersionControlProvider.cs" />
+    <Compile Include="Build\VersionControl\VersionControlOperation.cs" />
+    <Compile Include="Build\VersionControl\VaultVersionControlProvider.cs" />
+    <Compile Include="Build\VersionControl\VersionControlArguments.cs" />
     <Compile Include="ColorExtensionMethods.cs" />
     <Compile Include="Data\Hierarchy\ITreeEntity.cs" />
     <Compile Include="Data\Hierarchy\SiblingList.cs" />

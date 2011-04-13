@@ -220,6 +220,10 @@
     <Compile Include="TempFile.cs" />
     <Compile Include="Windows\Shell\SHFILEINFO.cs" />
     <Compile Include="Windows\Shell\SHGetFileInfoConstants.cs" />
+    <Compile Include="Windows\ArgAttribute.cs" />
+    <Compile Include="Windows\ArgumentInfo.cs" />
+    <Compile Include="Windows\ArgumentInfoParser.cs" />
+    <Compile Include="Windows\ArgumentSerializer.cs" />
     <Compile Include="Windows\IO\FileAttributes.cs" />
     <Compile Include="Windows\IO\FileSystemEnumerator.cs" />
     <Compile Include="Windows\IO\FileSystemInfoResultHandler.cs" />
@@ -236,8 +240,14 @@
     <Compile Include="Windows\IO\ErrorHelper.cs" />
     <Compile Include="Windows\LoadLibraryException.cs" />
     <Compile Include="Windows\LoadLibraryExFlags.cs" />
+    <Compile Include="Windows\ProcessWrapper.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Windows\Registry\RegistryRedirector.cs" />
     <Compile Include="Windows\SafeLibraryHandle.cs" />
+    <Compile Include="Build\SrcTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Windows\Win32Api.cs" />
     <Compile Include="Windows\Win32Error.cs" />
   </ItemGroup>

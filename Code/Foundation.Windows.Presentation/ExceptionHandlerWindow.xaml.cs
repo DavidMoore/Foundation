@@ -31,15 +31,15 @@ namespace Foundation.Windows.Presentation
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <returns></returns>
-        public ExceptionHandlingOption HandleException(Exception exception)
+        public ExceptionHandlingOptions HandleException(Exception exception)
         {
             DataContext = new ExceptionModel( exception );
             ShowDialog();
             switch (((ExceptionModel)DataContext).SelectedOption)
             {
-                case ExceptionHandlingOption.None:
+                case ExceptionHandlingOptions.None:
                     break;
-                case ExceptionHandlingOption.Shutdown:
+                case ExceptionHandlingOptions.Shutdown:
                     Application.Current.Shutdown();
                     break;
                 default:
@@ -50,13 +50,13 @@ namespace Foundation.Windows.Presentation
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            ((ExceptionModel)DataContext).SelectedOption = ExceptionHandlingOption.Shutdown;
+            ((ExceptionModel)DataContext).SelectedOption = ExceptionHandlingOptions.Shutdown;
             Close();
         }
 
         private void ContinueButton_Click(object sender, RoutedEventArgs e)
         {
-            ((ExceptionModel) DataContext).SelectedOption = ExceptionHandlingOption.None;
+            ((ExceptionModel)DataContext).SelectedOption = ExceptionHandlingOptions.None;
             Close();
         }
     }
@@ -76,6 +76,6 @@ namespace Foundation.Windows.Presentation
 
         public string Message { get; set; }
 
-        public ExceptionHandlingOption SelectedOption { get; set; }
+        public ExceptionHandlingOptions SelectedOption { get; set; }
     }
 }

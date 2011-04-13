@@ -102,6 +102,10 @@
     <Compile Include="Build\MSBuild\VisualBasicProjectTests.cs" />
     <Compile Include="Build\MSBuild\VisualCResourceFileTests.cs" />
     <Compile Include="Build\PdbStrTests.cs" />
+    <Compile Include="Build\VersionControl\VaultVersionControlProviderTests.cs" />
+    <Compile Include="TestHelpers\AssertException.cs" />
+    <Compile Include="Build\VersionControl\BaseVersionControlProviderTests.cs" />
+    <Compile Include="Build\VersionControl\VersionControlArgumentsTests.cs" />
     <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />
     <Compile Include="DatabaseFixture.cs" />

@@ -65,7 +65,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Foundation\Foundation.csproj">
       <Project>{76D503C1-FB69-4688-B7F9-49A7D6525263}</Project>
-      <Name>Foundation %28Libraries\Foundation\Foundation%29</Name>
+      <Name>Foundation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

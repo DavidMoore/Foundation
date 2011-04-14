@@ -3,7 +3,7 @@ using System.Text;
 using Foundation.ExtensionMethods;
 using Foundation.Services;
 
-namespace Foundation.Build.VersionControl
+namespace Foundation.Build.VersionControl.Vault
 {
     public class VaultVersionControlProvider : BaseCommandLineVersionControlProvider
     {

@@ -1,8 +1,9 @@
 ﻿using System.Net;
 using Foundation.Build.VersionControl;
+using Foundation.Build.VersionControl.Vault;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Foundation.Tests.Build.VersionControl
+namespace Foundation.Tests.Build.VersionControl.Vault
 {
     [TestClass]
     public class VaultVersionControlProviderTests

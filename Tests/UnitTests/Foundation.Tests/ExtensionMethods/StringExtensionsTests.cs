@@ -112,5 +112,12 @@ namespace Foundation.Tests.ExtensionMethods
             Assert.AreEqual("value2", list[1]);
             Assert.AreEqual("value3", list[2]);
         }
+
+        [TestMethod]
+        public void Substring()
+        {
+            var value = "Get_substring_up_to_first_slash/rest of string".Substring(0, "/");
+            Assert.AreEqual("Get_substring_up_to_first_slash", value);
+        }
     }
 }

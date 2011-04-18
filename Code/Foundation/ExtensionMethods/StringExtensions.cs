@@ -175,5 +175,27 @@ namespace Foundation.ExtensionMethods
             }
             return false;
         }
+
+        /// <summary>
+        /// Returns a substring of an existing string, starting at the specified index,
+        /// and returning the rest of the string or up to the first occurance of
+        /// a string specified by <paramref name="stopAtString"/>.
+        /// </summary>
+        /// <param name="value">The string value to return a substring from.</param>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="stopAtString">The string to cut the substring off at.
+        /// If this string isn't encountered, the rest of <paramref name="value"/> will be returned.</param>
+        /// <returns></returns>
+        public static string Substring(this string value, int startIndex, string stopAtString)
+        {
+            var firstIndexOfStopString = value.IndexOf(stopAtString);
+
+            if (firstIndexOfStopString > -1)
+            {
+                return value.Substring(startIndex, firstIndexOfStopString - startIndex);
+            }
+
+            return value.Substring(startIndex);
+        }
     }
 }

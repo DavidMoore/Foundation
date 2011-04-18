@@ -91,6 +91,12 @@
     <Compile Include="Build\VersionControl\BaseCommandLineVersionControlProvider.cs" />
     <Compile Include="Build\VersionControl\BaseVersionControlProvider.cs" />
     <Compile Include="Build\VersionControl\IVersionControlProvider.cs" />
+    <Compile Include="Build\VersionControl\Vault\VaultException.cs" />
+    <Compile Include="Build\VersionControl\Vault\VaultFile.cs" />
+    <Compile Include="Build\VersionControl\Vault\VaultFileStatus.cs" />
+    <Compile Include="Build\VersionControl\Vault\VaultFolder.cs" />
+    <Compile Include="Build\VersionControl\Vault\VaultResult.cs" />
+    <Compile Include="Build\VersionControl\Vault\VaultResultSerializer.cs" />
     <Compile Include="Build\VersionControl\VersionControlArgumentsConverter.cs" />
     <Compile Include="Build\VersionControl\VersionControlOperation.cs" />
     <Compile Include="Build\VersionControl\Vault\VaultVersionControlProvider.cs" />

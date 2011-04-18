@@ -31,7 +31,7 @@ namespace Foundation.Tests.Build.VersionControl
             Assert.AreEqual("vault", result.Provider);
             Assert.AreEqual("username", result.Credentials.UserName);
             Assert.AreEqual("password", result.Credentials.Password);
-            Assert.AreEqual("ServerName", result.Server);
+            Assert.AreEqual("servername", result.Server);
             Assert.AreEqual("ProjectName", result.Project);
             Assert.AreEqual(VersionControlOperation.None, result.Operation);
             Assert.IsNull(result.DestinationPath);

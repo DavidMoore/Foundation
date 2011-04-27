@@ -197,5 +197,15 @@ namespace Foundation.ExtensionMethods
 
             return value.Substring(startIndex);
         }
+
+        public static string[] Split(this string value, string delimiter, StringSplitOptions options)
+        {
+            return value.Split(new []{ delimiter }, options);
+        }
+
+        public static string[] Split(this string value, char delimiter, StringSplitOptions options)
+        {
+            return value.Split(new[] { delimiter }, options);
+        }
     }
 }

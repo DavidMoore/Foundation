@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Foundation.ExtensionMethods;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -118,6 +119,26 @@ namespace Foundation.Tests.ExtensionMethods
         {
             var value = "Get_substring_up_to_first_slash/rest of string".Substring(0, "/");
             Assert.AreEqual("Get_substring_up_to_first_slash", value);
+        }
+
+        [TestMethod]
+        public void Split_using_single_string()
+        {
+            var values = "Item1&item2&&item3&".Split("&", StringSplitOptions.RemoveEmptyEntries);
+            Assert.AreEqual(3, values.Length);
+            Assert.AreEqual("Item1", values[0]);
+            Assert.AreEqual("item2", values[1]);
+            Assert.AreEqual("item3", values[2]);
+        }
+
+        [TestMethod]
+        public void Split_using_single_char()
+        {
+            var values = "Item1&item2&&item3&".Split('&', StringSplitOptions.RemoveEmptyEntries);
+            Assert.AreEqual(3, values.Length);
+            Assert.AreEqual("Item1", values[0]);
+            Assert.AreEqual("item2", values[1]);
+            Assert.AreEqual("item3", values[2]);
         }
     }
 }

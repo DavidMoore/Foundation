@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Foundation.Build.VersionControl;
 using Foundation.Services;
 using Foundation.Tests.TestHelpers;
@@ -11,14 +12,9 @@ namespace Foundation.Tests.Build.VersionControl
     {
         class StubBaseVersionControlProvider : BaseVersionControlProvider
         {
-            /// <summary>
-            /// Executes a get operation.
-            /// </summary>
-            /// <param name="arguments">The arguments.</param>
-            /// <returns></returns>
-            protected override IServiceResult ExecuteGet(VersionControlArguments arguments)
+            protected override IServiceResult ExecuteOperation(VersionControlArguments arguments)
             {
-                throw new NotImplementedException();
+                return null;
             }
         }
 

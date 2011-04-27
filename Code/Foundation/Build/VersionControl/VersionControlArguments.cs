@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Net;
 using System.Text;
 using Foundation.ExtensionMethods;
@@ -78,6 +77,14 @@ namespace Foundation.Build.VersionControl
         public string Provider { get; set; }
 
         /// <summary>
+        /// Gets or sets the version label.
+        /// </summary>
+        /// <value>
+        /// The version label.
+        /// </value>
+        public string Label { get; set; }
+
+        /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="VersionControlArguments"/>.
         /// </summary>
         /// <returns>
@@ -112,12 +119,16 @@ namespace Foundation.Build.VersionControl
             sb.Append("operation=").Append(Operation).Append("&");
 
             // So is the destination
-            sb.Append("destination=").Append(DestinationPath);
+            sb.Append("destination=").Append(DestinationPath).Append("&");
+            
+            // Label
+            if(!Label.IsNullOrEmpty()) sb.Append("Label=").Append(Label).Append("&");
 
             // The version will be after the hash
             sb.Append("#").Append(Version);
 
-            return sb.ToString();
+            return sb.ToString()
+                .Replace("&#","#"); // Clean up ugly anchor
         }
     }
 }

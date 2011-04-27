@@ -104,6 +104,10 @@
     <Compile Include="Build\MSBuild\VisualBasicProjectTests.cs" />
     <Compile Include="Build\MSBuild\VisualCResourceFileTests.cs" />
     <Compile Include="Build\PdbStrTests.cs" />
+    <Compile Include="Build\SourceIndexerTests.cs" />
+    <Compile Include="Build\SrcTool.cs" />
+    <Compile Include="Build\SrcToolTests.cs" />
+    <Compile Include="Build\VersionControl\Vault\SourceIndexerForVaultTests.cs" />
     <Compile Include="Build\VersionControl\Vault\VaultResultSerializerTests.cs" />
     <Compile Include="Build\VersionControl\Vault\VaultTestResponses.cs" />
     <Compile Include="Build\VersionControl\Vault\VaultVersionControlProviderTests.cs" />

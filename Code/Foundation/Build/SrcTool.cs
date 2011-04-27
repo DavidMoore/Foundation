@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Foundation.ExtensionMethods;
 using Foundation.Windows;
 
@@ -31,6 +33,8 @@ namespace Foundation.Build
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), debuggingToolsForWindowsFolderName + " (x86)")
         };
 
+        TimeSpan DefaultTimeout = TimeSpan.FromSeconds(5);
+
         public SrcTool() : base(GetSrcToolPath()) {}
 
         public SrcTool(string filename) : this()
@@ -44,7 +48,7 @@ namespace Foundation.Build
             return Path.Combine(directory, @"srcsrv\SrcTool.exe");
         }
 
-        protected override void BuildArguments()
+        internal protected override void BuildArguments()
         {
             var sb = new StringBuilder();
 
@@ -76,14 +80,48 @@ namespace Foundation.Build
         {
             RawSourceData = true;
 
+            var lines = new List<string>();
+
+            var errorStreamWaitHandle = new ManualResetEvent(false);
+            var outputStreamWaitHandle = new ManualResetEvent(false);
+            var processWaitHandle = new ManualResetEvent(false);
+
+            ErrorDataReceived += delegate(object sender, DataReceivedEventArgs args)
+            {
+                if (args.Data == null) errorStreamWaitHandle.Set();
+            };
+
+            OutputDataReceived += delegate(object sender, DataReceivedEventArgs args)
+            {
+                if (args.Data == null)
+                {
+                    outputStreamWaitHandle.Set();
+                    return;
+                }
+
+                if( args.Data.Trim().Length > 0) lines.Add(args.Data);
+            };
+
+            Exited += (o, eventArgs) => processWaitHandle.Set();
+
+            EnableRaisingEvents = true;
             StartInfo.UseShellExecute = false;
             StartInfo.RedirectStandardOutput = true;
             StartInfo.RedirectStandardError = true;
+            StartInfo.RedirectStandardInput = true;
+            StartInfo.CreateNoWindow = true;
 
             Start();
-            WaitForExit();
 
-            return StandardOutput.ReadToEnd().Split(new[]{"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+            BeginErrorReadLine();
+            BeginOutputReadLine();
+
+            WaitHandle.WaitAll(new[]
+            {
+                errorStreamWaitHandle, outputStreamWaitHandle, processWaitHandle
+            }, DefaultTimeout);
+
+            return lines;
         }
     }
 }

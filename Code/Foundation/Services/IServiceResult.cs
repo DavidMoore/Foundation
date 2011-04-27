@@ -12,7 +12,12 @@ namespace Foundation.Services
         /// Gets the status of the result; i.e. if it succeeded or failed.
         /// </summary>
         /// <value>The result.</value>
-        ServiceResultCode Result { get; }
+        ServiceResultCode ResultCode { get; }
+
+        /// <summary>
+        /// Gets the result value.
+        /// </summary>
+        object ResultValue { get; }
 
         /// <summary>
         /// Gets the list of informational messages for the result.

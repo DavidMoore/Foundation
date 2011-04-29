@@ -95,7 +95,7 @@ VCS_EXTRACT_TARGET=" + SourceIndexer.VcsDestinationPath + "\r\n", block, ignoreC
 
             provider.Setup(versionControlProvider => versionControlProvider
                 .MapVersionControlSourcePath(It.IsAny<string>(), It.IsAny<VersionControlArguments>()))
-                .Returns("VersionControlPath");
+                .Returns("/MyProject/SubFolder");
 
             var args = new VersionControlArguments
             {
@@ -113,7 +113,7 @@ VCS_EXTRACT_TARGET=" + SourceIndexer.VcsDestinationPath + "\r\n", block, ignoreC
             
             var line = indexer.GetVersionIndexForFile("D:\\WorkingFolder\\MyProject\\SubFolder\\Filename.ext");
 
-            Assert.AreEqual("D:\\WorkingFolder\\MyProject\\SubFolder\\Filename.ext*VersionControlPath*My Label", line, ignoreCase:true);
+            Assert.AreEqual("D:\\WorkingFolder\\MyProject\\SubFolder\\Filename.ext*/MyProject/SubFolder*My Label", line, ignoreCase: true);
         }
 
         

@@ -101,7 +101,7 @@ namespace Foundation.Tests.Build.VersionControl.Vault
             var args = new VersionControlArguments
             {
                 Credentials = new NetworkCredential("Username", "Password"),
-                DestinationPath = "DestinationPath",
+                DestinationPath = @"C:\DestinationPath\",
                 Operation = VersionControlOperation.Get,
                 Project = "ProjectName",
                 Provider = "Vault",
@@ -112,7 +112,29 @@ namespace Foundation.Tests.Build.VersionControl.Vault
 
             var result = provider.BuildCommandLineArguments(args);
 
-            Assert.AreEqual("getlabel -host \"Server:Port\" -user \"Username\" -password \"Password\" -repository \"ProjectName\" -destpath \"DestinationPath\" \"$SourcePath/FileName.ext\" \"My Label\"", result);
+            Assert.AreEqual("getlabel -host \"Server:Port\" -user \"Username\" -password \"Password\" -repository \"ProjectName\" -destpath \"C:\\DestinationPath\" \"$SourcePath/FileName.ext\" \"My Label\"", result);
+        }
+
+        [TestMethod]
+        public void Get_for_label_changes_destination_from_file_to_folder()
+        {
+            var provider = new VaultVersionControlProvider(@"C:\Program Files\SourceGear\Vault Client\vault.exe");
+
+            var args = new VersionControlArguments
+            {
+                Credentials = new NetworkCredential("Username", "Password"),
+                DestinationPath = @"C:\DestinationPath\SubFolder\FileName.ext",
+                Operation = VersionControlOperation.Get,
+                Project = "ProjectName",
+                Provider = "Vault",
+                Server = "Server:Port",
+                SourcePath = "/SourcePath/FileName.ext",
+                Label = "My Label"
+            };
+
+            var result = provider.BuildCommandLineArguments(args);
+
+            Assert.AreEqual("getlabel -host \"Server:Port\" -user \"Username\" -password \"Password\" -repository \"ProjectName\" -destpath \"C:\\DestinationPath\\SubFolder\" \"$SourcePath/FileName.ext\" \"My Label\"", result);
         }
 
         [TestMethod]
@@ -133,8 +155,8 @@ namespace Foundation.Tests.Build.VersionControl.Vault
             };
 
             Assert.IsNull(provider.MapVersionControlSourcePath("D:\\WorkingFolder", args));
-            Assert.AreEqual("/Folder/File.ext", provider.MapVersionControlSourcePath(@"C:\WorkingFolder\Folder\File.ext", args));
-            Assert.AreEqual("/Folder/File.ext", provider.MapVersionControlSourcePath(@"C:\workingFolder/Folder\File.ext", args));
+            Assert.AreEqual("/Folder", provider.MapVersionControlSourcePath(@"C:\WorkingFolder\Folder\File.ext", args));
+            Assert.AreEqual("/Folder", provider.MapVersionControlSourcePath(@"C:\workingFolder/Folder\File.ext", args));
         }
     }
 }

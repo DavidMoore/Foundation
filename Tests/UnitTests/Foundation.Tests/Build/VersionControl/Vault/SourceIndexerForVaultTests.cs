@@ -1,13 +1,8 @@
-﻿using System;
-using System.Net;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Net;
 using Foundation.Build;
 using Foundation.Build.VersionControl;
 using Foundation.Build.VersionControl.Vault;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace Foundation.Tests.Build.VersionControl.Vault
 {
@@ -53,8 +48,8 @@ namespace Foundation.Tests.Build.VersionControl.Vault
             };
             var indexer = new SourceIndexer(provider, args);
             
-            Assert.AreEqual(@"D:\Source\ProjectName\SourcePath\File.ext*/ProjectName/SourcePath/File.ext*My Label", indexer.GetVersionIndexForFile(@"d:\Source\ProjectName\SourcePath\File.ext"), ignoreCase: true);
-            Assert.AreEqual(@"D:\Source\ProjectName\SourcePath\File.ext*/ProjectName/SourcePath/File.ext*My Label", indexer.GetVersionIndexForFile(@"D:\Source\ProjectName\SourcePath\File.ext"), ignoreCase: true);
+            Assert.AreEqual(@"D:\Source\ProjectName\SourcePath\File.ext*/ProjectName/SourcePath*My Label", indexer.GetVersionIndexForFile(@"d:\Source\ProjectName\SourcePath\File.ext"), ignoreCase: true);
+            Assert.AreEqual(@"D:\Source\ProjectName\SourcePath\File.ext*/ProjectName/SourcePath*My Label", indexer.GetVersionIndexForFile(@"D:\Source\ProjectName\SourcePath\File.ext"), ignoreCase: true);
         }
     }
 }

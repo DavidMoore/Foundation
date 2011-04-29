@@ -76,9 +76,18 @@ namespace Foundation.Build.VersionControl.Vault
                 && !arguments.Label.IsNullOrEmpty() 
                 && !arguments.DestinationPath.IsNullOrEmpty())
             {
-                sb.Append(" -destpath \"").Append(
-                    // Destination path must be a directory, not a filename
-                    Path.GetDirectoryName(arguments.DestinationPath)).Append('"');
+                sb.Append(" -destpath \"");
+                
+                // The destination needs to be a folder, so if this is a filename, get the folder instead.
+                if( arguments.DestinationPath.Contains("/") || arguments.DestinationPath.Contains("\\") )
+                {
+                    sb.Append(Path.GetDirectoryName(arguments.DestinationPath));
+                }
+                else
+                {
+                    sb.Append(arguments.DestinationPath);
+                }
+                sb.Append('"');
             }
 
             // If the argument is the version, then add that to the arguments.
@@ -137,8 +146,11 @@ namespace Foundation.Build.VersionControl.Vault
             relativePath = relativePath.TrimStart('$', '\\');
             if(!relativePath.StartsWith("/")) relativePath = "/" + relativePath;
 
+            // Return a folder path, not a file path
+            var result = Path.GetDirectoryName(relativePath);
+
             // Convert all back slashes to forward slashes
-            return relativePath.Replace(@"\", "/");
+            return result.Replace(@"\", "/");
         }
 
         internal static string OperationToVaultCommand(VersionControlArguments args)

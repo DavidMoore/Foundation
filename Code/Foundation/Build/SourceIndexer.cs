@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Text;
 using Foundation.Build.VersionControl;
@@ -10,16 +11,36 @@ namespace Foundation.Build
     {
         internal readonly BaseCommandLineVersionControlProvider versionControlProvider;
         readonly VersionControlArguments args;
-        const string ForwardSlashesToBackSlashes = "%fnbksl%(";
+
+        /// <summary>
+        /// The name of the variable containing he original
+        /// local filename when the build occurred, e.g. the working path
+        /// on the build server.
+        /// </summary>
+        const string OriginalLocalPath = "%VAR1%";
+
+        /// <summary>
+        /// The name of the variable containing the version control source folder.
+        /// </summary>
+        const string VcsSourcePath = "%VAR2%";
+
+        /// <summary>
+        /// The name of the variable containing the label.
+        /// </summary>
+        const string VcsLabel = "%VAR3%";
+
         const string VcsExecutable = "%VCS_EXECUTABLE%";
         const string VcsUsername = "%VCS_USERNAME%";
         const string VcsPassword = "%VCS_PASSWORD%";
-        const string VcsLabel = "%VAR3%";
+        
         const string VcsProject = "%VCS_PROJECT%";
         const string VcsProvider = "%VCS_PROVIDER%";
         const string VcsServer = "%VCS_SERVER%";
-        const string VcsSourcePath = "%VAR2%";
-        internal const string VcsDestinationPath = "%TARG%\\" + VcsLabel + ForwardSlashesToBackSlashes + VcsSourcePath + ")";
+
+        internal static readonly string VcsDestinationPath = 
+            @"%TARG%\{0}%fnbksl%({1})\%fnfile%({2})".StringFormat( VcsLabel, VcsSourcePath, OriginalLocalPath );
+
+        internal static readonly string VcsSourceFullPath = @"{0}/%fnfile%({1})".StringFormat(VcsSourcePath, OriginalLocalPath);
 
         public SourceIndexer(BaseCommandLineVersionControlProvider versionControlProvider, VersionControlArguments args)
         {
@@ -38,7 +59,7 @@ namespace Foundation.Build
                 Project = VcsProject,
                 Provider = VcsProvider,
                 Server = VcsServer,
-                SourcePath = VcsSourcePath
+                SourcePath = VcsSourceFullPath
             };
 
             var commandLine = versionControlProvider.BuildCommandLineArguments(getArgs);
@@ -51,7 +72,7 @@ namespace Foundation.Build
             var result = versionControlProvider.MapVersionControlSourcePath(localPath, args);
 
             if (result.IsNullOrEmpty()) return null;
-
+            
             return "{0}*{1}*{2}".StringFormat(localPath.Trim(), result.Trim(), args.Label.Trim());
         }
 

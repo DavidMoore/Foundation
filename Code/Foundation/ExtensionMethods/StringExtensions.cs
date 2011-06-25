@@ -197,5 +197,15 @@ namespace Foundation.ExtensionMethods
 
             return value.Substring(startIndex);
         }
+
+        public static string Remove(this string value, string remove)
+        {
+            return value.Replace(remove, string.Empty);
+        }
+
+        public static string Remove(this string value, char remove)
+        {
+            return value.Remove(remove.ToString());
+        }
     }
 }

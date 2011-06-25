@@ -16,19 +16,10 @@ namespace Foundation.Build.VersionControl
             if (arguments == null) throw new ArgumentNullException("arguments");
 
             ValidateArguments(arguments);
-
-            switch (arguments.Operation)
-            {
-                case VersionControlOperation.None:
-                    throw new ArgumentException("You must specify a valid source control operation for the VersionControlArguments (the Operation property is set to None)", "arguments");
-                    
-                case VersionControlOperation.Get:
-                    return ExecuteGet(arguments);
-                    
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            return ExecuteOperation(arguments);
         }
+
+        protected abstract IServiceResult ExecuteOperation(VersionControlArguments arguments);
 
         /// <summary>
         /// Validates the arguments.
@@ -36,14 +27,12 @@ namespace Foundation.Build.VersionControl
         /// <param name="arguments">The arguments.</param>
         protected internal virtual void ValidateArguments(VersionControlArguments arguments)
         {
-            if( arguments.Server.IsNullOrEmpty()) throw new ArgumentException("You must specify a Server", "arguments");
-        }
+            if (arguments.Server.IsNullOrEmpty()) throw new ArgumentException("You must specify a Server", "arguments");
 
-        /// <summary>
-        /// Executes a get operation.
-        /// </summary>
-        /// <param name="arguments">The arguments.</param>
-        /// <returns></returns>
-        protected abstract IServiceResult ExecuteGet(VersionControlArguments arguments);
+            if (arguments.Operation == VersionControlOperation.None)
+            {
+                throw new ArgumentException("You must specify a valid source control operation for the VersionControlArguments (the Operation property is set to None)", "arguments");
+            }
+        }
     }
 }

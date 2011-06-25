@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Foundation.Build;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Build
@@ -10,26 +7,46 @@ namespace Foundation.Tests.Build
     public class PdbStrTests
     {
         [TestMethod]
-        public void Requires_filename()
+        public void Defaults_to_read()
         {
-            var pdbstr = new PdbStr();
+            var pdbStr = new PdbStr();
+
+            Assert.AreEqual(PdbStrOperation.Read, pdbStr.Operation);
         }
-    }
 
-    public class PdbStr
-    {
-        
-    }
-
-    [TestClass]
-    public class SrcToolTests
-    {
         [TestMethod]
-        public void ListSourceFiles()
+        public void BuildArguments_write()
         {
-            var srcTool = new SrcTool(); 
+            var pdbStr = new PdbStr();
+            pdbStr.BuildArguments();
+            Assert.AreEqual("-r", pdbStr.StartInfo.Arguments);
+        }
+
+        [TestMethod]
+        public void PdbFilename()
+        {
+            var pdbStr = new PdbStr();
+            pdbStr.PdbFilename = @"C:\Filename.pdb";
+            pdbStr.BuildArguments();
+            Assert.AreEqual("-r -p:\"C:\\Filename.pdb\"", pdbStr.StartInfo.Arguments);
+        }
+
+        [TestMethod]
+        public void StreamFilename()
+        {
+            var pdbStr = new PdbStr();
+            pdbStr.StreamFilename = @"C:\Filename.txt";
+            pdbStr.BuildArguments();
+            Assert.AreEqual("-r -i:\"C:\\Filename.txt\"", pdbStr.StartInfo.Arguments);
+        }
+
+        [TestMethod]
+        public void StreamName()
+        {
+            var pdbStr = new PdbStr();
+            pdbStr.StreamName = @"StreamName";
+            pdbStr.BuildArguments();
+            Assert.AreEqual("-r -s:StreamName", pdbStr.StartInfo.Arguments);
         }
     }
-
-    public class SrcTool {}
 }

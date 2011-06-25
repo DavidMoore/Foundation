@@ -13,10 +13,10 @@ namespace Foundation.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceResult"/> class.
         /// </summary>
-        /// <param name="result">The result.</param>
-        public ServiceResult(ServiceResultCode result)
+        /// <param name="resultCode">The result.</param>
+        public ServiceResult(ServiceResultCode resultCode)
         {
-            Result = result;
+            ResultCode = resultCode;
             messages = new List<IServiceMessage>();
         }
 
@@ -24,7 +24,12 @@ namespace Foundation.Services
         /// Gets the status of the result; i.e. if it succeeded or failed.
         /// </summary>
         /// <value>The result.</value>
-        public ServiceResultCode Result { get; private set; }
+        public ServiceResultCode ResultCode { get; set; }
+
+        /// <summary>
+        /// Gets the result value.
+        /// </summary>
+        public object ResultValue { get; set; }
 
         /// <summary>
         /// Gets the list of informational messages for the result.

@@ -19,8 +19,13 @@ namespace Foundation.Tests.Build.VersionControl
                 Server = "ServerName",
                 SourcePath = "Source/Path/",
                 Version = "50",
-                Provider = "Vault"
+                Provider = "Vault",
+                Label = "Label"
             };
+
+            Assert.AreEqual("vault://username:password@ServerName/ProjectName/Source/Path/?operation=Get&destination=destination&Label=Label#50", args.ToString());
+
+            args.Label = null;
 
             Assert.AreEqual("vault://username:password@ServerName/ProjectName/Source/Path/?operation=Get&destination=destination#50", args.ToString());
         }

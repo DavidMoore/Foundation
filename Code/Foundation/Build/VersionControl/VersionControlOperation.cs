@@ -13,6 +13,11 @@
         /// <summary>
         /// Gets a version of a file or folder.
         /// </summary>
-        Get = 1
+        Get = 1,
+
+        /// <summary>
+        /// Gets the VCS version of a local working file or folder.
+        /// </summary>
+        GetLocalVersion = 2
     }
 }

@@ -11,7 +11,12 @@ namespace Foundation.Windows
             if (fileName == null) throw new ArgumentNullException("fileName");
             if(fileName.IsNullOrEmpty()) throw new ArgumentException("Filename cannot be empty", "fileName");
 
-            StartInfo = new ProcessStartInfo(fileName);
+            StartInfo = new ProcessStartInfo(fileName)
+            {
+                RedirectStandardError = true,
+                RedirectStandardOutput = true,
+                UseShellExecute = false
+            };
         }
 
         public ProcessWrapper() {}
@@ -25,7 +30,7 @@ namespace Foundation.Windows
             return base.Start();
         }
 
-        protected virtual void BuildArguments()
+        internal protected virtual void BuildArguments()
         {
             
         }

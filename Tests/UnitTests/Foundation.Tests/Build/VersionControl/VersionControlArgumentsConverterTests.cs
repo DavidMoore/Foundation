@@ -11,19 +11,7 @@ namespace Foundation.Tests.Build.VersionControl
         [TestMethod]
         public void FromUri()
         {
-            var args = new VersionControlArguments
-            {
-                Credentials = new NetworkCredential("username", "password"),
-                DestinationPath = "destination",
-                Operation = VersionControlOperation.Get,
-                Project = "ProjectName",
-                Server = "ServerName",
-                SourcePath = "Source/Path/",
-                Version = "50",
-                Provider = "Vault"
-            };
-
-            var uri = new Uri("vault://username:password@ServerName/ProjectName");
+            var uri = new Uri("vault://username:password@ServerName/ProjectName?DestinationPath=C:\\Destination\\Path&label=My Label");
 
             var result = VersionControlArgumentsConverter.FromUri(uri);
 
@@ -34,9 +22,32 @@ namespace Foundation.Tests.Build.VersionControl
             Assert.AreEqual("servername", result.Server);
             Assert.AreEqual("ProjectName", result.Project);
             Assert.AreEqual(VersionControlOperation.None, result.Operation);
-            Assert.IsNull(result.DestinationPath);
+            Assert.AreEqual("C:\\Destination\\Path", result.DestinationPath);
+            Assert.AreEqual("My Label", result.Label);
             Assert.IsNull(result.SourcePath);
             Assert.IsNull(result.Version);
+        }
+
+        [TestMethod]
+        public void FromUri_unescapes_Project()
+        {
+            var uri = new Uri("vault://username:password@ServerName/Project%20Name?DestinationPath=C:\\Destination\\Path&label=My Label");
+
+            var result = VersionControlArgumentsConverter.FromUri(uri);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Project Name", result.Project);
+        }
+
+        [TestMethod]
+        public void FromUri_trims_whitespace_and_slashes_on_Project()
+        {
+            var uri = new Uri("vault://username:password@ServerName/Project%20Name//?DestinationPath=C:\\Destination\\Path&label=My Label");
+
+            var result = VersionControlArgumentsConverter.FromUri(uri);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Project Name", result.Project);
         }
     }
 }

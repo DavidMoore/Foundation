@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="CompileVisualBasic6Project.cs" />
     <Compile Include="CompileVisualCProject.cs" />
+    <Compile Include="ReadAssemblyInfo.cs" />
     <Compile Include="GenerateFileVersionInfo.cs" />
     <Compile Include="GenerateAssemblyInfo.cs" />
     <Compile Include="IndexSymbolSources.cs" />

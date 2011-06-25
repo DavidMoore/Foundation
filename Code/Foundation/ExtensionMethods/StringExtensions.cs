@@ -207,5 +207,15 @@ namespace Foundation.ExtensionMethods
         {
             return value.Remove(remove.ToString());
         }
+
+        public static string[] Split(this string value, string delimiter, StringSplitOptions options)
+        {
+            return value.Split(new []{ delimiter }, options);
+        }
+
+        public static string[] Split(this string value, char delimiter, StringSplitOptions options)
+        {
+            return value.Split(new[] { delimiter }, options);
+        }
     }
 }

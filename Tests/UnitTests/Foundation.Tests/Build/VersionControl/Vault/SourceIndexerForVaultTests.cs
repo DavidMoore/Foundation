@@ -28,7 +28,7 @@ namespace Foundation.Tests.Build.VersionControl.Vault
             
             var command = indexer.GetVersionCommand();
 
-            Assert.AreEqual("\"%VCS_EXECUTABLE%\" getlabel -host \"%VCS_SERVER%\" -user \"%VCS_USERNAME%\" -password \"%VCS_PASSWORD%\" -repository \"%VCS_PROJECT%\" -destpath \"%TARG%\\%Var3%%fnbksl%(%Var2%)\" \"$%VAR2%\" \"%VAR3%\"", command, ignoreCase: true);
+            Assert.AreEqual("\"%VCS_EXECUTABLE%\" getlabel -host \"%VCS_SERVER%\" -user \"%VCS_USERNAME%\" -password \"%VCS_PASSWORD%\" -repository \"%VCS_PROJECT%\" -destpath \"%TARG%\\%VAR3%%fnbksl%(%VAR2%)\" \"$%VAR2%/%fnfile%(%VAR1%)\" \"%VAR3%\"", command, ignoreCase: true);            
         }
 
         [TestMethod]

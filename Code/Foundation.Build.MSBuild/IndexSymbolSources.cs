@@ -24,6 +24,12 @@ namespace Foundation.Build.MSBuild
             // Get the version control arguments, which are in the form of a URI
             var uri = new Uri(VersionControlArguments);
 
+            if( Symbols == null )
+            {
+                Log.LogWarning("No symbol files passed to index");
+                return true;
+            }
+
             var vaultExecutable = VcsExecutablePath;
 
             var args = VersionControlArgumentsConverter.FromUri(uri);

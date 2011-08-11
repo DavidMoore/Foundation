@@ -79,6 +79,6 @@ namespace Foundation.Build.VisualBasic6
         /// <value>
         /// The filename.
         /// </value>
-        public string Filename { get; set; }
+        public string FileName { get; set; }
     }
 }

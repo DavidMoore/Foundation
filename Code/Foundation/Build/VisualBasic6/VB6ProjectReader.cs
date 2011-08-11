@@ -12,14 +12,14 @@ namespace Foundation.Build.VisualBasic6
         /// <summary>
         /// Reads all the project values from the specified Visual Basic 6 project file.
         /// </summary>
-        /// <param name="filename">The VB6 project filename.</param>
+        /// <param name="fileName">The VB6 project fileName.</param>
         /// <returns></returns>
-        public VB6ProjectProperties Read(string filename)
+        public VB6ProjectProperties Read(string fileName)
         {
-            if (filename == null) throw new ArgumentNullException("filename");
-            if (string.IsNullOrWhiteSpace(filename)) throw new ArgumentException("The project filename must not be empty.", "filename");
+            if (fileName == null) throw new ArgumentNullException("fileName");
+            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentException("The project fileName must not be empty.", "fileName");
 
-            var projectFile = new FileInfo(filename);
+            var projectFile = new FileInfo(fileName);
 
             if (!projectFile.Exists) throw new FileNotFoundException("Couldn't find project file.", projectFile.FullName);
 
@@ -54,12 +54,12 @@ namespace Foundation.Build.VisualBasic6
             return new VB6ProjectProperties(results);
         }
 
-        public VB6Project Parse(string filename)
+        public VB6Project Parse(string fileName)
         {
-            var values = Read(filename);
+            var values = Read(fileName);
             var project = new VB6Project
                               {
-                                  Filename = filename,
+                                  FileName = fileName,
                                   Name = values.GetSingleValue("Name"),
                                   ProjectType =
                                       (VB6ProjectType)
@@ -98,7 +98,7 @@ namespace Foundation.Build.VisualBasic6
         {
             var result = new VB6SourceFile();
 
-            // If the name is in two parts split by a semi-colon or comma, that is the name and filename
+            // If the name is in two parts split by a semi-colon or comma, that is the name and fileName
             var parts = name.Split(new[] {";", ","}, StringSplitOptions.RemoveEmptyEntries);
 
             result.Type = sourceFileType;
@@ -107,11 +107,11 @@ namespace Foundation.Build.VisualBasic6
             {
                 case 1:
                     result.Name = Path.GetFileNameWithoutExtension(parts[0]);
-                    result.Filename = parts[0];
+                    result.FileName = parts[0];
                     break;
                 case 2:
                     result.Name = parts[0];
-                    result.Filename = parts[1];
+                    result.FileName = parts[1];
                     break;
                 default:
                     throw new ArgumentException("The source item name has too many parts (expecting 1 or 2 parts). Name: " + name, "name");
@@ -126,7 +126,7 @@ namespace Foundation.Build.VisualBasic6
             // 0 = GUID
             // 1 = Version
             // 2 = Not sure. Usually 0 and doesn't seem to mean anything.
-            // 3 = Path and filename
+            // 3 = Path and fileName
             // 4 = Name (optional)
             string[] parts = GetReferenceParts(reference).ToArray();
 

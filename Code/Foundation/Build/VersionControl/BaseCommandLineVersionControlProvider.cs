@@ -28,7 +28,7 @@ namespace Foundation.Build.VersionControl
         public IServiceResult CommandLineExecute(VersionControlArguments arguments)
         {
             var commandLineArgs = BuildCommandLineArguments(arguments);
-            var processStartInfo = new ProcessStartInfo(Filename, commandLineArgs);
+            var processStartInfo = new ProcessStartInfo(FileName, commandLineArgs);
 
             using (var process = new Process())
             {
@@ -64,10 +64,10 @@ namespace Foundation.Build.VersionControl
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseCommandLineVersionControlProvider"/> class.
         /// </summary>
-        /// <param name="filename">The value to use for <see cref="Filename"/>.</param>
-        protected BaseCommandLineVersionControlProvider(string filename)
+        /// <param name="fileName">The value to use for <see cref="FileName"/>.</param>
+        protected BaseCommandLineVersionControlProvider(string fileName)
         {
-            Filename = filename;
+            FileName = fileName;
             Timeout = TimeSpan.FromMilliseconds(defaultTimeoutMilliseconds);
         }
 
@@ -84,7 +84,7 @@ namespace Foundation.Build.VersionControl
         /// <value>
         /// The executable filename.
         /// </value>
-        public virtual string Filename { get; protected set; }
+        public virtual string FileName { get; protected set; }
 
         /// <summary>
         /// Maps the version control source path from a local working path.

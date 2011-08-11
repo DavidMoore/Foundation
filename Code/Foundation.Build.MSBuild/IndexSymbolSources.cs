@@ -90,8 +90,8 @@ namespace Foundation.Build.MSBuild
                     // Write the stream to the debug symbols
                     using (var pdbStr = new PdbStr())
                     {
-                        pdbStr.PdbFilename = path;
-                        pdbStr.StreamFilename = temp.FileInfo.FullName;
+                        pdbStr.PdbFileName = path;
+                        pdbStr.StreamFileName = temp.FileInfo.FullName;
                         pdbStr.StreamName = "srcsrv";
                         pdbStr.Operation = PdbStrOperation.Write;
 

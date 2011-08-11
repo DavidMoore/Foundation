@@ -5,11 +5,11 @@ namespace Foundation.Build.VisualBasic6
 {
     public class VB6Reference
     {
-        public VB6Reference(Guid guid, string version, string filename, string description)
+        public VB6Reference(Guid guid, string version, string fileName, string description)
         {
             Guid = guid;
             Version = version;
-            Filename = filename;
+            FileName = fileName;
             Description = description;
 
             // Split the version into parts
@@ -24,7 +24,7 @@ namespace Foundation.Build.VisualBasic6
         public string Version { get; private set; }
         public int VersionMajor { get; private set; }
         public int VersionMinor { get; private set; }
-        public string Filename { get; private set; }
+        public string FileName { get; private set; }
         public string Description { get; private set; }
 
         public string ToString(VB6ReferenceType referenceType)
@@ -32,9 +32,9 @@ namespace Foundation.Build.VisualBasic6
             switch (referenceType)
             {
                 case VB6ReferenceType.Reference:
-                    return string.Format("Reference=*\\G{0}#{1}#0#{2}#{3}", Guid, Version, Filename, Description);
+                    return string.Format("Reference=*\\G{0}#{1}#0#{2}#{3}", Guid, Version, FileName, Description);
                 case VB6ReferenceType.Component:
-                    return string.Format("Object={0}#{1}#0#;{2}", Guid, Version, Filename);
+                    return string.Format("Object={0}#{1}#0#;{2}", Guid, Version, FileName);
                 default:
                     throw new ArgumentOutOfRangeException("referenceType");
             }

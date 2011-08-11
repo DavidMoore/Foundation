@@ -57,7 +57,7 @@ namespace Foundation.Build
 
             if (RawSourceData.HasValue && RawSourceData.Value) sb.Append("-r ");
 
-            if( Filename.IsNullOrEmpty()) throw new FoundationException("The Filename argument for SrcTool is required");
+            if( Filename.IsNullOrEmpty()) throw new FoundationException("The FileName argument for SrcTool is required");
 
             sb.AppendFormat("\"{0}\"", Filename);
 

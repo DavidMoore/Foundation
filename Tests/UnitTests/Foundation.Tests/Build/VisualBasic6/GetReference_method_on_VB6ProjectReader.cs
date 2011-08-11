@@ -16,7 +16,7 @@ namespace Foundation.Tests.Build.VisualBasic6
             Assert.AreEqual(new Guid("{F9043C88-F6F2-101A-A3C9-08002B2F49FB}"), reference.Guid);
             Assert.AreEqual(1, reference.VersionMajor);
             Assert.AreEqual(2, reference.VersionMinor);
-            Assert.AreEqual("ComDlg32.ocx", reference.Filename);
+            Assert.AreEqual("ComDlg32.ocx", reference.FileName);
             Assert.AreEqual("ComDlg32", reference.Description);
         }
 
@@ -29,7 +29,7 @@ namespace Foundation.Tests.Build.VisualBasic6
             Assert.AreEqual(new Guid("{00020430-0000-0000-C000-000000000046}"), reference.Guid);
             Assert.AreEqual(2, reference.VersionMajor);
             Assert.AreEqual(0, reference.VersionMinor);
-            Assert.AreEqual(@"C:\Windows\SysWOW64\stdole2.tlb", reference.Filename);
+            Assert.AreEqual(@"C:\Windows\SysWOW64\stdole2.tlb", reference.FileName);
             Assert.AreEqual("OLE Automation", reference.Description);
         }
     }

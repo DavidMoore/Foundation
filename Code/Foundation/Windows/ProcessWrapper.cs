@@ -9,7 +9,7 @@ namespace Foundation.Windows
         public ProcessWrapper(string fileName)
         {
             if (fileName == null) throw new ArgumentNullException("fileName");
-            if(fileName.IsNullOrEmpty()) throw new ArgumentException("Filename cannot be empty", "fileName");
+            if(fileName.IsNullOrEmpty()) throw new ArgumentException("FileName cannot be empty", "fileName");
 
             StartInfo = new ProcessStartInfo(fileName)
             {

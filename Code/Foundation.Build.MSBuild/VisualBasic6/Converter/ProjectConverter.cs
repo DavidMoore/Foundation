@@ -78,7 +78,7 @@ namespace Foundation.Build.MSBuild.VisualBasic6.Converter
             // Add our source files
             foreach (var source in vb6Project.SourceFiles)
             {
-                var item = compileGroup.AddItem("Compile", source.Filename);
+                var item = compileGroup.AddItem("Compile", source.FileName);
 
                 // Is this the startup item?
                 if (source.Name.Equals(vb6Project.Startup, StringComparison.OrdinalIgnoreCase)) item.AddMetadata("Startup", "true");
@@ -91,14 +91,14 @@ namespace Foundation.Build.MSBuild.VisualBasic6.Converter
 
                 // Is there a .frx to go with this form? We will want to include it
                 // in the project as a dependency.
-                var formFrxPath = Path.Combine( Path.GetDirectoryName(vb6Project.Filename), source.Name + ".frx");
+                var formFrxPath = Path.Combine( Path.GetDirectoryName(vb6Project.FileName), source.Name + ".frx");
                 var formFrxFile = new FileInfo(formFrxPath);
                 if (!formFrxFile.Exists) continue;
 
                 // We add the .frx as another item, but we make it dependent on the
                 // parent form, so it shows up as nested in Visual Studio (like code-behind files).
                 var frxItem = noneGroup.AddItem("Compile", formFrxFile.Name);
-                frxItem.AddMetadata("DependentUpon", source.Filename);
+                frxItem.AddMetadata("DependentUpon", source.FileName);
             }
 
             // COM References
@@ -119,7 +119,7 @@ namespace Foundation.Build.MSBuild.VisualBasic6.Converter
             }
             foreach (var reference in vb6Project.Components)
             {
-                var item = referenceGroup.AddItem("COMReference", reference.Filename);
+                var item = referenceGroup.AddItem("COMReference", reference.FileName);
 
                 // Add the COM Reference meta data
                 item.AddMetadata("Guid", reference.Guid.ToString("B"));
@@ -136,7 +136,7 @@ namespace Foundation.Build.MSBuild.VisualBasic6.Converter
             project.Xml.AddImport(@"$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\David Moore\Visual Basic 6 Integration\1.0\VisualBasic6.targets");
 
             // The converted project will be in the same location as the project, except with the .vbpx extension.
-            var convertedProject = new FileInfo(Path.Combine(Path.GetDirectoryName(vb6Project.Filename), Path.GetFileNameWithoutExtension(vb6Project.Name) + ".vbpx"));
+            var convertedProject = new FileInfo(Path.Combine(Path.GetDirectoryName(vb6Project.FileName), Path.GetFileNameWithoutExtension(vb6Project.Name) + ".vbpx"));
             project.Save(convertedProject.FullName);
 
             return project;

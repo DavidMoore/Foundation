@@ -56,7 +56,7 @@ DATETIME=" + now, block.Trim(), ignoreCase: true);
             provider.Setup(controlProvider => 
                 controlProvider.BuildCommandLineArguments(It.IsAny<VersionControlArguments>()))
                 .Returns("args");
-            provider.SetupGet(vcp => vcp.Filename).Returns("VcsExecutable.exe");
+            provider.SetupGet(vcp => vcp.FileName).Returns("VcsExecutable.exe");
 
             var args = new VersionControlArguments
             {
@@ -111,9 +111,9 @@ VCS_EXTRACT_TARGET=" + SourceIndexer.VcsDestinationPath + "\r\n", block, ignoreC
 
             var indexer = new SourceIndexer(provider.Object, args);
             
-            var line = indexer.GetVersionIndexForFile("D:\\WorkingFolder\\MyProject\\SubFolder\\Filename.ext");
+            var line = indexer.GetVersionIndexForFile("D:\\WorkingFolder\\MyProject\\SubFolder\\FileName.ext");
 
-            Assert.AreEqual("D:\\WorkingFolder\\MyProject\\SubFolder\\Filename.ext*/MyProject/SubFolder*My Label", line, ignoreCase: true);
+            Assert.AreEqual("D:\\WorkingFolder\\MyProject\\SubFolder\\FileName.ext*/MyProject/SubFolder*My Label", line, ignoreCase: true);
         }
 
         

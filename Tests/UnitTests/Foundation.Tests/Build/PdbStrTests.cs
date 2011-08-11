@@ -26,18 +26,18 @@ namespace Foundation.Tests.Build
         public void PdbFilename()
         {
             var pdbStr = new PdbStr();
-            pdbStr.PdbFilename = @"C:\Filename.pdb";
+            pdbStr.PdbFileName = @"C:\FileName.pdb";
             pdbStr.BuildArguments();
-            Assert.AreEqual("-r -p:\"C:\\Filename.pdb\"", pdbStr.StartInfo.Arguments);
+            Assert.AreEqual("-r -p:\"C:\\FileName.pdb\"", pdbStr.StartInfo.Arguments);
         }
 
         [TestMethod]
         public void StreamFilename()
         {
             var pdbStr = new PdbStr();
-            pdbStr.StreamFilename = @"C:\Filename.txt";
+            pdbStr.StreamFileName = @"C:\FileName.txt";
             pdbStr.BuildArguments();
-            Assert.AreEqual("-r -i:\"C:\\Filename.txt\"", pdbStr.StartInfo.Arguments);
+            Assert.AreEqual("-r -i:\"C:\\FileName.txt\"", pdbStr.StartInfo.Arguments);
         }
 
         [TestMethod]

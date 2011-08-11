@@ -19,7 +19,7 @@ namespace Foundation.Windows.IO
         /// This attribute is not honored on directories.
         /// For more information, see <see cref="http://go.microsoft.com/FWLink/?LinkId=125896">You cannot view or change the Read-only or the System attributes of folders in Windows Server 2003, in Windows XP, or in Windows Vista</see>.
         /// </summary>
-        Readonly = 0x00000001,
+        ReadOnly = 0x00000001,
 
         /// <summary>
         /// The file or directory is hidden. It is not included in an ordinary directory listing.

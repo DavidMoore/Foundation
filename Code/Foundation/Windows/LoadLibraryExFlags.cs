@@ -23,7 +23,7 @@ namespace Foundation.Windows
         /// If you are planning to access only data or resources in the DLL,
         /// use <see cref="LoadLibraryAsDatafileExclusive"/> or <see cref="LoadLibraryAsImageResource"/> or both.
         /// Otherwise, load the library as a DLL or executable module using the LoadLibrary function.</remarks>
-        DontResolveDllReferences = 0x00000001,
+        DoNotResolveDllReferences = 0x00000001,
 
         /// <summary>
         /// If this value is used, the system does not check AppLocker rules or apply Software Restriction Policies for the DLL

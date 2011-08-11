@@ -40,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{30
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{8CB0D491-3B41-4D2B-B3A6-39109514B89A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Build.VisualBasic6.VisualStudioIntegration", "Code\Foundation.Build.VisualBasic6.VisualStudioIntegration\Foundation.Build.VisualBasic6.VisualStudioIntegration.csproj", "{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Foundation.vsmdi
@@ -163,13 +165,23 @@ Global
 		{1F14D45D-5DDA-475C-8633-E21BBA4FFC65}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1F14D45D-5DDA-475C-8633-E21BBA4FFC65}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1F14D45D-5DDA-475C-8633-E21BBA4FFC65}.Release|Win32.ActiveCfg = Release|Any CPU
+		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{30B74237-FC2A-4F7C-B4B6-A17B3DCC6337} = {38C985A9-EA29-41AB-8788-61F322D9FBC4}
 		{8CB0D491-3B41-4D2B-B3A6-39109514B89A} = {38C985A9-EA29-41AB-8788-61F322D9FBC4}
+		{30B74237-FC2A-4F7C-B4B6-A17B3DCC6337} = {38C985A9-EA29-41AB-8788-61F322D9FBC4}
 		{3D2270D9-ED86-45E8-A259-54C20367AC96} = {8CB0D491-3B41-4D2B-B3A6-39109514B89A}
 	EndGlobalSection
 EndGlobal

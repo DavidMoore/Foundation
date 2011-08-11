@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using Microsoft.Practices.ServiceLocation;
 
 namespace Foundation.Services
 {

@@ -66,9 +66,6 @@
       <HintPath>..\..\..\..\Commons\Libraries\Interop.Shell32.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\Commons\Libraries\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -104,6 +101,8 @@
     <Compile Include="Build\VisualBasic6\VB6SourceFileType.cs" />
     <Compile Include="Build\VisualBasic6\VB6Reference.cs" />
     <Compile Include="Build\VisualBasic6\VB6ReferenceType.cs" />
+    <Compile Include="Interop\Opera\FileFormat.cs" />
+    <Compile Include="Services\IServiceLocator.cs" />
     <Compile Include="Windows\IProcessResult.cs" />
     <Compile Include="Windows\ProcessResult.cs" />
     <Compile Include="Build\VersionControl\Vault\VaultException.cs" />
@@ -309,9 +308,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interop\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -139,10 +139,12 @@ namespace Foundation.Windows
 
             [DllImport(kernel32ClientBaseApi, SetLastError = true, CharSet = CharSet.Auto, BestFitMapping = false)]
             [ResourceExposure(ResourceScope.None)]
-            internal static extern bool FindNextFile(SafeFindHandle hndFindFile, [In, Out, MarshalAs(UnmanagedType.LPStruct)] FindData lpFindFileData);
+            [return: MarshalAs(UnmanagedType.Bool)]
+            internal static extern  bool FindNextFile(SafeFindHandle hndFindFile, [In, Out, MarshalAs(UnmanagedType.LPStruct)] FindData lpFindFileData);
 
             [DllImport(kernel32ClientBaseApi)]
             [ResourceExposure(ResourceScope.None)]
+            [return: MarshalAs(UnmanagedType.Bool)]
             [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
             internal static extern bool FindClose(IntPtr handle);
         }

@@ -45,6 +45,9 @@ namespace Foundation.Build
         static string GetSrcToolPath()
         {
             var directory = searchPaths.FirstOrDefault(Directory.Exists);
+
+            if(directory == null) throw new FileNotFoundException("Couldn't find SrcTool.exe. Please install Debugging Tools for Windows.");
+
             return Path.Combine(directory, @"srcsrv\SrcTool.exe");
         }
 

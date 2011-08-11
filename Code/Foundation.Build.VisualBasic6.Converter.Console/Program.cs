@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics;
-using VisualBasic6.Core.Converter;
-using Con=System.Console;
+using Foundation.Build.MSBuild.VisualBasic6.Converter;
 
-namespace Converter.Console
+namespace Foundation.Build.VisualBasic6.Converter.Console
 {
     class Program
     {
@@ -34,13 +33,13 @@ Usage: VisualBasic6.Console.exe <project filename>
 
         private static int Exit(int returnCode)
         {
-            if (Debugger.IsAttached) Con.ReadLine();
+            if (Debugger.IsAttached) System.Console.ReadLine();
             return returnCode;
         }
 
         private static void DisplayUsage()
         {
-            Con.WriteLine(usage);
+            System.Console.WriteLine(usage);
         }
     }
 }

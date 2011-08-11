@@ -168,12 +168,8 @@ namespace Foundation.ExtensionMethods
 
         public static bool EndsWith(this string value, char character)
         {
-            var thisLen = value.Length;
-            if (thisLen != 0)
-            {
-                if (value[thisLen - 1] == character) return true;
-            }
-            return false;
+            if (string.IsNullOrEmpty(value)) return false;
+            return value[value.Length - 1] == character;
         }
 
         /// <summary>

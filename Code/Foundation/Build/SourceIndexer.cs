@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -69,6 +70,8 @@ namespace Foundation.Build
 
         public string GetVersionIndexForFile(string localPath)
         {
+            if (localPath == null) throw new ArgumentNullException("localPath");
+
             var result = versionControlProvider.MapVersionControlSourcePath(localPath, args);
 
             if (result.IsNullOrEmpty()) return null;
@@ -118,7 +121,7 @@ namespace Foundation.Build
             sb.AppendLine("SRCSRV: ini ------------------------------------------------");
             sb.AppendLine("VERSION=1");
             sb.AppendLine("VERCTRL=" + args.Provider);
-            sb.AppendLine("DATETIME=" + DateTime.Now.ToUniversalTime().ToString("u"));
+            sb.AppendLine("DATETIME=" + DateTime.Now.ToUniversalTime().ToString("u", CultureInfo.CurrentCulture));
 
             return sb.ToString();
         }

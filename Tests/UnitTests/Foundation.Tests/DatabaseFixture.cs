@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests
 {
+    [TestClass]
     public class DatabaseFixture : DatabaseFixtureBase
     {
         [TestInitialize]

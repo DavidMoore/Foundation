@@ -57,6 +57,7 @@
     <Reference Include="Lucene.Net">
       <HintPath>..\..\..\..\..\Commons\Libraries\Lucene.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
@@ -101,6 +102,7 @@
   <ItemGroup>
     <Compile Include="ArrayExtensionMethodsTests.cs" />
     <Compile Include="Build\MSBuild\GenerateAssemblyInfoTests.cs" />
+    <Compile Include="Build\MSBuild\Vb6ProjectItemsTests.cs" />
     <Compile Include="Build\MSBuild\VisualBasicProjectTests.cs" />
     <Compile Include="Build\MSBuild\VisualCResourceFileTests.cs" />
     <Compile Include="Build\PdbStrTests.cs" />
@@ -112,6 +114,15 @@
     <Compile Include="Build\VersionControl\Vault\VaultTestResponses.cs" />
     <Compile Include="Build\VersionControl\Vault\VaultVersionControlProviderTests.cs" />
     <Compile Include="Build\VersionControl\VersionControlArgumentsConverterTests.cs" />
+    <Compile Include="Build\VisualBasic6\GetReference_method_on_VB6ProjectReader.cs" />
+    <Compile Include="Build\VisualBasic6\Parse_method_on_VB6ProjectReader.cs" />
+    <Compile Include="Build\VisualBasic6\Read_method_on_VB6ProjectReader.cs" />
+    <Compile Include="Build\VisualBasic6\When_calling_Convert_method_on_ProjectConverter.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TestHelpers\AssertException.cs" />
     <Compile Include="Build\VersionControl\BaseVersionControlProviderTests.cs" />
     <Compile Include="Build\VersionControl\VersionControlArgumentsTests.cs" />
@@ -194,6 +205,7 @@
     <Compile Include="TempFileFixture.cs" />
     <Compile Include="TestHelpers\LipsumTests.cs" />
     <Compile Include="TestHelpers\MvcTestHelpersTests.cs" />
+    <Compile Include="TestHelpers\ResourceHelper.cs" />
     <Compile Include="TestStrings.cs" />
     <Compile Include="ThrowExceptionFixture.cs" />
     <Compile Include="Windows\Shell\ShellObjectCollectionFixture.cs" />
@@ -238,6 +250,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\TestImage.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +266,7 @@
     <None Include="..\..\..\Code\Foundation.snk">
       <Link>Foundation.snk</Link>
     </None>
+    <EmbeddedResource Include="Resources\Project.vbp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

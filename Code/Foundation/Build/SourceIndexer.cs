@@ -82,7 +82,7 @@ namespace Foundation.Build
 
             sb.AppendLine("SRCSRV: variables ------------------------------------------");
 
-            sb.AppendLine("VCS_EXECUTABLE=" + versionControlProvider.Filename);
+            sb.AppendLine("VCS_EXECUTABLE=" + versionControlProvider.FileName);
 
             if (args.Credentials != null)
             {

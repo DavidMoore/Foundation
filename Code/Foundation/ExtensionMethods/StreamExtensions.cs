@@ -31,5 +31,26 @@ namespace Foundation.ExtensionMethods
                 }
             }
         }
+
+        /// <summary>
+        /// Writes the passed bytes to the specified stream.
+        /// </summary>
+        /// <param name="stream">The stream to write to.</param>
+        /// <param name="bytes">The bytes to write.</param>
+        public static void Write(this Stream stream, byte[] bytes)
+        {
+            stream.Write(bytes, 0, bytes.Length);
+        }
+
+        /// <summary>
+        /// Reads all the bytes from stream <paramref name="input"/> and
+        /// writes them to <paramref name="output"/>.
+        /// </summary>
+        /// <param name="input">The input stream.</param>
+        /// <param name="output">The output stream to write all bytes from <paramref name="input"/> stream to.</param>
+        public static void Write(this Stream input, Stream output)
+        {
+            foreach(var chunk in input.ReadChunks(9012)) output.Write(chunk);
+        }
     }
 }

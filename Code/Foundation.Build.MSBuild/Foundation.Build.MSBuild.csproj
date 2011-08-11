@@ -67,6 +67,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="VisualBasic6\Converter\ProjectConverter.cs" />
+    <Compile Include="VisualBasic6\ReferenceType.cs" />
+    <Compile Include="VisualBasic6\Vb6ProjectItems.cs" />
+    <Compile Include="VisualBasic6\VisualBasicReference.cs" />
     <Compile Include="VisualBasicProject.cs" />
     <Compile Include="VisualCResourceFile.cs" />
     <Compile Include="VisualStudio6Utility.cs" />

@@ -43,14 +43,14 @@ namespace Foundation.Build
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (!PdbFilename.IsNullOrEmpty())
+            if (!PdbFileName.IsNullOrEmpty())
             {
-                StartInfo.Arguments += "-p:\"" + PdbFilename + "\" ";
+                StartInfo.Arguments += "-p:\"" + PdbFileName + "\" ";
             }
 
-            if (!StreamFilename.IsNullOrEmpty())
+            if (!StreamFileName.IsNullOrEmpty())
             {
-                StartInfo.Arguments += "-i:\"" + StreamFilename + "\" ";
+                StartInfo.Arguments += "-i:\"" + StreamFileName + "\" ";
             }
 
             if (!StreamName.IsNullOrEmpty())
@@ -76,7 +76,7 @@ namespace Foundation.Build
         /// <value>
         /// The PDB filename.
         /// </value>
-        public string PdbFilename { get; set; }
+        public string PdbFileName { get; set; }
 
         /// <summary>
         /// Gets or sets the filename of the text file with the
@@ -85,7 +85,7 @@ namespace Foundation.Build
         /// <value>
         /// The filename of the stream text file.
         /// </value>
-        public string StreamFilename { get; set; }
+        public string StreamFileName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the stream to read or write.

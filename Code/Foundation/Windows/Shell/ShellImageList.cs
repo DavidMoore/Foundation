@@ -134,7 +134,7 @@ namespace Foundation.Windows.Shell
         /// Return the index of the icon for the specified file, always using 
         /// the cached version where possible.
         /// </summary>
-        /// <param name="fileName">Filename to get icon for</param>
+        /// <param name="fileName">FileName to get icon for</param>
         /// <returns>Index of the icon</returns>
         public int IconIndex(string fileName)
         {
@@ -144,7 +144,7 @@ namespace Foundation.Windows.Shell
         /// <summary>
         /// Returns the index of the icon for the specified file
         /// </summary>
-        /// <param name="fileName">Filename to get icon for</param>
+        /// <param name="fileName">FileName to get icon for</param>
         /// <param name="forceLoadFromDisk">If True, then hit the disk to get the icon,
         /// otherwise only hit the disk if no cached icon is available.</param>
         /// <returns>Index of the icon</returns>
@@ -159,7 +159,7 @@ namespace Foundation.Windows.Shell
         /// <summary>
         /// Returns the index of the icon for the specified file
         /// </summary>
-        /// <param name="fileName">Filename to get icon for</param>
+        /// <param name="fileName">FileName to get icon for</param>
         /// <param name="forceLoadFromDisk">If True, then hit the disk to get the icon,
         /// otherwise only hit the disk if no cached icon is available.</param>
         /// <param name="iconState">Flags specifying the state of the icon

@@ -32,6 +32,10 @@
                 <CodeCoverageItem binaryFile="Bin\Foundation.Services.Windsor.dll" pdbFile="Bin\Foundation.Services.Windsor.pdb" instrumentInPlace="true" />
                 <CodeCoverageItem binaryFile="Bin\Foundation.Web.dll" pdbFile="Bin\Foundation.Web.pdb" instrumentInPlace="true" />
                 <CodeCoverageItem binaryFile="Bin\Foundation.Windows.Presentation.dll" pdbFile="Bin\Foundation.Windows.Presentation.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Bin\Foundation.Build.MSBuild.dll" pdbFile="Bin\Foundation.Build.MSBuild.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Bin\Foundation.Build.VisualStudio6.VisualStudioIntegration.dll" pdbFile="Bin\Foundation.Build.VisualStudio6.VisualStudioIntegration.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Code\Foundation.Models.GuidPrimaryKey\bin\Debug\Foundation.Models.GuidPrimaryKey.dll" pdbFile="Code\Foundation.Models.GuidPrimaryKey\bin\Debug\Foundation.Models.GuidPrimaryKey.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Bin\Foundation.Models.IntPrimaryKey.dll" pdbFile="Bin\Foundation.Models.IntPrimaryKey.pdb" instrumentInPlace="true" />
               </Regular>
             </CodeCoverage>
           </Configuration>

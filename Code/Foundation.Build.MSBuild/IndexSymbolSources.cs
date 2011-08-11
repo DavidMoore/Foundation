@@ -24,6 +24,12 @@ namespace Foundation.Build.MSBuild
             // Get the version control arguments, which are in the form of a URI
             var uri = new Uri(VersionControlArguments);
 
+            if( Symbols == null )
+            {
+                Log.LogWarning("No symbol files passed to index");
+                return true;
+            }
+
             var vaultExecutable = VcsExecutablePath;
 
             var args = VersionControlArgumentsConverter.FromUri(uri);
@@ -84,8 +90,8 @@ namespace Foundation.Build.MSBuild
                     // Write the stream to the debug symbols
                     using (var pdbStr = new PdbStr())
                     {
-                        pdbStr.PdbFilename = path;
-                        pdbStr.StreamFilename = temp.FileInfo.FullName;
+                        pdbStr.PdbFileName = path;
+                        pdbStr.StreamFileName = temp.FileInfo.FullName;
                         pdbStr.StreamName = "srcsrv";
                         pdbStr.Operation = PdbStrOperation.Write;
 

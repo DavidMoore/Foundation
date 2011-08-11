@@ -10,7 +10,7 @@ namespace Foundation.Build.VersionControl.Vault
 {
     public class VaultVersionControlProvider : BaseCommandLineVersionControlProvider
     {
-        public VaultVersionControlProvider(string filename) : base(filename) {}
+        public VaultVersionControlProvider(string fileName) : base(fileName) {}
 
         public override IServiceResult ParseResult(VersionControlArguments args, IProcessResult processResult)
         {

@@ -153,12 +153,39 @@ namespace Foundation.Build.MSBuild
             // 2 = ?
             // 3 = Path and filename
             // 4 = Name
-            var referenceParts = reference.Split(new[] { '#' }, StringSplitOptions.None);
+            var referenceParts = reference.Trim()
+                .Split(new[] { '#', ';' }, StringSplitOptions.None)
+                .Select(s => s.Trim())
+                .ToArray();
 
-            var filename = Path.GetFileName(referenceParts[3]);
-            if (filename == null) throw new InvalidOperationException("Couldn't get the filename from the path: " + referenceParts[3]);
+            var value = referenceParts[3];
+
+            var filename = Path.GetFileName(value);
+            if (filename == null) throw new InvalidOperationException("Couldn't get the filename from the path: " + value);
 
             return filename;
+        }
+
+        public static IEnumerable<string> HarvestReferences(string visualBasicProjectLines)
+        {
+            return HarvestReferences(visualBasicProjectLines.Split('\n'));
+        }
+
+        public static IEnumerable<string> HarvestReferences(IEnumerable<string> visualBasicProjectLines)
+        {
+            return visualBasicProjectLines.Where(s => s.StartsWith("Reference="))
+                .Select(GetFileNameFromReference);
+        }
+
+        public static IEnumerable<string> HarvestComponents(string visualBasicProjectLines)
+        {
+            return HarvestComponents(visualBasicProjectLines.Split('\n'));
+        }
+
+        public static IEnumerable<string> HarvestComponents(IEnumerable<string> visualBasicProjectLines)
+        {
+            return visualBasicProjectLines.Where(s => s.StartsWith("Object="))
+                .Select(GetFileNameFromReference);
         }
     }
 }

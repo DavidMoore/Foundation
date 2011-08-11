@@ -96,6 +96,14 @@
     <Compile Include="Build\VersionControl\BaseCommandLineVersionControlProvider.cs" />
     <Compile Include="Build\VersionControl\BaseVersionControlProvider.cs" />
     <Compile Include="Build\VersionControl\IVersionControlProvider.cs" />
+    <Compile Include="Build\VisualBasic6\VB6Project.cs" />
+    <Compile Include="Build\VisualBasic6\VB6ProjectProperties.cs" />
+    <Compile Include="Build\VisualBasic6\VB6ProjectReader.cs" />
+    <Compile Include="Build\VisualBasic6\VB6ProjectType.cs" />
+    <Compile Include="Build\VisualBasic6\VB6SourceFile.cs" />
+    <Compile Include="Build\VisualBasic6\VB6SourceFileType.cs" />
+    <Compile Include="Build\VisualBasic6\VB6Reference.cs" />
+    <Compile Include="Build\VisualBasic6\VB6ReferenceType.cs" />
     <Compile Include="Windows\IProcessResult.cs" />
     <Compile Include="Windows\ProcessResult.cs" />
     <Compile Include="Build\VersionControl\Vault\VaultException.cs" />

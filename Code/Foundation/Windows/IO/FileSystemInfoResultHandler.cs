@@ -1,15 +1,17 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Security;
 using System.Security.Permissions;
 
 namespace Foundation.Windows.IO
 {
-    internal class FileSystemInfoResultHandler : SearchResultHandler<FileSystemInfo>
+    public class FileSystemInfoResultHandler : SearchResultHandler<FileSystemInfo>
     {
         [SecurityCritical]
         internal override bool IsResultIncluded(SearchResult result)
         {
+            if (result == null) throw new ArgumentNullException("result");
             bool includeFile = result.FindData.IsFile;
             bool includeDir = result.FindData.IsDir;
             Contract.Assert(!(includeFile && includeDir), result.FindData.FileName + ": current item can't be both file and dir!");
@@ -20,6 +22,8 @@ namespace Foundation.Windows.IO
         [SecurityCritical]
         internal override FileSystemInfo CreateObject(SearchResult result)
         {
+            if (result == null) throw new ArgumentNullException("result");
+
             bool isFile = result.FindData.IsFile;
             bool isDir = result.FindData.IsDir;
     

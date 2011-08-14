@@ -34,7 +34,8 @@ namespace VisualBasic6
         /// </summary>
         static VisualBasic6ProjectNode()
         {
-            imageList = Utilities.GetImageList(typeof(VisualBasic6ProjectNode).Assembly.GetManifestResourceStream("VisualBasic6.Resources.Project16x16.bmp"));
+            var assembly = typeof (VisualBasic6ProjectNode).Assembly;
+            imageList = Utilities.GetImageList(assembly.GetManifestResourceStream(assembly.GetName().Name + ".Resources.Project16x16.bmp"));
         }
 
         /// <summary>

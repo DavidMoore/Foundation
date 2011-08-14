@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Windows.Forms;
 using Foundation.Services.Registration;
 
 namespace Foundation.Services
@@ -13,8 +12,8 @@ namespace Foundation.Services
     [RegisterComponent(typeof(IContainer))]
     class ServiceManagerContainerAdapter : Container
     {
-        static readonly Type AmbientPropertiesType = typeof (AmbientProperties);
-        static readonly Type ServiceManagerType = typeof (IServiceManager);
+        const string ambientPropertiesTypeName = "System.Windows.Forms.AmbientProperties";
+        static readonly Type serviceManagerType = typeof (IServiceManager);
         readonly IServiceManager container;
         readonly Type containerType;
 
@@ -54,11 +53,11 @@ namespace Foundation.Services
 
             if (serviceType.IsAssignableFrom(containerType)) return container;
 
-            if (serviceType.Equals(ServiceManagerType)) return container;
+            if (serviceType.Equals(serviceManagerType)) return container;
 
             object service = base.GetService(serviceType);
 
-            if (service != null || serviceType.Equals(AmbientPropertiesType)) return service;
+            if (service != null || (serviceType.AssemblyQualifiedName != null && serviceType.AssemblyQualifiedName.Equals(ambientPropertiesTypeName))) return service;
 
             return container.GetService(serviceType);
         }

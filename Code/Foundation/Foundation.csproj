@@ -90,6 +90,7 @@
     <Compile Include="Build\VisualBasic6\VB6ReferenceType.cs" />
     <Compile Include="Interop\Opera\FileFormat.cs" />
     <Compile Include="Services\IServiceLocator.cs" />
+    <Compile Include="TestHelpers\DatabaseTestBase.cs" />
     <Compile Include="Windows\IProcessResult.cs" />
     <Compile Include="Windows\ProcessResult.cs" />
     <Compile Include="Build\VersionControl\Vault\VaultException.cs" />

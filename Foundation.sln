@@ -42,7 +42,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Build.VisualBasic6.VisualStudioIntegration", "Code\Foundation.Build.VisualBasic6.VisualStudioIntegration\Foundation.Build.VisualBasic6.VisualStudioIntegration.csproj", "{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Build.VisualBasic6.Converter.Console", "..\Main\Code\Foundation.Build.VisualBasic6.Converter.Console\Foundation.Build.VisualBasic6.Converter.Console.csproj", "{4FA8186A-12A1-4CAC-8395-051363CD01D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Build.VisualBasic6.Converter.Console", "Code\Foundation.Build.VisualBasic6.Converter.Console\Foundation.Build.VisualBasic6.Converter.Console.csproj", "{4FA8186A-12A1-4CAC-8395-051363CD01D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Build.Activities", "Code\Foundation.Build.Activities\Foundation.Build.Activities.csproj", "{27D1E856-494C-4228-A6CC-600C09369A2D}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -215,6 +217,18 @@ Global
 		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Release|Win32.ActiveCfg = Release|x86
 		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Release|x86.ActiveCfg = Release|x86
 		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Release|x86.Build.0 = Release|x86
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Release|Win32.ActiveCfg = Release|Any CPU
+		{27D1E856-494C-4228-A6CC-600C09369A2D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

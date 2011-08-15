@@ -21,6 +21,8 @@ namespace Foundation.Services
         {
             var directoryPath = AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
 
+            if (directoryPath == null) directoryPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+        
             var serviceManagers = DiscoverTypes.FromDirectory(directoryPath)
                 .Implementing<IServiceManager>().ToList();
 

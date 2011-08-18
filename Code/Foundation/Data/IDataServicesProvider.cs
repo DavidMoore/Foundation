@@ -9,7 +9,7 @@ namespace Foundation.Data
     /// clean-up when disposed. It should also provide
     /// a <see cref="IUnitOfWorkFactory"/> for Unit of Work services.
     /// </summary>
-    public interface IDataProvider : ICanInitialize, IDisposable
+    public interface IDataServicesProvider : ICanInitialize, IDisposable
     {
         /// <summary>
         /// Gets the unit of work factory for this provider.

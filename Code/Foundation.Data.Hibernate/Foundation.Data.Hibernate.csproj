@@ -37,24 +37,29 @@
     <AssemblyOriginatorKeyFile>..\Foundation.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\..\..\..\Commons\Libraries\FluentNHibernate.dll</HintPath>
+    <Reference Include="FluentNHibernate, Version=1.3.0.717, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\FluentNHibernate.1.3.0.717\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="LinFu.DynamicProxy">
       <HintPath>..\..\..\..\Commons\Libraries\LinFu.DynamicProxy.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="NHibernate, Version=3.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Commons\Libraries\NHibernate.dll</HintPath>
+      <HintPath>..\..\packages\NHibernate.3.2.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.LinFu">
       <HintPath>..\..\..\..\Commons\Libraries\NHibernate.ByteCode.LinFu.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\Commons\Libraries\NHibernate.Linq.dll</HintPath>
+    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NHibernate.Linq.1.0\lib\NHibernate.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -66,14 +71,18 @@
     <Compile Include="..\Foundation\Properties\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="HibernateDataProvider.cs" />
-    <Compile Include="HibernateDataProviderException.cs" />
+    <Compile Include="HibernateDataContext.cs" />
+    <Compile Include="HibernateDataServicesProvider.cs" />
+    <Compile Include="HibernateDataServicesProviderException.cs" />
     <Compile Include="HibernateRepository.cs" />
     <Compile Include="HibernateUnitOfWork.cs" />
     <Compile Include="HibernateUnitOfWorkFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonConnectionProvider.cs" />
     <Compile Include="UserTypes\ColorUserType.cs" />
+    <Compile Include="UserTypes\CustomGuidCombGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserTypes\PropertyInfoUserType.cs" />
     <Compile Include="UserTypes\SimpleUserTypeBase.cs" />
     <Compile Include="UserTypes\TypeUserType.cs" />
@@ -83,6 +92,7 @@
     <None Include="..\Foundation.snk">
       <Link>Foundation.snk</Link>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Foundation\Foundation.csproj">

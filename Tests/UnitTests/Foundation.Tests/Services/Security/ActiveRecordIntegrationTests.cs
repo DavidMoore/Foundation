@@ -1,5 +1,5 @@
 using Castle.ActiveRecord;
-using Foundation.Data.ActiveRecord.Security;
+using Foundation.Data.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Services.Security

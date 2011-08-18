@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Castle.ActiveRecord;
 using Foundation.Data.ActiveRecord;
-using Foundation.Data.ActiveRecord.Security;
+using Foundation.Data.Security;
 using Foundation.Services.Validation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

@@ -47,8 +47,8 @@
     <Reference Include="Castle.Components.Validator">
       <HintPath>..\..\..\..\..\Commons\Libraries\Castle.Components.Validator.dll</HintPath>
     </Reference>
-    <Reference Include="FluentNHibernate, Version=1.1.0.685, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\Commons\Libraries\FluentNHibernate.dll</HintPath>
+    <Reference Include="FluentNHibernate, Version=1.3.0.717, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\FluentNHibernate.1.3.0.717\lib\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Shell32">
       <HintPath>..\..\..\..\..\Commons\Libraries\Interop.Shell32.dll</HintPath>
@@ -75,12 +75,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\..\Commons\Libraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\..\..\..\..\Commons\Libraries\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
+    <Reference Include="NHibernate, Version=3.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Commons\Libraries\NHibernate.Linq.dll</HintPath>
+      <HintPath>..\..\..\packages\NHibernate.3.2.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -91,8 +88,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\..\..\..\Commons\Libraries\System.Data.SQLite.dll</HintPath>
+    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\System.Data.SQLite.1.0.66.1\lib\System.Data.SQLite.DLL</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
@@ -129,6 +127,7 @@
     <Compile Include="Build\VisualBasic6\Parse_method_on_VB6ProjectReader.cs" />
     <Compile Include="Build\VisualBasic6\Read_method_on_VB6ProjectReader.cs" />
     <Compile Include="Build\VisualBasic6\When_calling_Convert_method_on_ProjectConverter.cs" />
+    <Compile Include="Data\Hibernate\UserTypes\CustomGuidCombGeneratorTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -139,10 +138,6 @@
     <Compile Include="Build\VersionControl\VersionControlArgumentsTests.cs" />
     <Compile Include="ColorExtensionMethodsTests.cs" />
     <Compile Include="CommonUtilsFixture.cs" />
-    <Compile Include="DatabaseFixture.cs" />
-    <Compile Include="Data\ActiveRecord\ActiveRecordRepositoryTests.cs" />
-    <Compile Include="Data\ActiveRecord\ColorPropertyAttributeTests.cs" />
-    <Compile Include="Data\ActiveRecord\TypePropertyAttributeTests.cs" />
     <Compile Include="Data\DataProviderTests.cs" />
     <Compile Include="Data\Hierarchy\Category.cs" />
     <Compile Include="Data\Hierarchy\TreeEntityChildrenTests.cs" />
@@ -152,10 +147,6 @@
     <Compile Include="Data\Hibernate\HibernateRepositoryTests.cs" />
     <Compile Include="Data\Hibernate\HibernateUnitOfWorkFactoryTests.cs" />
     <Compile Include="Data\Hibernate\HibernateUnitOfWorkTests.cs" />
-    <Compile Include="Data\Hibernate\UserTypes\ColorUserTypeTests.cs" />
-    <Compile Include="Data\Hibernate\UserTypes\PropertyInfoUserTypeFixture.cs" />
-    <Compile Include="Data\Hibernate\UserTypes\TypeUserTypeFixture.cs" />
-    <Compile Include="Data\Hibernate\UserTypes\UriUserTypeTests.cs" />
     <Compile Include="ExtensionMethods\DirectoryInfoExtensionsTests.cs" />
     <Compile Include="ExtensionMethods\EnumerableExtensionsTests.cs" />
     <Compile Include="ExtensionMethods\FileInfoExtensionsTests.cs" />
@@ -174,7 +165,6 @@
     <Compile Include="PaginatedListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectUtilsFixture.cs" />
-    <Compile Include="SecurityFixtureBase.cs" />
     <Compile Include="Services\DiscoverTests.cs" />
     <Compile Include="Services\Discovery\AssemblySourceTests.cs" />
     <Compile Include="Services\Discovery\DirectoryAssemblySourceTests.cs" />
@@ -187,11 +177,8 @@
     <Compile Include="Services\JsonSerializerFixture.cs" />
     <Compile Include="Services\Registration\RegisterComponentTests.cs" />
     <Compile Include="Services\Registration\ServiceRegistrationTests.cs" />
-    <Compile Include="Services\Repository\ActiveRecordRepositoryFixture.cs" />
     <Compile Include="Services\Repository\EntityRepositoryTests.cs" />
     <Compile Include="Services\Repository\GenericListRepositoryTests.cs" />
-    <Compile Include="Services\Security\ActiveRecordIntegrationTests.cs" />
-    <Compile Include="Services\Security\EntityTypeFixture.cs" />
     <Compile Include="Services\Security\HasherTestCase.cs" />
     <Compile Include="Services\Security\PasswordGeneratorFixture.cs" />
     <Compile Include="Services\Security\PermissionFixture.cs" />
@@ -202,7 +189,6 @@
     <Compile Include="Services\UnitOfWorkServices\UnitOfWorkFactoryTests.cs" />
     <Compile Include="Services\UnitOfWorkServices\UnitOfWorkTests.cs" />
     <Compile Include="Services\Unity\UnityServiceManagerAdapterTests.cs" />
-    <Compile Include="Services\Validation\ActiveRecordValidatorTestCase.cs" />
     <Compile Include="StateMachine\FiniteStateMachineTests.cs" />
     <Compile Include="StateMachine\StateTransitionTests.cs" />
     <Compile Include="StateMachine\ValueStateTransitionTests.cs" />
@@ -236,13 +222,13 @@
       <Project>{C178A065-A60C-4D4F-BFF9-2DAFAEFF0E2D}</Project>
       <Name>Foundation.Build.MSBuild</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Code\Foundation.Data.ActiveRecord\Foundation.Data.ActiveRecord.csproj">
-      <Project>{9F18BB71-9334-45A3-9506-44982A7483DE}</Project>
-      <Name>Foundation.Data.ActiveRecord</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Code\Foundation.Data.Hibernate\Foundation.Data.Hibernate.csproj">
       <Project>{3E4F06A9-4B30-4FD1-A7F0-763DF519A744}</Project>
       <Name>Foundation.Data.Hibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Code\Foundation.Models.GuidPrimaryKey\Foundation.Models.GuidPrimaryKey.csproj">
+      <Project>{1F14D45D-5DDA-475C-8633-E21BBA4FFC65}</Project>
+      <Name>Foundation.Models.GuidPrimaryKey</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Code\Foundation.Services.Unity\Foundation.Services.Unity.csproj">
       <Project>{28B88F2B-5068-4A8F-B900-FF503618A996}</Project>
@@ -279,6 +265,8 @@
       <Link>Foundation.snk</Link>
     </None>
     <EmbeddedResource Include="Resources\Project.vbp" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

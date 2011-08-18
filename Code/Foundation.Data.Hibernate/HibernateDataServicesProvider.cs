@@ -15,25 +15,27 @@ namespace Foundation.Data.Hibernate
     /// <summary>
     /// Initializes NHibernate as a data access layer.
     /// </summary>
-    public class HibernateDataProvider : IDataProvider
+    public class HibernateDataServicesProvider : IDataServicesProvider
     {
-        public HibernateDataProvider(ISessionFactory sessionFactory)
+        public HibernateDataServicesProvider(ISessionFactory sessionFactory)
         {
             SessionFactory = sessionFactory;
         }
 
-        public HibernateDataProvider() {}
+        public HibernateDataServicesProvider() {}
 
         /// <summary>
         /// Initializes this instance.
         /// </summary>
         public void Initialize()
         {
+            if (SessionFactory != null) return;
+
             Configuration = Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.InMemory()
                               .ConnectionString("Data Source=:memory:;Version=3;New=True;Pooling=True;Max Pool Size=1;")
-                              .ProxyFactoryFactory(typeof(ProxyFactoryFactory))
-                              .CurrentSessionContext<CurrentSessionContext>()
+                              //.ProxyFactoryFactory(typeof(ProxyFactoryFactory))
+                              //.CurrentSessionContext<CurrentSessionContext>()
                               .ShowSql())
                 .Mappings(m => GetMappings(m));
 
@@ -105,7 +107,7 @@ namespace Foundation.Data.Hibernate
         /// <returns></returns>
         public IUnitOfWorkFactory GetUnitOfWorkFactory()
         {
-            if( SessionFactory == null) throw new HibernateDataProviderException("The session factory was not configured. Either pass it into the constructor, or call Initialize() before trying to get a Unit of Work.");
+            if( SessionFactory == null) throw new HibernateDataServicesProviderException("The session factory was not configured. Either pass it into the constructor, or call Initialize() before trying to get a Unit of Work.");
             return new HibernateUnitOfWorkFactory(SessionFactory);
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Castle.Windsor;
+using Component = Castle.MicroKernel.Registration.Component;
 
 namespace Foundation.Services.Windsor
 {
@@ -132,7 +133,9 @@ namespace Foundation.Services.Windsor
         /// <param name="lifestyle">The lifestyle to use for the service</param>
         public IServiceManager AddService(Type fromType, Type toType, string name, LifestyleType lifestyle)
         {
-            container.AddComponentLifeStyle(name, fromType, toType, ConvertLifestyleType(lifestyle));
+            var registration = Component.For(fromType).ImplementedBy(toType).LifeStyle.Is(ConvertLifestyleType(lifestyle));
+            if(!string.IsNullOrWhiteSpace(name)) registration = registration.Named(name);
+            container.Register(registration);
             return this;
         }
 
@@ -157,7 +160,7 @@ namespace Foundation.Services.Windsor
         /// <returns></returns>
         public IServiceManager AddComponent(IComponent component, string name)
         {
-            container.Kernel.AddComponentInstance(name, component);
+            container.Register(Component.For(component.GetType()).Named(name).Instance(component));
             return this;
         }
 
@@ -171,7 +174,9 @@ namespace Foundation.Services.Windsor
         /// <returns></returns>
         public IServiceManager AddInstance(Type serviceType, object instance, string name)
         {
-            container.Kernel.AddComponentInstance(name, serviceType, instance);
+            var registration = Component.For(serviceType).Instance(instance);
+            if( !string.IsNullOrEmpty(name) ) registration = registration.Named(name);
+            container.Register(registration);
             return this;
         }
 

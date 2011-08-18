@@ -1,5 +1,5 @@
 using System;
-using Foundation.Data.ActiveRecord.Security;
+using Foundation.Data.Security;
 using Foundation.ExtensionMethods;
 using Foundation.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -1,4 +1,4 @@
-﻿using Foundation.Data.ActiveRecord.Security;
+﻿using Foundation.Data.Security;
 using Foundation.Services.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

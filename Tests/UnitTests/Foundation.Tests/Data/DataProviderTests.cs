@@ -10,7 +10,7 @@ namespace Foundation.Tests.Data
         [TestMethod]
         public void Api()
         {
-            using (var provider = new Mock<IDataProvider>().Object)
+            using (var provider = new Mock<IDataServicesProvider>().Object)
             {
                 provider.Initialize();
             }

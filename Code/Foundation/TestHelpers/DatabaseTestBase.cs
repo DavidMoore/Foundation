@@ -6,7 +6,7 @@ namespace Foundation.TestHelpers
     /// <summary>
     /// Provides a base for unit tests that want to operate on the data layer.
     /// </summary>
-    public class DatabaseTestBase<TDataAccessLayerProvider> : ICanInitialize where TDataAccessLayerProvider : IDataProvider, new()
+    public class DatabaseTestBase<TDataAccessLayerProvider> : ICanInitialize where TDataAccessLayerProvider : IDataServicesProvider, new()
     {
         readonly TDataAccessLayerProvider provider;
 

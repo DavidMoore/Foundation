@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions.Helpers;
 using Foundation.Services.UnitOfWorkServices;
 using NHibernate;
 using NHibernate.ByteCode.LinFu;
@@ -37,10 +39,12 @@ namespace Foundation.Data.Hibernate
                               //.ProxyFactoryFactory(typeof(ProxyFactoryFactory))
                               //.CurrentSessionContext<CurrentSessionContext>()
                               .ShowSql())
-                .Mappings(m => GetMappings(m));
-
-            Configuration.ExposeConfiguration(configuration => new SchemaExport(configuration).Create(false, true));
-            Configuration.ExposeConfiguration(configuration => configuration.SetProperty("current_session_context_class", "call"));
+                .Mappings(m => GetMappings(m))
+                .CurrentSessionContext<CurrentSessionContext>()
+                //.ProxyFactoryFactory<ProxyFactoryFactory>()
+                .ExposeConfiguration(configuration => new SchemaExport(configuration).Create(true, true))
+                .ExposeConfiguration(configuration => configuration.SetProperty("current_session_context_class", "call"))
+                ;
 
             SessionFactory = Configuration.BuildSessionFactory();
         }
@@ -71,7 +75,14 @@ namespace Foundation.Data.Hibernate
                 mappingConfiguration.FluentMappings.AddFromAssembly(assembly);
             }
 
+            mappingConfiguration.AutoMappings.Add(AutoMap.Assemblies((GetAutoMappingAssemblies().ToArray())));
+
             return mappingConfiguration;
+        }
+
+        protected virtual IEnumerable<Assembly> GetAutoMappingAssemblies()
+        {
+            return new Assembly[] {};
         }
 
         /// <summary>

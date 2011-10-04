@@ -32,17 +32,20 @@ namespace Foundation.Data.Hibernate
             if (SessionFactory != null) return;
 
             Configuration = Fluently.Configure()
-                .Database(SQLiteConfiguration.Standard.InMemory()
-                              .ConnectionString("Data Source=:memory:;Version=3;New=True;Pooling=True;Max Pool Size=1;")
-                              //.ProxyFactoryFactory(typeof(ProxyFactoryFactory))
-                              //.CurrentSessionContext<CurrentSessionContext>()
-                              .ShowSql())
+                .Database(GetDatabase())
                 .Mappings(m => GetMappings(m));
 
             Configuration.ExposeConfiguration(configuration => new SchemaExport(configuration).Create(false, true));
             Configuration.ExposeConfiguration(configuration => configuration.SetProperty("current_session_context_class", "call"));
 
             SessionFactory = Configuration.BuildSessionFactory();
+        }
+
+        protected virtual IPersistenceConfigurer GetDatabase()
+        {
+            return SQLiteConfiguration.Standard.InMemory()
+                .ConnectionString("Data Source=:memory:;Version=3;New=True;Pooling=True;Max Pool Size=1;")
+                .ShowSql();
         }
 
         /// <summary>

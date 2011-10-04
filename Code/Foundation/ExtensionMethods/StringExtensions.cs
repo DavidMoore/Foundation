@@ -60,10 +60,7 @@ namespace Foundation.ExtensionMethods
         [DebuggerStepThrough]
         public static bool IsNullOrEmpty(this string value)
         {
-// ReSharper disable ReplaceWithStringIsNullOrEmpty
-            if (value == null || value.Length == 0) return true;
-// ReSharper restore ReplaceWithStringIsNullOrEmpty
-            return value.All(character => char.IsWhiteSpace(character));
+            return string.IsNullOrWhiteSpace(value);
         }
 
         /// <summary>

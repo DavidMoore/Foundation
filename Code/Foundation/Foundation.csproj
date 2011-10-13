@@ -88,6 +88,7 @@
     <Compile Include="Build\VisualBasic6\VB6SourceFileType.cs" />
     <Compile Include="Build\VisualBasic6\VB6Reference.cs" />
     <Compile Include="Build\VisualBasic6\VB6ReferenceType.cs" />
+    <Compile Include="Data\DataServicesException.cs" />
     <Compile Include="Data\IDataQueryService.cs" />
     <Compile Include="Data\IDTOMapper.cs" />
     <Compile Include="Data\Security\DeleteEntityOperation.cs" />

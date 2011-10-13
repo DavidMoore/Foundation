@@ -26,7 +26,7 @@ namespace Foundation.Data.Hibernate
         /// Creates and returns a new instance of the model.
         /// </summary>
         /// <returns>A new instance.</returns>
-        public T Create()
+        public virtual T Create()
         {
             return new T();
         }
@@ -36,7 +36,7 @@ namespace Foundation.Data.Hibernate
         /// </summary>
         /// <param name="instance">The instance.</param>
         /// <returns></returns>
-        public T Save(T instance)
+        public virtual T Save(T instance)
         {
             CurrentSession.SaveOrUpdate(instance);
             return instance;
@@ -46,7 +46,7 @@ namespace Foundation.Data.Hibernate
         /// Deletes the instance from the database.
         /// </summary>
         /// <param name="instance">The object to remove from the database.</param>
-        public void Delete(T instance)
+        public virtual void Delete(T instance)
         {
             CurrentSession.Delete(instance);
         }
@@ -55,7 +55,7 @@ namespace Foundation.Data.Hibernate
         /// Returns a queryable list of all the instances of the model.
         /// </summary>
         /// <returns></returns>
-        public IQueryable<T> Query()
+        public virtual IQueryable<T> Query()
         {
             return CurrentSession.Linq<T>();
         }
@@ -64,7 +64,7 @@ namespace Foundation.Data.Hibernate
         /// Gets the current session.
         /// </summary>
         /// <value>The current session.</value>
-        internal ISession CurrentSession
+        virtual protected ISession CurrentSession
         {
             get
             {

@@ -57,19 +57,24 @@ namespace Foundation.Data.Hibernate
         /// <returns></returns>
         public virtual IQueryable<T> Query()
         {
-            return CurrentSession.Linq<T>();
+            return CurrentSession.Query<T>();
         }
 
         /// <summary>
         /// Gets the current session.
         /// </summary>
         /// <value>The current session.</value>
-        virtual protected ISession CurrentSession
+        internal virtual protected ISession CurrentSession
         {
             get
             {
-                return factory.GetCurrentSession();
+                return SessionFactory.GetCurrentSession();
             }
+        }
+
+        protected ISessionFactory SessionFactory
+        {
+            get { return factory; }
         }
     }
 }

@@ -35,7 +35,9 @@ namespace Foundation.Services
                     string.Format(CultureInfo.CurrentCulture, "There is more than one type implementing IServiceManager in {0}: {1}", directoryPath,
                     string.Join(", ", serviceManagers.Select(type => type.AssemblyQualifiedName).ToArray() )  ));
 
-            var manager = Activator.CreateInstance(serviceManagers[0]) as IServiceManager;
+            var managerObject = Activator.CreateInstance(serviceManagers[0]);
+            var manager = managerObject as IServiceManager;
+            if (manager == null) throw new InvalidOperationException("Couldn't cast the expected manager to IServiceManager. Type is " + managerObject.GetType());
 
             Initialize(manager);
         }
@@ -48,6 +50,7 @@ namespace Foundation.Services
         {
             if (manager == null) throw new ArgumentNullException("manager");
             instance = manager;
+            instance.AddInstance(instance);
         }
 
         /// <summary>
@@ -65,7 +68,9 @@ namespace Foundation.Services
         static IServiceManager instance;
 
         /// <summary>
-        /// The singleton service manager for this application.
+        /// The singleton service manager for this application. If a service manager
+        /// hasn't been initialized yet, then <see cref="Initialize()"/> will be called
+        /// and the instance will be returned.
         /// </summary>
         public static IServiceManager Instance
         {

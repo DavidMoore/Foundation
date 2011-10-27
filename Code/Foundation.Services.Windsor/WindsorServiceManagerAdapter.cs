@@ -12,11 +12,14 @@ namespace Foundation.Services.Windsor
     /// </summary>
     public class WindsorServiceManagerAdapter : IServiceManager
     {
-        readonly IWindsorContainer container;
+        /// <summary>
+        /// Gets the Windsor container that this service manager adapts.
+        /// </summary>
+        public IWindsorContainer Container { get; private set; }
 
         public WindsorServiceManagerAdapter()
         {
-            container = new WindsorContainer();
+            Container = new WindsorContainer();
         }
 
         /// <summary>
@@ -31,7 +34,7 @@ namespace Foundation.Services.Windsor
         ///                 </param><filterpriority>2</filterpriority>
         public object GetService(Type serviceType)
         {
-            return container.GetService(serviceType);
+            return Container.GetService(serviceType);
         }
 
         /// <summary>
@@ -57,7 +60,7 @@ namespace Foundation.Services.Windsor
         /// </returns>
         public object GetInstance(Type serviceType, string key)
         {
-            return container.Resolve(key, serviceType);
+            return key == null ? Container.Resolve(serviceType) : Container.Resolve(key, serviceType);
         }
 
         /// <summary>
@@ -71,7 +74,7 @@ namespace Foundation.Services.Windsor
         /// </returns>
         public IEnumerable<object> GetAllInstances(Type serviceType)
         {
-            return container.ResolveAll(serviceType).Cast<object>();
+            return Container.ResolveAll(serviceType).Cast<object>();
         }
 
         /// <summary>
@@ -121,7 +124,7 @@ namespace Foundation.Services.Windsor
         /// <returns></returns>
         public bool IsServiceRegistered(Type type)
         {
-            return container.Kernel.HasComponent(type);
+            return Container.Kernel.HasComponent(type);
         }
 
         /// <summary>
@@ -135,7 +138,7 @@ namespace Foundation.Services.Windsor
         {
             var registration = Component.For(fromType).ImplementedBy(toType).LifeStyle.Is(ConvertLifestyleType(lifestyle));
             if(!string.IsNullOrWhiteSpace(name)) registration = registration.Named(name);
-            container.Register(registration);
+            Container.Register(registration);
             return this;
         }
 
@@ -147,6 +150,8 @@ namespace Foundation.Services.Windsor
                     return Castle.Core.LifestyleType.Transient;
                 case LifestyleType.Singleton:
                     return Castle.Core.LifestyleType.Singleton;
+                case LifestyleType.PerWebRequest:
+                    return Castle.Core.LifestyleType.PerWebRequest;
                 default:
                     throw new ArgumentOutOfRangeException("lifestyle");
             }
@@ -160,7 +165,7 @@ namespace Foundation.Services.Windsor
         /// <returns></returns>
         public IServiceManager AddComponent(IComponent component, string name)
         {
-            container.Register(Component.For(component.GetType()).Named(name).Instance(component));
+            Container.Register(Component.For(component.GetType()).Named(name).Instance(component));
             return this;
         }
 
@@ -176,7 +181,7 @@ namespace Foundation.Services.Windsor
         {
             var registration = Component.For(serviceType).Instance(instance);
             if( !string.IsNullOrEmpty(name) ) registration = registration.Named(name);
-            container.Register(registration);
+            Container.Register(registration);
             return this;
         }
 
@@ -190,7 +195,7 @@ namespace Foundation.Services.Windsor
         public IServiceManager CreateChildContainer()
         {
             var child = new WindsorServiceManagerAdapter();
-            container.AddChildContainer(child.container);
+            Container.AddChildContainer(child.Container);
             return child;
         }
 
@@ -206,8 +211,8 @@ namespace Foundation.Services.Windsor
 
         void Dispose(bool disposing)
         {
-            if (!disposing || container == null) return;
-            container.Dispose();
+            if (!disposing || Container == null) return;
+            Container.Dispose();
         }
     }
 }

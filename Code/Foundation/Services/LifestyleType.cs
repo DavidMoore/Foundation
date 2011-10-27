@@ -20,6 +20,12 @@
         /// There will only be a single instance created and the same
         /// instance will be returned for each resolution request
         /// </summary>
-        Singleton = 2
+        Singleton = 2,
+
+        /// <summary>
+        /// A new instance is created for each web request. Each instance
+        /// acts as a singleton in the context of each web request.
+        /// </summary>
+        PerWebRequest = 3
     }
 }

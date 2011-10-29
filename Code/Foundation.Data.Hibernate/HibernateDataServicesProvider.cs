@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using FluentNHibernate.Conventions.Helpers;
 using Foundation.Services.UnitOfWorkServices;
 using NHibernate;
-using NHibernate.ByteCode.LinFu;
+using NHibernate.Cfg;
 using NHibernate.Context;
 using NHibernate.Tool.hbm2ddl;
 
@@ -29,26 +29,44 @@ namespace Foundation.Data.Hibernate
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public void Initialize()
+        public virtual void Initialize()
         {
             if (SessionFactory != null) return;
 
-            Configuration = Fluently.Configure()
-                .Database(GetDatabase())
-                .Mappings(m => GetMappings(m))
-                .CurrentSessionContext<CurrentSessionContext>()
-                //.ProxyFactoryFactory<ProxyFactoryFactory>()
-                .ExposeConfiguration(configuration => new SchemaExport(configuration).Create(true, true))
-                .ExposeConfiguration(configuration => configuration.SetProperty("current_session_context_class", "call"))
-                ;
+            BuildConfiguration();
 
             SessionFactory = Configuration.BuildSessionFactory();
         }
 
+        public virtual void UpdateSchema()
+        {
+            var schema = new SchemaExport(HibernateConfiguration);
+
+            using(var textWriter = new StreamWriter(Console.OpenStandardOutput()))
+            {
+                schema.Execute(true, true, false, SessionFactory.GetCurrentSession().Connection, textWriter);
+            }
+            //schema.Create(true, true);
+        }
+
+        protected virtual void BuildConfiguration()
+        {
+            Configuration = Fluently.Configure()
+                .Database(GetDatabase())
+                .Mappings(m => GetMappings(m))
+                .CurrentSessionContext<CurrentSessionContext>()
+                .ExposeConfiguration(configuration => configuration.SetProperty("current_session_context_class", "call"))
+                .ExposeConfiguration(configuration => HibernateConfiguration = configuration)
+                ;
+        }
+
+        public Configuration HibernateConfiguration { get; set; }
+
         protected virtual IPersistenceConfigurer GetDatabase()
         {
             return SQLiteConfiguration.Standard.InMemory()
-                .ConnectionString("Data Source=:memory:;Version=3;New=True;Pooling=True;Max Pool Size=1;")
+                //.ConnectionString("Data Source=:memory:;Version=3;New=True;Pooling=True;Max Pool Size=1;")
+                .ConnectionString("Data Source=:memory:;Version=3;New=True;")
                 .ShowSql();
         }
 

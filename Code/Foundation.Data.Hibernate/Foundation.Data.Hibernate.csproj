@@ -54,9 +54,6 @@
     <Reference Include="NHibernate.ByteCode.LinFu">
       <HintPath>..\..\Libraries\NHibernate.ByteCode.LinFu.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NHibernate.Linq.1.0\lib\NHibernate.Linq.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services" />

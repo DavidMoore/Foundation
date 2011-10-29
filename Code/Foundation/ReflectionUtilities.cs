@@ -40,11 +40,11 @@ namespace Foundation
         /// <param name="type"></param>
         /// <param name="desiredInterface"></param>
         /// <returns></returns>
-        public static bool Implements(Type type, MemberInfo desiredInterface)
+        public static bool Implements(Type type, Type desiredInterface)
         {
             if (type == null) throw new ArgumentNullException("type");
             if (desiredInterface == null) throw new ArgumentNullException("desiredInterface");
-            return type.GetInterface(desiredInterface.Name) != null;
+            return desiredInterface.IsAssignableFrom(type);
         }
 
         /// <summary>

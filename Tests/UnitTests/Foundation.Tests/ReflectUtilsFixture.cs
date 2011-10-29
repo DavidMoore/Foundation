@@ -43,6 +43,12 @@ namespace Foundation.Tests
             string PrivateProperty { get; set; }
         }
 
+        interface ITestInterface{}
+
+        abstract class AbstractTestImplementation : ITestInterface {}
+
+        class ConcreteImplementation : AbstractTestImplementation{}
+
         [TestMethod]
         public void GetAttribute()
         {
@@ -92,6 +98,12 @@ namespace Foundation.Tests
         public void Implements_returns_true_when_passed_type_implements_the_specified_interface()
         {
             Assert.IsTrue(ReflectionUtilities.Implements(typeof(ActivationContext), typeof(IDisposable)));
+        }
+
+        [TestMethod]
+        public void Implements_returns_true_when_passed_type_implements_the_specified_interface_through_inheritance()
+        {
+            Assert.IsTrue(ReflectionUtilities.Implements(typeof(ConcreteImplementation), typeof(ITestInterface)));
         }
 
         [TestMethod]

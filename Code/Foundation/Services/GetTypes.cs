@@ -53,7 +53,24 @@ namespace Foundation.Services
 
             foreach( var referencedAssembly in assemblies )
             {
-                results.AddRange(ThatImplement(expectedInterface, Assembly.Load(referencedAssembly)));
+                // Catch loader exceptions for referenced assemblies
+                var loadedAssembly = Assembly.Load(referencedAssembly);
+
+                if( loadedAssembly == assembly)
+                {
+                    results.AddRange(ThatImplement(expectedInterface, loadedAssembly));
+                }
+                else
+                {
+                    try
+                    {
+                        results.AddRange(ThatImplement(expectedInterface, loadedAssembly));                
+                    }
+                    catch (ReflectionTypeLoadException)
+                    {
+                        continue;
+                    }
+                }
             }
 
             return results;

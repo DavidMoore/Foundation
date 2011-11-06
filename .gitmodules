@@ -1,0 +1,6 @@
+[submodule "Externals/FluentNHibernate"]
+	path = Externals/FluentNHibernate
+	url = git://github.com/jagregory/fluent-nhibernate.git
+[submodule "Externals/NHibernate"]
+	path = Externals/NHibernate
+	url = git://github.com/nhibernate/nhibernate-core.git

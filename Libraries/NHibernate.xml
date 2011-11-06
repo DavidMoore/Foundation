@@ -341,18 +341,6 @@
             <see cref="T:System.Data.IDataReader"/>s it can have are followed.
             </remarks>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:NHibernate.Engine.IBatcher.RemoveUnusedCommandParameters(System.Data.IDbCommand,NHibernate.SqlCommand.SqlString)" -->
-        <member name="M:NHibernate.Engine.IBatcher.ExpandQueryParameters(System.Data.IDbCommand,NHibernate.SqlCommand.SqlString)">
-            <summary>
-            Expand the parameters of the cmd to have a single parameter for each parameter in the
-            sql string
-            </summary>
-            <remarks>
-            This is for databases that do not support named parameters.  So, instead of a single parameter
-            for 'select ... from MyTable t where t.Col1 = @p0 and t.Col2 = @p0' we can issue
-            'select ... from MyTable t where t.Col1 = ? and t.Col2 = ?'
-            </remarks>
-        </member>
         <member name="M:NHibernate.Engine.IBatcher.AbortBatch(System.Exception)">
             <summary>
             Must be called when an exception occurs.
@@ -398,15 +386,6 @@
             <summary>
             Ensures that the Driver's rules for Multiple Open DataReaders are being followed.
             </summary>
-        </member>
-        <member name="M:NHibernate.AdoNet.AbstractBatcher.ExecuteBatch">
-            <summary></summary>
-        </member>
-        <member name="M:NHibernate.AdoNet.AbstractBatcher.DoExecuteBatch(System.Data.IDbCommand)">
-            <summary>
-            
-            </summary>
-            <param name="ps"></param>
         </member>
         <member name="M:NHibernate.AdoNet.AbstractBatcher.AddToBatch(NHibernate.AdoNet.IExpectation)">
             <summary>
@@ -563,11 +542,6 @@
             and Postgres). 
             </summary>
             <seealso cref="M:System.Data.IDataRecord.GetOrdinal(System.String)"/>
-        </member>
-        <member name="T:NHibernate.AdoNet.SqlClientBatchingBatcher">
-            <summary>
-            Summary description for SqlClientBatchingBatcher.
-            </summary>
         </member>
         <member name="T:NHibernate.AdoNet.SqlClientSqlCommandSet">
             <summary>
@@ -3666,6 +3640,9 @@
             <remarks/>
         </member>
         <member name="F:NHibernate.Cfg.MappingSchema.HbmId.unsavedvalue">
+            <remarks/>
+        </member>
+        <member name="F:NHibernate.Cfg.MappingSchema.HbmId.generator1">
             <remarks/>
         </member>
         <member name="T:NHibernate.Cfg.MappingSchema.HbmGenerator">
@@ -8091,7 +8068,7 @@
             for each System.Web.HttpContext. Works only with web applications.
             </summary>
         </member>
-        <member name="M:NHibernate.Criterion.Lambda.LambdaRestrictionBuilder.#ctor(NHibernate.Criterion.IProjection)">
+        <member name="M:NHibernate.Criterion.Lambda.LambdaRestrictionBuilder.#ctor(NHibernate.Impl.ExpressionProcessor.ProjectionInfo)">
             <summary>
             Constructed with property name
             </summary>
@@ -8358,7 +8335,7 @@
             A property value sum
             </summary>
         </member>
-        <member name="M:NHibernate.Criterion.Lambda.QueryOverRestrictionBuilderBase`3.#ctor(`0,NHibernate.Criterion.IProjection)">
+        <member name="M:NHibernate.Criterion.Lambda.QueryOverRestrictionBuilderBase`3.#ctor(`0,NHibernate.Impl.ExpressionProcessor.ProjectionInfo)">
             <summary>
             Constructed with property name
             </summary>
@@ -14526,6 +14503,73 @@
              </list>
              </remarks>
         </member>
+        <member name="T:NHibernate.Dialect.SybaseSQLAnywhere12Dialect">
+             <summary>
+             SQL Dialect for SQL Anywhere 12 - for the NHibernate 3.2.0 distribution
+             Copyright (C) 2011 Glenn Paulley
+             Contact: http://iablog.sybase.com/paulley
+            
+             This NHibernate dialect for SQL Anywhere 12 is a contribution to the NHibernate
+             open-source project. It is intended to be included in the NHibernate 
+             distribution and is licensed under LGPL.
+            
+             This library is free software; you can redistribute it and/or
+             modify it under the terms of the GNU Lesser General Public
+             License as published by the Free Software Foundation; either
+             version 2.1 of the License, or (at your option) any later version.
+            
+             This library is distributed in the hope that it will be useful,
+             but WITHOUT ANY WARRANTY; without even the implied warranty of
+             MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+             Lesser General Public License for more details.
+            
+             You should have received a copy of the GNU Lesser General Public
+             License along with this library; if not, write to the Free Software
+             Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+             </summary>
+             <remarks>
+             The SybaseSQLAnywhere12Dialect uses the SybaseSQLAnywhere11Dialect as its 
+             base class. SybaseSQLAnywhere12Dialect includes support for ISO SQL standard
+             sequences, which are defined in the catalog table <tt>SYSSEQUENCE</tt>. 
+             The dialect uses the SybaseSQLAnywhe11MetaData class for metadata API
+             calls, which correctly supports reserved words defined by SQL Anywhere.
+             
+             The dialect defaults the following configuration properties:
+             <list type="table">
+            	<listheader>
+            		<term>Property</term>
+            		<description>Default Value</description>
+            	</listheader>
+            	<item>
+            		<term>connection.driver_class</term>
+            		<description><see cref="T:NHibernate.Driver.SybaseSQLAnywhereDotNet4Driver"/></description>
+            	</item>
+            	<item>
+            		<term>prepare_sql</term>
+            		<description><see langword="false"/></description>
+            	</item>
+             </list>
+             </remarks>
+        </member>
+        <member name="P:NHibernate.Dialect.SybaseSQLAnywhere12Dialect.SupportsSequences">
+            <summary> 
+            SQL Anywhere supports <tt>SEQUENCES</tt> using a primarily SQL Standard 
+            syntax. Sequence values can be queried using the <tt>.CURRVAL</tt> identifier, and the next
+            value in a sequence can be retrieved using the <tt>.NEXTVAL</tt> identifier. Sequences
+            are retained in the SYS.SYSSEQUENCE catalog table. 
+            </summary>
+        </member>
+        <member name="P:NHibernate.Dialect.SybaseSQLAnywhere12Dialect.SupportsPooledSequences">
+            <summary>
+            Pooled sequences does not refer to the CACHE parameter of the <tt>CREATE SEQUENCE</tt>
+            statement, but merely if the DBMS supports sequences that can be incremented or decremented
+            by values greater than 1. 
+            </summary>
+        </member>
+        <member name="P:NHibernate.Dialect.SybaseSQLAnywhere12Dialect.QuerySequencesString">
+            <summary>Get the <tt>SELECT</tt> command used to retrieve the names of all sequences.</summary>
+            <returns>The <tt>SELECT</tt> command; or NULL if sequences are not supported.</returns>
+        </member>
         <member name="T:NHibernate.Dialect.TypeNames">
             <summary>
             This class maps a DbType to names.
@@ -14674,7 +14718,7 @@
             <param name="sqlType">The SqlType to set for IDbDataParameter.</param>
             <returns>An IDbDataParameter ready to be added to an IDbCommand.</returns>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:NHibernate.Driver.IDriver.RemoveUnusedCommandParameters(System.Data.IDbCommand,NHibernate.SqlCommand.SqlString)" -->
+        <!-- Badly formed XML comment ignored for member "M:NHibernate.Driver.IDriver.RemoveUnusedCommandParameters(System.Data.IDbCommand,NHibernate.SqlCommand.SqlString)" -->
         <member name="M:NHibernate.Driver.IDriver.ExpandQueryParameters(System.Data.IDbCommand,NHibernate.SqlCommand.SqlString)">
             <summary>
             Expand the parameters of the cmd to have a single parameter for each parameter in the
@@ -15879,6 +15923,44 @@
             <li>sybdrvado20.dll</li>
             </ul>
             </remarks>
+        </member>
+        <member name="T:NHibernate.Driver.SybaseSQLAnywhereDotNet4Driver">
+             <summary>
+             SQL Dialect for SQL Anywhere 12 - for the NHibernate 3.2.0 distribution
+             Copyright (C) 2011 Glenn Paulley
+             Contact: http://iablog.sybase.com/paulley
+            
+             This NHibernate dialect for SQL Anywhere 12 is a contribution to the NHibernate
+             open-source project. It is intended to be included in the NHibernate 
+             distribution and is licensed under LGPL.
+            
+             This library is free software; you can redistribute it and/or
+             modify it under the terms of the GNU Lesser General Public
+             License as published by the Free Software Foundation; either
+             version 2.1 of the License, or (at your option) any later version.
+            
+             This library is distributed in the hope that it will be useful,
+             but WITHOUT ANY WARRANTY; without even the implied warranty of
+             MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+             Lesser General Public License for more details.
+            
+             You should have received a copy of the GNU Lesser General Public
+             License along with this library; if not, write to the Free Software
+             Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+             </summary>
+             <remarks>
+             The SybaseSQLAnywhereDotNet4Driver provides a .NET 4 database driver for 
+             Sybase SQL Anywhere 12 using the versioned ADO.NET driver 
+             iAnywhere.Data.SQLAnywhere.v4.0.
+             </remarks>
+        </member>
+        <member name="M:NHibernate.Driver.SybaseSQLAnywhereDotNet4Driver.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NHibernate.Driver.SybaseSQLAnywhereDotNet4Driver"/> class.
+            </summary>
+            <exception cref="T:NHibernate.HibernateException">
+            Thrown when the iAnywhere.Data.SQLAnywhere.v4.0 assembly is not and can not be loaded.
+            </exception>
         </member>
         <member name="T:NHibernate.Engine.Loading.CollectionLoadContext">
             <summary> 
@@ -21409,7 +21491,7 @@
             Returns to the previous 'FROM' context.
             </summary>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "T:NHibernate.Hql.Ast.ANTLR.SqlGenerator" -->
+        <!-- Badly formed XML comment ignored for member "T:NHibernate.Hql.Ast.ANTLR.SqlGenerator" -->
         <member name="T:NHibernate.Hql.Ast.ANTLR.IErrorReporter">
             <summary>
             Implementations will report or handle errors invoked by an ANTLR base parser.
@@ -21649,14 +21731,6 @@
             <param name="selection">The selection criteria </param>
             <param name="dialect">The dialect </param>
             <returns> The appropriate value to bind into the limit clause. </returns>
-        </member>
-        <member name="M:NHibernate.Loader.Loader.SetMaxRows(System.Data.IDbCommand,NHibernate.Engine.RowSelection)">
-            <summary>
-            Limits the number of rows returned by the Sql query if necessary.
-            </summary>
-            <param name="st">The IDbCommand to limit.</param>
-            <param name="selection">The RowSelection that contains the MaxResults info.</param>
-            <remarks>TODO: This does not apply to ADO.NET at all</remarks>
         </member>
         <member name="M:NHibernate.Loader.Loader.GetResultSet(System.Data.IDbCommand,System.Boolean,System.Boolean,NHibernate.Engine.RowSelection,NHibernate.Engine.ISessionImplementor)">
             <summary>
@@ -26822,12 +26896,13 @@
             <param name="orderDelegate">The appropriate order delegate (order direction)</param>
             <returns>NHibernate Order</returns>
         </member>
-        <member name="M:NHibernate.Impl.ExpressionProcessor.ProcessOrder(System.Linq.Expressions.LambdaExpression,System.Func{NHibernate.Criterion.IProjection,NHibernate.Criterion.Order})">
+        <member name="M:NHibernate.Impl.ExpressionProcessor.ProcessOrder(System.Linq.Expressions.LambdaExpression,System.Func{System.String,NHibernate.Criterion.Order},System.Func{NHibernate.Criterion.IProjection,NHibernate.Criterion.Order})">
             <summary>
             Convert a lambda expression to NHibernate Order
             </summary>
             <param name="expression">The lambda expression to convert</param>
-            <param name="orderDelegate">The appropriate order delegate (order direction)</param>
+            <param name="orderStringDelegate">The appropriate order delegate (order direction)</param>
+            <param name="orderProjectionDelegate">The appropriate order delegate (order direction)</param>
             <returns>NHibernate Order</returns>
         </member>
         <member name="M:NHibernate.Impl.ExpressionProcessor.ProcessSubquery``1(NHibernate.Impl.LambdaSubqueryType,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
@@ -26861,7 +26936,7 @@
             <param name="function">Lambda expression demonstrating call of custom method</param>
             <param name="functionProcessor">function to convert MethodCallExpression to IProjection</param>
         </member>
-        <member name="M:NHibernate.Impl.ExpressionProcessor.FindProperty(NHibernate.Criterion.IProjection)">
+        <member name="M:NHibernate.Impl.ExpressionProcessor.ProjectionInfo.AsProperty">
             <summary>
             Retreive the property name from a supplied PropertyProjection
             Note:  throws is the supplied IProjection is not a PropertyProjection
@@ -28726,11 +28801,6 @@
             Locates constants in the expression tree and generates parameters for each one
             </summary>
         </member>
-        <member name="T:NHibernate.Linq.Visitors.Nominator">
-            <summary>
-            Performs bottom-up analysis to determine which nodes that match a certain predicate
-            </summary>
-        </member>
         <member name="T:NHibernate.Linq.Visitors.PossibleValueSet">
             <summary>
             Represents a possible set of values for a computation.  For example, an expression may
@@ -28743,7 +28813,7 @@
             null checks.
             </summary>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "T:NHibernate.Linq.Visitors.WhereJoinDetector" -->
+        <!-- Badly formed XML comment ignored for member "T:NHibernate.Linq.Visitors.WhereJoinDetector" -->
         <member name="P:NHibernate.Linq.Visitors.WhereJoinDetector.ExpressionValues.Values">
             <summary>
             Possible values of expression if there's set of values for the requested member expression.
@@ -31961,6 +32031,11 @@
             Is the collection lazily initialized?
             </summary>
         </member>
+        <member name="T:NHibernate.Param.IPageableParameterSpecification">
+            <summary>
+            Additional information for potential paging parameters in HQL/LINQ
+            </summary>
+        </member>
         <member name="T:NHibernate.Param.IExplicitParameterSpecification">
             <summary>
             An additional contract for parameters which originate from parameters explicitly encountered in the source statement
@@ -32041,6 +32116,25 @@
             <summary>
             Retrieves the column number (within the {@link #getSourceLine()}) where this parameter occurs.
             </summary>
+        </member>
+        <member name="M:NHibernate.Param.IPageableParameterSpecification.IsSkipParameter">
+            <summary>
+            Notifies the parameter that it is a 'skip' parameter, and should calculate its value using the dialect settings
+            </summary>
+        </member>
+        <member name="M:NHibernate.Param.IPageableParameterSpecification.IsTakeParameterWithSkipParameter(NHibernate.Param.IPageableParameterSpecification)">
+            <summary>
+            Notifies the parameter that it is a 'take' parameter, and should calculate its value using the dialect settings
+            and the value of the supplied skipParameter.
+            </summary>
+            <param name="skipParameter">The associated skip parameter (null if there is none).</param>
+        </member>
+        <member name="M:NHibernate.Param.IPageableParameterSpecification.GetSkipValue(NHibernate.Engine.QueryParameters)">
+            <summary>
+            Retrieve the skip/offset value for the query
+            </summary>
+            <param name="queryParameters">The parameters for the query</param>
+            <returns>The paging skip/offset value</returns>
         </member>
         <member name="M:NHibernate.Param.AbstractExplicitParameterSpecification.#ctor(System.Int32,System.Int32)">
             <summary>
@@ -32176,7 +32270,7 @@
             </summary>
         </member>
         <member name="M:NHibernate.Type.IType.Replace(System.Object,System.Object,NHibernate.Engine.ISessionImplementor,System.Object,System.Collections.IDictionary)">
-            <!-- No se encontraron elementos coincidentes para la siguiente etiqueta de inclusión --><include file="IType.cs.xmldoc" path="//members[@type=&quot;IType&quot;]/member[@name=&quot;M:IType.Copy&quot;]/*"/> 
+            <!-- No matching elements were found for the following include tag --><include file="IType.cs.xmldoc" path="//members[@type=&quot;IType&quot;]/member[@name=&quot;M:IType.Copy&quot;]/*"/> 
         </member>
         <member name="M:NHibernate.Type.IType.Replace(System.Object,System.Object,NHibernate.Engine.ISessionImplementor,System.Object,System.Collections.IDictionary,NHibernate.Type.ForeignKeyDirection)">
             <summary> 
@@ -32316,7 +32410,7 @@
 		</summary><value>true if this is an <see cref="T:NHibernate.Type.EntityType"/></value> 
         </member>
         <member name="P:NHibernate.Type.IType.IsAnyType">
-            <!-- No se encontraron elementos coincidentes para la siguiente etiqueta de inclusión --><include file="IType.cs.xmldoc" path="//members[@type=&quot;IType&quot;]/member[@name=&quot;P:IType.IsAnyType&quot;]/*"/> 
+            <!-- No matching elements were found for the following include tag --><include file="IType.cs.xmldoc" path="//members[@type=&quot;IType&quot;]/member[@name=&quot;P:IType.IsAnyType&quot;]/*"/> 
         </member>
         <member name="T:NHibernate.Param.NamedParameterSpecification">
             <summary>
@@ -37730,10 +37824,10 @@
 		</summary><param name="mapping">The <see cref="T:NHibernate.Engine.IMapping"/> that uses this IType.</param><returns>The number of columns this IType spans.</returns><exception cref="T:NHibernate.MappingException">MappingException</exception> 
         </member>
         <member name="M:NHibernate.Type.AbstractType.NullSafeGet(System.Data.IDataReader,System.String[],NHibernate.Engine.ISessionImplementor,System.Object)">
-            <!-- No se encontraron elementos coincidentes para la siguiente etiqueta de inclusión --><include file="IType.cs.xmldoc" path="//members[@type=&quot;IType&quot;]/member[@name=&quot;M:IType.NullSafeGet(IDataReader, string[], ISessionImplementor, object)&quot;]/*"/> 
+            <!-- No matching elements were found for the following include tag --><include file="IType.cs.xmldoc" path="//members[@type=&quot;IType&quot;]/member[@name=&quot;M:IType.NullSafeGet(IDataReader, string[], ISessionImplementor, object)&quot;]/*"/> 
         </member>
         <member name="M:NHibernate.Type.AbstractType.NullSafeGet(System.Data.IDataReader,System.String,NHibernate.Engine.ISessionImplementor,System.Object)">
-            <!-- No se encontraron elementos coincidentes para la siguiente etiqueta de inclusión --><include file="IType.cs.xmldoc" path="//members[@type=&quot;IType&quot;]/member[@name=&quot;M:IType.NullSafeGet(IDataReader, string, ISessionImplementor, object)&quot;]/*"/> 
+            <!-- No matching elements were found for the following include tag --><include file="IType.cs.xmldoc" path="//members[@type=&quot;IType&quot;]/member[@name=&quot;M:IType.NullSafeGet(IDataReader, string, ISessionImplementor, object)&quot;]/*"/> 
         </member>
         <member name="M:NHibernate.Type.AbstractType.NullSafeSet(System.Data.IDbCommand,System.Object,System.Int32,System.Boolean[],NHibernate.Engine.ISessionImplementor)">
             <summary>

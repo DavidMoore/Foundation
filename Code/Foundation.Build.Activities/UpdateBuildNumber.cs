@@ -15,7 +15,7 @@ using Microsoft.TeamFoundation.Build.Workflow.Design;
 namespace Foundation.Build.Activities
 {
     [BuildCategory]
-    [BuildActivity(HostEnvironmentOption.Controller)]
+    [BuildActivity(HostEnvironmentOption.All)]
     [Designer(typeof (TeamBuildBaseActivityDesigner))]
     [ToolboxBitmap(typeof (TeamBuildBaseActivityDesigner), "DefaultBuildIcon.png")]
     public sealed class UpdateBuildNumber : CodeActivity<string>

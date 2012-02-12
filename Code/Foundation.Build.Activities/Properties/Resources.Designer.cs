@@ -70,6 +70,15 @@ namespace Foundation.Build.Activities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Versioning.
+        /// </summary>
+        internal static string ActivityCategoryVersioning {
+            get {
+                return ResourceManager.GetString("ActivityCategoryVersioning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Build number format.
         /// </summary>
         internal static string BuildNumberFormatDescription {
@@ -93,6 +102,33 @@ namespace Foundation.Build.Activities.Properties {
         internal static string MacroDescription_BuildID {
             get {
                 return ResourceManager.GetString("MacroDescription_BuildID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The major version for the build. This is the 1st of the 4 version numbers..
+        /// </summary>
+        internal static string MajorVersionDescription {
+            get {
+                return ResourceManager.GetString("MajorVersionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minor version for the build. This is the 2nd of the 4 version numbers..
+        /// </summary>
+        internal static string MinorVersionDescription {
+            get {
+                return ResourceManager.GetString("MinorVersionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name for the product. This is applied throughout the versioning and installer..
+        /// </summary>
+        internal static string ProductNameDescription {
+            get {
+                return ResourceManager.GetString("ProductNameDescription", resourceCulture);
             }
         }
     }

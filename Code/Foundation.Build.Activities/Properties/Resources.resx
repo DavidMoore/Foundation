@@ -120,6 +120,9 @@
   <data name="ActivityCategoryMiscellaneous" xml:space="preserve">
     <value>Misc</value>
   </data>
+  <data name="ActivityCategoryVersioning" xml:space="preserve">
+    <value>Versioning</value>
+  </data>
   <data name="BuildNumberFormatDescription" xml:space="preserve">
     <value>Build number format</value>
   </data>
@@ -128,5 +131,14 @@
   </data>
   <data name="MacroDescription_BuildID" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="MajorVersionDescription" xml:space="preserve">
+    <value>The major version for the build. This is the 1st of the 4 version numbers.</value>
+  </data>
+  <data name="MinorVersionDescription" xml:space="preserve">
+    <value>The minor version for the build. This is the 2nd of the 4 version numbers.</value>
+  </data>
+  <data name="ProductNameDescription" xml:space="preserve">
+    <value>The name for the product. This is applied throughout the versioning and installer.</value>
   </data>
 </root>

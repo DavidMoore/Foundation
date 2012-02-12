@@ -109,7 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensionMethodsTests.cs" />
+    <Compile Include="Build\Activities\BuildQueryProviderTests.cs" />
     <Compile Include="Build\Activities\CustomBuildNumberTests.cs" />
+    <Compile Include="Build\Activities\UpdateBuildVersionInfoTests.cs" />
     <Compile Include="Build\MSBuild\GenerateAssemblyInfoTests.cs" />
     <Compile Include="Build\MSBuild\Vb6ProjectItemsTests.cs" />
     <Compile Include="Build\MSBuild\VisualBasicProjectTests.cs" />

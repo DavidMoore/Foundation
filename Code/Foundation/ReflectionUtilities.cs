@@ -44,7 +44,7 @@ namespace Foundation
         {
             if (type == null) throw new ArgumentNullException("type");
             if (desiredInterface == null) throw new ArgumentNullException("desiredInterface");
-            return desiredInterface.IsAssignableFrom(type);
+            return !type.IsInterface && !type.IsAbstract && desiredInterface.IsAssignableFrom(type);
         }
 
         /// <summary>

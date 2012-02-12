@@ -34,7 +34,7 @@ namespace Foundation.Services.Windsor
         ///                 </param><filterpriority>2</filterpriority>
         public object GetService(Type serviceType)
         {
-            return Container.GetService(serviceType);
+            return Container.Resolve(serviceType);
         }
 
         /// <summary>

@@ -14,7 +14,7 @@ namespace Foundation.Windows
 
         // Use this to translate error codes like the above into HRESULTs like
         // 0x80070006 for ERROR_INVALID_HANDLE 
-        internal static int MakeHRFromErrorCode(int errorCode)
+        public static int MakeHRFromErrorCode(int errorCode)
         {
             if((0xFFFF0000 & errorCode) != 0) throw new InvalidOperationException("This is an HRESULT, not an error code!");
             return unchecked(((int)0x80070000) | errorCode);

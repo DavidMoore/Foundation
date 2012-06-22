@@ -16,17 +16,32 @@ namespace Foundation.Windows
         // 0x80070006 for ERROR_INVALID_HANDLE 
         public static int MakeHRFromErrorCode(int errorCode)
         {
-            if((0xFFFF0000 & errorCode) != 0) throw new InvalidOperationException("This is an HRESULT, not an error code!");
+            if (IsHR(errorCode)) return errorCode;
             return unchecked(((int)0x80070000) | errorCode);
         }
 
-        // Gets an error message for a Win32 error code. 
-        internal static String GetMessage(int errorCode)
+        /// <summary>
+        /// Determines whether the specified error code is a valid HRESULT.
+        /// </summary>
+        /// <param name="errorCode">The error code.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified error code is a valid HRESULT; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsHR(int errorCode)
+        {
+            return (0xFFFF0000 & errorCode) != 0;
+        }
+
+        /// <summary>
+        /// Gets the message for a Win32 error code.
+        /// </summary>
+        /// <param name="errorCode">The error code.</param>
+        /// <returns></returns>
+        public static String GetMessage(int errorCode)
         {
             var sb = new StringBuilder(512);
 
-            var result = Win32Api.FormatMessage(FORMAT_MESSAGE_IGNORE_INSERTS |
-                                                FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ARGUMENT_ARRAY,
+            var result = Win32Api.FormatMessage(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ARGUMENT_ARRAY,
                                                 Win32Api.Null, errorCode, 0, sb, sb.Capacity, Win32Api.Null);
             if (result != 0)
             {

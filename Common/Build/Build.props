@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CompanyName>David Moore</CompanyName>
+    <ProductNameString>Foundation .NET Library</ProductNameString>
+    <ProductMajorVersion>1</ProductMajorVersion>
+    <ProductMinorVersion>0</ProductMinorVersion>
+    <ReleaseQuality>Final</ReleaseQuality>
+    <AssemblyKeyFileName>Foundation.snk</AssemblyKeyFileName>
+    <KeyFilePublicKeyToken>82cf768503ebb03c</KeyFilePublicKeyToken>
+    <KeyFilePublicKey>002400000480000094000000060200000024000052534131000400000100010087d332e80809acf066d0c4360316e881f059f47cfcf432f4882d64d667dc975a5dea3b9e76a8138917979de05b3c94cae5f32c2f14d90ad9d0da56e32bf5d7bbf1d4952bac16233aa13eaf760bcc4c04a81ebcb02a55211c805462cc9ff5b3388874c033b19d2c1577538ee9f898616d9360d9f0ad16e336074a781dc3bca3bf</KeyFilePublicKey>
+    <NamespaceBase>Foundation.</NamespaceBase>
+    <RootNamespace Condition=" '$(RootNamespace)' == '' ">$(MSBuildProjectName)</RootNamespace>
+    <ReferencePath>$(MSBuildThisFileDirectory)\..\Libraries\</ReferencePath>
+    <OutputPath>..\..\Bin\</OutputPath>
+  </PropertyGroup>
+  
+</Project>

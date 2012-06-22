@@ -28,3 +28,4 @@ _ReSharper*/
 *.sdf
 *.vs10x
 *.cache
+Packages/*/

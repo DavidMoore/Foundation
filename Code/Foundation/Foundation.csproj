@@ -45,6 +45,7 @@
     <Compile Include="Services\IServiceLocator.cs" />
     <Compile Include="Services\Serialization\StructBinarySerializer.cs" />
     <Compile Include="TestHelpers\DatabaseTestBase.cs" />
+    <Compile Include="Windows\Com\RunningObjectTableExtensions.cs" />
     <Compile Include="Windows\IProcessResult.cs" />
     <Compile Include="Windows\ProcessResult.cs" />
     <Compile Include="Build\VersionControl\Vault\VaultException.cs" />
@@ -205,5 +206,6 @@
     <Compile Include="Windows\Win32Api.cs" />
     <Compile Include="Windows\Win32Error.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

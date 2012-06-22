@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Versioning;
 using System.Text;
 using Foundation.Windows.IO;
@@ -15,6 +16,7 @@ namespace Foundation.Windows
     {
         const string advancedWindows32BaseApi = "advapi32.dll";
         const string kernel32ClientBaseApi = "kernel32.dll";
+        const string oleForWindowsApi = "ole32.dll";
 
         /// <summary>
         /// Contains functions for manipulating the Windows registry.
@@ -147,6 +149,38 @@ namespace Foundation.Windows
             [return: MarshalAs(UnmanagedType.Bool)]
             [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
             internal static extern bool FindClose(IntPtr handle);
+        }
+
+        /// <summary>
+        /// COM and OLE functions.
+        /// </summary>
+        public static class Com
+        {
+            /// <summary>
+            /// Returns a pointer to the <see cref="IRunningObjectTable"/> interface on the local running object table (ROT).
+            /// </summary>
+            /// <param name="reserved">This parameter is reserved and must be 0.</param>
+            /// <param name="runningObjectTable">
+            /// The address of an <see cref="IRunningObjectTable"/>* pointer variable that receives the
+            /// interface pointer to the local ROT. When the function is successful, the caller is responsible
+            /// for calling <see cref="IUnknown.Release"/> on the interface pointer. If an error occurs, *runningObjectTable is undefined.
+            /// </param>
+            /// <returns></returns>
+            [DllImport(oleForWindowsApi)]
+            private static extern int GetRunningObjectTable(uint reserved, out IRunningObjectTable runningObjectTable);
+
+            /// <summary>
+            /// Returns a pointer to an implementation of <see cref="IBindCtx"/> (a bind context object).
+            /// This object stores information about a particular moniker-binding operation.
+            /// </summary>
+            /// <param name="reserved">This parameter is reserved and must be 0.</param>
+            /// <param name="ppbc">
+            /// Address of an <see cref="IBindCtx"/>* pointer variable that receives the interface pointer to the new bind context object. 
+            /// When the function is successful, the caller is responsible for calling <see cref="IUnknown.Release"/> on the bind context. 
+            /// A <c>null</c> value for the bind context indicates that an error occurred.</param>
+            /// <returns></returns>
+            [DllImport(oleForWindowsApi)]
+            private static extern int CreateBindCtx(uint reserved, out IBindCtx ppbc);
         }
 
         /// <summary>

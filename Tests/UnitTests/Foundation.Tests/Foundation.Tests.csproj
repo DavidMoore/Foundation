@@ -38,7 +38,12 @@
     <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\..\packages\System.Data.SQLite.x86.1.0.81.0\lib\net40\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\..\..\packages\System.Data.SQLite.x86.1.0.81.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activities" />
@@ -76,7 +81,10 @@
     <Compile Include="Build\VisualBasic6\Parse_method_on_VB6ProjectReader.cs" />
     <Compile Include="Build\VisualBasic6\Read_method_on_VB6ProjectReader.cs" />
     <Compile Include="Build\VisualBasic6\When_calling_Convert_method_on_ProjectConverter.cs" />
-    <Compile Include="Data\Hibernate\UserTypes\CustomGuidCombGeneratorTests.cs" />
+    <Compile Include="Data\Hibernate\UserTypes\CustomGuidCombGeneratorEntity.cs" />
+    <Compile Include="Data\Hibernate\UserTypes\CustomGuidCombGeneratorEntityMap.cs" />
+    <Compile Include="Data\Hibernate\UserTypes\CustomGuidCombGeneratorIntegrationTests.cs" />
+    <Compile Include="Data\Hibernate\UnitTestHibernateDataProvider.cs" />
     <Compile Include="Hydra\Modules\ErrorAnalyzer\UnitTest1.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

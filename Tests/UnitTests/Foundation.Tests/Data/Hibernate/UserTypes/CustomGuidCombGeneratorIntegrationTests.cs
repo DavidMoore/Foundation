@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using FluentNHibernate.Mapping;
+
 using Foundation.Data.Hibernate;
 using Foundation.Data.Hibernate.UserTypes;
 using Foundation.Data.Security;
 using Foundation.Models;
-using Foundation.Models.GuidPrimaryKey;
 using Foundation.TestHelpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -45,38 +44,5 @@ namespace Foundation.Tests.Data.Hibernate.UserTypes
 
             Assert.AreEqual(id, generatedId);
         }
-    }
-
-    public class UnitTestHibernateDataProvider : HibernateDataServicesProvider
-    {
-        protected override FluentNHibernate.Cfg.MappingConfiguration GetMappings(FluentNHibernate.Cfg.MappingConfiguration mappingConfiguration)
-        {
-            mappingConfiguration.FluentMappings.Add<CustomGuidCombGeneratorEntityMap>();
-            return mappingConfiguration;
-        }
-    }
-
-    public class CustomGuidCombGeneratorEntityMap : ClassMap<CustomGuidCombGeneratorEntity>
-    {
-        public CustomGuidCombGeneratorEntityMap()
-        {
-            Id(entity => entity.Id).GeneratedBy.Custom(typeof(CustomGuidCombGenerator));
-            Map(entity => entity.Name);
-        }
-    }
-
-    public class CustomGuidCombGeneratorEntity : INamedEntity
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:System.Object"/> class.
-        /// </summary>
-        public CustomGuidCombGeneratorEntity()
-        {
-            Id = Guid.NewGuid();
-        }
-
-        public virtual Guid Id { get; set; }
-
-        public virtual string Name { get; set; }
     }
 }

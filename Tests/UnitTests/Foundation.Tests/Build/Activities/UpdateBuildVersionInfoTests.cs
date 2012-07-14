@@ -45,8 +45,12 @@ namespace Foundation.Tests.Build.Activities
         [TestMethod]
         public void Hardcoded_major_and_minor_plus_truncated_date_plus_builds_that_day()
         {
+            activity.ProductName = "Product Name";
             activity.MajorVersion = 2;
             activity.MinorVersion = 5;
+            activity.BuildVersion = 6;
+            activity.RevisionVersion = 0;
+            activity.BuildQuality = string.Empty;
 
             var result = invoker.Invoke()["Result"] as BuildVersionInfo;
 
@@ -54,7 +58,7 @@ namespace Foundation.Tests.Build.Activities
 
             Assert.AreEqual(2, result.Major);
             Assert.AreEqual(5, result.Minor);
-            Assert.AreEqual( int.Parse((DateTime.Now.Year - 2010) + DateTime.Now.ToString("MMdd")), result.Build);
+            Assert.AreEqual(6, result.Build);
             Assert.AreEqual(3, result.Revision);
         }
     }

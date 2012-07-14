@@ -6,23 +6,17 @@
   </PropertyGroup>
   <Import Project="..\..\Common\Build\Build.Common.targets" />
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.TeamFoundation.Build.Client"/>
-    <Reference Include="Microsoft.TeamFoundation.Build.Workflow"/>
-    <Reference Include="Microsoft.TeamFoundation.Common"/>
+    <Reference Include="Microsoft.TeamFoundation.Build.Client" />
+    <Reference Include="Microsoft.TeamFoundation.Build.Workflow" />
+    <Reference Include="Microsoft.TeamFoundation.Common" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Activities" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -42,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

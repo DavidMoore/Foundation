@@ -2,6 +2,8 @@ using System;
 using System.Activities;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq.Expressions;
+
 using Foundation.Build.Activities.Properties;
 using Microsoft.TeamFoundation.Build.Client;
 using Microsoft.TeamFoundation.Build.Workflow.Activities;
@@ -36,28 +38,40 @@ namespace Foundation.Build.Activities
         }
 
         [RequiredArgument, Browsable(true), DefaultValue((string) null)]
-        [LocalizedCategory(typeof (Resources), "ActivityCategoryVersioning")]
-        [LocalizedDescription(typeof (Resources), "ProductNameDescription")]
+        [Category("Versioning")]
+        [Description("ProductNameDescription")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public string ProductName { get; set; }
+        public InArgument<string> ProductName { get; set; }
 
         [RequiredArgument, Browsable(true), DefaultValue((string) null)]
-        [LocalizedCategory(typeof (Resources), "ActivityCategoryVersioning")]
-        [LocalizedDescription(typeof (Resources), "BuildQualityDescription")]
+        [Category("Versioning")]
+        [Description("BuildQualityDescription")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public string BuildQuality { get; set; }
+        public InArgument<string> BuildQuality { get; set; }
 
         [RequiredArgument, Browsable(true), DefaultValue(1)]
-        [LocalizedCategory(typeof (Resources), "ActivityCategoryVersioning")]
-        [LocalizedDescription(typeof (Resources), "MajorVersionDescription")]
+        [Category("Versioning")]
+        [Description("MajorVersionDescription")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public int MajorVersion { get; set; }
+        public InArgument<int> MajorVersion { get; set; }
 
         [RequiredArgument, Browsable(true), DefaultValue(0)]
-        [LocalizedCategory(typeof (Resources), "ActivityCategoryVersioning")]
-        [LocalizedDescription(typeof (Resources), "MinorVersionDescription")]
+        [Category("Versioning")]
+        [Description("MinorVersionDescription")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public int MinorVersion { get; set; }
+        public InArgument<int> MinorVersion { get; set; }
+
+        [RequiredArgument, Browsable(true), DefaultValue(0)]
+        [Category("Versioning")]
+        [Description("BuildVersionDescription")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public InArgument<int> BuildVersion { get; set; }
+
+        [Browsable(true), DefaultValue(-1)]
+        [Category("Versioning")]
+        [Description("RevisionVersionDescription")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public InArgument<int> RevisionVersion { get; set; }
 
         /// <summary>
         /// Caches the metadata.
@@ -77,11 +91,11 @@ namespace Foundation.Build.Activities
 
             var result = new BuildVersionInfo
                          {
-                             ProductName = ProductName,
-                             BuildQuality = BuildQuality,
-                             Major = MajorVersion,
-                             Minor = MinorVersion,
-                             Build = Convert.ToInt32((now.Year - 2010) + now.ToString("MMdd"))
+                             ProductName =  ProductName.Get(context),
+                             BuildQuality = BuildQuality.Get(context),
+                             Major = MajorVersion.Get(context),
+                             Minor = MinorVersion.Get(context),
+                             Build = BuildVersion.Get(context)
                          };
 
             result.Revision = GetRevision(result, buildDetail);

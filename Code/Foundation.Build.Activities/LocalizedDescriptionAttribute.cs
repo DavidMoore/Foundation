@@ -9,6 +9,6 @@ namespace Foundation.Build.Activities
     {
         private const BindingFlags bindingFlags = (BindingFlags.Public | BindingFlags.Static);
 
-        public LocalizedDescriptionAttribute(Type type, string description) : base((string) type.GetMethod("Get", bindingFlags).Invoke(null, new object[] {description})) {}
+        public LocalizedDescriptionAttribute(Type type, string description) : base((string)type.GetMethod(description, bindingFlags).Invoke(null, null)) { }
     }
 }

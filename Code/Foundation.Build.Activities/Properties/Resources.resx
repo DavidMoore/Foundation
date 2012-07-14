@@ -126,6 +126,12 @@
   <data name="BuildNumberFormatDescription" xml:space="preserve">
     <value>Build number format</value>
   </data>
+  <data name="BuildQualityDescription" xml:space="preserve">
+    <value>The description for the build quality. Final or empty for release; otherwise use options such as Beta or RC1.</value>
+  </data>
+  <data name="BuildVersionDescription" xml:space="preserve">
+    <value>The build version for the build. This is the 3rd of the 4 version numbers.</value>
+  </data>
   <data name="DesignTimeMacro_Revision" xml:space="preserve">
     <value>{0}</value>
   </data>
@@ -140,5 +146,8 @@
   </data>
   <data name="ProductNameDescription" xml:space="preserve">
     <value>The name for the product. This is applied throughout the versioning and installer.</value>
+  </data>
+  <data name="RevisionVersionDescription" xml:space="preserve">
+    <value>The revision version for the build. This is the 4th of the 4 version numbers.</value>
   </data>
 </root>

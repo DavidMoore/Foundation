@@ -4,6 +4,12 @@
     <ProjectGuid>{3D2270D9-ED86-45E8-A259-54C20367AC96}</ProjectGuid>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
   <Import Project="..\..\..\Common\Build\Build.Common.targets" />
   <ItemGroup>
     <Reference Include="FluentNHibernate">
@@ -45,6 +51,7 @@
       <HintPath>..\..\..\packages\System.Data.SQLite.x86.1.0.81.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activities" />
     <Reference Include="System.Web" />
@@ -86,6 +93,8 @@
     <Compile Include="Data\Hibernate\UserTypes\CustomGuidCombGeneratorIntegrationTests.cs" />
     <Compile Include="Data\Hibernate\UnitTestHibernateDataProvider.cs" />
     <Compile Include="Hydra\Modules\ErrorAnalyzer\UnitTest1.cs" />
+    <Compile Include="Interop\BitTorrent\BEncodeTests.cs" />
+    <Compile Include="Interop\Office\DocumentConverterTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -168,6 +177,7 @@
     <Compile Include="Windows\IO\FindDataTests.cs" />
     <Compile Include="Windows\IO\FindFileApiTests.cs" />
     <Compile Include="Windows\ArgumentSerializerTests.cs" />
+    <Compile Include="Windows\ProcessListenerTests.cs" />
     <Compile Include="Windows\TestArgs1.cs" />
     <Compile Include="Windows\WindowRegistry\RegistryRedirectionTests.cs" />
   </ItemGroup>

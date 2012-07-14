@@ -17,6 +17,47 @@ namespace Foundation.Windows
         const string advancedWindows32BaseApi = "advapi32.dll";
         const string kernel32ClientBaseApi = "kernel32.dll";
         const string oleForWindowsApi = "ole32.dll";
+        const string user32 = "user32.dll";
+
+        public static class Threading
+        {
+            /// <summary>
+            /// Attaches or detaches the input processing mechanism of one thread to that of another thread.
+            /// </summary>
+            /// <param name="threadToBeAttached">The identifier of the thread to be attached to another thread. The thread to be attached cannot be a system thread.</param>
+            /// <param name="threadToBeAttachedTo">
+            /// <p>The identifier of the thread to which threadToBeAttached will be attached.This thread cannot be a system thread. </p>
+            /// <p>A thread cannot attach to itself. Therefore, <paramref name="threadToBeAttachedTo"/>  cannot equal <paramref name="threadToBeAttached"/>.</p>
+            /// </param>
+            /// <param name="attach">If this parameter is <c>true</c>, the two threads are attached. If the parameter is <c>false</c>, the threads are detached.</param>
+            /// <returns>
+            /// <p>If the function succeeds, the return value is nonzero.</p>
+            /// <p>If the function fails, the return value is zero. To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.</p>
+            /// </returns>
+            /// <remarks>
+            /// <p>Windows created in different threads typically process input independently of each other. That is, they have their own input states (focus, active, capture windows, key state, queue status, and so on), and their input processing is not synchronized with the input processing of other threads. By using the AttachThreadInput function, a thread can attach its input processing mechanism to another thread. Keyboard and mouse events received by both threads are processed by the thread specified by the idAttachTo parameter until the threads are detached by calling AttachThreadInput a second time and specifying FALSE for the fAttach parameter. This also allows threads to share their input states, so they can call the SetFocus function to set the keyboard focus to a window of a different thread. This also allows threads to get key-state information.</p>
+            /// <p>The AttachThreadInput function fails if either of the specified threads does not have a message queue. The system creates a thread's message queue when the thread makes its first call to one of the USER or GDI functions. The AttachThreadInput function also fails if a journal record hook is installed. Journal record hooks attach all input queues together.</p>
+            /// <p>Note that key state, which can be ascertained by calls to the GetKeyState or GetKeyboardState function, is reset after a call to AttachThreadInput. You cannot attach a thread to a thread in another desktop.</p>
+            /// </remarks>
+            [DllImport(user32)]
+            static extern bool AttachThreadInput(uint threadToBeAttached, uint threadToBeAttachedTo, bool attach);
+            
+            [DllImport(user32)]
+            static extern uint GetWindowThreadProcessId(IntPtr hWnd, IntPtr processId);
+            
+            [DllImport(kernel32ClientBaseApi)]
+            static extern uint GetCurrentThreadId();
+        }
+
+        public static class Windows
+        {
+            [DllImport(user32)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+            [DllImport(user32)]
+            static extern IntPtr SetFocus(IntPtr hWnd);
+        }
 
         /// <summary>
         /// Contains functions for manipulating the Windows registry.

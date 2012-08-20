@@ -40,10 +40,10 @@ namespace VisualBasic6
             base.Initialize();
             this.RegisterProjectFactory(new VisualBasic6ProjectFactory(this));
         }
-
-        public override string ProductUserContext
-        {
-            get { return "Visual Basic 6"; }
-        }
+        
+//        public override string ProductUserContext
+//        {
+//            get { return "Visual Basic 6"; }
+//        }
     }
 }

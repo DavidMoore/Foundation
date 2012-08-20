@@ -43,7 +43,7 @@ namespace Foundation.Windows
             static extern bool AttachThreadInput(uint threadToBeAttached, uint threadToBeAttachedTo, bool attach);
             
             [DllImport(user32)]
-            static extern uint GetWindowThreadProcessId(IntPtr hWnd, IntPtr processId);
+            public static extern uint GetWindowThreadProcessId(IntPtr hWnd, IntPtr processId);
             
             [DllImport(kernel32ClientBaseApi)]
             static extern uint GetCurrentThreadId();

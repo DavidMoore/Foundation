@@ -3,15 +3,21 @@
   <PropertyGroup>
     <ProjectGuid>{3D2270D9-ED86-45E8-A259-54C20367AC96}</ProjectGuid>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformTarget>x86</PlatformTarget>
+    <Platform>x86</Platform>
   </PropertyGroup>
+  <Import Project="..\..\..\Common\Build\Build.Common.targets" />
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-  <Import Project="..\..\..\Common\Build\Build.Common.targets" />
+
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\..\..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\..\packages\FluentNHibernate.1.3.0.727\lib\FluentNHibernate.dll</HintPath>
     </Reference>

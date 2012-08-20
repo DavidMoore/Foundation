@@ -1,4 +1,5 @@
-using Foundation.Net;
+using Foundation.Content;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Foundation.Tests.Net

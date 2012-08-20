@@ -32,6 +32,10 @@
     <Compile Include="Build\VisualBasic6\VB6SourceFileType.cs" />
     <Compile Include="Build\VisualBasic6\VB6Reference.cs" />
     <Compile Include="Build\VisualBasic6\VB6ReferenceType.cs" />
+    <Compile Include="Content\MimeContentType.cs" />
+    <Compile Include="Content\MimeType.cs" />
+    <Compile Include="Content\MimeTypeDetector.cs" />
+    <Compile Include="Content\MimeTypes.cs" />
     <Compile Include="Data\DataServicesException.cs" />
     <Compile Include="Data\IDataPersistanceService.cs" />
     <Compile Include="Data\IDataQueryService.cs" />
@@ -47,6 +51,7 @@
     <Compile Include="Services\Serialization\StructBinarySerializer.cs" />
     <Compile Include="TestHelpers\DatabaseTestBase.cs" />
     <Compile Include="Windows\Com\RunningObjectTableExtensions.cs" />
+    <Compile Include="Windows\IProcessListener.cs" />
     <Compile Include="Windows\IProcessResult.cs" />
     <Compile Include="Windows\ProcessListener.cs" />
     <Compile Include="Windows\ProcessResult.cs" />
@@ -89,10 +94,6 @@
     <Compile Include="Media\ThumbnailCache.cs" />
     <Compile Include="Models\SortInfo.cs" />
     <Compile Include="NamedPaginatedCollection.cs" />
-    <Compile Include="Net\MimeContentType.cs" />
-    <Compile Include="Net\MimeType.cs" />
-    <Compile Include="Net\MimeTypeDetector.cs" />
-    <Compile Include="Net\MimeTypes.cs" />
     <Compile Include="PaginatedCollection.cs" />
     <Compile Include="BaseException.cs" />
     <Compile Include="Services\Discovery\AssemblySource.cs" />
@@ -208,6 +209,8 @@
     <Compile Include="Windows\Win32Api.cs" />
     <Compile Include="Windows\Win32Error.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Net\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

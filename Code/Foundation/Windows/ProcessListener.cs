@@ -6,7 +6,7 @@ namespace Foundation.Windows
     /// <summary>
     /// Event management for when any system process (or a process specified by name) is created or exited.
     /// </summary>
-    public class ProcessListener : IDisposable
+    public class ProcessListener : IProcessListener
     {
         readonly string processName;
         readonly ManagementEventWatcher processStartedWatcher;
@@ -54,6 +54,8 @@ namespace Foundation.Windows
         /// Occurs when a process has exited.
         /// </summary>
         public event EventHandler<EventArrivedEventArgs> ProcessExited;
+
+        public string ProcessName { get { return processName; } }
 
         private void OnProcessStarted(object sender, EventArrivedEventArgs e)
         {

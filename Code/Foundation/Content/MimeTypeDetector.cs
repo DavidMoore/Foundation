@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Foundation.Net
+namespace Foundation.Content
 {
     /// <summary>
     /// Methods to help detect the MIME / Internet media type of a file

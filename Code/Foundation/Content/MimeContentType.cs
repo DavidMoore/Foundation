@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace Foundation.Net
+namespace Foundation.Content
 {
     public class MimeContentType
     {

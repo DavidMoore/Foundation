@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
-namespace Foundation.Net
+namespace Foundation.Content
 {
     /// <summary>
     /// Defines common Internet media types

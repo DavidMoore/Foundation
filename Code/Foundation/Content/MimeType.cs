@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace Foundation.Net
+namespace Foundation.Content
 {
     public class MimeType
     {

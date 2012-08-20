@@ -372,7 +372,7 @@ LANGUAGE 0, 0").AppendLine();
       <SpecialBuildDescription>$(ProductDescription)</SpecialBuildDescription>
 
       <!-- Get the path to the resource compiler -->
-      <ResourceCompilerPath>$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v7.0A@InstallationFolder)bin\rc.exe</ResourceCompilerPath>
+      <ResourceCompilerPath>$(WindowsSdkDir)rc.exe</ResourceCompilerPath>
 
     </PropertyGroup>
 
@@ -459,7 +459,7 @@ LANGUAGE 0, 0").AppendLine();
     <Message Text="Thumbprint: $(AuthenticodeThumbprint)" />
     <Message Text="Timestamp URL: $(AuthenticodeTimestampUrl)" />
 
-    <Exec Command= "%22$(WindowsSdkDir)\bin\SignTool.exe%22 $(AuthenticodeArguments) %22$(TargetPath)%22" />
+    <Exec Command= "%22$(WindowsSdkDir)SignTool.exe%22 $(AuthenticodeArguments) %22$(TargetPath)%22" />
   </Target>
 
   <!-- We override these properties from Visual C#, allowing us to register our targets in the right place. -->
@@ -522,7 +522,7 @@ LANGUAGE 0, 0").AppendLine();
           />
 
     <!-- We've tampered with the file, so re-sign it -->
-    <Exec Command="%22$(WindowsSdkDir)Bin\sn.exe%22 -R %22$(TargetPath)%22 %22$(AssemblyOriginatorKeyFile)%22" />
+    <Exec Command="%22$(WindowsSdkDir)sn.exe%22 -R %22$(TargetPath)%22 %22$(AssemblyOriginatorKeyFile)%22" />
 
     <!-- call "%25VS100COMNTOOLS%25vsvars32.bat" -->
   </Target>
@@ -542,7 +542,7 @@ LANGUAGE 0, 0").AppendLine();
         SuppressStartupBanner="true"
         OutputManifestFile="%(COMLibrary.FullPath).manifest"
         VerboseOutput="true"
-        ToolPath="$(WindowsSdkDir)Bin\"/>
+        ToolPath="$(WindowsSdkDir)"/>
 
     <ItemGroup>
       <COMLibraryManifest Include="%(COMLibrary.FullPath).manifest" />
@@ -559,10 +559,10 @@ LANGUAGE 0, 0").AppendLine();
         VerboseOutput="true"
         UpdateFileHashes="true"
         UpdateFileHashesSearchPath="$(TargetDir)"
-        ToolPath="$(WindowsSdkDir)Bin\"/>
+        ToolPath="$(WindowsSdkDir)"/>
 
     <!-- We've changed the assembly so we'll need to sign it again -->
-    <Exec Command="%22$(WindowsSdkDir)Bin\sn.exe%22 -R %22$(TargetPath)%22 %22$(AssemblyOriginatorKeyFile)%22"/>
+    <Exec Command="%22$(WindowsSdkDir)sn.exe%22 -R %22$(TargetPath)%22 %22$(AssemblyOriginatorKeyFile)%22"/>
 
   </Target>
 

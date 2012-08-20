@@ -20,7 +20,7 @@
         <!-- Default configuration and platform -->
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == ''">v4.0</TargetFrameworkVersion>
+        <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == ''">v4.5</TargetFrameworkVersion>
         <TargetFrameworkProfile Condition="'$(TargetFrameworkProfile)' == ''" />
         <FileAlignment>512</FileAlignment>
         <SchemaVersion>2.0</SchemaVersion>
@@ -116,7 +116,8 @@
 
   <!-- Hard coded to get the location of 7.0A SDK -->
   <PropertyGroup>
-    <WindowsSdkDir Condition="'$(WindowsSdkDir)' == ''">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v7.0A@InstallationFolder)</WindowsSdkDir>
+    <WindowsSdkDir Condition="'$(WindowsSdkDir)' == ''">C:\Program Files (x86)\Windows Kits\8.0\bin\x86\</WindowsSdkDir>
+    <!--WindowsSdkDir Condition="'$(WindowsSdkDir)' == '' OR !Exists($(WindowsSdkDir))">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v7.0A@InstallationFolder)bin\</WindowsSdkDir-->
   </PropertyGroup>
 
     <!-- For speed, don't copy any assembly or project references. -->

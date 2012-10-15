@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Interop.Office",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Build.VisualBasic6.VisualStudioIntegration", "Code\Foundation.Build.VisualBasic6.VisualStudioIntegration\Foundation.Build.VisualBasic6.VisualStudioIntegration.csproj", "{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.ErrorAnalyzer", "Code\Foundation.ErrorAnalyzer\Foundation.ErrorAnalyzer.csproj", "{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Foundation.vsmdi
@@ -229,6 +231,20 @@ Global
 		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Release|Win32.ActiveCfg = Release|Any CPU
 		{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}.Release|x86.ActiveCfg = Release|Any CPU
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Debug|Win32.ActiveCfg = Debug|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Debug|Win32.Build.0 = Debug|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Debug|x86.ActiveCfg = Debug|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Debug|x86.Build.0 = Debug|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Release|Any CPU.ActiveCfg = Release|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Release|Win32.ActiveCfg = Release|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Release|Win32.Build.0 = Release|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Release|x86.ActiveCfg = Release|x86
+		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

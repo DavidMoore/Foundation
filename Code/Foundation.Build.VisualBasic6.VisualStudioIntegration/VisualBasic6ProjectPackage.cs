@@ -20,7 +20,7 @@ namespace VisualBasic6
     /// <para>ProvideProjectItem: Declares that a package provides a project item.</para> 
     /// </remarks>  
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\10.0")]
+    [DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\11.0")]
     [ProvideObject(typeof(GeneralPropertyPage))]
     [ProvideProjectFactory(typeof(VisualBasic6ProjectFactory), ProjectFactoryStrings.ProjectName, ProjectFactoryStrings.ProjectFileFilter,
         ProjectFactoryStrings.DefaultExtension, ProjectFactoryStrings.PossibleExtensions,ProjectFactoryStrings.TemplateDirectory, 
@@ -41,9 +41,9 @@ namespace VisualBasic6
             this.RegisterProjectFactory(new VisualBasic6ProjectFactory(this));
         }
         
-//        public override string ProductUserContext
-//        {
-//            get { return "Visual Basic 6"; }
-//        }
+        public override string ProductUserContext
+        {
+            get { return "Visual Basic 6"; }
+        }
     }
 }

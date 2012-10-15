@@ -13,8 +13,12 @@
         <Edition>Pro</Edition>
         <Edition>VST_All</Edition>
       </VisualStudio>
+      <VisualStudio Version="10.0">
+        <Edition>Pro</Edition>
+        <Edition>VST_All</Edition>
+      </VisualStudio>
     </SupportedProducts>
-    <SupportedFrameworkRuntimeEdition MinVersion="4.5" MaxVersion="4.5" />
+    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.5" />
   </Identifier>
   <References />
   <Content>

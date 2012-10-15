@@ -4,8 +4,14 @@
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ProjectBasePath>$(MSBuildThisFileDirectory)\..\..\Packages\MPFProj\Src\</ProjectBasePath>
+    <ProjectBasePath>$(MSBuildThisFileDirectory)..\..\Packages\MPFProj\Dev10\Src\CSharp</ProjectBasePath>
+    <AllowedAssemblyPrefix>$(AllowedAssemblyPrefix);Microsoft.Internal</AllowedAssemblyPrefix>
+    <RegisterOutputPackage>true</RegisterOutputPackage>
+    <RegisterWithCodebase>true</RegisterWithCodebase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
+  <Import Project="$(ProjectBasePath)\ProjectBase.Files" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <ProjectGuid>{F4ADEBDB-CD20-4532-B4E3-FE7424F5369C}</ProjectGuid>
@@ -13,6 +19,7 @@
   </PropertyGroup>
   <Import Project="..\..\Common\Build\Build.Common.targets" />
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.Designer.Interfaces" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop" />
@@ -33,6 +40,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="VSLangProj" />
     <Reference Include="WindowsBase" />
@@ -94,6 +102,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Templates\Projects\StandardEXE\Project.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Compile Include="OAVisualBasic6FileItem.cs" />
     <Compile Include="ProjectFactoryStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,10 +205,10 @@
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
     </EmbeddedResource>
-    <Content Include="Resources\Package.ico" />
+    <Content Include="Resources\Package.ico">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
-  <!-- This import the files which makes up the project base classes -->
-  <Import Project="$(SolutionDir)Packages\MPFProj\Src\ProjectBase.Files" />
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>
   </PropertyGroup>

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation", "Code\Foundation\Foundation.csproj", "{76D503C1-FB69-4688-B7F9-49A7D6525263}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Services.Unity", "Code\Foundation.Services.Unity\Foundation.Services.Unity.csproj", "{28B88F2B-5068-4A8F-B900-FF503618A996}"
@@ -48,10 +50,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Build.VisualBasi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.ErrorAnalyzer", "Code\Foundation.ErrorAnalyzer\Foundation.ErrorAnalyzer.csproj", "{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Build.VisualBasic6.Converter.Console", "Code\Foundation.Build.VisualBasic6.Converter.Console\Foundation.Build.VisualBasic6.Converter.Console.csproj", "{4FA8186A-12A1-4CAC-8395-051363CD01D6}"
+EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Foundation.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -245,6 +246,20 @@ Global
 		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Release|Win32.Build.0 = Release|x86
 		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Release|x86.ActiveCfg = Release|x86
 		{471DBC70-2E11-4664-BC5C-7A57D6F49BC8}.Release|x86.Build.0 = Release|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Debug|Win32.ActiveCfg = Debug|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Debug|Win32.Build.0 = Debug|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Debug|x86.ActiveCfg = Debug|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Debug|x86.Build.0 = Debug|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Release|Any CPU.ActiveCfg = Release|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Release|Mixed Platforms.Build.0 = Release|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Release|Win32.ActiveCfg = Release|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Release|Win32.Build.0 = Release|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Release|x86.ActiveCfg = Release|x86
+		{4FA8186A-12A1-4CAC-8395-051363CD01D6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -253,5 +268,8 @@ Global
 		{8CB0D491-3B41-4D2B-B3A6-39109514B89A} = {38C985A9-EA29-41AB-8788-61F322D9FBC4}
 		{30B74237-FC2A-4F7C-B4B6-A17B3DCC6337} = {38C985A9-EA29-41AB-8788-61F322D9FBC4}
 		{3D2270D9-ED86-45E8-A259-54C20367AC96} = {8CB0D491-3B41-4D2B-B3A6-39109514B89A}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Foundation.vsmdi
 	EndGlobalSection
 EndGlobal

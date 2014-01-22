@@ -29,3 +29,4 @@ _ReSharper*/
 *.vs10x
 *.cache
 Packages/*/
+!Packages/MPFProj/

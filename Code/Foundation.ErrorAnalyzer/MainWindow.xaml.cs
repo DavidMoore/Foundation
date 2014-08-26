@@ -35,6 +35,9 @@ namespace Foundation.ErrorAnalyzer
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             var code = errorCode.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(code)) return;
+
             var isHex = hexRegex.IsMatch(code);
 
             int integer;

@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <ProjectBasePath>$(MSBuildThisFileDirectory)..\..\Packages\MPFProj\Dev10\Src\CSharp</ProjectBasePath>
     <AllowedAssemblyPrefix>$(AllowedAssemblyPrefix);Microsoft.Internal</AllowedAssemblyPrefix>
     <RegisterOutputPackage>true</RegisterOutputPackage>
     <RegisterWithCodebase>true</RegisterWithCodebase>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <OldToolsVersion>4.0</OldToolsVersion>
   </PropertyGroup>
   <Import Project="$(ProjectBasePath)\ProjectBase.Files" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

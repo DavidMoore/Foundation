@@ -12,7 +12,7 @@ namespace Foundation.Build.MSBuild
 {
     public class GenerateFileVersionInfo : Task
     {
-        const string resourceCompilerRelativePath = @"bin\rc.exe";
+        const string resourceCompilerRelativePath = @"bin\x86\rc.exe";
 
         public override bool Execute()
         {

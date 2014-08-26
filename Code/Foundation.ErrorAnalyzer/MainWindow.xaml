@@ -6,6 +6,6 @@
         <Label Content="Error Code:" Height="28" HorizontalAlignment="Left" Margin="50,53,0,0" Name="label1" VerticalAlignment="Top" />
         <TextBox Height="23" Margin="125,55,0,0" Name="errorCode" VerticalAlignment="Top" HorizontalAlignment="Left" Width="276" />
         <Button Content="Analyze" Height="23" HorizontalAlignment="Left" Margin="407,58,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
-        <TextBox Height="181" HorizontalAlignment="Left" Margin="48,103,0,0" Name="textBox2" VerticalAlignment="Top" Width="401" />
+        <TextBox Height="181" HorizontalAlignment="Left" Margin="48,103,0,0" Name="textBox2" VerticalAlignment="Top" Width="401" TextWrapping="Wrap" />
     </Grid>
 </Window>
